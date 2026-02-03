@@ -1,14 +1,14 @@
 package com.example.boostar_uaal.data.repository
 
-import com.example.core.entities.Brand
-import com.example.core.entities.ClothingSize
-import com.example.core.entities.Multimedia
+import com.example.boostar_uaal.core.entities.Brand
+import com.example.boostar_uaal.core.entities.ClothingSize
+import com.example.boostar_uaal.core.entities.Multimedia
 import com.example.core.entities.Product
-import com.example.core.entities.ProductColor
-import com.example.core.entities.Standard
-import com.example.core.entities.Style
-import com.example.core.entities.TypeMultimedia
-import com.example.core.utils.ColorFormatter
+import com.example.boostar_uaal.core.entities.ProductColor
+import com.example.boostar_uaal.core.entities.Standard
+import com.example.boostar_uaal.core.entities.Style
+import com.example.boostar_uaal.core.entities.TypeMultimedia
+import com.example.boostar_uaal.core.utils.ColorFormatter
 
 class ProductRepositoryImpl(){
     val brands = listOf(
