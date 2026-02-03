@@ -47,6 +47,14 @@ dependencies {
     //Coil
     implementation(libs.coil)
 
+    //Supabase
+    implementation(platform(libs.bom))
+    implementation(libs.postgrest.kt)
+    implementation(libs.storage.kt)
+    implementation(libs.auth.kt)
+
+    //Ktor
+    implementation(libs.ktor.client.android)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

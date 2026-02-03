@@ -21,7 +21,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.R
+import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.components.AuthButton
 import com.example.boostar_uaal.core.theme.authSecondaryButtonColor
 import com.example.boostar_uaal.navigation.Routes

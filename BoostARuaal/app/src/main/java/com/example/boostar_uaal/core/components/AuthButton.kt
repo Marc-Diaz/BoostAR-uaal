@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.R
+import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.theme.authPrimaryButtonColor
 import com.example.boostar_uaal.core.theme.authSecondaryButtonColor
 
@@ -37,7 +37,7 @@ fun AuthButton(
             Row {
                 icon?.let {
                     Icon(
-                        painter = painterResource(R.drawable.),
+                        painter = painterResource(icon),
                         contentDescription = "Icono"
                     )
                 }
