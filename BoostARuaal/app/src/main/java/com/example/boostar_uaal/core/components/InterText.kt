@@ -20,7 +20,7 @@ fun InterText(
     Text(
         text = text,
         modifier = modifier,
-        fontFamily = FontFamily(Font(R.font.waltographUI)),
+        fontFamily = FontFamily(Font(R.font.inter_medium)),
         fontSize = fontSize,
         fontWeight = fontWeight
     )

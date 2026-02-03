@@ -46,6 +46,7 @@ dependencies {
 
     //Coil
     implementation(libs.coil)
+    implementation(libs.coil.compose)
 
     //Supabase
     implementation(platform(libs.bom))
