@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.data.entities
+package com.example.boostar_uaal.data.models
 
 data class Style(
     val id: Int,

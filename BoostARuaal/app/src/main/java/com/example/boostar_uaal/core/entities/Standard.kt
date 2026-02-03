@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.data.entities
+package com.example.core.entities
 
 data class Standard(
     val id: Int,
