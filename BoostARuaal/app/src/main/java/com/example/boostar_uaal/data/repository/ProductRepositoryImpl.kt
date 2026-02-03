@@ -156,7 +156,7 @@ class ProductRepositoryImpl(){
                 )
             )
         ))
-    fun getProducts(): List<Product> {
+    fun getProductsjajaja(): List<Product> {
         return products
     }
 }

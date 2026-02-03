@@ -15,7 +15,7 @@ class HomeScreenViewModel: ViewModel() {
 
     fun getProducts(){
         viewModelScope.launch {
-            _products.value = ProductRepositoryImpl().getProducts()
+            _products.value = ProductRepositoryImpl().getProductsjajaja()
             Log.d("HomeScreenViewModel", "getProducts: ${_products.value}")
         }
     }
