@@ -1,6 +1,5 @@
-package com.example.boostar_uaal.ui.theme
+package com.example.boostar_uaal.core.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

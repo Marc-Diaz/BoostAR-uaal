@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.ui.theme
+package com.example.boostar_uaal.core.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

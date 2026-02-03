@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.ui.screen.loginScreen
+package com.example.boostar_uaal.ui.screen.singInScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,7 +27,7 @@ import com.example.boostar_uaal.core.theme.authSecondaryButtonColor
 import com.example.boostar_uaal.navigation.Routes
 
 @Composable
-fun LogInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit) {
+fun SignInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit) {
 
     Box(
         Modifier.fillMaxSize()
