@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.data.entities
+package com.example.boostar_uaal.data.models
 
 import androidx.compose.ui.graphics.Color
 

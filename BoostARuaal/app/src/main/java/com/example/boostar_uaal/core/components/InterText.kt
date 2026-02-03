@@ -8,8 +8,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
+import com.example.boostar_uaal.R
 
-/*@Composable
+@Composable
 fun InterText(
     text: String,
     modifier: Modifier = Modifier,
@@ -19,8 +20,8 @@ fun InterText(
     Text(
         text = text,
         modifier = modifier,
-        fontFamily = FontFamily(Font(Res.font.Inter_Medium)),
+        fontFamily = FontFamily(Font(R.font.waltographUI)),
         fontSize = fontSize,
         fontWeight = fontWeight
     )
-}*/
+}

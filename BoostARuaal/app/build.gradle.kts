@@ -38,6 +38,24 @@ android {
 }
 
 dependencies {
+
+    //Nav3
+    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.androidx.navigation3.ui)
+    implementation(libs.kotlinx.serialization.core)
+
+    //Coil
+    implementation(libs.coil)
+
+    //Supabase
+    implementation(platform(libs.bom))
+    implementation(libs.postgrest.kt)
+    implementation(libs.storage.kt)
+    implementation(libs.auth.kt)
+
+    //Ktor
+    implementation(libs.ktor.client.android)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

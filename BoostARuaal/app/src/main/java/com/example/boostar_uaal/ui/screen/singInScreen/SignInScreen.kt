@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.ui.screen.authScreen
+package com.example.boostar_uaal.ui.screen.singInScreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -21,13 +21,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.boostar_uaal.R
+import androidx.core.R
 import com.example.boostar_uaal.core.components.AuthButton
 import com.example.boostar_uaal.core.theme.authSecondaryButtonColor
 import com.example.boostar_uaal.navigation.Routes
 
 @Composable
-fun AuthScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit) {
+fun SignInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit) {
 
     Box(
         Modifier.fillMaxSize()
@@ -39,7 +39,7 @@ fun AuthScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) 
         Image(
             painter = painterResource( R.drawable.carrusel_auth_1),
             contentDescription = "Carrusel imagenes"
-            )
+        )
 
         Image(
             painter = painterResource(R.drawable.carrusel_auth_2),
@@ -88,7 +88,7 @@ fun AuthScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) 
                     verticalArrangement = Arrangement.Top
                 ) {
 
-                     AuthButton(
+                    AuthButton(
                         onClick = { navigateTo(Routes.LogInScreen) },
                         text = "Log in",
                         isFilled = true,
