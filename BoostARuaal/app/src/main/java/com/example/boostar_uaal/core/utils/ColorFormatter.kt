@@ -1,4 +1,4 @@
-package com.example.core.utils
+package com.example.boostar_uaal.core.utils
 
 import androidx.compose.ui.graphics.Color
 
