@@ -90,6 +90,7 @@ class ProductRepositoryImpl(){
             brand = brands[0],
             numLikes = 4309,
             modelURL = "",
+            coverImage = "https://www.joma-sport.com/dw/image/v2/BFRV_PRD/on/demandware.static/-/Sites-joma-masterCatalog/default/dw0e82cc45/images/medium/101739.100_1.jpg?sw=900&sh=900&sm=fit",
             multimedia = listOf(
                 Multimedia(
                     id = 0,
@@ -116,6 +117,7 @@ class ProductRepositoryImpl(){
             colors = colors,
             numLikes = 4309,
             modelURL = "",
+            coverImage = "https://www.joma-sport.com/dw/image/v2/BFRV_PRD/on/demandware.static/-/Sites-joma-masterCatalog/default/dw0e82cc45/images/medium/101739.100_1.jpg?sw=900&sh=900&sm=fit",
             multimedia = listOf(
                 Multimedia(
                     id = 0,
@@ -141,6 +143,7 @@ class ProductRepositoryImpl(){
             colors = colors,
             numLikes = 4309,
             modelURL = "",
+            coverImage = "https://www.joma-sport.com/dw/image/v2/BFRV_PRD/on/demandware.static/-/Sites-joma-masterCatalog/default/dw0e82cc45/images/medium/101739.100_1.jpg?sw=900&sh=900&sm=fit",
             multimedia = listOf(
                 Multimedia(
                     id = 0,
@@ -156,7 +159,7 @@ class ProductRepositoryImpl(){
                 )
             )
         ))
-    fun getProductsjajaja(): List<Product> {
+    fun getMockProducts(): List<Product> {
         return products
     }
 }

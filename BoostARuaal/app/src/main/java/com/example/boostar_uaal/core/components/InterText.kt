@@ -1,6 +1,5 @@
 package com.example.boostar_uaal.core.components
 
-import androidx.annotation.ColorInt
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -9,9 +8,11 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.R
+import com.example.boostar_uaal.core.theme.primaryTextColor
 
 @Composable
 fun InterText(
@@ -20,7 +21,7 @@ fun InterText(
     fontSize: TextUnit = 16.sp,
     fontWeight: FontWeight = FontWeight.Medium,
     textAlign: TextAlign = TextAlign.Start,
-    color: Color = Color.Black
+    color: Color = primaryTextColor
 ){
     Text(
         text = text,
@@ -29,6 +30,7 @@ fun InterText(
         fontSize = fontSize,
         fontWeight = fontWeight,
         textAlign = textAlign,
-        color = color
+        color = color,
+        overflow = TextOverflow.Ellipsis
     )
 }

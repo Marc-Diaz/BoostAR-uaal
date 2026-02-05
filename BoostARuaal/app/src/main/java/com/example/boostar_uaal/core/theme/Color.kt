@@ -11,5 +11,9 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 
-val authPrimaryButtonColor= Color(red = 0, green = 128, blue = 255)
-val authSecondaryButtonColor = Color(red = 255, green = 255, blue = 255)
+val primaryButtonColor= Color(red = 0, green = 128, blue = 255)
+val secondaryButtonColor = Color(red = 255, green = 255, blue = 255)
+val discountColor = Color(red = 255, green = 0, blue = 0)
+
+val primaryTextColor = Color.Black
+val secondaryTextColor = Color.LightGray

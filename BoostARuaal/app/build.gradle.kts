@@ -57,6 +57,9 @@ dependencies {
 
     //Ktor
     implementation(libs.ktor.client.android)
+    implementation(libs.coil.network.ktor3)
+
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

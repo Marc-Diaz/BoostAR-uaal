@@ -13,9 +13,12 @@ class HomeScreenViewModel: ViewModel() {
     private val _products = MutableStateFlow<List<Product>>(emptyList())
     val products: StateFlow<List<Product>> = _products
 
+    init {
+        getProducts()
+    }
     fun getProducts(){
         viewModelScope.launch {
-            _products.value = ProductRepositoryImpl().getProductsjajaja()
+            _products.value = ProductRepositoryImpl().getMockProducts()
             Log.d("HomeScreenViewModel", "getProducts: ${_products.value}")
         }
     }

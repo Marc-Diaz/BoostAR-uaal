@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.components.AuthButton
-import com.example.boostar_uaal.core.theme.authSecondaryButtonColor
+import com.example.boostar_uaal.core.theme.secondaryButtonColor
 import com.example.boostar_uaal.navigation.Routes
 
 @Composable
@@ -64,13 +64,13 @@ fun LogInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes)
             {
                 Text(
                     "BoostAR",
-                    color = authSecondaryButtonColor,
+                    color = secondaryButtonColor,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Medium
                 )
                 Text(
                     "Try it first.",
-                    color = authSecondaryButtonColor,
+                    color = secondaryButtonColor,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Medium
                 )
@@ -78,7 +78,7 @@ fun LogInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes)
 
             Surface(
                 modifier = Modifier.fillMaxWidth().height(295.dp),
-                color = authSecondaryButtonColor,
+                color = secondaryButtonColor,
                 shape = RoundedCornerShape(topStart = 60.dp, topEnd = 60.dp)
             )
             {
