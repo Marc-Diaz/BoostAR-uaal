@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -69,7 +71,7 @@ fun LogInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes)
                     fontWeight = FontWeight.Medium
                 )
                 Text(
-                    "Try it first.",
+                    "Log in the future.",
                     color = secondaryButtonColor,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Medium
@@ -85,22 +87,24 @@ fun LogInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes)
                 Column(
                     modifier = Modifier.fillMaxSize().padding(30.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Top
+                    verticalArrangement = Arrangement.spacedBy(18.dp)
                 ) {
 
                     AuthButton(
                         onClick = { navigateTo(Routes.LogInScreen) },
-                        text = "Log in",
+                        text = "Continue with Google",
+                        icon = R.drawable.google_logo_g_logo_icon_159348,
                         isFilled = true,
                     )
                     AuthButton(
                         onClick = { navigateTo(Routes.SignInScreen) },
-                        text = "Sign in",
+                        text = "Continue with phone",
+                        icon = R.drawable.phone_icon,
                         isFilled = true,
                     )
                     AuthButton(
                         onClick = { navigateTo(Routes.HomeScreen) },
-                        text = "Enter as guest",
+                        text = "Continue with apple",
                         isFilled = false,
                     )
                 }

@@ -16,4 +16,4 @@ val secondaryButtonColor = Color(red = 255, green = 255, blue = 255)
 val discountColor = Color(red = 255, green = 0, blue = 0)
 
 val primaryTextColor = Color.Black
-val secondaryTextColor = Color.LightGray
+val secondaryTextColor = Color.Gray

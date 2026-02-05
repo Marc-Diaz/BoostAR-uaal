@@ -34,17 +34,9 @@ fun AuthScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) 
         Modifier.fillMaxSize()
     ) {
 
-        Box(
-            modifier = Modifier.fillMaxWidth().background(Color.Red).fillMaxSize()
-        )
-        Image(
-            painter = painterResource( R.drawable.carrusel_auth_1),
-            contentDescription = "Carrusel imagenes"
-            )
-
         Image(
             painter = painterResource(R.drawable.carrusel_auth_2),
-            contentDescription = null,
+            contentDescription = "Auth Image",
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
@@ -64,16 +56,16 @@ fun AuthScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) 
             )
             {
                 InterText(
-                    "BoostAR",
+                    "BoostAR.",
                     color = secondaryButtonColor,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Medium
+                    fontSize = 54.sp,
+                    fontWeight = FontWeight.ExtraBold
                 )
                 InterText(
                     "Try it first.",
                     color = secondaryButtonColor,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Medium
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.ExtraBold
                 )
             }
 
@@ -86,9 +78,8 @@ fun AuthScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) 
                 Column(
                     modifier = Modifier.fillMaxSize().padding(30.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Top
+                    verticalArrangement = Arrangement.spacedBy(18.dp)
                 ) {
-
                      AuthButton(
                         onClick = { navigateTo(Routes.LogInScreen) },
                         text = "Log in",

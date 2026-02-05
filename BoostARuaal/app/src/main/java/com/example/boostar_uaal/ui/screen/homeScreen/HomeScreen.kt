@@ -12,7 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+
 import com.example.boostar_uaal.core.components.ItemCarrousel
 import com.example.boostar_uaal.navigation.Routes
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -42,6 +42,13 @@ fun HomeScreen(navigateTo: (Routes) -> Unit){
             navigateTo = {navigateTo(Routes.HomeScreen)},
             itemClickable = { navigateTo(Routes.FeedScreen(it)) }
         )
+        ItemCarrousel(
+            name = "Tendencias",
+            products = products,
+            navigateTo = {navigateTo(Routes.HomeScreen)},
+            itemClickable = { navigateTo(Routes.FeedScreen(it)) }
+        )
+
     }
 }
 @Preview(showBackground = true)
