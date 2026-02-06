@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.core.components.shared
+package com.example.boostar_uaal.core.components
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape

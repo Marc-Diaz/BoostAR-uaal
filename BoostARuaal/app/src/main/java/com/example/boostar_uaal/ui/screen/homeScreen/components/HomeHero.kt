@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.core.components
+package com.example.boostar_uaal.ui.screen.homeScreen.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.material3.Card

@@ -1,11 +1,8 @@
-package com.example.boostar_uaal.core.components
+package com.example.boostar_uaal.ui.screen.authScreen.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
@@ -20,8 +17,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.theme.primaryButtonColor
-import com.example.boostar_uaal.core.theme.primaryTextColor
 import com.example.boostar_uaal.core.theme.secondaryButtonColor
 
 @Composable
@@ -48,9 +45,9 @@ fun AuthButton(
                     text = text,
                     fontSize = 18.sp,
                     color = if (isFilled) secondaryButtonColor
-                            else primaryButtonColor,
+                    else primaryButtonColor,
                     fontWeight = FontWeight.Black
-                    )
+                )
             }
         },
         colors = if (isFilled) ButtonColors(

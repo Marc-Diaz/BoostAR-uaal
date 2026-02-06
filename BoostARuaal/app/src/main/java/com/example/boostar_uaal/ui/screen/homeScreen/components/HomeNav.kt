@@ -1,10 +1,9 @@
-package com.example.boostar_uaal.core.components
+package com.example.boostar_uaal.ui.screen.homeScreen.components
 
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items

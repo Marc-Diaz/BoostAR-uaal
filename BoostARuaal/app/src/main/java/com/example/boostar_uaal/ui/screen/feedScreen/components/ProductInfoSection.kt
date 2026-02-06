@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.core.components.feed
+package com.example.boostar_uaal.ui.screen.feedScreen.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

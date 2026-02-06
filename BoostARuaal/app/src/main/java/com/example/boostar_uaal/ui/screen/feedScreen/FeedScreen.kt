@@ -27,10 +27,10 @@ import coil3.request.crossfade
 import com.example.boostar_uaal.core.entities.TypeMultimedia
 import com.example.boostar_uaal.navigation.Routes
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.boostar_uaal.core.components.feed.BottomActionDock
-import com.example.boostar_uaal.core.components.feed.ProductInfoSection
-import com.example.boostar_uaal.core.components.feed.RightSideBar
-import com.example.boostar_uaal.core.components.shared.SearchButton
+import com.example.boostar_uaal.ui.screen.feedScreen.components.BottomActionDock
+import com.example.boostar_uaal.ui.screen.feedScreen.components.ProductInfoSection
+import com.example.boostar_uaal.ui.screen.feedScreen.components.RightSideBar
+import com.example.boostar_uaal.core.components.SearchButton
 
 // Colores extraídos aproximados de la imagen
 val BrandRed = Color(0xFFFF5247)
