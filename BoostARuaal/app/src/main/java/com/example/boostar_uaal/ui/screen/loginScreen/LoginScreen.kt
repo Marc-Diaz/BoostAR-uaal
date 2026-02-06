@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.ui.screen.authScreen.components.AuthButton
 import com.example.boostar_uaal.core.theme.secondaryButtonColor
-import com.example.boostar_uaal.navigation.Routes
+import com.example.boostar_uaal.core.navigation.Routes
 
 @Composable
 fun LogInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit) {

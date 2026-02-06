@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.entities.NavHomeItemData
 import com.example.boostar_uaal.core.theme.discountColor
-import com.example.boostar_uaal.navigation.Routes
+import com.example.boostar_uaal.core.navigation.Routes
 
 
 @Composable

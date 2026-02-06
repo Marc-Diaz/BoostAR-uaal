@@ -15,7 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.components.InterText
 
-import com.example.boostar_uaal.navigation.Routes
+import com.example.boostar_uaal.core.navigation.Routes
 
 @Composable
 fun NavHomeItem(name: String, color: Color, routes: Routes){

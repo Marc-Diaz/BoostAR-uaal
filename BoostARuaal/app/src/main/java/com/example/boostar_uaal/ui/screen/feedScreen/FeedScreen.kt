@@ -25,7 +25,7 @@ import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.example.boostar_uaal.core.entities.TypeMultimedia
-import com.example.boostar_uaal.navigation.Routes
+import com.example.boostar_uaal.core.navigation.Routes
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.boostar_uaal.ui.screen.feedScreen.components.BottomActionDock
 import com.example.boostar_uaal.ui.screen.feedScreen.components.ProductInfoSection

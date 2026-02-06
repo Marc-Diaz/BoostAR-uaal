@@ -22,7 +22,7 @@ import com.example.boostar_uaal.R
 import com.example.boostar_uaal.ui.screen.authScreen.components.AuthButton
 import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.theme.secondaryButtonColor
-import com.example.boostar_uaal.navigation.Routes
+import com.example.boostar_uaal.core.navigation.Routes
 
 @Composable
 fun AuthScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit) {
@@ -77,7 +77,7 @@ fun AuthScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) 
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(18.dp)
                 ) {
-                     AuthButton(
+                    AuthButton(
                         onClick = { navigateTo(Routes.LogInScreen) },
                         text = "Log in",
                         isFilled = true,

@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.navigation
+package com.example.boostar_uaal.core.navigation
 
 import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable

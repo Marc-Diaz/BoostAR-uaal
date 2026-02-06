@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 import com.example.boostar_uaal.ui.screen.homeScreen.components.ItemCarrousel
-import com.example.boostar_uaal.navigation.Routes
+import com.example.boostar_uaal.core.navigation.Routes
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeHeader
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeHero
