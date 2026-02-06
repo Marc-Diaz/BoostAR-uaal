@@ -103,7 +103,7 @@ fun LogInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes)
                         isFilled = true,
                     )
                     AuthButton(
-                        onClick = { navigateTo(Routes.HomeScreen) },
+                        onClick = { navigateTo(Routes.LogInScreen) },
                         text = "Continue with apple",
                         isFilled = false,
                     )
