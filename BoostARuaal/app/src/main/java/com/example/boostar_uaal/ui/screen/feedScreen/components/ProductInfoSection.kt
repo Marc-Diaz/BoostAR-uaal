@@ -17,7 +17,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.boostar_uaal.ui.screen.feedScreen.PriceRed
+import com.example.boostar_uaal.core.theme.discountColor
+
 
 @Composable
 fun ProductInfoSection(
@@ -39,7 +40,7 @@ fun ProductInfoSection(
         ) {
             Text(
                 text = "Oferta",
-                color = PriceRed,
+                color = discountColor,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
@@ -58,7 +59,7 @@ fun ProductInfoSection(
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
                 text = "19,99 EUR",
-                color = PriceRed,
+                color = discountColor,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold
             )

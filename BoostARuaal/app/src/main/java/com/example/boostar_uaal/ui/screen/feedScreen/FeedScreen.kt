@@ -33,9 +33,7 @@ import com.example.boostar_uaal.ui.screen.feedScreen.components.RightSideBar
 import com.example.boostar_uaal.core.components.SearchButton
 
 // Colores extraídos aproximados de la imagen
-val BrandRed = Color(0xFFFF5247)
-val BrandYellow = Color(0xFFFFD600)
-val PriceRed = Color(0xFFFF1744)
+
 
 @Composable
 fun FeedScreen(

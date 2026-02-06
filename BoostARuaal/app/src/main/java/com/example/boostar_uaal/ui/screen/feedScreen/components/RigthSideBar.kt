@@ -23,8 +23,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.boostar_uaal.ui.screen.feedScreen.BrandRed
-import com.example.boostar_uaal.ui.screen.feedScreen.PriceRed
+import com.example.boostar_uaal.core.theme.discountColor
+
 
 @Composable
 fun RightSideBar(modifier: Modifier = Modifier, likes: Int, onProfileClick: () -> Unit) {
@@ -47,7 +47,7 @@ fun RightSideBar(modifier: Modifier = Modifier, likes: Int, onProfileClick: () -
             Icon(
                 imageVector = Icons.Default.AddCircle,
                 contentDescription = "Seguir",
-                tint = BrandRed,
+                tint = discountColor,
                 modifier = Modifier
                     .size(20.dp)
                     .align(Alignment.TopEnd)
@@ -61,7 +61,7 @@ fun RightSideBar(modifier: Modifier = Modifier, likes: Int, onProfileClick: () -
             Icon(
                 imageVector = Icons.Default.Favorite,
                 contentDescription = "Like",
-                tint = PriceRed,
+                tint = discountColor,
                 modifier = Modifier.size(36.dp)
             )
         }

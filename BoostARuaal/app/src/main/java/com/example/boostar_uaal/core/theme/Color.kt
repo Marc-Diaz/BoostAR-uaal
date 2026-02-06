@@ -13,7 +13,10 @@ val Pink40 = Color(0xFF7D5260)
 
 val primaryButtonColor= Color(red = 0, green = 128, blue = 255)
 val secondaryButtonColor = Color(red = 255, green = 255, blue = 255)
-val discountColor = Color(red = 255, green = 0, blue = 0)
+val discountColor = Color(red = 255, green = 23, blue = 68)
+
 
 val primaryTextColor = Color.Black
 val secondaryTextColor = Color.Gray
+val brandPrimaryColor = Color(red = 255, green = 82, blue = 71)
+val brandSecondaryColor = Color(red = 255, green = 241, blue = 0)
