@@ -15,6 +15,7 @@ data class Product(
     val style: Style,
     val numLikes: Int,
     val modelURL: String,
+    val coverImage: String,
     val multimedia: List<Multimedia>,
     val tallas: List<ClothingSize>,
     val colors: List<ProductColor>,

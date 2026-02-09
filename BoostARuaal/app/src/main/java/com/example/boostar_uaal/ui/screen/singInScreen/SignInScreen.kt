@@ -1,7 +1,6 @@
 package com.example.boostar_uaal.ui.screen.singInScreen
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,39 +10,29 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.R
-import com.example.boostar_uaal.core.components.AuthButton
-import com.example.boostar_uaal.core.theme.authSecondaryButtonColor
-import com.example.boostar_uaal.navigation.Routes
+import com.example.boostar_uaal.ui.screen.authScreen.components.AuthButton
+import com.example.boostar_uaal.core.components.InterText
+import com.example.boostar_uaal.core.theme.secondaryButtonColor
+import com.example.boostar_uaal.core.navigation.Routes
 
 @Composable
 fun SignInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit) {
-
     Box(
         Modifier.fillMaxSize()
     ) {
 
-        Box(
-            modifier = Modifier.fillMaxWidth().background(Color.Red).fillMaxSize()
-        )
-        Image(
-            painter = painterResource( R.drawable.carrusel_auth_1),
-            contentDescription = "Carrusel imagenes"
-        )
-
         Image(
             painter = painterResource(R.drawable.carrusel_auth_2),
-            contentDescription = null,
+            contentDescription = "Auth Image",
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
@@ -62,46 +51,40 @@ fun SignInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes
                 )
             )
             {
-                Text(
-                    "BoostAR",
-                    color = authSecondaryButtonColor,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Medium
+                InterText(
+                    "BoostAR.",
+                    color = secondaryButtonColor,
+                    fontSize = 54.sp,
+                    fontWeight = FontWeight.ExtraBold
                 )
-                Text(
+                InterText(
                     "Try it first.",
-                    color = authSecondaryButtonColor,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Medium
+                    color = secondaryButtonColor,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.ExtraBold
                 )
             }
 
             Surface(
                 modifier = Modifier.fillMaxWidth().height(295.dp),
-                color = authSecondaryButtonColor,
+                color = secondaryButtonColor,
                 shape = RoundedCornerShape(topStart = 60.dp, topEnd = 60.dp)
             )
             {
                 Column(
                     modifier = Modifier.fillMaxSize().padding(30.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Top
+                    verticalArrangement = Arrangement.spacedBy(18.dp)
                 ) {
-
                     AuthButton(
                         onClick = { navigateTo(Routes.LogInScreen) },
-                        text = "Log in",
+                        text = "Continue with Google",
                         isFilled = true,
                     )
                     AuthButton(
                         onClick = { navigateTo(Routes.SignInScreen) },
-                        text = "Sign in",
+                        text = "Continue with phone",
                         isFilled = true,
-                    )
-                    AuthButton(
-                        onClick = { navigateTo(Routes.HomeScreen) },
-                        text = "Enter as guest",
-                        isFilled = false,
                     )
                 }
             }

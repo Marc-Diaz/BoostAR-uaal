@@ -22,9 +22,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.R
-import com.example.boostar_uaal.core.components.AuthButton
-import com.example.boostar_uaal.core.theme.authSecondaryButtonColor
-import com.example.boostar_uaal.navigation.Routes
+import com.example.boostar_uaal.ui.screen.authScreen.components.AuthButton
+import com.example.boostar_uaal.core.theme.secondaryButtonColor
+import com.example.boostar_uaal.core.navigation.Routes
 
 @Composable
 fun LogInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit) {
@@ -64,13 +64,13 @@ fun LogInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes)
             {
                 Text(
                     "BoostAR",
-                    color = authSecondaryButtonColor,
+                    color = secondaryButtonColor,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Medium
                 )
                 Text(
-                    "Try it first.",
-                    color = authSecondaryButtonColor,
+                    "Log in the future.",
+                    color = secondaryButtonColor,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Medium
                 )
@@ -78,29 +78,31 @@ fun LogInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes)
 
             Surface(
                 modifier = Modifier.fillMaxWidth().height(295.dp),
-                color = authSecondaryButtonColor,
+                color = secondaryButtonColor,
                 shape = RoundedCornerShape(topStart = 60.dp, topEnd = 60.dp)
             )
             {
                 Column(
                     modifier = Modifier.fillMaxSize().padding(30.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Top
+                    verticalArrangement = Arrangement.spacedBy(18.dp)
                 ) {
 
                     AuthButton(
                         onClick = { navigateTo(Routes.LogInScreen) },
-                        text = "Log in",
+                        text = "Continue with Google",
+                        icon = R.drawable.google_logo_g_logo_icon_159348,
                         isFilled = true,
                     )
                     AuthButton(
                         onClick = { navigateTo(Routes.SignInScreen) },
-                        text = "Sign in",
+                        text = "Continue with phone",
+                        icon = R.drawable.phone_icon,
                         isFilled = true,
                     )
                     AuthButton(
-                        onClick = { navigateTo(Routes.HomeScreen) },
-                        text = "Enter as guest",
+                        onClick = { navigateTo(Routes.LogInScreen) },
+                        text = "Continue with apple",
                         isFilled = false,
                     )
                 }

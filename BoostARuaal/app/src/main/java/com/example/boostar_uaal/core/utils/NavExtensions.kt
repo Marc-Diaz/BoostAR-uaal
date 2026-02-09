@@ -3,7 +3,10 @@ package com.example.boostar_uaal.core.utils
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 
-fun NavBackStack<NavKey>.navigateTo(screen: NavKey) {
+fun NavBackStack<NavKey>.navigateTo(screen: NavKey, inclusive: Boolean = false) {
+    if (inclusive)
+        while (isNotEmpty())
+            removeLastOrNull()
     add(screen)
 }
 

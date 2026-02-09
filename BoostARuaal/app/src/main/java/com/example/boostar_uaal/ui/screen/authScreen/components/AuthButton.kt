@@ -1,11 +1,9 @@
-package com.example.boostar_uaal.core.components
+package com.example.boostar_uaal.ui.screen.authScreen.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
@@ -16,11 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.boostar_uaal.R
-import com.example.boostar_uaal.core.theme.authPrimaryButtonColor
-import com.example.boostar_uaal.core.theme.authSecondaryButtonColor
+import com.example.boostar_uaal.core.components.InterText
+import com.example.boostar_uaal.core.theme.primaryButtonColor
+import com.example.boostar_uaal.core.theme.secondaryButtonColor
 
 @Composable
 fun AuthButton(
@@ -32,7 +31,7 @@ fun AuthButton(
 
     Button(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth(0.8f).height(75.dp).padding(10.dp),
+        modifier = Modifier.size(width = 350.dp, height = 55.dp),
         content = {
             Row {
                 icon?.let {
@@ -42,24 +41,30 @@ fun AuthButton(
                     )
                 }
                 Spacer(modifier = Modifier.width(8.dp))
-                InterText(text, fontSize = 18.sp)
+                InterText(
+                    text = text,
+                    fontSize = 18.sp,
+                    color = if (isFilled) secondaryButtonColor
+                    else primaryButtonColor,
+                    fontWeight = FontWeight.Black
+                )
             }
         },
         colors = if (isFilled) ButtonColors(
-            containerColor = authPrimaryButtonColor,
-            contentColor = authSecondaryButtonColor,
-            disabledContainerColor = authPrimaryButtonColor,
-            disabledContentColor = authSecondaryButtonColor
+            containerColor = primaryButtonColor,
+            contentColor = secondaryButtonColor,
+            disabledContainerColor = primaryButtonColor,
+            disabledContentColor = secondaryButtonColor
         ) else ButtonColors(
-            containerColor = authSecondaryButtonColor,
-            contentColor = authPrimaryButtonColor,
+            containerColor = secondaryButtonColor,
+            contentColor = primaryButtonColor,
             disabledContainerColor = Color.Blue,
             disabledContentColor = Color.Black
         ),
         shape = CircleShape,
         border = BorderStroke(
             width = 2.dp,
-            brush = SolidColor(authPrimaryButtonColor)
+            brush = SolidColor(primaryButtonColor)
         )
     )
 

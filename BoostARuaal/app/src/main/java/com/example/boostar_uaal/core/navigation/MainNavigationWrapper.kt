@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.navigation
+package com.example.boostar_uaal.core.navigation
 
 
 import androidx.compose.runtime.Composable
@@ -8,6 +8,8 @@ import androidx.navigation3.ui.NavDisplay
 import com.example.boostar_uaal.core.utils.back
 import com.example.boostar_uaal.core.utils.navigateTo
 import com.example.boostar_uaal.ui.screen.authScreen.AuthScreen
+import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreen
+import com.example.boostar_uaal.ui.screen.homeScreen.HomeScreen
 import com.example.boostar_uaal.ui.screen.loginScreen.LogInScreen
 import com.example.boostar_uaal.ui.screen.singInScreen.SignInScreen
 
@@ -25,7 +27,8 @@ fun MainNavigationWrapper(){
                     back = { backStack.back() },
                     backTo = {  }
                 )
-                }
+            }
+
             entry<Routes.LogInScreen> {
                 LogInScreen(
                     navigateTo = { backStack.navigateTo(it)},
@@ -33,6 +36,7 @@ fun MainNavigationWrapper(){
                     backTo = {  }
                 )
             }
+
             entry<Routes.SignInScreen>{
                 SignInScreen(
                     navigateTo = { backStack.navigateTo(it)},
@@ -40,8 +44,22 @@ fun MainNavigationWrapper(){
                     backTo = {  }
                 )
             }
-            entry<Routes.Authenticated>{
-                InternalNavigationWrapper()
+            entry<Routes.Authenticated> {
+                backStack.navigateTo(Routes.HomeScreen)
+
+            }
+            entry<Routes.HomeScreen> {
+                HomeScreen(
+                    navigateTo = { backStack.navigateTo(it) }
+                )
+            }
+            entry<Routes.FeedScreen> { backStack ->
+                FeedScreen(
+                    backStack.productId,
+                    navigateTo = { },
+                    back = { },
+                    backTo = { }
+                )
             }
         }
     )
