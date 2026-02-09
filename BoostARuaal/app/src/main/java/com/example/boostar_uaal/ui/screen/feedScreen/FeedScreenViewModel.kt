@@ -1,7 +1,7 @@
 package com.example.boostar_uaal.ui.screen.feedScreen
 
 
-import com.example.boostar_uaal.data.repository.ProductRepositoryImpl
+import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
 import com.example.core.entities.Product
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +13,7 @@ class FeedScreenViewModel : ViewModel() {
     val product: StateFlow<Product?> = _product
 
     fun getProduct(productId: Int) {
-        val product = ProductRepositoryImpl().getMockProductById(productId)
+        val product = MockProductRepositoryImpl().getMockProductById(productId)
         _product.value = product
     }
 }

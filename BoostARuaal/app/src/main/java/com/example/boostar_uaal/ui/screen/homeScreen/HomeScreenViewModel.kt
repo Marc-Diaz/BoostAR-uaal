@@ -3,7 +3,7 @@ package com.example.boostar_uaal.ui.screen.homeScreen
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.boostar_uaal.data.repository.ProductRepositoryImpl
+import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
 import com.example.core.entities.Product
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,7 +18,7 @@ class HomeScreenViewModel: ViewModel() {
     }
     fun getProducts(){
         viewModelScope.launch {
-            _products.value = ProductRepositoryImpl().getMockProducts()
+            _products.value = MockProductRepositoryImpl().getMockProducts()
             Log.d("HomeScreenViewModel", "getProducts: ${_products.value}")
         }
     }

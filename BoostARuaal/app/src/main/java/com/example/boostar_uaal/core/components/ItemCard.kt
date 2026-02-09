@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.theme.secondaryTextColor
 
-import com.example.boostar_uaal.data.repository.ProductRepositoryImpl
+import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
 import com.example.core.entities.Product
 
 @Composable
@@ -44,7 +44,7 @@ fun ItemCard(product: Product, clickable: () -> Unit) {
 @Composable
 fun ItemCardPreview(){
     ItemCard(
-        product = ProductRepositoryImpl().getMockProducts().first(),
+        product = MockProductRepositoryImpl().getMockProducts().first(),
         clickable = { }
     )
 }
