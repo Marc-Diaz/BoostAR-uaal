@@ -40,11 +40,3 @@ fun ItemCard(product: Product, clickable: () -> Unit) {
         )
     }
 }
-@Preview(showBackground = true)
-@Composable
-fun ItemCardPreview(){
-    ItemCard(
-        product = MockProductRepositoryImpl().getMockProducts().first(),
-        clickable = { }
-    )
-}

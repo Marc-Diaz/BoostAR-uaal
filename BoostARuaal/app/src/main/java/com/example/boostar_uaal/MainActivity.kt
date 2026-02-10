@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
             BoostARuaalTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) {
                     MainNavigationWrapper()
+
                 }
             }
         }

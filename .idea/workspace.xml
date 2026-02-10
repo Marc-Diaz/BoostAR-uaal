@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3395393b-4c45-4f9d-83d4-b9e5d5e20b76" name="Changes" comment="Inicio">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/repository/AuthRepositoryImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/homeScreen/HomeScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/homeScreen/HomeScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/singInScreen/SingInScreenViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/singInScreen/SingInScreenViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/gradle/libs.versions.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +31,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/Marc-Diaz/BoostAR-uaal.git",
-    "accountId": "af9ae875-f459-44a9-ba68-c2df9a28be9c"
+    "accountId": "c122f55b-82b4-4552-a382-b033239aa6a4"
   }
 }]]></component>
   <component name="ProjectColorInfo">{
@@ -49,7 +53,7 @@
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/marc-diaz/AndroidStudioProjects/BoostAR-android/BoostARuaal"
+    "last_opened_file_path": "/home/marc.diaz.7e8/StudioProjects/BoostAR-uaal/BoostARuaal"
   }
 }]]></component>
   <component name="TaskManager">

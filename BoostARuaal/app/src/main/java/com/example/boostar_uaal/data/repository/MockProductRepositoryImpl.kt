@@ -8,9 +8,10 @@ import com.example.boostar_uaal.core.entities.ProductColor
 import com.example.boostar_uaal.core.entities.Standard
 import com.example.boostar_uaal.core.entities.Style
 import com.example.boostar_uaal.core.entities.TypeMultimedia
+import com.example.boostar_uaal.core.repository.ProductRepository
 import com.example.boostar_uaal.core.utils.ColorFormatter
 
-class MockProductRepositoryImpl(){
+class MockProductRepositoryImpl(): ProductRepository{
     val brands = listOf(
         Brand(
             id = 0,
@@ -159,7 +160,7 @@ class MockProductRepositoryImpl(){
                 )
             )
         ))
-    fun getMockProducts(): List<Product> {
+    override suspend fun getProducts(): List<Product> {
         return products
     }
 
