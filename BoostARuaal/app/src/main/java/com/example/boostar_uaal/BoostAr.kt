@@ -9,24 +9,27 @@ import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.auth.auth
 
-class BoostArApplication: Application() {
+class BoostAr: Application() {
     private val supabaseUrl = BuildConfig.SUPABASE_URL
     private val supabaseKey = BuildConfig.SUPABASE_KEY
-    private lateinit var supabaseClient: SupabaseClient
+    private lateinit var _supabaseClient: SupabaseClient
 
     companion object{
         lateinit var authRepositoryImpl: AuthRepository
         lateinit var productRepository: ProductRepository
+
+        lateinit var supabaseClient: SupabaseClient
     }
 
     override fun onCreate() {
         super.onCreate()
-        supabaseClient = SupabaseClientProvider(
+        _supabaseClient = SupabaseClientProvider(
             supabaseUrl = supabaseUrl,
             supabaseKey = supabaseKey
         ).client
 
-        authRepositoryImpl = AuthRepositoryImpl(supabaseClient.auth)
+        authRepositoryImpl = AuthRepositoryImpl(_supabaseClient)
         productRepository = MockProductRepositoryImpl()
+        supabaseClient = _supabaseClient
     }
 }

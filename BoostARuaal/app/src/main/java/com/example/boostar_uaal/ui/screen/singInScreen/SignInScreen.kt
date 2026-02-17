@@ -1,5 +1,6 @@
 package com.example.boostar_uaal.ui.screen.singInScreen
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,25 +12,46 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.boostar_uaal.BoostAr
+import com.example.boostar_uaal.BoostAr.Companion.supabaseClient
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.ui.screen.authScreen.components.AuthButton
 import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.theme.secondaryButtonColor
 import com.example.boostar_uaal.core.navigation.Routes
+import com.example.boostar_uaal.data.datasource.SharedPreferencesHelper
+import com.example.boostar_uaal.ui.screen.authScreen.components.GoogleAuthButton
+import io.github.jan.supabase.compose.auth.composable.NativeSignInResult
+import io.github.jan.supabase.compose.auth.composable.rememberSignInWithGoogle
+import io.github.jan.supabase.compose.auth.composeAuth
 
 @Composable
 fun SignInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit) {
     Box(
         Modifier.fillMaxSize()
     ) {
-
+        val authState = supabaseClient.composeAuth.rememberSignInWithGoogle(
+            onResult = {
+                when(it){
+                    is NativeSignInResult.Success -> navigateTo(Routes.Authenticated)
+                    is NativeSignInResult.Error -> navigateTo(Routes.AuthScreen)
+                    else -> {
+                        Log.d("ERROR", "$it")
+                    }
+                }
+            }
+        )
         Image(
             painter = painterResource(R.drawable.carrusel_auth_2),
             contentDescription = "Auth Image",
@@ -77,7 +99,7 @@ fun SignInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes
                     verticalArrangement = Arrangement.spacedBy(18.dp)
                 ) {
                     AuthButton(
-                        onClick = { navigateTo(Routes.LogInScreen) },
+                        onClick = { authState.startFlow() },
                         text = "Continue with Google",
                         isFilled = true,
                     )

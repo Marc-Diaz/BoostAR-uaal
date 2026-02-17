@@ -77,7 +77,11 @@ dependencies {
     implementation(libs.storage.kt)
     implementation(libs.auth.kt)
     implementation(libs.compose.auth)
-    
+
+    //Google
+    implementation(libs.androidx.credentials)
+    implementation (libs.googleid)
+
     //Ktor
     implementation(libs.ktor.client.android)
     implementation(libs.coil.network.ktor3)
@@ -92,6 +96,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.runtime)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
