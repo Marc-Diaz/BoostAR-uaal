@@ -1,5 +1,6 @@
 package com.example.boostar_uaal.data.repository
 
+import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.repository.ProductRepository
 import com.example.core.entities.Product
 
@@ -11,5 +12,9 @@ class ProductRepositoryImpl(private val supabaseClient: SupabaseClient): Product
     override suspend fun getProducts(): List<Product> {
         val products = supabaseClient.postgrest["Productos_View"].select().decodeList<Product>()
         return products
+    }
+
+    override suspend fun getProductById(id: Int): ProductDetail {
+        TODO("Not yet implemented")
     }
 }

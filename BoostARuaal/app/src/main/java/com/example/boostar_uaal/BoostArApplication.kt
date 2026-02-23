@@ -16,7 +16,7 @@ class BoostArApplication: Application() {
 
     companion object{
         lateinit var authRepositoryImpl: AuthRepository
-        lateinit var productRepository: ProductRepository
+        lateinit var productRepository: MockProductRepositoryImpl
     }
 
     override fun onCreate() {

@@ -11,12 +11,8 @@ data class Product(
     val name: String,
     val price: Double,
     val discountPrice: Double? = null,
-    val brand: Brand,
-    val style: Style,
-    val numLikes: Int,
-    val modelURL: String,
     val coverImage: String,
-    val multimedia: List<Multimedia>,
-    val tallas: List<ClothingSize>,
-    val colors: List<ProductColor>,
+    val numLikes: Long,
+    val brand: String,
+    val brandLogo: String
 )

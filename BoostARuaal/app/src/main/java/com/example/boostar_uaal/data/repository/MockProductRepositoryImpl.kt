@@ -5,6 +5,7 @@ import com.example.boostar_uaal.core.entities.ClothingSize
 import com.example.boostar_uaal.core.entities.Multimedia
 import com.example.core.entities.Product
 import com.example.boostar_uaal.core.entities.ProductColor
+import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.entities.Standard
 import com.example.boostar_uaal.core.entities.Style
 import com.example.boostar_uaal.core.entities.TypeMultimedia
@@ -79,8 +80,8 @@ class MockProductRepositoryImpl(): ProductRepository{
             standard = standard[0],
         ),
     )
-    val products = listOf(
-        Product(
+    val detailedProducts = listOf(
+        ProductDetail(
             id = 0,
             name = "Camiseta 1",
             price = 10.25,
@@ -107,8 +108,8 @@ class MockProductRepositoryImpl(): ProductRepository{
                 )
             )
         ),
-        Product(
-            id = 0,
+        ProductDetail(
+            id = 1,
             name = "Camiseta 1",
             price = 10.25,
             discountPrice = 5.4,
@@ -134,8 +135,8 @@ class MockProductRepositoryImpl(): ProductRepository{
                 )
             )
         ),
-        Product(
-            id = 1,
+        ProductDetail(
+            id = 2,
             name = "Camiseta 2",
             price = 10.25,
             brand = brands[1],
@@ -160,12 +161,45 @@ class MockProductRepositoryImpl(): ProductRepository{
                 )
             )
         ))
+    val products = listOf(
+        Product(
+            id = 0,
+            name = "Camiseta 1",
+            price = 10.25,
+            discountPrice = 10.00,
+            numLikes = 4309,
+            coverImage = "https://www.joma-sport.com/dw/image/v2/BFRV_PRD/on/demandware.static/-/Sites-joma-masterCatalog/default/dw0e82cc45/images/medium/101739.100_1.jpg?sw=900&sh=900&sm=fit",
+            brand = "ITB",
+            brandLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOF4681S4ka_GapWnfGVDgTPDA4TAXJPSQfw&s",
+        ),
+        Product(
+            id = 1,
+            name = "Camiseta 1",
+            price = 10.25,
+            discountPrice = 10.00,
+            numLikes = 4309,
+            coverImage = "https://www.joma-sport.com/dw/image/v2/BFRV_PRD/on/demandware.static/-/Sites-joma-masterCatalog/default/dw0e82cc45/images/medium/101739.100_1.jpg?sw=900&sh=900&sm=fit",
+            brand = "ITB",
+            brandLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOF4681S4ka_GapWnfGVDgTPDA4TAXJPSQfw&s",
+        ),
+        Product(
+            id = 2,
+            name = "Camiseta 1",
+            price = 10.25,
+            discountPrice = 10.00,
+            numLikes = 4309,
+            coverImage = "https://www.joma-sport.com/dw/image/v2/BFRV_PRD/on/demandware.static/-/Sites-joma-masterCatalog/default/dw0e82cc45/images/medium/101739.100_1.jpg?sw=900&sh=900&sm=fit",
+            brand = "ITB",
+            brandLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOF4681S4ka_GapWnfGVDgTPDA4TAXJPSQfw&s",
+        )
+    )
+
     override suspend fun getProducts(): List<Product> {
         return products
     }
 
-    fun getMockProductById(id: Int): Product? {
-        return products.find { it.id == id }
-
+    override suspend fun getProductById(id: Int): ProductDetail {
+        return detailedProducts.find { product -> product.id == id }!!
     }
+
 }

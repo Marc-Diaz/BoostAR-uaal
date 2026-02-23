@@ -13,7 +13,7 @@ class FeedScreenViewModel : ViewModel() {
     val product: StateFlow<Product?> = _product
 
     fun getProduct(productId: Int) {
-        val product = MockProductRepositoryImpl().getMockProductById(productId)
+        val product = MockProductRepositoryImpl().getProductById(productId)
         _product.value = product
     }
 }
