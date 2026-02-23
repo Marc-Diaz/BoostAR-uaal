@@ -99,7 +99,7 @@ fun AuthScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) 
                         ) {
                             AuthButton(onClick = { navigateTo(Routes.LogInScreen) }, text = "Log in", isFilled = true)
                             AuthButton(onClick = { navigateTo(Routes.SignInScreen) }, text = "Sign in", isFilled = true)
-                            AuthButton(onClick = { navigateTo(Routes.Authenticated) }, text = "Enter as guest", isFilled = false)
+                            AuthButton(onClick = { navigateTo(Routes.HomeScreen) }, text = "Enter as guest", isFilled = false)
                         }
                     }
                 }
