@@ -8,15 +8,13 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.theme.secondaryTextColor
 
-import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
 import com.example.core.entities.Product
 
 @Composable
-fun ItemCard(product: Product, clickable: () -> Unit) {
+fun ItemCard(product: Product, clickable: () -> Unit, isSelected: Boolean = false) {
     Column(
         modifier = Modifier.clickable{ clickable() }
         ) {

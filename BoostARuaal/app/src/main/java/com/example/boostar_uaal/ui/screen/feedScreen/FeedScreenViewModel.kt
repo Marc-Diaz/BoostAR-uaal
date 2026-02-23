@@ -1,11 +1,11 @@
 package com.example.boostar_uaal.ui.screen.feedScreen
 
 
-import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
 import com.example.core.entities.Product
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import androidx.lifecycle.ViewModel
+import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
 
 class FeedScreenViewModel : ViewModel() {
 
