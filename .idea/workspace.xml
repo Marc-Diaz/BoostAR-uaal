@@ -5,10 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3395393b-4c45-4f9d-83d4-b9e5d5e20b76" name="Changes" comment="Inicio">
-      <change afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/repository/AuthRepositoryImpl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BoostARuaal/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BoostARuaal/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/core/entities/AuthState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/core/utils/CustomTab.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/singInScreen/AuthViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/singInScreen/AuthViewModelFactory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BoostARuaal/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/homeScreen/HomeScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/homeScreen/HomeScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/singInScreen/SingInScreenViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/singInScreen/SingInScreenViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/BoostArApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/BoostAr.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/core/navigation/MainNavigationWrapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/core/navigation/MainNavigationWrapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/core/repository/AuthRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/core/repository/AuthRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/repository/AuthRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/repository/AuthRepositoryImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/singInScreen/SignInScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/singInScreen/SignInScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/singInScreen/SingInScreenViewModel.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BoostARuaal/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/gradle/libs.versions.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,12 +43,12 @@
     &quot;assignee&quot;: &quot;Marc-Diaz&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Marc-Diaz/BoostAR-uaal.git",
-    "accountId": "c122f55b-82b4-4552-a382-b033239aa6a4"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Marc-Diaz/BoostAR-uaal.git&quot;,
+    &quot;accountId&quot;: &quot;c122f55b-82b4-4552-a382-b033239aa6a4&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -46,6 +61,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
@@ -53,7 +69,7 @@
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/marc.diaz.7e8/StudioProjects/BoostAR-uaal/BoostARuaal"
+    "last_opened_file_path": "C:/Users/ihub/StudioProjects/BoostAR-uaal"
   }
 }]]></component>
   <component name="TaskManager">

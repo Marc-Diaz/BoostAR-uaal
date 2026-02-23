@@ -11,6 +11,7 @@ import com.example.boostar_uaal.ui.screen.authScreen.AuthScreen
 import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreen
 import com.example.boostar_uaal.ui.screen.homeScreen.HomeScreen
 import com.example.boostar_uaal.ui.screen.loginScreen.LogInScreen
+import com.example.boostar_uaal.ui.screen.onboardingTextScreen.OnboardingTextScreen
 import com.example.boostar_uaal.ui.screen.singInScreen.SignInScreen
 
 @Composable
@@ -59,6 +60,20 @@ fun MainNavigationWrapper(){
                     navigateTo = { },
                     back = { },
                     backTo = { }
+                )
+            }
+            entry<Routes.OnboardingTextScreen> { backStack ->
+                OnboardingTextScreen(
+                    navigateTo = { },
+                    back = {},
+                    backTo = {}
+                )
+            }
+            entry<Routes.OnboardingChooseScreen> { backStack ->
+                OnboardingTextScreen(
+                    navigateTo = { },
+                    back = {},
+                    backTo = {}
                 )
             }
         }
