@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 
-class AuthRepositoryImpl(private val supabaseClient: SupabaseClient): AuthRepository {
+class AuthRepositoryImpl(private val auth: Auth): AuthRepository {
 
 
 

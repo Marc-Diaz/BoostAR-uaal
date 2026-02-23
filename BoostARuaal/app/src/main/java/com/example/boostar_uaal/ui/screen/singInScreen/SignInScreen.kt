@@ -23,8 +23,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.boostar_uaal.BoostAr
-import com.example.boostar_uaal.BoostAr.Companion.supabaseClient
+import com.example.boostar_uaal.BoostArApplication
+import com.example.boostar_uaal.BoostArApplication.Companion.composeAuth
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.ui.screen.authScreen.components.AuthButton
 import com.example.boostar_uaal.core.components.InterText
@@ -41,7 +41,7 @@ fun SignInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes
     Box(
         Modifier.fillMaxSize()
     ) {
-        val authState = supabaseClient.composeAuth.rememberSignInWithGoogle(
+        val authState = composeAuth.rememberSignInWithGoogle(
             onResult = {
                 when(it){
                     is NativeSignInResult.Success -> navigateTo(Routes.Authenticated)
