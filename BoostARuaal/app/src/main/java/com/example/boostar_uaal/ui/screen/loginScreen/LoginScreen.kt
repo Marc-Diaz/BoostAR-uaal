@@ -1,5 +1,6 @@
 package com.example.boostar_uaal.ui.screen.loginScreen
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,10 +22,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.boostar_uaal.BoostArApplication.Companion.composeAuth
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.ui.screen.authScreen.components.AuthButton
 import com.example.boostar_uaal.core.theme.secondaryButtonColor
 import com.example.boostar_uaal.core.navigation.Routes
+import com.example.boostar_uaal.ui.screen.authScreen.components.GoogleAuthButton
+import io.github.jan.supabase.compose.auth.composable.NativeSignInResult
 
 @Composable
 fun LogInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit) {
@@ -88,11 +92,17 @@ fun LogInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes)
                     verticalArrangement = Arrangement.spacedBy(18.dp)
                 ) {
 
-                    AuthButton(
-                        onClick = { navigateTo(Routes.LogInScreen) },
-                        text = "Continue with Google",
-                        icon = R.drawable.google_logo_g_logo_icon_159348,
-                        isFilled = true,
+                    GoogleAuthButton(
+                        composeAuth = composeAuth,
+                        onResult = {
+                            when(it){
+                                is NativeSignInResult.Success -> navigateTo(Routes.Authenticated)
+                                is NativeSignInResult.Error -> navigateTo(Routes.AuthScreen)
+                                else -> {
+                                    Log.d("ERROR", "$it")
+                                }
+                            }
+                        }
                     )
                     AuthButton(
                         onClick = { navigateTo(Routes.SignInScreen) },

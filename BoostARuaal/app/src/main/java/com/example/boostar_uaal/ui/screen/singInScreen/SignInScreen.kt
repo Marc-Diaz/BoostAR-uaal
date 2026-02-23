@@ -41,17 +41,6 @@ fun SignInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes
     Box(
         Modifier.fillMaxSize()
     ) {
-        val authState = composeAuth.rememberSignInWithGoogle(
-            onResult = {
-                when(it){
-                    is NativeSignInResult.Success -> navigateTo(Routes.Authenticated)
-                    is NativeSignInResult.Error -> navigateTo(Routes.AuthScreen)
-                    else -> {
-                        Log.d("ERROR", "$it")
-                    }
-                }
-            }
-        )
         Image(
             painter = painterResource(R.drawable.carrusel_auth_2),
             contentDescription = "Auth Image",
@@ -98,10 +87,17 @@ fun SignInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(18.dp)
                 ) {
-                    AuthButton(
-                        onClick = { authState.startFlow() },
-                        text = "Continue with Google",
-                        isFilled = true,
+                    GoogleAuthButton(
+                        composeAuth = composeAuth,
+                        onResult = {
+                            when(it){
+                                is NativeSignInResult.Success -> navigateTo(Routes.Authenticated)
+                                is NativeSignInResult.Error -> navigateTo(Routes.AuthScreen)
+                                else -> {
+                                    Log.d("ERROR", "$it")
+                                }
+                            }
+                        }
                     )
                     AuthButton(
                         onClick = { navigateTo(Routes.SignInScreen) },
