@@ -50,7 +50,7 @@ fun AuthScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) 
                         ) {
                             AuthButton(onClick = { navigateTo(Routes.LogInScreen) }, text = "Log in", isFilled = true)
                             AuthButton(onClick = { navigateTo(Routes.SignInScreen) }, text = "Sign in", isFilled = true)
-                            AuthButton(onClick = { navigateTo(Routes.Authenticated) }, text = "Enter as guest", isFilled = false)
+                            AuthButton(onClick = { navigateTo(Routes.HomeScreen) }, text = "Enter as guest", isFilled = false)
                         }
                     }
                 }
@@ -58,7 +58,7 @@ fun AuthScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) 
         } else {
             Box(
                 modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.BottomCenter // ¡CLAVE! Todo se pega al fondo
+                contentAlignment = Alignment.BottomCenter
             ) {
                 Image(
                     painter = painterResource(R.drawable.carrusel_auth_2),

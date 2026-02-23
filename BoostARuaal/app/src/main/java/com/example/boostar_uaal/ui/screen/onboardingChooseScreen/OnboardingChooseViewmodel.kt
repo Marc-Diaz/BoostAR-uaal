@@ -18,9 +18,9 @@ class OnboardingChooseViewmodel : ViewModel() {
 
 
     init {
-        // loadOnboardingData()
+        loadOnboardingData()
     }
-/*
+
     private fun loadOnboardingData() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
@@ -34,7 +34,7 @@ class OnboardingChooseViewmodel : ViewModel() {
                 )
             }
         }
-    }*/
+    }
     fun toggleOption(productId: Int) {
         val currentState = _uiState.value
         if (currentState.steps.isEmpty()) return

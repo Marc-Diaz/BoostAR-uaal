@@ -11,6 +11,7 @@ import com.example.boostar_uaal.core.entities.Style
 import com.example.boostar_uaal.core.entities.TypeMultimedia
 import com.example.boostar_uaal.core.repository.ProductRepository
 import com.example.boostar_uaal.core.utils.ColorFormatter
+import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.components.OnboardingStep
 
 class MockProductRepositoryImpl(): ProductRepository{
     val brands = listOf(
@@ -202,4 +203,27 @@ class MockProductRepositoryImpl(): ProductRepository{
         return detailedProducts.find { product -> product.id == id }!!
     }
 
+    fun getOnboardingSteps(): List<OnboardingStep> {
+        // Reutilizamos la lista de productos que ya tienes arriba
+        val mockList = products + products.first()
+
+        return listOf(
+            OnboardingStep(
+                id = "tops",
+                title = "Choose the Tops you like.",
+                options = mockList
+            ),
+            OnboardingStep(
+                id = "bottoms",
+                title = "Choose the Bottoms you like.",
+                options = mockList
+            ),
+            OnboardingStep(
+                id = "outerwear",
+                title = "Choose the Outerwear you like.",
+                options = mockList
+            )
+        )
+    }
 }
+
