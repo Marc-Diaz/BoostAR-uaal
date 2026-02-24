@@ -2,13 +2,16 @@ package com.example.boostar_uaal
 
 import android.app.Application
 import com.example.boostar_uaal.core.repository.AuthRepository
+import com.example.boostar_uaal.core.repository.ProductRepository
 import com.example.boostar_uaal.data.datasource.SupabaseClientProvider
 import com.example.boostar_uaal.data.repository.AuthRepositoryImpl
 import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
+import com.example.boostar_uaal.data.repository.ProductRepositoryImpl
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.compose.auth.ComposeAuth
 import io.github.jan.supabase.compose.auth.composeAuth
+import io.github.jan.supabase.postgrest.postgrest
 
 class BoostArApplication: Application() {
     private val supabaseUrl = BuildConfig.SUPABASE_URL
@@ -17,7 +20,7 @@ class BoostArApplication: Application() {
 
     companion object{
         lateinit var authRepositoryImpl: AuthRepository
-        lateinit var productRepository: MockProductRepositoryImpl
+        lateinit var productRepository: ProductRepository
         lateinit var composeAuth: ComposeAuth
     }
 
@@ -29,7 +32,7 @@ class BoostArApplication: Application() {
         ).client
 
         authRepositoryImpl = AuthRepositoryImpl(supabaseClient.auth)
-        productRepository = MockProductRepositoryImpl()
+        productRepository = ProductRepositoryImpl(supabaseClient.postgrest)
         composeAuth = supabaseClient.composeAuth
     }
 }
