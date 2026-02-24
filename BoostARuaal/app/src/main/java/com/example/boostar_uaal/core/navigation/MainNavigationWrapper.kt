@@ -54,7 +54,6 @@ fun MainNavigationWrapper() {
                 LaunchedEffect(Unit) {
                     backStack.navigateTo(Routes.OnboardingTextScreen)
                 }
-
             }
             entry<Routes.OnboardingTextScreen> {
                 OnboardingTextScreen(
@@ -62,8 +61,6 @@ fun MainNavigationWrapper() {
                         backStack.navigateTo(Routes.OnboardingChooseScreen)
                     }
                 )
-
-
             }
             entry<Routes.OnboardingChooseScreen> {
                 OnboardingChooseScreen(
@@ -72,9 +69,6 @@ fun MainNavigationWrapper() {
                     backTo = { },
                     viewModel = OnboardingChooseViewmodel()
                 )
-
-
-
             }
 
             entry<Routes.HomeScreen> {

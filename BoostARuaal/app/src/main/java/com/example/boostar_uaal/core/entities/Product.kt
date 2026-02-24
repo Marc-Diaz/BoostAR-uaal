@@ -1,18 +1,17 @@
 package com.example.core.entities
 
-import com.example.boostar_uaal.core.entities.Brand
-import com.example.boostar_uaal.core.entities.ClothingSize
-import com.example.boostar_uaal.core.entities.Multimedia
-import com.example.boostar_uaal.core.entities.ProductColor
-import com.example.boostar_uaal.core.entities.Style
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Product(
-    val id : Int,
-    val name: String,
-    val price: Double,
-    val discountPrice: Double? = null,
-    val coverImage: String,
-    val numLikes: Long,
-    val brand: String,
-    val brandLogo: String
+    @SerialName("id_producto") val id: Int,
+    @SerialName("nombre") val name: String,
+    @SerialName("precio") val price: Double,
+    @SerialName("precio_oferta") val discountPrice: Double? = null,
+    @SerialName("img_portada") val coverImage: String,
+    @SerialName("num_likes") val numLikes: Long,
+    @SerialName("marca") val brand: String,
+    @SerialName("url_logo") val brandLogo: String
 )

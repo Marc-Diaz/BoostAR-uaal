@@ -1,9 +1,12 @@
 package com.example.boostar_uaal.core.entities
 
-import androidx.compose.ui.graphics.Color
 
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ProductColor(
     val id: Int,
     val name: String,
-    val color: Color
+    @SerialName("hex")val hexColor: String
 )

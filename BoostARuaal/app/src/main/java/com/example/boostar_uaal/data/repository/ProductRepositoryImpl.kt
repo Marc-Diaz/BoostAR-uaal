@@ -1,5 +1,6 @@
 package com.example.boostar_uaal.data.repository
 
+import android.util.Log
 import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.repository.ProductRepository
 import com.example.core.entities.Product
@@ -17,6 +18,12 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
     }
 
     override suspend fun getProductById(id: Int): ProductDetail {
+        val raw = postgrest.rpc(
+            function = "get_product_detail",
+            parameters = mapOf("p_product_id" to id)
+        ).data
+        Log.d("RAW", "$id $raw")
+
         val response: ProductDetail = postgrest.rpc(
             function = "get_product_detail",
             parameters = mapOf("p_product_id" to id)

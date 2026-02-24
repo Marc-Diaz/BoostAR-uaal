@@ -31,12 +31,12 @@ class MockProductRepositoryImpl(): ProductRepository{
         ProductColor(
             id = 0,
             name = "Red",
-            color = ColorFormatter().getColor("#FF0000")
+            hexColor = "#FF0000"
         ),
         ProductColor(
             id = 1,
             name = "Green",
-            color = ColorFormatter().getColor("#00FF00")
+            hexColor = "#00FF00"
         )
     )
     val styles = listOf(
