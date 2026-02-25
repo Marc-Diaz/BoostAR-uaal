@@ -13,7 +13,7 @@ import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
 import kotlinx.coroutines.launch
 
 class FeedScreenViewModel : ViewModel() {
-
+//define el viewModel para el feed screen
     private val repository: ProductRepository = BoostArApplication.productRepository
     private val _product = MutableStateFlow<ProductDetail?>(null)
     val product: StateFlow<ProductDetail?> = _product

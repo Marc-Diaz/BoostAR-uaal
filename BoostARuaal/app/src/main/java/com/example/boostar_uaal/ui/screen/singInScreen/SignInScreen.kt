@@ -26,86 +26,56 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.BoostArApplication.Companion.composeAuth
 import com.example.boostar_uaal.R
+import com.example.boostar_uaal.core.components.AuthLayout
 import com.example.boostar_uaal.ui.screen.authScreen.components.AuthButton
 import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.theme.secondaryButtonColor
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.data.datasource.SharedPreferencesHelper
 import com.example.boostar_uaal.ui.screen.authScreen.components.GoogleAuthButton
+import com.example.boostar_uaal.ui.screen.singInScreen.components.CompanyAccountSelector
 import io.github.jan.supabase.compose.auth.composable.NativeSignInResult
 import io.github.jan.supabase.compose.auth.composable.rememberSignInWithGoogle
 import io.github.jan.supabase.compose.auth.composeAuth
+import io.ktor.utils.io.pool.SingleInstancePool
 
 @Composable
-fun SignInScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit) {
-    Box(
-        Modifier.fillMaxSize()
-    ) {
-        Image(
-            painter = painterResource(R.drawable.carrusel_auth_2),
-            contentDescription = "Auth Image",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()
+fun SignInScreen(
+    navigateTo: (Routes) -> Unit,
+    back: () -> Unit,
+    backTo: (Routes) -> Unit,
+) {
+    val context = LocalContext.current
+    val viewModel = viewModel<SingUpScreenViewModel>(
+        factory = SingUpScreenViewModelFactory(
+            BoostArApplication.authRepository, SharedPreferencesHelper(context)
         )
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(bottom = 0.dp),
-            verticalArrangement = Arrangement.Bottom,
-            horizontalAlignment = Alignment.Start
-        )
-        {
-            Column(
-                modifier = Modifier.padding(
-                    horizontal = 24.dp,
-                    vertical = 24.dp
-                )
-            )
-            {
-                InterText(
-                    "BoostAR.",
-                    color = secondaryButtonColor,
-                    fontSize = 54.sp,
-                    fontWeight = FontWeight.ExtraBold
-                )
-                InterText(
-                    "Try it first.",
-                    color = secondaryButtonColor,
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.ExtraBold
-                )
-            }
+    )
+    val isCompanyAccount by viewModel.isCompanyAccount.collectAsState()
 
-            Surface(
-                modifier = Modifier.fillMaxWidth().height(295.dp),
-                color = secondaryButtonColor,
-                shape = RoundedCornerShape(topStart = 60.dp, topEnd = 60.dp)
-            )
-            {
-                Column(
-                    modifier = Modifier.fillMaxSize().padding(30.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(18.dp)
-                ) {
-                    GoogleAuthButton(
-                        composeAuth = composeAuth,
-                        onResult = {
-                            when(it){
-                                is NativeSignInResult.Success -> navigateTo(Routes.Authenticated)
-                                is NativeSignInResult.Error -> navigateTo(Routes.AuthScreen)
-                                else -> {
-                                    Log.d("ERROR", "$it")
-                                }
-                            }
-                        }
-                    )
-                    AuthButton(
-                        onClick = { navigateTo(Routes.SignInScreen) },
-                        text = "Continue with phone",
-                        isFilled = true,
-                    )
-                }
+    AuthLayout(
+        imageRes = R.drawable.carrusel_auth_2, // Tu imagen del chico con gafas
+        title = "Boostar",
+        subtitle = "Sign in in the future.",
+        onBackClick = { back() }
+    ) {
+        GoogleAuthButton(
+            composeAuth = composeAuth,
+            onResult = { result ->
+                viewModel.handleGoogleSignInResult(result, navigateTo)
             }
-        }
+        )
+
+        AuthButton(
+            onClick = { navigateTo(Routes.SignInScreen) },
+            text = "Continue with phone",
+            isFilled = true,
+        )
+
+
+        CompanyAccountSelector(
+            isChecked = isCompanyAccount,
+            onToggle = { viewModel.toggleCompanyAccount() }
+        )
     }
 }

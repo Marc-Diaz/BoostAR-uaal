@@ -17,6 +17,7 @@ import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.OnboardingChoos
 import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.OnboardingChooseViewmodel
 import com.example.boostar_uaal.ui.screen.onboardingTextScreen.OnboardingTextScreen
 import com.example.boostar_uaal.ui.screen.singInScreen.SignInScreen
+import com.example.boostar_uaal.ui.screen.singInScreen.SingUpScreenViewModel
 
 @SuppressLint("ViewModelConstructorInComposable")
 @Composable
@@ -44,10 +45,11 @@ fun MainNavigationWrapper() {
             }
 
             entry<Routes.SignInScreen> {
+
                 SignInScreen(
                     navigateTo = { backStack.navigateTo(it) },
                     back = { backStack.back() },
-                    backTo = { }
+                    backTo = { },
                 )
             }
             entry<Routes.Authenticated> {
