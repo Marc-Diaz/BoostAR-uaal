@@ -5,6 +5,7 @@ import com.example.boostar_uaal.core.repository.AuthRepository
 import com.example.boostar_uaal.core.repository.ProductRepository
 import com.example.boostar_uaal.data.datasource.SupabaseClientProvider
 import com.example.boostar_uaal.data.repository.AuthRepositoryImpl
+import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
 import com.example.boostar_uaal.data.repository.ProductRepositoryImpl
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.auth.auth
@@ -31,7 +32,7 @@ class BoostArApplication: Application() {
         ).client
 
         authRepository = AuthRepositoryImpl(supabaseClient.auth)
-        productRepository = ProductRepositoryImpl(supabaseClient.postgrest)
+        productRepository = MockProductRepositoryImpl()
         composeAuth = supabaseClient.composeAuth
     }
 }

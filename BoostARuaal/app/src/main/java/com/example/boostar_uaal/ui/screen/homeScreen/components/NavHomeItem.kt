@@ -1,5 +1,6 @@
 package com.example.boostar_uaal.ui.screen.homeScreen.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -17,7 +18,7 @@ import com.example.boostar_uaal.core.components.InterText
 
 import com.example.boostar_uaal.core.navigation.Routes
 
-@Composable
+/*@Composable
 fun NavHomeItem(name: String, color: Color, routes: Routes){
     Card(
         shape = CircleShape,
@@ -39,6 +40,37 @@ fun NavHomeItem(name: String, color: Color, routes: Routes){
             fontWeight = FontWeight.Bold,
             color = color
 
+        )
+    }
+}*/
+
+@Composable
+fun NavHomeItem(
+    name: String,
+    color: Color,
+    onClick: () -> Unit //  Ahora recibe una acción en lugar de la ruta
+) {
+    Card(
+        shape = CircleShape,
+        modifier = Modifier
+            .width(150.dp)
+            .clickable { onClick() }, //añadimos el clic al Card entero
+        colors = CardColors(
+            containerColor = Color.White,
+            contentColor = color, // Usamos el color que nos pasen
+            disabledContainerColor = Color.White,
+            disabledContentColor = color
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 3.dp)
+    ) {
+        InterText(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
+            text = name,
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.Bold,
+            color = color // Aplicamos el color al texto
         )
     }
 }

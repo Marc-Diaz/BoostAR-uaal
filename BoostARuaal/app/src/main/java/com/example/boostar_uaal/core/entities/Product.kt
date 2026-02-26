@@ -11,6 +11,7 @@ data class Product(
     @SerialName("precio") val price: Double,
     @SerialName("precio_oferta") val discountPrice: Double? = null,
     @SerialName("img_portada") val coverImage: String,
+    @SerialName("isLiked") val isLiked: Boolean,
     @SerialName("num_likes") val numLikes: Long,
     @SerialName("marca") val brand: String,
     @SerialName("url_logo") val brandLogo: String
