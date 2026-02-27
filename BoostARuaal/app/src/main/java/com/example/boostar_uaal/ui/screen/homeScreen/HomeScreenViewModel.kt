@@ -62,7 +62,7 @@ class HomeScreenViewModel: ViewModel() {
 
     }
 
-    fun toggleLike(productId: Int) {
+   /* fun toggleLike(productId: Int) {
         val currentProducts = _products.value
 
         val updatedProducts = currentProducts.map { product ->
@@ -73,7 +73,7 @@ class HomeScreenViewModel: ViewModel() {
             }
         }
         _products.value = updatedProducts
-    }
+    }*/
 }
 
 

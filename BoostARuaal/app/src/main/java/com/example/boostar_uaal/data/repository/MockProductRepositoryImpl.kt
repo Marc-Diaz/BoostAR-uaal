@@ -172,7 +172,6 @@ class MockProductRepositoryImpl(): ProductRepository{
             coverImage = "https://www.joma-sport.com/dw/image/v2/BFRV_PRD/on/demandware.static/-/Sites-joma-masterCatalog/default/dw0e82cc45/images/medium/101739.100_1.jpg?sw=900&sh=900&sm=fit",
             brand = "ITB",
             brandLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOF4681S4ka_GapWnfGVDgTPDA4TAXJPSQfw&s",
-            isLiked = false
         ),
         Product(
             id = 1,
@@ -183,7 +182,6 @@ class MockProductRepositoryImpl(): ProductRepository{
             coverImage = "https://www.joma-sport.com/dw/image/v2/BFRV_PRD/on/demandware.static/-/Sites-joma-masterCatalog/default/dw0e82cc45/images/medium/101739.100_1.jpg?sw=900&sh=900&sm=fit",
             brand = "ITB",
             brandLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOF4681S4ka_GapWnfGVDgTPDA4TAXJPSQfw&s",
-            isLiked = false
         ),
         Product(
             id = 2,
@@ -194,7 +192,6 @@ class MockProductRepositoryImpl(): ProductRepository{
             coverImage = "https://www.joma-sport.com/dw/image/v2/BFRV_PRD/on/demandware.static/-/Sites-joma-masterCatalog/default/dw0e82cc45/images/medium/101739.100_1.jpg?sw=900&sh=900&sm=fit",
             brand = "ITB",
             brandLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOF4681S4ka_GapWnfGVDgTPDA4TAXJPSQfw&s",
-            isLiked = false
         )
     )
 

@@ -3,7 +3,6 @@ package com.example.boostar_uaal.ui.screen.homeScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-
 import com.example.boostar_uaal.ui.screen.homeScreen.components.ItemCarrousel
 import com.example.boostar_uaal.core.navigation.Routes
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -44,7 +43,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
             products = products,
             onHeaderClick = { navigateTo(Routes.HomeScreen) },
             onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId)) },
-            onLikeClick = { productId -> homeScreenViewModel.toggleLike(productId) }
+            onLikeClick = { }
         )
 
         ItemCarrousel(
@@ -52,11 +51,12 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
             products = products,
             onHeaderClick = { navigateTo(Routes.HomeScreen) },
             onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId)) },
-            onLikeClick = { productId -> homeScreenViewModel.toggleLike(productId) }
+            onLikeClick = { }
         )
         SectionHeader(title = "Febrero.",
-            textColor = Color(0xFF0080FF),
-            fontSize = 27.48.sp)
+            textColor = Color(0xFF0080FF), // pide el color azul Boost
+            fontSize = 27.48.sp
+        )
 
         HomeBannerEstatic(
             banner = HeroBannerData(
@@ -67,6 +67,14 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
             ),
             onButtonClick = { }
         )
+
+        SectionHeader(title = "Colaboraciones >",
+            textColor = Color.Black,
+            fontSize = 27.48.sp
+        )
+
+
+
 
 
     }
