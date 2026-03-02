@@ -1,5 +1,7 @@
 package com.example.boostar_uaal.ui.screen.homeScreen
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
@@ -20,6 +22,7 @@ import com.example.boostar_uaal.R
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.boostar_uaal.core.components.DropCard
 import com.example.boostar_uaal.core.components.HomeBannerEventsEstatic
 import com.example.boostar_uaal.core.components.PartnerCarousel
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabCarousel
@@ -32,6 +35,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
     val banners by homeScreenViewModel.banners.collectAsState()
     val collabs by homeScreenViewModel.collabs.collectAsState()
     val partners by homeScreenViewModel.partners.collectAsState()
+    val drops by homeScreenViewModel.drops.collectAsState()
 
     // nueva Carcasa Universal
     AdaptiveFeedLayout {
@@ -44,7 +48,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
 
         HomeHero(
             banners = banners,
-            onTryArClick = {  }
+            onTryArClick = { }
         )
         SectionHeader(
             title = "Para ti >",
@@ -69,7 +73,8 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
             onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId)) },
             onLikeClick = { }
         )
-        SectionHeader(title = "Febrero.",
+        SectionHeader(
+            title = "Febrero.",
             textColor = Color(0xFF0080FF), // pide el color azul Boost
             fontSize = 27.48.sp
         )
@@ -84,7 +89,8 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
             onButtonClick = { }
         )
 
-        SectionHeader(title = "Colaboraciones >",
+        SectionHeader(
+            title = "Colaboraciones >",
             textColor = Color.Black,
             fontSize = 27.48.sp
         )
@@ -123,6 +129,24 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                         "de Bad Bunny en España.",
             )
         )
+
+        SectionHeader(
+            title = "próximante >",
+            textColor = Color.Red,
+            onClick = { navigateTo(Routes.HomeScreen) }
+        )
+
+
+            drops.forEach { dropData ->
+                DropCard(
+                    drop = dropData,
+                    onReserveClick = { homeScreenViewModel.reserveDrop(dropData.id) },
+                    onBellClick = { homeScreenViewModel.toggleDropNotification(dropData.id) }
+                )
+            }
+
+        Spacer(modifier = Modifier.height(32.dp))
+
         SectionHeader(
             title = "Ofertas >",
             textColor = Color.Red,

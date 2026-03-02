@@ -2,10 +2,18 @@ package com.example.boostar_uaal.ui.screen.homeScreen
 
 import android.content.Context
 import android.util.Log
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.R
+import com.example.boostar_uaal.core.entities.DropData
 import com.example.boostar_uaal.core.entities.PartnerData
 import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.repository.LikeRepository
@@ -13,12 +21,13 @@ import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabData
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
 import com.example.core.entities.Product
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class HomeScreenViewModel: ViewModel() {
+class HomeScreenViewModel : ViewModel() {
 
     private val productRepository = BoostArApplication.productRepository
     private val _products = MutableStateFlow<List<Product>>(emptyList())
@@ -29,16 +38,21 @@ class HomeScreenViewModel: ViewModel() {
     val collabs: StateFlow<List<CollabData>> = _collabs.asStateFlow()
     private val _partners = MutableStateFlow<List<PartnerData>>(emptyList())
     val partners: StateFlow<List<PartnerData>> = _partners.asStateFlow()
+    private val _drops = MutableStateFlow<List<DropData>>(emptyList())
+    val drops: StateFlow<List<DropData>> = _drops.asStateFlow()
+
 
     private val likeRepository: LikeRepository = BoostArApplication.likeRepository
+
     init {
         getProducts()
         loadBanners()
         loadCollabs()
         loadPartners()
+        loadDrops()
     }
 
-    fun getProducts(){
+    fun getProducts() {
         viewModelScope.launch {
             _products.value = productRepository.getProducts()
         }
@@ -111,11 +125,6 @@ class HomeScreenViewModel: ViewModel() {
         )
 
     }
-
-
-
-
-
     fun toggleLike(productId: Int) {
         viewModelScope.launch {
             val isLiked = likeRepository.toggleLike(productId)
@@ -131,6 +140,47 @@ class HomeScreenViewModel: ViewModel() {
             _products.value = updatedProducts
         }
     }
+
+    // Al tocar la campanita, cambiamos su estado
+    fun toggleDropNotification(dropId: Int) {
+        val currentList = _drops.value
+        _drops.value = currentList.map { drop ->
+            if (drop.id == dropId) {
+                drop.copy(isNotified = !drop.isNotified)
+            } else {
+                drop
+            }
+        }
+    }
+
+    // Al tocar Reservar
+    fun reserveDrop(dropId: Int) {
+        // Aquí iría la lógica para añadir a la cesta o reservar
+        Log.d("ViewModel", "Reservando el drop con ID: $dropId")
+    }
+
+    private fun loadDrops() {
+        // Calculamos el tiempo actual en milisegundos
+        val now = System.currentTimeMillis()
+
+        // Acaba dentro de 2 días, 14 horas, 32 min y 25 seg
+        val futureTime1 =
+            now + (2L * 24 * 60 * 60 * 1000) + (14L * 60 * 60 * 1000) + (32L * 60 * 1000) + (25L * 1000)
+
+        _drops.value = listOf(
+            DropData(
+                id = 1,
+                imageRes = R.drawable.colab_2, // Tu imagen real
+                status = "• PRONTO DISPONIBLE",
+                statusColor = Color(0xFFC7843B),
+                title = "Regular jeans",
+                collection = "STW Collection",
+                targetTimestamp = futureTime1, // 👈 Le pasamos la fecha futura
+                isNotified = false
+            ),
+        )
+    }
+
 }
 
 
