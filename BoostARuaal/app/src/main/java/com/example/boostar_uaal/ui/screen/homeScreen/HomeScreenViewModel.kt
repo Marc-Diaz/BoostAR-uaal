@@ -1,11 +1,15 @@
 package com.example.boostar_uaal.ui.screen.homeScreen
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.R
+import com.example.boostar_uaal.core.entities.PartnerData
+import com.example.boostar_uaal.core.repository.LikeRepository
 import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
+import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabData
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
 import com.example.core.entities.Product
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -112,19 +116,6 @@ class HomeScreenViewModel: ViewModel() {
 
 
 
-//Para luego cuando tenga claro como hacerlo en conjuntoa la BBDD
-   /* fun toggleLike(productId: Int) {
-        val currentProducts = _products.value
-
-        val updatedProducts = currentProducts.map { product ->
-            if (product.id == productId) {
-                product.copy(isLiked = !product.isLiked)
-            } else {
-                product
-            }
-        }
-        _products.value = updatedProducts
-    }*/
     fun toggleLike(productId: Int) {
         viewModelScope.launch {
             val isLiked = likeRepository.toggleLike(productId)
