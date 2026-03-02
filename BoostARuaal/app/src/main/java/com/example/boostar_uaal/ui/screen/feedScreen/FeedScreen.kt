@@ -78,7 +78,6 @@ fun FeedScreen(
                     )
             )
 
-            // 3. CAPA DE INTERFAZ (UI)
 
             // Botón Atrás (Top Start)
             IconButton(
