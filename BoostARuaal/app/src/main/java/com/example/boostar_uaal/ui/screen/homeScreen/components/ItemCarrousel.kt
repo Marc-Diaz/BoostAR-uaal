@@ -64,46 +64,11 @@ fun ItemCarrousel(name: String, products: List<Product>, iconTint: Color = prima
 
 @Composable
 fun ItemCarrousel(
-    title: String, // Ej: "Para ti >" o "Novedades."
     products: List<Product>,
-    iconTint: Color = primaryButtonColor,
-    onHeaderClick: () -> Unit,
     onItemClick: (Int) -> Unit,
     onLikeClick: (Int) -> Unit
 ) {
-    // Lógica inteligente de títulos
-    val isClickable = title.endsWith(">")
-    val cleanTitle = title.removeSuffix(">").removeSuffix(".").trim()
-
     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        // --- CABECERA ---
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-                // Solo es clickeable si tiene el ">"
-                .then(if (isClickable) Modifier.clickable { onHeaderClick() } else Modifier),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Start
-        ) {
-            InterText(
-                text = cleanTitle,
-                fontSize = 24.sp,
-                fontWeight = FontWeight.ExtraBold
-            )
-
-            // Solo pintamos la flecha si es navegable
-            if (isClickable) {
-                Spacer(modifier = Modifier.width(8.dp))
-                Icon(
-                    painter = painterResource(id = R.drawable.baseline_arrow_forward_ios_24),
-                    contentDescription = "Ver más",
-                    tint = iconTint,
-                    modifier = Modifier.size(24.dp)
-                )
-            }
-        }
-
         // LISTA DE PRODUCTOS
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(16.dp)

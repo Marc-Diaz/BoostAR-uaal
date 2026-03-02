@@ -47,9 +47,7 @@ fun HomeBannerEventsEstatic(
     ) {
         Card(
             modifier = Modifier
-                .width(323.dp)
-                .height(259.dp)
-                .shadow(6.dp)
+                .fillMaxSize()
                 .padding(horizontal = 16.dp)
                 .aspectRatio(if (isLandscape) 16f / 9f else 4f / 5f),
             shape = RoundedCornerShape(24.dp),
@@ -83,12 +81,6 @@ fun HomeBannerEventsEstatic(
                     verticalArrangement = Arrangement.Bottom,
                     horizontalAlignment = Alignment.Start
                 ) {
-                    Text(
-                        text = banner.label,
-                        color = Color.White.copy(alpha = 0.8f),
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.SemiBold
-                    )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = banner.title,
@@ -107,6 +99,6 @@ fun HomeBannerEventsEstatic(
             }
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+
     }
 }
