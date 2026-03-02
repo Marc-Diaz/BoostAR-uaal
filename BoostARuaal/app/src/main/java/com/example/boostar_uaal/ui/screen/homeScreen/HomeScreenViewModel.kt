@@ -1,10 +1,12 @@
 package com.example.boostar_uaal.ui.screen.homeScreen
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.R
+import com.example.boostar_uaal.core.repository.LikeRepository
 import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
 import com.example.core.entities.Product
@@ -21,6 +23,7 @@ class HomeScreenViewModel: ViewModel() {
     private val _banners = MutableStateFlow<List<HeroBannerData>>(emptyList())
     val banners: StateFlow<List<HeroBannerData>> = _banners.asStateFlow()
 
+    private val likeRepository: LikeRepository = BoostArApplication.likeRepository
     init {
         getProducts()
         loadBanners()
@@ -57,22 +60,26 @@ class HomeScreenViewModel: ViewModel() {
         )
     }
 
-    fun onTryArClick() {
+    fun onTryArClick(context: Context) {
         Log.d("HomeScreenViewModel", "El usuario quiere probar la cámara AR")
+
 
     }
 
     fun toggleLike(productId: Int) {
-        val currentProducts = _products.value
-
-        val updatedProducts = currentProducts.map { product ->
-            if (product.id == productId) {
-                product.copy(isLiked = !product.isLiked)
-            } else {
-                product
+        viewModelScope.launch {
+            val isLiked = likeRepository.toggleLike(productId)
+            val currentProducts = _products.value
+            val addLike = if (isLiked) 1 else -1
+            val updatedProducts = currentProducts.map { product ->
+                if (product.id == productId) {
+                    product.copy(isLiked = isLiked, numLikes = product.numLikes + addLike)
+                } else {
+                    product
+                }
             }
+            _products.value = updatedProducts
         }
-        _products.value = updatedProducts
     }
 }
 

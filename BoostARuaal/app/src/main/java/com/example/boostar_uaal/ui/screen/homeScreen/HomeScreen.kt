@@ -36,7 +36,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
 
         HomeHero(
             banners = banners,
-            onTryArClick = { homeScreenViewModel.onTryArClick() }
+            onTryArClick = {  }
         )
 
         ItemCarrousel(

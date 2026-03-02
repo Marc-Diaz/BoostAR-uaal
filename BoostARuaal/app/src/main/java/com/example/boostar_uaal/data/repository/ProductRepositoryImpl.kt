@@ -8,6 +8,8 @@ import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.rpc
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
 
 
 class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository  {
@@ -20,9 +22,12 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
     override suspend fun getProductById(id: Int): ProductDetail {
         val raw = postgrest.rpc(
             function = "get_product_detail",
-            parameters = mapOf("p_product_id" to id)
-        ).data
-        Log.d("RAW", "$id $raw")
+            parameters = buildJsonObject {
+                put("p_product_id", id)
+            }
+        )
+
+        Log.d("RAW", "$id ${raw.data}")
 
         val response: ProductDetail = postgrest.rpc(
             function = "get_product_detail",

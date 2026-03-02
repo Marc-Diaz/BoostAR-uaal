@@ -1,3 +1,7 @@
+rootProject.name = "BoostAR-uaal"
+include(":app",  ":unityLibrary")
+project(":unityLibrary").projectDir = File(rootProject.projectDir, "../unityAr/unityLibrary")
+
 pluginManagement {
     repositories {
         google {
@@ -16,9 +20,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        flatDir {
+            dirs("${rootDir}/../unityAr/unityLibrary/libs")
+        }
     }
 }
 
-rootProject.name = "BoostAR-uaal"
-include(":app")
- 

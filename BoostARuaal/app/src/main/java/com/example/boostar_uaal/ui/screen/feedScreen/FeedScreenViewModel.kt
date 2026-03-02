@@ -1,6 +1,8 @@
 package com.example.boostar_uaal.ui.screen.feedScreen
 
 
+import android.content.Context
+import android.util.Log
 import com.example.core.entities.Product
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -23,5 +25,11 @@ class FeedScreenViewModel : ViewModel() {
             val product = repository.getProductById(productId)
             _product.value = product
         }
+    }
+
+    fun onTryArClick(context: Context) {
+        Log.d("HomeScreenViewModel", "El usuario quiere probar la cámara AR")
+        // BoostArApplication.unityHandler.sendClothingToUnity(context, "${product.value}", "${product.value}" )
+
     }
 }

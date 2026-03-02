@@ -15,7 +15,7 @@ class LoginScreenViewModel: ViewModel() {
         when (result) {
             is NativeSignInResult.Success -> {
                 Log.d("LogInViewModel", "¡Login con Google exitoso!")
-                navigateTo(Routes.Authenticated) // O HomeScreen, s
+                navigateTo(Routes.HomeScreen) // O HomeScreen, s
             }
             is NativeSignInResult.Error -> {
                 Log.e("LogInViewModel", "Error al iniciar sesión con Google")

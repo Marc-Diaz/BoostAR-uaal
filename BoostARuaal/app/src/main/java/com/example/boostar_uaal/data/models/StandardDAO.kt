@@ -1,6 +1,9 @@
 package com.example.boostar_uaal.data.models
 
-data class Style(
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class StandardDAO(
     val id: Int,
     val name: String
 )

@@ -4,7 +4,26 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3395393b-4c45-4f9d-83d4-b9e5d5e20b76" name="Changes" comment="Inicio" />
+    <list default="true" id="3395393b-4c45-4f9d-83d4-b9e5d5e20b76" name="Changes" comment="Inicio">
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/BoostArApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/BoostArApplication.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/core/components/ItemCard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/core/components/ItemCard.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/core/entities/Product.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/core/entities/Product.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/models/Brand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/models/Brand.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/models/ClothingSize.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/models/ClothingSize.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/models/Multimedia.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/models/Multimedia.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/models/Product.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/models/Product.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/models/ProductColor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/models/ProductColor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/models/Standard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/models/Standard.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/models/Style.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/models/Style.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/models/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/models/User.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/repository/MockProductRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/repository/MockProductRepositoryImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/authScreen/components/GoogleAuthButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/authScreen/components/GoogleAuthButton.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/homeScreen/HomeScreenViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/homeScreen/HomeScreenViewModel.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +31,18 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -25,9 +56,16 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Marc-Diaz/BoostAR-uaal.git&quot;,
-    &quot;accountId&quot;: &quot;c122f55b-82b4-4552-a382-b033239aa6a4&quot;
+    &quot;accountId&quot;: &quot;c606eda0-5d40-49b5-ac1e-3fb0e91dea90&quot;
   }
 }</component>
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$/BoostARuaal" gradleHome="C:\Users\ihub\.gradle\wrapper\dists\gradle-9.1.0-bin\9agqghryom9wkf8r80qlhnts3\gradle-9.1.0" javaHome="C:\Program Files\Eclipse Adoptium\jdk-25.0.2.10-hotspot" gradleVersion="9.1.0">
+    <option name="jvmArguments">
+      <list>
+        <option value="-Dorg.gradle.kotlin.dsl.provider.mode=classpath" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -44,11 +82,12 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "android.gradle.sync.needed": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/marc.diaz.7e8/StudioProjects/BoostAR-uaal/BoostARuaal"
+    "last_opened_file_path": "C:/Users/ihub/StudioProjects/BoostAR-uaal"
   }
 }]]></component>
   <component name="TaskManager">

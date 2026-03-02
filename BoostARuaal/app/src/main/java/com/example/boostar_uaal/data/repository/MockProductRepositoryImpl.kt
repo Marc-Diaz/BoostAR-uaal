@@ -173,6 +173,7 @@ class MockProductRepositoryImpl(): ProductRepository{
             brand = "ITB",
             brandLogo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOF4681S4ka_GapWnfGVDgTPDA4TAXJPSQfw&s",
             isLiked = false
+
         ),
         Product(
             id = 1,
