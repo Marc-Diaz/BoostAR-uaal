@@ -92,6 +92,7 @@ class MockProductRepositoryImpl(): ProductRepository{
             colors = colors,
             brand = brands[0],
             numLikes = 4309,
+            isLiked = false,
             modelURL = "",
             coverImage = "https://www.joma-sport.com/dw/image/v2/BFRV_PRD/on/demandware.static/-/Sites-joma-masterCatalog/default/dw0e82cc45/images/medium/101739.100_1.jpg?sw=900&sh=900&sm=fit",
             multimedia = listOf(
@@ -119,6 +120,7 @@ class MockProductRepositoryImpl(): ProductRepository{
             tallas = tallas.filter { it.standard.id == 1 },
             colors = colors,
             numLikes = 4309,
+            isLiked = false,
             modelURL = "",
             coverImage = "https://www.joma-sport.com/dw/image/v2/BFRV_PRD/on/demandware.static/-/Sites-joma-masterCatalog/default/dw0e82cc45/images/medium/101739.100_1.jpg?sw=900&sh=900&sm=fit",
             multimedia = listOf(
@@ -145,6 +147,7 @@ class MockProductRepositoryImpl(): ProductRepository{
             tallas = tallas.filter { it.standard.id == 1 },
             colors = colors,
             numLikes = 4309,
+            isLiked = false,
             modelURL = "",
             coverImage = "https://www.joma-sport.com/dw/image/v2/BFRV_PRD/on/demandware.static/-/Sites-joma-masterCatalog/default/dw0e82cc45/images/medium/101739.100_1.jpg?sw=900&sh=900&sm=fit",
             multimedia = listOf(
