@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.core.repository.AuthRepository
-import com.example.boostar_uaal.data.datasource.SharedPreferencesHelper
 import io.github.jan.supabase.compose.auth.composable.NativeSignInResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -22,7 +22,6 @@ class AuthScreenViewModel: ViewModel() {
     fun checkExistingSession(){
         viewModelScope.launch {
             _session.value = authRepository.loadSession()
-            Log.d("AuthScreenViewModel", "${_session.value != null}")
             if(_session.value != null){
                 _authState.value = AuthState.Authenticated
             }
@@ -32,5 +31,4 @@ class AuthScreenViewModel: ViewModel() {
         }
 
     }
-
 }

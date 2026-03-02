@@ -31,7 +31,6 @@ import com.example.boostar_uaal.ui.screen.authScreen.components.AuthButton
 import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.theme.secondaryButtonColor
 import com.example.boostar_uaal.core.navigation.Routes
-import com.example.boostar_uaal.data.datasource.SharedPreferencesHelper
 import com.example.boostar_uaal.ui.screen.authScreen.components.GoogleAuthButton
 import com.example.boostar_uaal.ui.screen.singInScreen.components.CompanyAccountSelector
 import io.github.jan.supabase.compose.auth.composable.NativeSignInResult
