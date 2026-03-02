@@ -4,17 +4,17 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.BoostArApplication
+import com.example.boostar_uaal.core.utils.AuthState
 import io.github.jan.supabase.auth.user.UserSession
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class AuthScreenViewModel: ViewModel() {
     val authRepository = BoostArApplication.authRepository
     private val _session = MutableStateFlow<UserSession?>(null)
-    private val _authenticated = MutableStateFlow<Boolean>(false)
-    val authenticated = _authenticated.asStateFlow()
+    private val _authState = MutableStateFlow<AuthState>(AuthState.Loading)
+    val authState = _authState.asStateFlow()
 
     init {
         checkExistingSession()
@@ -22,10 +22,15 @@ class AuthScreenViewModel: ViewModel() {
     fun checkExistingSession(){
         viewModelScope.launch {
             _session.value = authRepository.loadSession()
-
+            Log.d("AuthScreenViewModel", "${_session.value != null}")
+            if(_session.value != null){
+                _authState.value = AuthState.Authenticated
+            }
+            else{
+                _authState.value = AuthState.Unauthenticated
+            }
         }
-        Log.d("AuthScreenViewModel", "${_session.value != null}")
-        _authenticated.value = _session.value != null
+
     }
 
 }

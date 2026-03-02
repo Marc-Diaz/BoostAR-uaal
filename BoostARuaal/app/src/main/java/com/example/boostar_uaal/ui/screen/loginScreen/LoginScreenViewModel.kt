@@ -17,24 +17,20 @@ class LoginScreenViewModel: ViewModel() {
     ) {
         when (result) {
             is NativeSignInResult.Success -> {
-                Log.d("LogInViewModel", "¡Login con Google exitoso!")
                 viewModelScope.launch {
                     authRepository.saveSession()
                 }
                 navigateTo(Routes.HomeScreen)
             }
             is NativeSignInResult.Error -> {
-                Log.e("LogInViewModel", "Error al iniciar sesión con Google")
                 navigateTo(Routes.AuthScreen)
             }
             is NativeSignInResult.ClosedByUser -> {
-                Log.d("LogInViewModel", "El usuario cerró la ventana de Google")
+
             }
             is NativeSignInResult.NetworkError -> {
-                Log.e("LogInViewModel", "Error de red al conectar con Google")
             }
             else -> {
-                Log.d("LogInViewModel", "Resultado no manejado: $result")
             }
         }
     }

@@ -2,6 +2,8 @@ package com.example.boostar_uaal.ui.screen.singInScreen
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.core.repository.AuthRepository
 import com.example.boostar_uaal.data.datasource.SharedPreferencesHelper
@@ -9,11 +11,11 @@ import io.github.jan.supabase.compose.auth.composable.NativeSignInResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
-class SingUpScreenViewModel(
-    private val auth: AuthRepository,
-    private val sharedPreferences: SharedPreferencesHelper
-): ViewModel() {
+class SingUpScreenViewModel(): ViewModel() {
+
+    private val authRepository = BoostArApplication.authRepository
     private val _isCompanyAccount = MutableStateFlow(false)
     val isCompanyAccount: StateFlow<Boolean> = _isCompanyAccount.asStateFlow()
 
@@ -25,18 +27,15 @@ class SingUpScreenViewModel(
     fun handleGoogleSignInResult(result: NativeSignInResult, navigateTo: (Routes) -> Unit) {
         when(result) {
             is NativeSignInResult.Success -> {
-                // Como ya tienes el SharedPreferences y AuthRepository inyectados,
-                // más adelante podrás guardar el token del usuario aquí.
-                Log.d("AuthViewModel", "¡Login exitoso!")
+                viewModelScope.launch {
+                    authRepository.saveSession()
+                }
                 navigateTo(Routes.Authenticated)
             }
             is NativeSignInResult.Error -> {
-                Log.e("AuthViewModel", "Error en el login")
                 navigateTo(Routes.AuthScreen)
             }
-            else -> {
-                Log.d("AuthViewModel", "Resultado no manejado: $result")
-            }
+            else -> { }
         }
     }
 }

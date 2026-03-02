@@ -18,12 +18,6 @@ fun AuthScreen(
     back: () -> Unit,
     backTo: (Routes) -> Unit
 ) {
-    val authScreenViewModel = viewModel<AuthScreenViewModel>()
-    val authenticated by authScreenViewModel.authenticated.collectAsState()
-    LaunchedEffect(Unit) {
-        Log.d("AuthScreenViewModel", "$authenticated")
-        if(authenticated) navigateTo(Routes.HomeScreen)
-    }
     // Llamamos a nuestra "carcasa" y le pasamos solo los datos visuales
     AuthLayout(
         imageRes = R.drawable.carrusel_auth_2,

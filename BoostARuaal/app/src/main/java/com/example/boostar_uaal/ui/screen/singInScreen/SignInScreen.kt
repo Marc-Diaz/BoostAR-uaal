@@ -46,11 +46,7 @@ fun SignInScreen(
     backTo: (Routes) -> Unit,
 ) {
     val context = LocalContext.current
-    val viewModel = viewModel<SingUpScreenViewModel>(
-        factory = SingUpScreenViewModelFactory(
-            BoostArApplication.authRepository, SharedPreferencesHelper(context)
-        )
-    )
+    val viewModel = viewModel<SingUpScreenViewModel>()
     val isCompanyAccount by viewModel.isCompanyAccount.collectAsState()
 
     AuthLayout(
@@ -62,6 +58,7 @@ fun SignInScreen(
         GoogleAuthButton(
             composeAuth = composeAuth,
             onResult = { result ->
+
                 viewModel.handleGoogleSignInResult(result, navigateTo)
             }
         )
