@@ -111,8 +111,9 @@ fun ItemCard(
                 modifier = Modifier.clickable { onLikeClick() }
             ) {
                 Icon(
-                    imageVector =  Icons.Default.Favorite,
+                    imageVector = Icons.Filled.Favorite ,
                     contentDescription = "Like",
+                    tint = Color.Black,
                     modifier = Modifier.size(20.dp)
                 )
                 InterText(
