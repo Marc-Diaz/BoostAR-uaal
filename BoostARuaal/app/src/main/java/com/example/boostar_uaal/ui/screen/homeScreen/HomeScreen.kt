@@ -20,6 +20,7 @@ import com.example.boostar_uaal.R
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.boostar_uaal.core.components.HomeBannerEventsEstatic
 import com.example.boostar_uaal.core.components.PartnerCarousel
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabCarousel
 
@@ -45,19 +46,26 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
             banners = banners,
             onTryArClick = {  }
         )
+        SectionHeader(
+            title = "Para ti >",
+            onClick = { navigateTo(Routes.HomeScreen) }
+        )
 
         ItemCarrousel(
-            title = "Para ti >",
+
             products = products,
-            onHeaderClick = { navigateTo(Routes.HomeScreen) },
             onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId)) },
             onLikeClick = { }
         )
 
-        ItemCarrousel(
+        SectionHeader(
             title = "Tendencias >",
+            onClick = { navigateTo(Routes.HomeScreen) }
+        )
+
+
+        ItemCarrousel(
             products = products,
-            onHeaderClick = { navigateTo(Routes.HomeScreen) },
             onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId)) },
             onLikeClick = { }
         )
@@ -106,17 +114,25 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
             onClick = { navigateTo(Routes.HomeScreen) }
         )
 
-        HomeBannerEstatic(
+        HomeBannerEventsEstatic(
             banner = HeroBannerData(
                 imageRes = R.drawable.titi,
-                label = "Bad Bunny",
-                title = "El talento que está\ncambiando la moda.",
+                label = "",
+                title = "Bad Bunny",
                 subtitle = "Gana unas entradas para el nuevo concierto\n" +
                         "de Bad Bunny en España.",
-            ),
-            onButtonClick = { }
+            )
         )
-
+        SectionHeader(
+            title = "Ofertas >",
+            textColor = Color.Red,
+            onClick = { navigateTo(Routes.HomeScreen) }
+        )
+        ItemCarrousel(
+            products = products,
+            onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId)) },
+            onLikeClick = { }
+        )
 
 
     }
