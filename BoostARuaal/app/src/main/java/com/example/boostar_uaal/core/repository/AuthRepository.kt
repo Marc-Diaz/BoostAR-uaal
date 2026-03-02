@@ -6,6 +6,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 interface AuthRepository {
-    suspend fun signInWithGoogle(onResult: (NativeSignInResult) -> Unit)
+    suspend fun saveSession()
+    suspend fun clearSession()
+
+    suspend fun loadSession(): UserSession?
 
 }

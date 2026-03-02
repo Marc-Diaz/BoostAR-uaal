@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.entities.PartnerData
+import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.repository.LikeRepository
 import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabData
@@ -40,7 +41,6 @@ class HomeScreenViewModel: ViewModel() {
     fun getProducts(){
         viewModelScope.launch {
             _products.value = productRepository.getProducts()
-            Log.d("HomeScreenViewModel", "getProducts: ${_products.value}")
         }
     }
 
