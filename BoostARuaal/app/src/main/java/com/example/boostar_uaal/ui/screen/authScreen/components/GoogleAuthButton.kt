@@ -11,7 +11,7 @@ import io.github.jan.supabase.compose.auth.composable.rememberSignInWithGoogle
 
 @Composable
 fun GoogleAuthButton(composeAuth: ComposeAuth, onResult: (NativeSignInResult) -> Unit){
-    val authState = composeAuth.rememberSignInWithGoogle(onResult)
+    val authState = composeAuth.rememberSignInWithGoogle(onResult = onResult)
 
     AuthButton(
         onClick = {

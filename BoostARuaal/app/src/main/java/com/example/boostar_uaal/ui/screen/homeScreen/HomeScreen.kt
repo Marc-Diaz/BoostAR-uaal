@@ -20,6 +20,7 @@ import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeHero
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeNav
 import com.example.boostar_uaal.R
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.DropCard
@@ -36,7 +37,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
     val collabs by homeScreenViewModel.collabs.collectAsState()
     val partners by homeScreenViewModel.partners.collectAsState()
     val drops by homeScreenViewModel.drops.collectAsState()
-
+    val context = LocalContext.current
     // nueva Carcasa Universal
     AdaptiveFeedLayout {
 
@@ -48,7 +49,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
 
         HomeHero(
             banners = banners,
-            onTryArClick = { }
+            onTryArClick = { homeScreenViewModel.onTryArClick(context) }
         )
         SectionHeader(
             title = "Para ti >",

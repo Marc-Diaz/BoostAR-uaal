@@ -11,4 +11,9 @@ interface AuthRepository {
 
     suspend fun loadSession(): UserSession?
 
+    suspend fun setUserRole(isCompany: Boolean)
+
+    suspend fun hasUserRole(): Boolean
+
+    suspend fun isCompanyUser(): Boolean
 }

@@ -85,7 +85,7 @@ class HomeScreenViewModel : ViewModel() {
 
     fun onTryArClick(context: Context) {
         Log.d("HomeScreenViewModel", "El usuario quiere probar la cámara AR")
-
+        BoostArApplication.unityHandler.sendClothingToUnity(context, "hola", "url")
 
     }
 

@@ -19,6 +19,8 @@ android {
         version = release(36)
     }
 
+
+
     defaultConfig {
         applicationId = "com.example.boostar_uaal"
         minSdk = 26
@@ -48,6 +50,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
         }
     }
     compileOptions {
@@ -61,7 +64,11 @@ android {
 }
 
 dependencies {
-
+    /*
+    //Unity
+    implementation(project(":unityLibrary"))
+    implementation(fileTree(mapOf("dir" to "${rootDir}/unityAr/unityLibrary/libs", "include" to listOf("*.jar"))))
+    */
     //Nav3
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)

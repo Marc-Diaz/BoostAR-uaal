@@ -27,9 +27,13 @@ class SingUpScreenViewModel(): ViewModel() {
         when(result) {
             is NativeSignInResult.Success -> {
                 viewModelScope.launch {
-                    authRepository.saveSession()
+                    Log.d("AuthRole", "${authRepository.hasUserRole()}")
+                    if (authRepository.hasUserRole()) throw Exception("Ya tiener rol")
+                    authRepository.setUserRole(isCompanyAccount.value)
+                    //authRepository.saveSession()
+                    navigateTo(Routes.Authenticated)
                 }
-                navigateTo(Routes.Authenticated)
+
             }
             is NativeSignInResult.Error -> {
                 navigateTo(Routes.AuthScreen)
