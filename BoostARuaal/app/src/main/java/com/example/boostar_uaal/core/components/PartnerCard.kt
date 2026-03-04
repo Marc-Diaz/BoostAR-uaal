@@ -47,7 +47,7 @@ fun PartnerCard(
 @Composable
 fun PartnerCarousel(
     partners: List<PartnerData>,
-    onItemClick: (Int) -> Unit
+    onItemClick: (String) -> Unit
 ) {
     LazyRow(
         contentPadding = PaddingValues(horizontal = 24.dp), // Margen a los lados de la pantalla

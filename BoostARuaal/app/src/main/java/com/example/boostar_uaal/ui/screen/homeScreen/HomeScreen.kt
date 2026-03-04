@@ -159,6 +159,5 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
             onLikeClick = { }
         )
 
-
     }
 }

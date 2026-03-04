@@ -12,6 +12,7 @@ import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.repository.ProductRepository
 import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class FeedScreenViewModel : ViewModel() {
@@ -32,4 +33,6 @@ class FeedScreenViewModel : ViewModel() {
         // BoostArApplication.unityHandler.sendClothingToUnity(context, "${product.value}", "${product.value}" )
 
     }
+
+
 }

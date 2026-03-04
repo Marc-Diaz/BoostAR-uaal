@@ -118,10 +118,10 @@ class HomeScreenViewModel : ViewModel() {
         val boostarLogo = R.drawable.boostar_logo
 
         _partners.value = listOf(
-            PartnerData(id = 1, logoRes = boostarLogo, name = "BoostAR 1"),
-            PartnerData(id = 2, logoRes = boostarLogo, name = "BoostAR 2"),
-            PartnerData(id = 3, logoRes = boostarLogo, name = "BoostAR 3"),
-            PartnerData(id = 4, logoRes = boostarLogo, name = "BoostAR 4")
+            PartnerData(id = "", logoRes = boostarLogo, name = "BoostAR 1"),
+            PartnerData(id = "", logoRes = boostarLogo, name = "BoostAR 2"),
+            PartnerData(id = "", logoRes = boostarLogo, name = "BoostAR 3"),
+            PartnerData(id = "", logoRes = boostarLogo, name = "BoostAR 4")
         )
 
     }
@@ -140,8 +140,6 @@ class HomeScreenViewModel : ViewModel() {
             _products.value = updatedProducts
         }
     }
-
-    // Al tocar la campanita, cambiamos su estado
     fun toggleDropNotification(dropId: Int) {
         val currentList = _drops.value
         _drops.value = currentList.map { drop ->
@@ -153,7 +151,6 @@ class HomeScreenViewModel : ViewModel() {
         }
     }
 
-    // Al tocar Reservar
     fun reserveDrop(dropId: Int) {
         // Aquí iría la lógica para añadir a la cesta o reservar
         Log.d("ViewModel", "Reservando el drop con ID: $dropId")
@@ -175,7 +172,7 @@ class HomeScreenViewModel : ViewModel() {
                 statusColor = Color(0xFFC7843B),
                 title = "Regular jeans",
                 collection = "STW Collection",
-                targetTimestamp = futureTime1, // 👈 Le pasamos la fecha futura
+                targetTimestamp = futureTime1,
                 isNotified = false
             ),
         )

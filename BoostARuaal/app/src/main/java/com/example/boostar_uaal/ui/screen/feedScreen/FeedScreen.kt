@@ -34,107 +34,192 @@ import com.example.boostar_uaal.ui.screen.feedScreen.components.ProductInfoSecti
 import com.example.boostar_uaal.ui.screen.feedScreen.components.RightSideBar
 import com.example.boostar_uaal.core.components.SearchButton
 
+
 @Composable
+
 fun FeedScreen(
+
     productId: Int,
+
     navigateTo: (Routes) -> Unit,
+
     back: () -> Unit,
+
     backTo: (Routes) -> Unit,
+
     viewModel: FeedScreenViewModel = viewModel()
+
 ) {
+
     val product by viewModel.product.collectAsState()
+
     Log.d("Producto", "$product")
+
     LaunchedEffect(productId) {
+
         viewModel.getProduct(productId)
+
     }
+
+
+
 
 
     Box(
+
         modifier = Modifier
+
             .fillMaxSize()
+
             .background(Color.Black) // Fondo por si la imagen tarda
+
     ) {
 
+
         if (product != null) {
+
             val p = product!!
 
-            // Selección de imagen: Prioriza multimedia principal -> coverImage
+
+// Selección de imagen: Prioriza multimedia principal -> coverImage
+
             val imageUrl =
+
                 p.multimedia.find { it.isPrincipal && it.type == TypeMultimedia.IMAGE }?.multimediaURL
+
                     ?: p.coverImage
 
-            // 1. IMAGEN DE FONDO
+
+// 1. IMAGEN DE FONDO
+
             BackgorundImage(imageUrl, "")
 
-            // 2. GRADIENTE (Sombra para legibilidad)
+
+// 2. GRADIENTE (Sombra para legibilidad)
+
             Box(
+
                 modifier = Modifier
+
                     .fillMaxSize()
+
                     .background(
+
                         Brush.verticalGradient(
+
                             colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.7f)),
+
                             startY = 0.5f
+
                         )
+
                     )
+
             )
 
 
-            // Botón Atrás (Top Start)
+// Botón Atrás (Top Start)
+
             IconButton(
+
                 onClick = back,
+
                 modifier = Modifier
+
                     .align(Alignment.TopStart)
+
                     .padding(top = 48.dp, start = 16.dp)
+
                     .background(Color.Black.copy(alpha = 0.3f), CircleShape)
+
             ) {
+
                 Icon(
+
                     Icons.AutoMirrored.Filled.ArrowBack,
+
                     contentDescription = "Atrás",
+
                     tint = Color.White
+
                 )
+
             }
 
-            // Botón Buscar (Top End)
+
+// Botón Buscar (Top End)
+
             SearchButton(
+
                 modifier = Modifier.align(Alignment.TopEnd),
+
 
                 )
 
-            // Barra Lateral Derecha (Likes, Share, Perfil)
+
+// Barra Lateral Derecha (Likes, Share, Perfil)
+
             RightSideBar(
+
                 modifier = Modifier
+
                     .align(Alignment.BottomEnd)
+
                     .padding(bottom = 50.dp)
-                    .padding(end = 16.dp),      // Margen derecho
+
+                    .padding(end = 16.dp), // Margen derecho
+
                 likes = p.numLikes,
+
                 onProfileClick = {}
+
             )
 
-            // Info del Producto (Nombre, Precio)
+
+// Info del Producto (Nombre, Precio)
+
             ProductInfoSection(
+
                 modifier = Modifier.align(Alignment.BottomStart),
+
                 name = p.name,
+
                 price = p.price,
+
                 discountPrice = p.discountPrice
+
             )
 
-            // Dock de Acciones (Carrito, Comprar)
+
+// Dock de Acciones (Carrito, Comprar)
+
             BottomActionDock(
+
                 modifier = Modifier.align(Alignment.BottomCenter),
+
                 onCartClick = { /* navigateTo(Routes.Cart) */ },
+
                 onBuyClick = { /* navigateTo(Routes.Checkout(p.id)) */ }
+
             )
+
 
         } else {
-            // Loading Spinner
+
+// Loading Spinner
+
             CircularProgressIndicator(
+
                 color = Color.White,
+
                 modifier = Modifier.align(Alignment.Center)
+
             )
+
         }
+
     }
+
 }
-
-
 
 
