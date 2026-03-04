@@ -83,11 +83,7 @@ fun FeedScreen(
 
 // Selección de imagen: Prioriza multimedia principal -> coverImage
 
-            val imageUrl =
-
-                p.multimedia.find { it.isPrincipal && it.type == TypeMultimedia.IMAGE }?.multimediaURL
-
-                    ?: p.coverImage
+            val imageUrl = p.multimedia.find { it.type == TypeMultimedia.IMAGE }?.multimediaURL ?: p.coverImage
 
 
 // 1. IMAGEN DE FONDO

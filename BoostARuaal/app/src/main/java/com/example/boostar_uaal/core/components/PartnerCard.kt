@@ -23,7 +23,6 @@ fun PartnerCard(
     partner: PartnerData,
     onClick: () -> Unit
 ) {
-
     Surface(
         modifier = Modifier
             .size(157.dp)
@@ -33,13 +32,13 @@ fun PartnerCard(
         shadowElevation = 6.dp // Sombra suave
     ) {
         // La imagen centrada dentro del círculo
-        Image(
-            painter = painterResource(id = partner.logoRes),
+        ItemImage(
+            url =partner.logoUrl,
             contentDescription = partner.name,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(20.dp), // Un poco de margen interno para que el logo no choque con los bordes
-            contentScale = ContentScale.Fit // Fit hace que el logo entero se vea sin cortarse
+                .padding(20.dp),
+            contentScale = ContentScale.Fit
         )
     }
 }

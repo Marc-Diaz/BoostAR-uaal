@@ -2,7 +2,7 @@ package com.example.boostar_uaal
 
 import android.app.Application
 import com.example.boostar_uaal.core.repository.AuthRepository
-import com.example.boostar_uaal.core.repository.PartnersRepository
+import com.example.boostar_uaal.core.repository.PartnerRepository
 import com.example.boostar_uaal.core.repository.LikeRepository
 import com.example.boostar_uaal.core.repository.ProductRepository
 import com.example.boostar_uaal.core.utils.UnityActivityHandler
@@ -25,11 +25,9 @@ class BoostArApplication: Application() {
     companion object{
         lateinit var authRepository: AuthRepository
         lateinit var productRepository: ProductRepository
-        lateinit var brandRepository: PartnersRepository
-
+        lateinit var partnerRepository: PartnerRepository
         lateinit var likeRepository: LikeRepository
         lateinit var composeAuth: ComposeAuth
-
         lateinit var unityHandler: UnityActivityHandler
     }
 
@@ -43,7 +41,7 @@ class BoostArApplication: Application() {
         authRepository = AuthRepositoryImpl(supabaseClient.auth)
         productRepository = ProductRepositoryImpl(supabaseClient.postgrest)
         likeRepository = LikeRepositoryImpl(supabaseClient.postgrest)
-        brandRepository = PartnersRepositoryImpl(supabaseClient.postgrest)
+        partnerRepository = PartnersRepositoryImpl(supabaseClient.postgrest)
         composeAuth = supabaseClient.composeAuth
         unityHandler = UnityActivityHandler()
     }

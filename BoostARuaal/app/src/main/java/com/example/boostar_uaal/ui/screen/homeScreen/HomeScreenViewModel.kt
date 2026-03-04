@@ -2,12 +2,6 @@ package com.example.boostar_uaal.ui.screen.homeScreen
 
 import android.content.Context
 import android.util.Log
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableLongStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,13 +9,11 @@ import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.entities.DropData
 import com.example.boostar_uaal.core.entities.PartnerData
-import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.repository.LikeRepository
-import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
+import com.example.boostar_uaal.core.repository.PartnerRepository
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabData
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
 import com.example.core.entities.Product
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -30,6 +22,9 @@ import kotlinx.coroutines.launch
 class HomeScreenViewModel : ViewModel() {
 
     private val productRepository = BoostArApplication.productRepository
+    private val likeRepository: LikeRepository = BoostArApplication.likeRepository
+
+    private val partnerRepository: PartnerRepository = BoostArApplication.partnerRepository
     private val _products = MutableStateFlow<List<Product>>(emptyList())
     val products: StateFlow<List<Product>> = _products.asStateFlow()
     private val _banners = MutableStateFlow<List<HeroBannerData>>(emptyList())
@@ -41,18 +36,15 @@ class HomeScreenViewModel : ViewModel() {
     private val _drops = MutableStateFlow<List<DropData>>(emptyList())
     val drops: StateFlow<List<DropData>> = _drops.asStateFlow()
 
-
-    private val likeRepository: LikeRepository = BoostArApplication.likeRepository
-
     init {
-        getProducts()
+        loadProducts()
         loadBanners()
         loadCollabs()
         loadPartners()
         loadDrops()
     }
 
-    fun getProducts() {
+    fun loadProducts() {
         viewModelScope.launch {
             _products.value = productRepository.getProducts()
         }
@@ -115,15 +107,9 @@ class HomeScreenViewModel : ViewModel() {
     }
 
     private fun loadPartners() {
-        val boostarLogo = R.drawable.boostar_logo
-
-        _partners.value = listOf(
-            PartnerData(id = "", logoRes = boostarLogo, name = "BoostAR 1"),
-            PartnerData(id = "", logoRes = boostarLogo, name = "BoostAR 2"),
-            PartnerData(id = "", logoRes = boostarLogo, name = "BoostAR 3"),
-            PartnerData(id = "", logoRes = boostarLogo, name = "BoostAR 4")
-        )
-
+        viewModelScope.launch {
+            _partners.value = partnerRepository.getPartners()
+        }
     }
     fun toggleLike(productId: Int) {
         viewModelScope.launch {

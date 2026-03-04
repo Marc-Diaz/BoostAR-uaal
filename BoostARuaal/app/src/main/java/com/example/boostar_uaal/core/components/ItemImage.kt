@@ -15,7 +15,7 @@ import coil3.compose.rememberAsyncImagePainter
 import com.example.boostar_uaal.R
 
 @Composable
-fun ItemImage(url: String, contentDescription: String){
+fun ItemImage(url: String, contentDescription: String, modifier: Modifier = Modifier, contentScale: ContentScale = ContentScale.Fit){
     val painter = rememberAsyncImagePainter(model = url)
     val state by painter.state.collectAsState()
     when(state){
@@ -25,8 +25,8 @@ fun ItemImage(url: String, contentDescription: String){
             Image(
                 painter = painter,
                 contentDescription = contentDescription,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
+                modifier = modifier,
+                contentScale = contentScale
 
             )
         is AsyncImagePainter.State.Error -> {
