@@ -60,7 +60,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
 
             products = products,
             onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId)) },
-            onLikeClick = { }
+            onLikeClick = { homeScreenViewModel.toggleLike(it) }
         )
 
         SectionHeader(

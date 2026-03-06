@@ -11,4 +11,5 @@ class PartnersRepositoryImpl(private val postgrest: Postgrest): PartnerRepositor
         Log.d("PARTNERS", "$response")
         return response
     }
+
 }

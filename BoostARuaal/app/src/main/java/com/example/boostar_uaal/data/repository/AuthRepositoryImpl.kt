@@ -2,6 +2,7 @@ package com.example.boostar_uaal.data.repository
 
 
 import android.util.Log
+import com.example.boostar_uaal.core.entities.User
 import com.example.boostar_uaal.core.repository.AuthRepository
 
 import io.github.jan.supabase.auth.Auth
@@ -51,4 +52,5 @@ class AuthRepositoryImpl(private val auth: Auth): AuthRepository {
 
         return metadata?.get("isCompany")?.jsonPrimitive?.booleanOrNull ?: false
     }
+
 }

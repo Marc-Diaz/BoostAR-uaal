@@ -1,5 +1,6 @@
 package com.example.boostar_uaal.core.repository
 
+import com.example.boostar_uaal.core.entities.User
 import io.github.jan.supabase.auth.user.UserSession
 import io.github.jan.supabase.compose.auth.composable.NativeSignInResult
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,4 +17,5 @@ interface AuthRepository {
     suspend fun hasUserRole(): Boolean
 
     suspend fun isCompanyUser(): Boolean
+
 }

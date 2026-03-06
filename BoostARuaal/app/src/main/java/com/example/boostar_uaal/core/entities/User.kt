@@ -1,8 +1,12 @@
 package com.example.boostar_uaal.core.entities
 
 data class User(
-    val id: Int,
-    val nama: String,
+    val id: String,
+    val name: String,
     val mail: String,
-    val phone: String
+    val picture: String,
+    val numLikes: Int,
+    val numNotifications: Int,
+    val numBuys: Int,
+    val numRefunds: Int
 )

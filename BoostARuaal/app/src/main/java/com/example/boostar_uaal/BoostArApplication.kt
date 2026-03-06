@@ -5,12 +5,14 @@ import com.example.boostar_uaal.core.repository.AuthRepository
 import com.example.boostar_uaal.core.repository.PartnerRepository
 import com.example.boostar_uaal.core.repository.LikeRepository
 import com.example.boostar_uaal.core.repository.ProductRepository
+import com.example.boostar_uaal.core.repository.UserRepository
 import com.example.boostar_uaal.core.utils.UnityActivityHandler
 import com.example.boostar_uaal.data.datasource.SupabaseClientProvider
 import com.example.boostar_uaal.data.repository.AuthRepositoryImpl
 import com.example.boostar_uaal.data.repository.PartnersRepositoryImpl
 import com.example.boostar_uaal.data.repository.LikeRepositoryImpl
 import com.example.boostar_uaal.data.repository.ProductRepositoryImpl
+import com.example.boostar_uaal.data.repository.UserRepositoryImpl
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.compose.auth.ComposeAuth
@@ -25,8 +27,10 @@ class BoostArApplication: Application() {
     companion object{
         lateinit var authRepository: AuthRepository
         lateinit var productRepository: ProductRepository
-        lateinit var partnerRepository: PartnerRepository
         lateinit var likeRepository: LikeRepository
+        lateinit var partnerRepository: PartnerRepository
+
+        lateinit var userRepository: UserRepository
         lateinit var composeAuth: ComposeAuth
         lateinit var unityHandler: UnityActivityHandler
     }
@@ -42,6 +46,8 @@ class BoostArApplication: Application() {
         productRepository = ProductRepositoryImpl(supabaseClient.postgrest)
         likeRepository = LikeRepositoryImpl(supabaseClient.postgrest)
         partnerRepository = PartnersRepositoryImpl(supabaseClient.postgrest)
+        userRepository = UserRepositoryImpl(supabaseClient.postgrest)
+
         composeAuth = supabaseClient.composeAuth
         unityHandler = UnityActivityHandler()
     }
