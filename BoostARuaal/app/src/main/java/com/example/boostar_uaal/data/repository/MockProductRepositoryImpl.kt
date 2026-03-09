@@ -10,7 +10,6 @@ import com.example.boostar_uaal.core.entities.Standard
 import com.example.boostar_uaal.core.entities.Style
 import com.example.boostar_uaal.core.entities.TypeMultimedia
 import com.example.boostar_uaal.core.repository.ProductRepository
-import com.example.boostar_uaal.core.utils.ColorFormatter
 import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.components.OnboardingStep
 
 class MockProductRepositoryImpl(): ProductRepository{
@@ -99,13 +98,11 @@ class MockProductRepositoryImpl(): ProductRepository{
                 Multimedia(
                     id = 0,
                     multimediaURL = "https://moygfqmmtuwvpeatrvhw.supabase.co/storage/v1/object/sign/imagenes/feed1.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hMWNkOTIxYi1kMGNiLTQyN2ItOTFlMC1lZTI2OGZlOGNmZWIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZW5lcy9mZWVkMS5wbmciLCJpYXQiOjE3NzAyOTIyNjcsImV4cCI6MTc3MDg5NzA2N30.QZeTFDDXWAxz-wsmDVKMDQwt55UMXgrb3i4q_S5INtI",
-                    isPrincipal = true,
                     type = TypeMultimedia.IMAGE
                 ),
                 Multimedia(
                     id = 1,
                     multimediaURL = "https://mundotextil.com/tienda/454-large_default/camiseta-fruit-of-the-loom-610360.jpg",
-                    isPrincipal = true,
                     type = TypeMultimedia.IMAGE
                 )
             )
@@ -127,13 +124,11 @@ class MockProductRepositoryImpl(): ProductRepository{
                 Multimedia(
                     id = 0,
                     multimediaURL = "https://www.joma-sport.com/dw/image/v2/BFRV_PRD/on/demandware.static/-/Sites-joma-masterCatalog/default/dw0e82cc45/images/medium/101739.100_1.jpg?sw=900&sh=900&sm=fit",
-                    isPrincipal = true,
                     type = TypeMultimedia.IMAGE
                 ),
                 Multimedia(
                     id = 1,
                     multimediaURL = "https://mundotextil.com/tienda/454-large_default/camiseta-fruit-of-the-loom-610360.jpg",
-                    isPrincipal = true,
                     type = TypeMultimedia.IMAGE
                 )
             )
@@ -154,13 +149,11 @@ class MockProductRepositoryImpl(): ProductRepository{
                 Multimedia(
                     id = 0,
                     multimediaURL = "https://www.joma-sport.com/dw/image/v2/BFRV_PRD/on/demandware.static/-/Sites-joma-masterCatalog/default/dw0e82cc45/images/medium/101739.100_1.jpg?sw=900&sh=900&sm=fit",
-                    isPrincipal = true,
                     type = TypeMultimedia.IMAGE
                 ),
                 Multimedia(
                     id = 1,
                     multimediaURL = "https://mundotextil.com/tienda/454-large_default/camiseta-fruit-of-the-loom-610360.jpg",
-                    isPrincipal = true,
                     type = TypeMultimedia.IMAGE
                 )
             )

@@ -11,7 +11,6 @@ import kotlinx.serialization.encoding.Encoder
 data class Multimedia(
     val id: Int,
     val multimediaURL: String,
-    val isPrincipal: Boolean = false,
     @Serializable(with = MultimediaTypeSerializer::class)
     val type: TypeMultimedia
 )
@@ -19,12 +18,12 @@ data class Multimedia(
 
 
 @Serializable
-enum class TypeMultimedia(val value: Int){
-    IMAGE(1),
-    VIDEO(2),
-    MODEL3D(3);
+enum class TypeMultimedia(val value: String){
+    IMAGE("IMAGEN"),
+    VIDEO("VIDEO"),
+    MODEL("MODELO");
 
     companion object {
-        fun fromInt(value: Int) = entries.first { it.value == value }
+        fun fromString(value: String) = entries.first { it.value == value }
     }
 }
