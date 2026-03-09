@@ -14,6 +14,11 @@ import kotlinx.serialization.json.put
 
 
 class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository  {
+    private var currentIndex = 0
+    private var _products = mutableListOf<ProductDetail>()
+    private var pageSize = 10
+    private var isLoading = false
+
     override suspend fun getProducts(): List<Product> {
         val response: List<Product> = postgrest["Producto_View"].select().decodeList<Product>()
 
@@ -29,6 +34,30 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
         ).decodeSingle<ProductDetail>()
 
         return response
+    }
+    private suspend fun loadMoreProducts(){
+        if (isLoading) return
+        isLoading = true
+        val response: List<ProductDetail> = postgrest["Producto_View"]
+            .select {
+                range(_products.size.toLong(), (_products.size + pageSize - 1).toLong())
+            }
+            .decodeList()
+        isLoading = false
+        _products.addAll(response)
+    }
+
+    override suspend fun getNextProduct(): ProductDetail {
+        if (currentIndex + 1 >= _products.size) {
+            loadMoreProducts()
+        }
+        currentIndex++
+        return _products[currentIndex]
+    }
+
+    override suspend fun getPreviousProduct(): ProductDetail {
+        if (currentIndex > 0) currentIndex--
+        return _products[currentIndex]
     }
 
     override suspend fun getOnboardingSteps(): List<OnboardingStep> {
@@ -56,4 +85,5 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
             )
         )
     }
+
 }

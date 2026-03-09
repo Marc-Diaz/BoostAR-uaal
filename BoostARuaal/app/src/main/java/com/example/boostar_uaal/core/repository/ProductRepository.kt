@@ -12,4 +12,7 @@ interface ProductRepository {
 
     suspend fun getOnboardingSteps(): List<OnboardingStep>
 
+    suspend fun getNextProduct(): ProductDetail
+
+    suspend fun getPreviousProduct(): ProductDetail
 }
