@@ -7,3 +7,13 @@ data class ClothingSize (
     val name: String,
     val standard: Standard
 )
+@Serializable
+enum class Standard(val value: String){
+    UNIVERSAL("UNIVERSAL"),
+    VIDEO("VIDEO"),
+    MODEL("MODELO");
+
+    companion object {
+        fun fromString(value: String) = entries.first { it.value == value }
+    }
+}

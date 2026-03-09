@@ -11,7 +11,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.repository.ProductRepository
-import com.example.boostar_uaal.data.repository.MockProductRepositoryImpl
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
