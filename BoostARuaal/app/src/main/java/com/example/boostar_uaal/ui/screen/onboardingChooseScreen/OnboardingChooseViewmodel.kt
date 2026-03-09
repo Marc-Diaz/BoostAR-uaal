@@ -2,6 +2,7 @@ package com.example.boostar_uaal.ui.screen.onboardingChooseScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.components.OnboardingUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +14,7 @@ class OnboardingChooseViewmodel : ViewModel() {
     private val _uiState = MutableStateFlow(OnboardingUiState())
     val uiState: StateFlow<OnboardingUiState> = _uiState.asStateFlow()
 
-    private val repository = MockProductRepositoryImpl()
+    private val repository = BoostArApplication.productRepository
 
 
     init {

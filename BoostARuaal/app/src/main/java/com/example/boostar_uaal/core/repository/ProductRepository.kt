@@ -10,4 +10,6 @@ interface ProductRepository {
 
     suspend fun getProductById(id: Int): ProductDetail
 
+    suspend fun getOnboardingSteps(): List<OnboardingStep>
+
 }

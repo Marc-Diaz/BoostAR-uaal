@@ -3,6 +3,7 @@ package com.example.boostar_uaal.data.repository
 import android.util.Log
 import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.repository.ProductRepository
+import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.components.OnboardingStep
 import com.example.core.entities.Product
 import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
@@ -35,5 +36,27 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
         ).decodeSingle()
 
         return response
+    }
+    override suspend fun getOnboardingSteps(): List<OnboardingStep> {
+        val response: List<Product> = postgrest["Producto_View"].select().decodeList<Product>()
+
+
+        return listOf(
+            OnboardingStep(
+                id = "tops",
+                title = "Choose the Tops you like.",
+                options = response
+            ),
+            OnboardingStep(
+                id = "bottoms",
+                title = "Choose the Bottoms you like.",
+                options = response
+            ),
+            OnboardingStep(
+                id = "outerwear",
+                title = "Choose the Outerwear you like.",
+                options = response
+            )
+        )
     }
 }
