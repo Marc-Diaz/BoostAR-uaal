@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 class LoginScreenViewModel: ViewModel() {
 
     val authRepository = BoostArApplication.authRepository
+    val userRepository = BoostArApplication.userRepository
     fun handleGoogleSignInResult(
         result: NativeSignInResult,
         navigateTo: (Routes) -> Unit
@@ -19,8 +20,8 @@ class LoginScreenViewModel: ViewModel() {
             is NativeSignInResult.Success -> {
 
                 viewModelScope.launch {
-                    if (!authRepository.hasUserRole()) throw Exception("No tienes rol")
-                    // authRepository.saveSession()
+                    if (!userRepository.hasUserRole()) throw Exception("No tienes rol")
+                    authRepository.saveSession()
                 }
                 navigateTo(Routes.HomeScreen)
             }

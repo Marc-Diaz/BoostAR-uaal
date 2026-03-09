@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 class SingUpScreenViewModel(): ViewModel() {
 
     private val authRepository = BoostArApplication.authRepository
+    private val userRepository = BoostArApplication.userRepository
     private val _isCompanyAccount = MutableStateFlow(false)
     val isCompanyAccount: StateFlow<Boolean> = _isCompanyAccount.asStateFlow()
 
@@ -22,15 +23,14 @@ class SingUpScreenViewModel(): ViewModel() {
         _isCompanyAccount.value = !_isCompanyAccount.value
     }
 
-    // 2. Lógica de inicio de sesión con Google
     fun handleGoogleSignInResult(result: NativeSignInResult, navigateTo: (Routes) -> Unit) {
         when(result) {
             is NativeSignInResult.Success -> {
                 viewModelScope.launch {
-                    Log.d("AuthRole", "${authRepository.hasUserRole()}")
-                    if (authRepository.hasUserRole()) throw Exception("Ya tiener rol")
-                    authRepository.setUserRole(isCompanyAccount.value)
-                    //authRepository.saveSession()
+                    Log.d("AuthRole", "${userRepository.hasUserRole()}")
+                    if (userRepository.hasUserRole()) throw Exception("Ya tiener rol")
+                    userRepository.setUserRole(isCompanyAccount.value)
+                    authRepository.saveSession()
                     navigateTo(Routes.Authenticated)
                 }
 

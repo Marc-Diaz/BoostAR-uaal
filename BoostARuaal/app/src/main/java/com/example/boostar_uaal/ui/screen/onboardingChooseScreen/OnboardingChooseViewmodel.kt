@@ -1,5 +1,6 @@
 package com.example.boostar_uaal.ui.screen.onboardingChooseScreen
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.BoostArApplication
@@ -13,19 +14,17 @@ import kotlinx.coroutines.launch
 class OnboardingChooseViewmodel : ViewModel() {
     private val _uiState = MutableStateFlow(OnboardingUiState())
     val uiState: StateFlow<OnboardingUiState> = _uiState.asStateFlow()
-
-    private val repository = BoostArApplication.productRepository
-
+    private val productRepository = BoostArApplication.productRepository
+    private val userRepository = BoostArApplication.userRepository
 
     init {
         loadOnboardingData()
     }
-
     private fun loadOnboardingData() {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
-
-           val steps = repository.getOnboardingSteps()
+            val steps = productRepository.getOnboardingSteps()
+            Log.d("STEPS", "$steps")
             _uiState.update {
                 it.copy(
                     isLoading = false,
@@ -61,8 +60,11 @@ class OnboardingChooseViewmodel : ViewModel() {
         if (currentState.currentStepIndex < currentState.steps.size - 1) {
             _uiState.update { it.copy(currentStepIndex = it.currentStepIndex + 1) }
         } else {
-            println("Selecciones finales: ${currentState.selectedIds}")
-            navigateTo()
+            viewModelScope.launch {
+                userRepository.updateOnboardingPreferences(currentState.selectedIds)
+                Log.d("Selecciones finales", " ${currentState.selectedIds}")
+                navigateTo()
+            }
         }
     }
 }

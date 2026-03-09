@@ -12,12 +12,14 @@ import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.json.put
 import kotlin.collections.mapOf
+import kotlin.time.ExperimentalTime
+import kotlin.time.Instant
 
 
 class AuthRepositoryImpl(private val auth: Auth): AuthRepository {
+
     override suspend fun saveSession(){
         val userSession = auth.currentSessionOrNull() ?: return
-        Log.d("Session", "Guardada")
         auth.sessionManager.saveSession(userSession)
     }
 
@@ -27,30 +29,22 @@ class AuthRepositoryImpl(private val auth: Auth): AuthRepository {
         auth.sessionManager.deleteSession()
     }
 
-    override suspend fun setUserRole(isCompany: Boolean){
 
-        val metadata = buildJsonObject {
-            put( "isCompany", isCompany)
+    @OptIn(ExperimentalTime::class)
+    override suspend fun isAccessTokenValid(): Boolean {
+        val session = auth.currentSessionOrNull() ?: return false
+        val now = Instant.fromEpochMilliseconds(System.currentTimeMillis())
+        return session.expiresAt > now
+    }
+
+    override suspend fun refreshSession(): Boolean{
+        try {
+            auth.refreshCurrentSession()
+            return true
         }
-        auth.updateUser {
-            data = metadata
+        catch (e: Exception){
+            clearSession()
+            return false
         }
-        Log.d("AuthUpdate", "DONE")
     }
-
-    override suspend fun hasUserRole(): Boolean {
-        val userSession = auth.currentSessionOrNull()
-        val metadata = userSession?.user?.userMetadata
-
-        return metadata?.containsKey("isCompany") ?: false
-
-    }
-
-    override suspend fun isCompanyUser(): Boolean {
-        val userSession = auth.currentSessionOrNull()
-        val metadata = userSession?.user?.userMetadata
-
-        return metadata?.get("isCompany")?.jsonPrimitive?.booleanOrNull ?: false
-    }
-
 }

@@ -9,13 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 interface AuthRepository {
     suspend fun saveSession()
     suspend fun clearSession()
-
     suspend fun loadSession(): UserSession?
-
-    suspend fun setUserRole(isCompany: Boolean)
-
-    suspend fun hasUserRole(): Boolean
-
-    suspend fun isCompanyUser(): Boolean
-
+    suspend fun isAccessTokenValid(): Boolean
+    suspend fun refreshSession(): Boolean
 }

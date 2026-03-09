@@ -4,9 +4,6 @@ package com.example.boostar_uaal.core.navigation
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
@@ -14,7 +11,6 @@ import com.example.boostar_uaal.core.utils.AuthState
 import com.example.boostar_uaal.core.utils.back
 import com.example.boostar_uaal.core.utils.navigateTo
 import com.example.boostar_uaal.ui.screen.authScreen.AuthScreen
-import com.example.boostar_uaal.ui.screen.authScreen.AuthScreenViewModel
 import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreen
 import com.example.boostar_uaal.ui.screen.homeScreen.HomeScreen
 import com.example.boostar_uaal.ui.screen.loginScreen.LogInScreen
@@ -23,19 +19,19 @@ import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.OnboardingChoos
 import com.example.boostar_uaal.ui.screen.onboardingTextScreen.OnboardingTextScreen
 import com.example.boostar_uaal.ui.screen.singInScreen.SignInScreen
 
+
 @SuppressLint("ViewModelConstructorInComposable")
 @Composable
 fun MainNavigationWrapper(authState: AuthState) {
-    val startRoute: Routes
-    when (authState) {
+    val startRoute: Routes = when (authState) {
         AuthState.Authenticated ->
-            startRoute = Routes.HomeScreen
+            Routes.HomeScreen
 
         AuthState.Unauthenticated ->
-            startRoute = Routes.AuthScreen
+            Routes.AuthScreen
 
         else -> {
-            startRoute = Routes.AuthScreen
+            Routes.AuthScreen
         }
     }
     val backStack = rememberNavBackStack(startRoute)
@@ -69,7 +65,7 @@ fun MainNavigationWrapper(authState: AuthState) {
             }
             entry<Routes.Authenticated> {
                 LaunchedEffect(Unit) {
-                    backStack.navigateTo(Routes.OnboardingTextScreen)
+                    backStack.navigateTo(Routes.OnboardingTextScreen, inclusive = true)
                 }
             }
             entry<Routes.OnboardingTextScreen> {

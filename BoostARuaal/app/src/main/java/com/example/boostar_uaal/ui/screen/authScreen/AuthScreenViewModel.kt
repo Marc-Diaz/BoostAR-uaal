@@ -22,11 +22,11 @@ class AuthScreenViewModel: ViewModel() {
     fun checkExistingSession(){
         viewModelScope.launch {
             _session.value = authRepository.loadSession()
-            if(_session.value != null){
-                _authState.value = AuthState.Authenticated
-            }
+            if(_session.value == null) _authState.value = AuthState.Unauthenticated
+            else if (!authRepository.isAccessTokenValid()) _authState.value = AuthState.Unauthenticated
             else{
-                _authState.value = AuthState.Unauthenticated
+                authRepository.refreshSession()
+                _authState.value = AuthState.Authenticated
             }
         }
 

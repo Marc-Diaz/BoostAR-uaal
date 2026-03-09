@@ -53,7 +53,7 @@ fun OnboardingChooseScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 24.dp, vertical = 16.dp), // Márgenes generales
+                .padding(horizontal = 24.dp, vertical = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -149,7 +149,6 @@ fun OnboardingChooseScreen(
                 )
             }
 
-            // Espacio extra abajo por seguridad
             Spacer(modifier = Modifier.height(24.dp))
         }
     }

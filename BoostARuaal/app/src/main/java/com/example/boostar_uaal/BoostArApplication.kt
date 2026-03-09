@@ -46,7 +46,7 @@ class BoostArApplication: Application() {
         productRepository = ProductRepositoryImpl(supabaseClient.postgrest)
         likeRepository = LikeRepositoryImpl(supabaseClient.postgrest)
         partnerRepository = PartnersRepositoryImpl(supabaseClient.postgrest)
-        userRepository = UserRepositoryImpl(supabaseClient.postgrest)
+        userRepository = UserRepositoryImpl(supabaseClient.auth, supabaseClient.postgrest)
 
         composeAuth = supabaseClient.composeAuth
         unityHandler = UnityActivityHandler()

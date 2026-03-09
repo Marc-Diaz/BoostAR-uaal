@@ -21,41 +21,38 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
     }
 
     override suspend fun getProductById(id: Int): ProductDetail {
-        val raw = postgrest.rpc(
+        val response = postgrest.rpc(
             function = "get_product_detail",
             parameters = buildJsonObject {
                 put("p_product_id", id)
             }
-        )
-
-        Log.d("RAW", "$id ${raw.data}")
-
-        val response: ProductDetail = postgrest.rpc(
-            function = "get_product_detail",
-            parameters = mapOf("p_product_id" to id)
-        ).decodeSingle()
+        ).decodeSingle<ProductDetail>()
 
         return response
     }
+
     override suspend fun getOnboardingSteps(): List<OnboardingStep> {
-        val response: List<Product> = postgrest["Producto_View"].select().decodeList<Product>()
+        val response: List<Product> = postgrest.rpc(
+            function = "get_onboarding_steps"
+        ).decodeList<Product>()
 
-
+        var steps = response + response + response + response
+        steps = steps.shuffled()
         return listOf(
             OnboardingStep(
                 id = "tops",
                 title = "Choose the Tops you like.",
-                options = response
+                options = steps.subList(0,4)
             ),
             OnboardingStep(
                 id = "bottoms",
                 title = "Choose the Bottoms you like.",
-                options = response
+                options = steps.subList(4,8)
             ),
             OnboardingStep(
                 id = "outerwear",
                 title = "Choose the Outerwear you like.",
-                options = response
+                options = steps.subList(8,12)
             )
         )
     }
