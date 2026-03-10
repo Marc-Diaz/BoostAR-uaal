@@ -8,11 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.core.entities.Product
 
 @Composable
 fun FeedItem(
-    product: Product,
+    product: ProductDetail,
     onPartnerClick: () -> Unit,
     onShareClick: () -> Unit,
     onCarClick: () -> Unit,

@@ -31,7 +31,9 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
+import com.example.boostar_uaal.core.components.AdaptiveFeedLayout
 import com.example.boostar_uaal.core.navigation.Routes
+import com.example.boostar_uaal.ui.screen.feedScreen.components.FeedItem
 
 
 @Composable
@@ -76,80 +78,32 @@ fun FeedScreen(
 
     }
 
-    // 5. Interfaz Gráfica
-    Box(modifier = Modifier.fillMaxSize().background(Color.Black)) {
 
-        if (products.isEmpty()) {
-            // Pantalla de carga inicial
-            CircularProgressIndicator(
-                modifier = Modifier.align(Alignment.Center),
-                color = Color.White
-            )
-        } else {
-            // Feed vertical estilo TikTok
-            VerticalPager(
-                state = pagerState,
-                modifier = Modifier.fillMaxSize()
-            ) { page ->
-                val currentProduct = products[page]
 
-                Box(modifier = Modifier.fillMaxSize()) {
-
-                    // --- IMAGEN DEL PRODUCTO (COIL) ---
-                    // Asegúrate de cambiar 'imageUrl' por el nombre real de tu propiedad en ProductDetail
-                    AsyncImage(
-                        model = ImageRequest.Builder(context)
-                            .data(currentProduct.coverImage)
-                            .crossfade(true)
-                            .build(),
-                        contentDescription = "Producto ${currentProduct.id}",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxSize()
-                    )
-
-                    // --- GRADIENTE SUPERPUESTO (Opcional, para que el texto se lea mejor) ---
-                    // Aquí podrías añadir un gradiente negro semitransparente en la parte inferior
-
-                    // --- INFORMACIÓN Y BOTONES DEL LADO DERECHO / INFERIOR ---
-                    Column(
-                        modifier = Modifier
-                            .align(Alignment.BottomEnd)
-                            .padding(16.dp)
-                            .padding(bottom = 60.dp), // Espacio para la barra de navegación del sistema
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        // Botón de AR
-                        Button(
-                            onClick = { viewModel.onTryArClick(context, currentProduct) },
-                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
-                        ) {
-                            Text("Probar AR")
-                        }
-
-                        // Ejemplo: Si quieres ir a los detalles del producto usando tu 'navigateTo'
-                        // Spacer(modifier = Modifier.height(16.dp))
-                        // IconButton(onClick = { navigateTo(Routes.ProductDetailRoute(currentProduct.id)) }) { ... }
-                    }
-                }
-            }
+    // 4. LA INTERFAZ
+    if (products.isEmpty()) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            CircularProgressIndicator(color = Color.White)
         }
+    } else {
+        VerticalPager(
+            state = pagerState,
+            modifier = Modifier.fillMaxSize()
+        ) { page ->
+            val currentProduct = products[page]
 
-        // --- BOTÓN DE ATRÁS FLOTANTE (Capa superior) ---
-        // Lo ponemos fuera del Pager para que siempre esté fijo en la pantalla
-        IconButton(
-            onClick = back,
-            modifier = Modifier
-                .align(Alignment.TopStart)
-                .padding(top = 40.dp, start = 16.dp) // Respetar la barra de estado superior
-                .background(Color.Black.copy(alpha = 0.5f), shape = CircleShape)
-        ) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = "Volver",
-                tint = Color.White
+            FeedItem(
+                product = currentProduct,
+                onPartnerClick = { },
+                onShareClick = { },
+                onCarClick = { },
+                onDetailsClick = { },
+                onTryArClick = { },
+                onQuickPayClick = { }
             )
         }
     }
+
 }
 
 
