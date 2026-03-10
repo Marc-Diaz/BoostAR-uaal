@@ -94,7 +94,6 @@ class FeedScreenViewModel : ViewModel() {
                     product.isLiked = isLiked
                     product.numLikes+= addLike
                 }
-                Log.d("Likes", "${product.id} ${product.isLiked} ${product.numLikes}")
             }
         }
     }
