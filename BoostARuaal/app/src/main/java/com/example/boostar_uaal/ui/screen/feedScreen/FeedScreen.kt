@@ -3,21 +3,27 @@ package com.example.boostar_uaal.ui.screen.feedScreen
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.VerticalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -25,14 +31,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.example.boostar_uaal.core.entities.TypeMultimedia
 import com.example.boostar_uaal.core.navigation.Routes
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.boostar_uaal.core.components.BackgorundImage
-import com.example.boostar_uaal.ui.screen.feedScreen.components.BottomActionDock
-import com.example.boostar_uaal.ui.screen.feedScreen.components.ProductInfoSection
-import com.example.boostar_uaal.ui.screen.feedScreen.components.RightSideBar
-import com.example.boostar_uaal.core.components.SearchButton
 
 
 @Composable
@@ -47,175 +46,110 @@ fun FeedScreen(
 
     backTo: (Routes) -> Unit,
 
-    viewModel: FeedScreenViewModel = viewModel()
+    viewModel: FeedScreenViewModel
 
 ) {
+    // 1. Observamos la lista del ViewModel
+    val products by viewModel.products.collectAsState()
+    val context = LocalContext.current
 
-    val product by viewModel.product.collectAsState()
-
-    Log.d("Producto", "$product")
-
-    LaunchedEffect(productId) {
-
-        viewModel.getProduct(productId)
-
+    // 2. Inicializamos el feed con el productId al entrar a la pantalla
+    // Usamos Unit como key para que solo se ejecute la primera vez que se compone
+    LaunchedEffect(Unit) {
+        viewModel.initializeFeed(productId)
+        Log.d("PRODUCTOS", "$products")
     }
 
+    val pagerState = rememberPagerState(pageCount = { products.size })
 
-
-
-
-    Box(
-
-        modifier = Modifier
-
-            .fillMaxSize()
-
-            .background(Color.Black) // Fondo por si la imagen tarda
-
-    ) {
-
-
-        if (product != null) {
-
-            val p = product!!
-
-
-// Selección de imagen: Prioriza multimedia principal -> coverImage
-
-            val imageUrl = p.multimedia.find { it.type == TypeMultimedia.IMAGE }?.multimediaURL ?: p.coverImage
-
-
-// 1. IMAGEN DE FONDO
-
-            BackgorundImage(imageUrl, "")
-
-
-// 2. GRADIENTE (Sombra para legibilidad)
-
-            Box(
-
-                modifier = Modifier
-
-                    .fillMaxSize()
-
-                    .background(
-
-                        Brush.verticalGradient(
-
-                            colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.7f)),
-
-                            startY = 0.5f
-
-                        )
-
-                    )
-
-            )
-
-
-// Botón Atrás (Top Start)
-
-            IconButton(
-
-                onClick = back,
-
-                modifier = Modifier
-
-                    .align(Alignment.TopStart)
-
-                    .padding(top = 48.dp, start = 16.dp)
-
-                    .background(Color.Black.copy(alpha = 0.3f), CircleShape)
-
-            ) {
-
-                Icon(
-
-                    Icons.AutoMirrored.Filled.ArrowBack,
-
-                    contentDescription = "Atrás",
-
-                    tint = Color.White
-
-                )
-
+    LaunchedEffect(pagerState.currentPage) {
+        if (products.isNotEmpty()) {
+            // Si nos acercamos al final, cargamos hacia ABAJO
+            if (pagerState.currentPage >= products.size - 2) {
+                viewModel.loadNextPage()
             }
-
-
-// Botón Buscar (Top End)
-
-            SearchButton(
-
-                modifier = Modifier.align(Alignment.TopEnd),
-
-
-                )
-
-
-// Barra Lateral Derecha (Likes, Share, Perfil)
-
-            RightSideBar(
-
-                modifier = Modifier
-
-                    .align(Alignment.BottomEnd)
-
-                    .padding(bottom = 50.dp)
-
-                    .padding(end = 16.dp), // Margen derecho
-
-                likes = p.numLikes,
-
-                onProfileClick = {}
-
-            )
-
-
-// Info del Producto (Nombre, Precio)
-
-            ProductInfoSection(
-
-                modifier = Modifier.align(Alignment.BottomStart),
-
-                name = p.name,
-
-                price = p.price,
-
-                discountPrice = p.discountPrice
-
-            )
-
-
-// Dock de Acciones (Carrito, Comprar)
-
-            BottomActionDock(
-
-                modifier = Modifier.align(Alignment.BottomCenter),
-
-                onCartClick = { /* navigateTo(Routes.Cart) */ },
-
-                onBuyClick = { /* navigateTo(Routes.Checkout(p.id)) */ }
-
-            )
-
-
-        } else {
-
-// Loading Spinner
-
-            CircularProgressIndicator(
-
-                color = Color.White,
-
-                modifier = Modifier.align(Alignment.Center)
-
-            )
-
+            // Si subimos cerca del inicio, cargamos hacia ARRIBA
+            if (pagerState.currentPage <= 1) {
+                viewModel.loadPrevPage()
+            }
         }
 
     }
 
+    // 5. Interfaz Gráfica
+    Box(modifier = Modifier.fillMaxSize().background(Color.Black)) {
+
+        if (products.isEmpty()) {
+            // Pantalla de carga inicial
+            CircularProgressIndicator(
+                modifier = Modifier.align(Alignment.Center),
+                color = Color.White
+            )
+        } else {
+            // Feed vertical estilo TikTok
+            VerticalPager(
+                state = pagerState,
+                modifier = Modifier.fillMaxSize()
+            ) { page ->
+                val currentProduct = products[page]
+
+                Box(modifier = Modifier.fillMaxSize()) {
+
+                    // --- IMAGEN DEL PRODUCTO (COIL) ---
+                    // Asegúrate de cambiar 'imageUrl' por el nombre real de tu propiedad en ProductDetail
+                    AsyncImage(
+                        model = ImageRequest.Builder(context)
+                            .data(currentProduct.coverImage)
+                            .crossfade(true)
+                            .build(),
+                        contentDescription = "Producto ${currentProduct.id}",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
+                    )
+
+                    // --- GRADIENTE SUPERPUESTO (Opcional, para que el texto se lea mejor) ---
+                    // Aquí podrías añadir un gradiente negro semitransparente en la parte inferior
+
+                    // --- INFORMACIÓN Y BOTONES DEL LADO DERECHO / INFERIOR ---
+                    Column(
+                        modifier = Modifier
+                            .align(Alignment.BottomEnd)
+                            .padding(16.dp)
+                            .padding(bottom = 60.dp), // Espacio para la barra de navegación del sistema
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        // Botón de AR
+                        Button(
+                            onClick = { viewModel.onTryArClick(context, currentProduct) },
+                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                        ) {
+                            Text("Probar AR")
+                        }
+
+                        // Ejemplo: Si quieres ir a los detalles del producto usando tu 'navigateTo'
+                        // Spacer(modifier = Modifier.height(16.dp))
+                        // IconButton(onClick = { navigateTo(Routes.ProductDetailRoute(currentProduct.id)) }) { ... }
+                    }
+                }
+            }
+        }
+
+        // --- BOTÓN DE ATRÁS FLOTANTE (Capa superior) ---
+        // Lo ponemos fuera del Pager para que siempre esté fijo en la pantalla
+        IconButton(
+            onClick = back,
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .padding(top = 40.dp, start = 16.dp) // Respetar la barra de estado superior
+                .background(Color.Black.copy(alpha = 0.5f), shape = CircleShape)
+        ) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = "Volver",
+                tint = Color.White
+            )
+        }
+    }
 }
 
 

@@ -1,9 +1,9 @@
 package com.example.boostar_uaal.core.navigation
 
-
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
@@ -12,6 +12,7 @@ import com.example.boostar_uaal.core.utils.back
 import com.example.boostar_uaal.core.utils.navigateTo
 import com.example.boostar_uaal.ui.screen.authScreen.AuthScreen
 import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreen
+import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreenViewModel
 import com.example.boostar_uaal.ui.screen.homeScreen.HomeScreen
 import com.example.boostar_uaal.ui.screen.loginScreen.LogInScreen
 import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.OnboardingChooseScreen
@@ -94,7 +95,8 @@ fun MainNavigationWrapper(authState: AuthState) {
                     backStack.productId,
                     navigateTo = { },
                     back = { },
-                    backTo = { }
+                    backTo = { },
+                    viewModel = viewModel<FeedScreenViewModel>()
                 )
             }
         }

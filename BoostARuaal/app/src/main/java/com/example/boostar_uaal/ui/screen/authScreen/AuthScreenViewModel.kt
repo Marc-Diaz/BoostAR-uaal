@@ -1,6 +1,5 @@
 package com.example.boostar_uaal.ui.screen.authScreen
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.BoostArApplication
