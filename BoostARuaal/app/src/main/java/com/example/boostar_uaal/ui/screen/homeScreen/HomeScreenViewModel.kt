@@ -23,7 +23,6 @@ class HomeScreenViewModel : ViewModel() {
 
     private val productRepository = BoostArApplication.productRepository
     private val likeRepository: LikeRepository = BoostArApplication.likeRepository
-
     private val partnerRepository: PartnerRepository = BoostArApplication.partnerRepository
     private val _products = MutableStateFlow<List<Product>>(emptyList())
     val products: StateFlow<List<Product>> = _products.asStateFlow()

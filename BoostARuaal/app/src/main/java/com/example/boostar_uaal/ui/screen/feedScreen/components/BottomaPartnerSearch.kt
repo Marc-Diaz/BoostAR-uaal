@@ -2,7 +2,9 @@ package com.example.boostar_uaal.ui.screen.feedScreen.components
 
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -22,10 +24,16 @@ import com.example.boostar_uaal.core.navigation.Routes
 
 @Composable
 fun BottomPartnerSearch(modifier: Modifier = Modifier, onShareClick: () -> Unit, onPartnerClick: () -> Unit) {
-    Row() {
+
+
+    Row(modifier = Modifier
+        .fillMaxWidth()
+        .padding(top = 48.dp, start = 16.dp, end = 16.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically) {
 
         IconButton(
-            onClick = { onPartnerClick() },
+            onClick = { onPartnerClick()},
 
             modifier = Modifier
                 .padding(top = 48.dp, start = 16.dp)
