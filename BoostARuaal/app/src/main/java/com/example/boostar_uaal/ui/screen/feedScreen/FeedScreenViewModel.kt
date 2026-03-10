@@ -89,7 +89,7 @@ class FeedScreenViewModel : ViewModel() {
             val isLiked = likeRepository.toggleLike(productId)
             val addLike = if (isLiked) 1 else -1
 
-            _products.value.map { product ->
+            _products.value.forEach { product ->
                 if (product.id == productId) {
                     product.isLiked = isLiked
                     product.numLikes+= addLike
