@@ -22,6 +22,7 @@ fun AdaptiveFeedLayout(
     Box(
         modifier = modifier
             .fillMaxSize()
+            .statusBarsPadding()
             .background(backgroundColor),
         contentAlignment = Alignment.TopCenter // Centra el contenido horizontalmente
     ) {

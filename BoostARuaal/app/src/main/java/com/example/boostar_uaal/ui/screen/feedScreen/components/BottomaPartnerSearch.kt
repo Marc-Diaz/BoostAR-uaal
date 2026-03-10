@@ -36,15 +36,17 @@ fun BottomPartnerSearch(modifier: Modifier = Modifier, onShareClick: () -> Unit,
             onClick = { onPartnerClick()},
 
             modifier = Modifier
-                .padding(top = 48.dp, start = 16.dp)
-                .background(Color.Black.copy(alpha = 0.3f), CircleShape)
+                .size(52.dp)
+                .background(Color.White,CircleShape)
+
 
         ) {
 
             Icon(
                 painter = painterResource(id = R.drawable.boostar_logo),
                 contentDescription = "Atrás",
-                tint = Color.White
+                tint = Color.Blue,
+                modifier = Modifier.size(28.dp)
             )
         }
 

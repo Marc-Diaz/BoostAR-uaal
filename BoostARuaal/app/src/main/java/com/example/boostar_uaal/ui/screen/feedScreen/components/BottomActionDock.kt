@@ -15,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Send
+import androidx.compose.material.icons.outlined.List
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -85,7 +86,7 @@ fun BottomActionDock(
 
                 Icon(
 
-                    imageVector = Icons.Outlined.ShoppingCart,
+                    imageVector = Icons.Outlined.List,
 
                     contentDescription = "Carrito",
 
@@ -133,13 +134,13 @@ fun BottomActionDock(
 
                     .size(52.dp)
 
-                    .background(Color(0xFFFFD600), CircleShape) // Amarillo fondo
+                    .background(Color(0xFFFFD600), CircleShape)
 
             ) {
 
                 Icon(
 
-                    imageVector = Icons.AutoMirrored.Filled.Send, // O Icons.Default.MonetizationOn
+                    imageVector = Icons.AutoMirrored.Filled.Send,
 
                     contentDescription = "Pago Rápido",
 

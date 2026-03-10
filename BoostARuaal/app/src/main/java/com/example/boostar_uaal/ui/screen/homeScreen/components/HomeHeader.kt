@@ -27,6 +27,7 @@ fun HomeHeader() {
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 16.dp),
              verticalAlignment = Alignment.CenterVertically
+
     ) {
         InterText(
             text = "Home",

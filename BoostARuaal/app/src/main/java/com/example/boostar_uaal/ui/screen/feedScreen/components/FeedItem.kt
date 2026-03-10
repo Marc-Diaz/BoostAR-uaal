@@ -27,6 +27,7 @@ fun FeedItem(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
+            .statusBarsPadding()
     ) {
         // 1. CAPA DE FONDO: IMAGEN DEL PRODUCTO
         BackgorundImage(
