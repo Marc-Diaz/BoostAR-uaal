@@ -3,21 +3,21 @@ package com.example.boostar_uaal.ui.screen.feedScreen
 
 import android.content.Context
 import android.util.Log
-import com.example.core.entities.Product
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.core.entities.ProductDetail
+import com.example.boostar_uaal.core.repository.LikeRepository
 import com.example.boostar_uaal.core.repository.ProductRepository
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class FeedScreenViewModel : ViewModel() {
 //define el viewModel para el feed screen
-private val repository: ProductRepository = BoostArApplication.productRepository
-
+private val productRepository: ProductRepository = BoostArApplication.productRepository
+    private val likeRepository: LikeRepository = BoostArApplication.likeRepository
     // Esta será la lista que observará tu Feed (Jetpack Compose o XML)
     private val _products = MutableStateFlow<List<ProductDetail>>(emptyList())
     val products: StateFlow<List<ProductDetail>> = _products.asStateFlow()
@@ -33,7 +33,7 @@ private val repository: ProductRepository = BoostArApplication.productRepository
 
         viewModelScope.launch {
             if (initialProductId != null) {
-                val initialProduct = repository.getProductById(initialProductId)
+                val initialProduct = productRepository.getProductById(initialProductId)
                 _products.value = listOf(initialProduct)
                 loadNextPage()
             } else {
@@ -49,7 +49,7 @@ private val repository: ProductRepository = BoostArApplication.productRepository
             try {
                 val lastId = _products.value.lastOrNull()?.id
                 // Llamamos a la función de tu repositorio (asegúrate de haberla actualizado con la v2)
-                val newItems = repository.getProductDetailBatch(refId = lastId, limit = 10, direction = "next")
+                val newItems = productRepository.getProductDetailBatch(refId = lastId, limit = 10, direction = "next")
 
                 _products.value = (_products.value + newItems).distinctBy { it.id }
             } catch (e: Exception) {
@@ -69,7 +69,7 @@ private val repository: ProductRepository = BoostArApplication.productRepository
                 val firstId = _products.value.firstOrNull()?.id ?: return@launch
                 if (firstId <= 1) return@launch // Asumiendo que 1 es el ID más bajo en tu BD
 
-                val newItems = repository.getProductDetailBatch(refId = firstId, limit = 10, direction = "prev")
+                val newItems = productRepository.getProductDetailBatch(refId = firstId, limit = 10, direction = "prev")
 
                 _products.value = (newItems + _products.value).distinctBy { it.id }
             } catch (e: Exception) {
@@ -79,6 +79,23 @@ private val repository: ProductRepository = BoostArApplication.productRepository
             }
         }
     }
+
+    fun toggleLike(productId: Int) {
+        viewModelScope.launch {
+            val isLiked = likeRepository.toggleLike(productId)
+            val currentProducts = _products.value
+            val addLike = if (isLiked) 1 else -1
+            val updatedProducts = currentProducts.map { product ->
+                if (product.id == productId) {
+                    product.copy(isLiked = isLiked, numLikes = product.numLikes + addLike)
+                } else {
+                    product
+                }
+            }
+            _products.value = updatedProducts
+        }
+    }
+
     fun onTryArClick(context: Context, currentProduct: ProductDetail) {
         Log.d("FeedScreenViewModel", "El usuario quiere probar la cámara AR para: ${currentProduct.id}")
         // BoostArApplication.unityHandler.sendClothingToUnity(context, "${currentProduct}", "${currentProduct}" )

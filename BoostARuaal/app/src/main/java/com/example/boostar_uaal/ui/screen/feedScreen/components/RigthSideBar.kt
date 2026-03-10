@@ -6,32 +6,28 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.boostar_uaal.core.theme.discountColor
 
 //Botones de la derecha de la pantalla
 @Composable
-fun RightSideBar(modifier: Modifier = Modifier, isLiked: Boolean, onCarClick: () -> Unit,) {
+fun RightSideBar(
+    modifier: Modifier = Modifier,
+    isLiked: Boolean,
+    onCartClick: () -> Unit,
+    onLikeClick: ()-> Unit
+) {
     Column(
         modifier = modifier.padding(
             end = 16.dp,
@@ -53,7 +49,7 @@ fun RightSideBar(modifier: Modifier = Modifier, isLiked: Boolean, onCarClick: ()
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .clickable { },
+                        .clickable { onLikeClick() },
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
@@ -83,7 +79,7 @@ fun RightSideBar(modifier: Modifier = Modifier, isLiked: Boolean, onCarClick: ()
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .clickable { },
+                        .clickable { onCartClick() },
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(

@@ -81,10 +81,10 @@ fun HomeHero(
             shape = RoundedCornerShape(24.dp),
             elevation = CardDefaults.cardElevation(4.dp)
         ) {
-            // MAGIA 2: El Crossfade hace que el cambio de imagen sea suave (fundido)
+            //Crossfade
             Crossfade(
                 targetState = banners[currentIndex],
-                animationSpec = tween(durationMillis = 800), // El fundido dura casi un segundo (queda muy premium)
+                animationSpec = tween(durationMillis = 800),
                 label = "banner_fade"
             ) { currentBanner ->
 

@@ -4,7 +4,6 @@ package com.example.boostar_uaal.ui.screen.homeScreen.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
-
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
@@ -69,9 +68,6 @@ fun HomeNav(){
 
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-// Tus otros imports...
-
-// Creamos la lista fuera del Composable para no saturar la memoria
 val homeNavItemsList = listOf(
     NavHomeItemData(name = "Para ti", routes = Routes.HomeScreen),
     NavHomeItemData(name = "Tendencias", routes = Routes.HomeScreen),
@@ -79,7 +75,6 @@ val homeNavItemsList = listOf(
     NavHomeItemData(name = "Colaboraciones", routes = Routes.HomeScreen),
     NavHomeItemData(name = "Nuevas Marcas", routes = Routes.HomeScreen),
     NavHomeItemData(name = "Eventos", routes = Routes.HomeScreen),
-    // Solo a Rebajas le forzamos un color distinto
     NavHomeItemData(name = "Rebajas", routes = Routes.HomeScreen, color = discountColor)
 )
 
@@ -96,7 +91,7 @@ fun HomeNav(
         items(items) { item ->
             NavHomeItem(
                 name = item.name,
-                color = item.color, // Aquí siempre habrá un color (el rojo o el azul por defecto)
+                color = item.color,
                 onClick = { onItemClick(item.routes) }
             )
         }

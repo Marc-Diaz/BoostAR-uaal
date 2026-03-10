@@ -10,16 +10,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.components.BackgorundImage
 import com.example.boostar_uaal.core.entities.ProductDetail
-import com.example.core.entities.Product
 
 @Composable
 fun FeedItem(
     product: ProductDetail,
     onPartnerClick: () -> Unit,
     onShareClick: () -> Unit,
-    onCarClick: () -> Unit,
+    onCartClick: (Int) -> Unit,
     onDetailsClick: () -> Unit,
     onTryArClick: () -> Unit,
+    onLikeClick: (Int) -> Unit,
     onQuickPayClick: () -> Unit
 ) {
     Box(
@@ -64,7 +64,8 @@ fun FeedItem(
                 .align(Alignment.BottomEnd)
                 .padding(bottom = 140.dp, end = 16.dp), // Lo subimos para no chocar con el Dock inferior
             isLiked = product.isLiked,
-            onCarClick = onCarClick
+            onCartClick = {onCartClick(product.id)},
+            onLikeClick = { onLikeClick(product.id) }
         )
 
         // 5. CAPA INFERIOR (Textos + Botones de acción)

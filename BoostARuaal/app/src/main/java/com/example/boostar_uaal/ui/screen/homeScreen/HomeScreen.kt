@@ -132,7 +132,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
         )
 
         SectionHeader(
-            title = "próximante >",
+            title = "Próximante >",
             textColor = Color.Red,
             onClick = { navigateTo(Routes.HomeScreen) }
         )
