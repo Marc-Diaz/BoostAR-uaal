@@ -33,8 +33,9 @@ import androidx.compose.ui.draw.shadow
 
 fun BottomActionDock(
     modifier: Modifier = Modifier,
-    onCartClick: () -> Unit,
-    onBuyClick: () -> Unit
+    onDetailsClick: () -> Unit,
+    onTryArClick: () -> Unit,
+    onQuickPayClick: () -> Unit
 
 ) {
 
@@ -69,7 +70,7 @@ fun BottomActionDock(
 
             IconButton(
 
-                onClick = onCartClick,
+                onClick = onDetailsClick,
 
                 modifier = Modifier
 
@@ -100,7 +101,7 @@ fun BottomActionDock(
 // --- BOTÓN PERCHA CENTRAL (Centro - Más ancho) ---
 
             Button(
-                onClick = onBuyClick,
+                onClick = onTryArClick,
 
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF5247)), // Rojo marca
                 shape = RoundedCornerShape(30.dp), // Bordes redondeados pero no círculo
@@ -126,7 +127,7 @@ fun BottomActionDock(
 
             IconButton(
 
-                onClick = { /* Acción pago */ },
+                onClick = onQuickPayClick,
 
                 modifier = Modifier
 

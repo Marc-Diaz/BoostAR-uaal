@@ -31,7 +31,7 @@ import com.example.boostar_uaal.core.theme.discountColor
 
 //Botones de la derecha de la pantalla
 @Composable
-fun RightSideBar(modifier: Modifier = Modifier, likes: Int, onProfileClick: () -> Unit) {
+fun RightSideBar(modifier: Modifier = Modifier, isLiked: Boolean, onCarClick: () -> Unit,) {
     Column(
         modifier = modifier.padding(
             end = 16.dp,
@@ -41,7 +41,7 @@ fun RightSideBar(modifier: Modifier = Modifier, likes: Int, onProfileClick: () -
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
 
-        // Like
+        // like
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Surface(
                 modifier = Modifier.size(65.dp),
@@ -70,7 +70,7 @@ fun RightSideBar(modifier: Modifier = Modifier, likes: Int, onProfileClick: () -
 
         }
 
-        // Share
+        // Shopping Cart
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
             Surface(
