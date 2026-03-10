@@ -49,7 +49,7 @@ fun ProductInfoSection(
 
         // Nombre
         Text(
-            text = "Pantalón baggy tejido",
+            text = name,
             color = Color.White,
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold
@@ -58,14 +58,14 @@ fun ProductInfoSection(
         // Precio
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
-                text = "19,99 EUR",
+                text = "$discountPrice€",
                 color = discountColor,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "24,99 EUR",
+                text = "$price€",
                 color = Color.White.copy(alpha = 0.8f),
                 fontSize = 14.sp,
                 textDecoration = TextDecoration.LineThrough

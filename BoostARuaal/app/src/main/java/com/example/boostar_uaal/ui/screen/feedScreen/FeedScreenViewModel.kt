@@ -58,6 +58,7 @@ private val repository: ProductRepository = BoostArApplication.productRepository
                 isNextLoading = false
             }
         }
+        Log.d("PRODUCTS", "$products")
     }
 
     fun loadPrevPage() {
@@ -78,7 +79,6 @@ private val repository: ProductRepository = BoostArApplication.productRepository
             }
         }
     }
-
     fun onTryArClick(context: Context, currentProduct: ProductDetail) {
         Log.d("FeedScreenViewModel", "El usuario quiere probar la cámara AR para: ${currentProduct.id}")
         // BoostArApplication.unityHandler.sendClothingToUnity(context, "${currentProduct}", "${currentProduct}" )

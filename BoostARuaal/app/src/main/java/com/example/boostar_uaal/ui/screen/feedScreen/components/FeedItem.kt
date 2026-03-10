@@ -28,7 +28,6 @@ fun FeedItem(
             .background(Color.Black)
     ) {
         // 1. CAPA DE FONDO: IMAGEN DEL PRODUCTO
-
         BackgorundImage(
             url = product.multimedia[0].multimediaURL,
             contentDescription = product.name

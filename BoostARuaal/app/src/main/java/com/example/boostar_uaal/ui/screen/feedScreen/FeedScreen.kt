@@ -55,7 +55,6 @@ fun FeedScreen(
     // Usamos Unit como key para que solo se ejecute la primera vez que se compone
     LaunchedEffect(Unit) {
         viewModel.initializeFeed(productId)
-        Log.d("PRODUCTOS", "$products")
     }
 
     val pagerState = rememberPagerState(pageCount = { products.size })
@@ -74,7 +73,20 @@ fun FeedScreen(
 
     }
 
+    LaunchedEffect(key1 = productId, key2 = products) {
+        // Solo intentamos hacer scroll si la lista ya terminó de cargar
+        if (products.isNotEmpty()) {
 
+            // Buscamos en qué número de página está realmente este ID
+            // Nota: Asegúrate de cambiar 'it.id' por el nombre real de la propiedad id en tu modelo
+            val pageIndex = products.indexOfFirst { it.id == productId }
+
+            // Si lo encuentra (es diferente a -1), nos movemos a esa página
+            if (pageIndex != -1) {
+                pagerState.scrollToPage(pageIndex)
+            }
+        }
+    }
 
     // 4. LA INTERFAZ
     if (products.isEmpty()) {
