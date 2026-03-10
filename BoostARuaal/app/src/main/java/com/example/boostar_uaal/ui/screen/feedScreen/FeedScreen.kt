@@ -87,7 +87,7 @@ fun FeedScreen(
                 onShareClick = { },
                 onCartClick = { },
                 onDetailsClick = { },
-                onTryArClick = { },
+                onTryArClick = { viewModel.onTryArClick(context, it) },
                 onQuickPayClick = { },
                 onLikeClick = {viewModel.toggleLike(it)}
             )

@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.components.BackgorundImage
 import com.example.boostar_uaal.core.entities.ProductDetail
+import com.example.core.entities.Product
 
 @Composable
 fun FeedItem(
@@ -18,7 +19,7 @@ fun FeedItem(
     onShareClick: () -> Unit,
     onCartClick: (Int) -> Unit,
     onDetailsClick: () -> Unit,
-    onTryArClick: () -> Unit,
+    onTryArClick: (ProductDetail) -> Unit,
     onLikeClick: (Int) -> Unit,
     onQuickPayClick: () -> Unit
 ) {
@@ -90,7 +91,7 @@ fun FeedItem(
             BottomActionDock(
                 modifier = Modifier.fillMaxWidth(),
                 onDetailsClick = onDetailsClick, // Botón blanco
-                onTryArClick = onTryArClick,     // Botón rojo/naranja
+                onTryArClick = { onTryArClick(product) },     // Botón rojo/naranja
                 onQuickPayClick = onQuickPayClick // Botón amarillo
             )
         }

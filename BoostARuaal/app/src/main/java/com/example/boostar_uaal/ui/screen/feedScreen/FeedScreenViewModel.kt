@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.core.entities.ProductDetail
+import com.example.boostar_uaal.core.repository.CartRepository
 import com.example.boostar_uaal.core.repository.LikeRepository
 import com.example.boostar_uaal.core.repository.ProductRepository
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,8 +17,11 @@ import kotlinx.coroutines.launch
 
 class FeedScreenViewModel : ViewModel() {
 //define el viewModel para el feed screen
-private val productRepository: ProductRepository = BoostArApplication.productRepository
+    private val productRepository: ProductRepository = BoostArApplication.productRepository
     private val likeRepository: LikeRepository = BoostArApplication.likeRepository
+
+    private val cartRepository: CartRepository = BoostArApplication.cartRepository
+
     // Esta será la lista que observará tu Feed (Jetpack Compose o XML)
     private val _products = MutableStateFlow<List<ProductDetail>>(emptyList())
     val products: StateFlow<List<ProductDetail>> = _products.asStateFlow()
@@ -83,22 +87,21 @@ private val productRepository: ProductRepository = BoostArApplication.productRep
     fun toggleLike(productId: Int) {
         viewModelScope.launch {
             val isLiked = likeRepository.toggleLike(productId)
-            val currentProducts = _products.value
             val addLike = if (isLiked) 1 else -1
-            val updatedProducts = currentProducts.map { product ->
+
+            _products.value.map { product ->
                 if (product.id == productId) {
-                    product.copy(isLiked = isLiked, numLikes = product.numLikes + addLike)
-                } else {
-                    product
+                    product.isLiked = isLiked
+                    product.numLikes+= addLike
                 }
+                Log.d("Likes", "${product.id} ${product.isLiked} ${product.numLikes}")
             }
-            _products.value = updatedProducts
         }
     }
 
     fun onTryArClick(context: Context, currentProduct: ProductDetail) {
-        Log.d("FeedScreenViewModel", "El usuario quiere probar la cámara AR para: ${currentProduct.id}")
-        // BoostArApplication.unityHandler.sendClothingToUnity(context, "${currentProduct}", "${currentProduct}" )
+        //Log.d("FeedScreenViewModel", "El usuario quiere probar la cámara AR para: ${currentProduct.id}")
+        BoostArApplication.unityHandler.sendClothingToUnity(context, "$currentProduct", "$currentProduct" )
     }
 
 }
