@@ -41,13 +41,9 @@ import com.example.boostar_uaal.ui.screen.feedScreen.components.FeedItem
 fun FeedScreen(
 
     productId: Int,
-
     navigateTo: (Routes) -> Unit,
-
     back: () -> Unit,
-
     backTo: (Routes) -> Unit,
-
     viewModel: FeedScreenViewModel
 
 ) {

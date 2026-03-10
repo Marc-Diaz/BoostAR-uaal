@@ -25,54 +25,35 @@ fun BottomPartnerSearch(modifier: Modifier = Modifier, onShareClick: () -> Unit,
     Row() {
 
         IconButton(
-            onClick = { onPartnerClick},
+            onClick = { onPartnerClick() },
 
             modifier = Modifier
-
-                .align(Alignment.TopStart as Alignment.Vertical)
-
                 .padding(top = 48.dp, start = 16.dp)
-
                 .background(Color.Black.copy(alpha = 0.3f), CircleShape)
 
         ) {
 
             Icon(
-
-
                 painter = painterResource(id = R.drawable.boostar_logo),
-
                 contentDescription = "Atrás",
-
                 tint = Color.White
-
             )
-
         }
 
         IconButton(
-
-            onClick ={onShareClick},
-
+            onClick ={ onShareClick() },
             modifier = Modifier
-
                 .size(52.dp)
-
                 .background(Color.White, CircleShape)
 
 
         ) {
 
             Icon(
-
                 imageVector = Icons.Outlined.Share,
-
                 contentDescription = "compartir",
-
                 tint = Color.Black,
-
                 modifier = Modifier.size(28.dp)
-
             )
 
         }

@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.boostar_uaal.core.components.BackgorundImage
 import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.core.entities.Product
 
@@ -28,10 +29,10 @@ fun FeedItem(
     ) {
         // 1. CAPA DE FONDO: IMAGEN DEL PRODUCTO
 
-        /* BackgorundImage(
-            url = product.displayImage,
+        BackgorundImage(
+            url = product.multimedia[0].multimediaURL,
             contentDescription = product.name
-        ) */
+        )
 
         // 2. CAPA DE SOMBRA (GRADIENTE)
         // Vital para que los textos blancos se lean bien sobre el pantalón
