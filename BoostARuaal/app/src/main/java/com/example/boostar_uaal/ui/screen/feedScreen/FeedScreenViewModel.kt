@@ -13,6 +13,7 @@ import com.example.boostar_uaal.core.repository.CartRepository
 import com.example.boostar_uaal.core.repository.LikeRepository
 import com.example.boostar_uaal.core.repository.ProductRepository
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.forEach
 import kotlinx.coroutines.launch
 
 class FeedScreenViewModel : ViewModel() {
@@ -89,12 +90,19 @@ class FeedScreenViewModel : ViewModel() {
             val isLiked = likeRepository.toggleLike(productId)
             val addLike = if (isLiked) 1 else -1
 
-            _products.value.forEach { product ->
+            _products.value = _products.value.map { product ->
                 if (product.id == productId) {
-                    product.isLiked = isLiked
-                    product.numLikes+= addLike
+                    product.copy(
+                        isLiked = isLiked,
+                        numLikes = product.numLikes + addLike)
+                }
+                else{
+                    product
                 }
             }
+        }
+        _products.value.forEach { p ->
+            Log.d("LIKE ${p.id}", "${p.isLiked} ${p.numLikes}")
         }
     }
 

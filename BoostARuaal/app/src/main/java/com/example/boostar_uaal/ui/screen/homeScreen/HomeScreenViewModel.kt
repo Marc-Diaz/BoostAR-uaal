@@ -111,16 +111,18 @@ class HomeScreenViewModel : ViewModel() {
     fun toggleLike(productId: Int) {
         viewModelScope.launch {
             val isLiked = likeRepository.toggleLike(productId)
-            val currentProducts = _products.value
             val addLike = if (isLiked) 1 else -1
-            val updatedProducts = currentProducts.map { product ->
+
+            _products.value = _products.value.map { product ->
                 if (product.id == productId) {
-                    product.copy(isLiked = isLiked, numLikes = product.numLikes + addLike)
-                } else {
+                    product.copy(
+                        isLiked = isLiked,
+                        numLikes = product.numLikes + addLike)
+                }
+                else{
                     product
                 }
             }
-            _products.value = updatedProducts
         }
     }
     fun toggleDropNotification(dropId: Int) {
