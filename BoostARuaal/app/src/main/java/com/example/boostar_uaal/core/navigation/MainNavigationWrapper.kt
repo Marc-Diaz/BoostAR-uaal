@@ -93,8 +93,8 @@ fun MainNavigationWrapper(authState: AuthState) {
                 FeedScreen(
                     backStack.productId,
                     navigateTo = { },
-                    back = { },
-                    backTo = { }
+                    back = { }
+
                 )
             }
         }

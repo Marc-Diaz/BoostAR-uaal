@@ -51,8 +51,6 @@ class HomeScreenViewModel : ViewModel() {
     }
 
     private fun loadBanners() {
-        // De momento cargamos datos "Mock" (falsos/locales).
-        // En un futuro, esto podría venir de Supabase igual que los productos.
         _banners.value = listOf(
             HeroBannerData(
                 imageRes = R.drawable.home_hero,
