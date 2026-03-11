@@ -102,8 +102,9 @@ class FeedScreenViewModel : ViewModel() {
             }
         }
         _products.value.forEach { p ->
-            Log.d("LIKE ${p.id}", "${p.isLiked} ${p.numLikes}")
+            Log.d("LIKE", "${p.id} ${p.isLiked} ${p.numLikes}")
         }
+        Log.d("LIKE", "----------")
     }
 
     fun onTryArClick(context: Context, currentProduct: ProductDetail) {

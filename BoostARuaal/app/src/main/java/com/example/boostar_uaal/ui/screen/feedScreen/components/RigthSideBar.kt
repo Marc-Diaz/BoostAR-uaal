@@ -37,7 +37,7 @@ fun RightSideBar(
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
 
-        // like
+        // Like
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Surface(
                 modifier = Modifier.size(65.dp),
@@ -55,7 +55,7 @@ fun RightSideBar(
                     Icon(
                         imageVector = Icons.Default.Favorite,
                         contentDescription = "Like",
-                        tint = Color.Gray,
+                        tint = if(isLiked) Color.Red else Color.Gray,
                         modifier = Modifier
                             .size(24.dp)
 

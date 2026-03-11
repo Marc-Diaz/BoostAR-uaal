@@ -1,5 +1,6 @@
 package com.example.boostar_uaal.ui.screen.feedScreen
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.pager.VerticalPager
@@ -28,33 +29,26 @@ fun FeedScreen(
     viewModel: FeedScreenViewModel
 
 ) {
-    // 1. Observamos la lista del ViewModel
     val products by viewModel.products.collectAsState()
     val context = LocalContext.current
 
-    // 2. Inicializamos el feed con el productId al entrar a la pantalla
-    // Usamos Unit como key para que solo se ejecute la primera vez que se compone
+    val pagerState = rememberPagerState(pageCount = { products.size })
+
     LaunchedEffect(Unit) {
         viewModel.initializeFeed(productId)
     }
 
-    val pagerState = rememberPagerState(pageCount = { products.size })
-
     LaunchedEffect(pagerState.currentPage) {
         if (products.isNotEmpty()) {
-            // Si nos acercamos al final, cargamos hacia ABAJO
             if (pagerState.currentPage >= products.size - 2) {
                 viewModel.loadNextPage()
             }
-            // Si subimos cerca del inicio, cargamos hacia ARRIBA
             if (pagerState.currentPage <= 1) {
                 viewModel.loadPrevPage()
             }
         }
 
     }
-
-
     LaunchedEffect(products.isNotEmpty()) {
         if (products.isNotEmpty()) {
             val pageIndex = products.indexOfFirst { it.id == productId }
@@ -64,7 +58,6 @@ fun FeedScreen(
         }
     }
 
-    // 4. LA INTERFAZ
     if (products.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             CircularProgressIndicator(color = Color.White)
@@ -72,7 +65,8 @@ fun FeedScreen(
     } else {
         VerticalPager(
             state = pagerState,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
+            key = { page -> products[page].id }
         ) { page ->
             val currentProduct = products[page]
 
@@ -84,7 +78,7 @@ fun FeedScreen(
                 onDetailsClick = { },
                 onTryArClick = { viewModel.onTryArClick(context, it) },
                 onQuickPayClick = { },
-                onLikeClick = {viewModel.toggleLike(it)}
+                onLikeClick = {viewModel.toggleLike(it); Log.d("LIKE id", "$it")}
             )
         }
     }
