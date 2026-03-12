@@ -12,15 +12,14 @@ interface ProductRepository {
 
     suspend fun getOnboardingSteps(): List<OnboardingStep>
 
-    suspend fun getProductDetailBatch(refId: Int?, limit: Int, direction: String): List<ProductDetail>
 
-    suspend fun getFeedProducts_V2(
+    suspend fun getFeedProducts(
         sortMode: String,
         refId: Int? = null,
         direction: String,
     ): List<ProductDetail>
 
-    suspend fun getProducts_V2(
+    suspend fun getProducts(
         sortMode: String,
         refId: Int? = null,
     ): List<Product>

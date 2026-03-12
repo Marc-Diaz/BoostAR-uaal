@@ -51,16 +51,18 @@ class FeedScreenViewModel(private val sortOrder: String) : ViewModel() {
                 val initialProduct = productRepository.getProductById(initialProductId)
                 _products.value = listOf(initialProduct)
             }
+            loadPrevPage()
             loadNextPage()
             Log.d("AFTER Products ViewModel", "${_products.value}")
         }
     }
 
     fun loadNextPage() {
+        Log.d("Productos ViewModel swipe next", "LLEGA")
         viewModelScope.launch {
             try {
                 val lastId = _products.value.lastOrNull()?.id
-                val newItems = productRepository.getFeedProducts_V2(
+                val newItems = productRepository.getFeedProducts(
                     sortMode = sortOrder,
                     refId = lastId,
                     direction = "next"
@@ -73,16 +75,16 @@ class FeedScreenViewModel(private val sortOrder: String) : ViewModel() {
     }
 
     fun loadPrevPage() {
+
         viewModelScope.launch {
             try {
                 val firstId = _products.value.firstOrNull()?.id ?: return@launch
-                if (firstId <= 1) return@launch
-
-                val newItems = productRepository.getFeedProducts_V2(
+                val newItems = productRepository.getFeedProducts(
                     sortMode = sortOrder,
                     refId = firstId,
                     direction = "prev"
                 )
+                Log.d("Productos ViewModel prev new", "$newItems")
                 _products.value = (newItems + _products.value).distinctBy { it.id }
             } catch (e: Exception) {
                 Log.e("FeedScreenViewModel", "Error cargando anteriores: ${e.message}")

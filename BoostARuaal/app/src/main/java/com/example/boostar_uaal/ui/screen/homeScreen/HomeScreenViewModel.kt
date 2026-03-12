@@ -61,7 +61,7 @@ class HomeScreenViewModel : ViewModel() {
 
     private fun loadProductsForYou(){
         viewModelScope.launch {
-            _productsForYou.value = productRepository.getProducts_V2(
+            _productsForYou.value = productRepository.getProducts(
                 sortMode = SortOrder.FORYOU
             )
         }
@@ -69,7 +69,7 @@ class HomeScreenViewModel : ViewModel() {
 
     private fun loadProductsTrends(){
         viewModelScope.launch {
-            _productsTrends.value = productRepository.getProducts_V2(
+            _productsTrends.value = productRepository.getProducts(
                 sortMode = SortOrder.TRENDS
             )
         }
@@ -77,7 +77,7 @@ class HomeScreenViewModel : ViewModel() {
 
     private fun loadProductsDiscounts(){
         viewModelScope.launch {
-            _productsDiscounts.value = productRepository.getProducts_V2(
+            _productsDiscounts.value = productRepository.getProducts(
                 sortMode = SortOrder.DISCOUNT
             )
         }

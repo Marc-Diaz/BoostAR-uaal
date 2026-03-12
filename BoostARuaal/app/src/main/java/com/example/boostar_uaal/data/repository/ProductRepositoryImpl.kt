@@ -13,7 +13,9 @@ import kotlinx.serialization.json.put
 
 class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository  {
 
-    private val pageSize = 10
+    private val feedPageSize = 2
+    private val carrouselPageSize = 10
+    private val listPageSize = 20
     override suspend fun getProducts(): List<Product> {
         val response: List<Product> = postgrest["Producto_View"].select().decodeList<Product>()
 
@@ -30,19 +32,7 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
 
         return response
     }
-     override suspend fun getProductDetailBatch(refId: Int?, limit: Int, direction: String): List<ProductDetail>{
-        val response = postgrest.rpc(
-            function = "get_product_batch",
-            parameters = buildJsonObject {
-                if (refId != null) put("p_ref_id", refId)  else put("p_ref_id", JsonNull)
-
-                put("p_limit", limit)
-                put("p_direction", direction)
-            }).decodeList<ProductDetail>()
-
-        return response
-    }
-    override suspend fun getProducts_V2(
+    override suspend fun getProducts(
         sortMode: String,
         refId: Int?,
     ): List<Product> {
@@ -52,7 +42,7 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
                 parameters = buildJsonObject {
                     put("p_sort_mode", sortMode)
                     if (refId != null) put("p_ref_id", refId) else put("p_ref_id", JsonNull)
-                    put("p_page_size", pageSize)
+                    put("p_page_size", carrouselPageSize)
                 }
             ).decodeList<Product>()
 
@@ -62,7 +52,7 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
             emptyList()
         }
     }
-    override suspend fun getFeedProducts_V2(
+    override suspend fun getFeedProducts(
         sortMode: String,
         refId: Int?,
         direction: String,
@@ -74,7 +64,7 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
                     put("p_sort_mode", sortMode)
                     if (refId != null) put("p_ref_id", refId) else put("p_ref_id", JsonNull)
                     put("p_direction", direction)
-                    put("p_limit", pageSize)
+                    put("p_limit", feedPageSize)
                 }
             ).decodeList<ProductDetail>()
 

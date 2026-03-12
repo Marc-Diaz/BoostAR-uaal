@@ -13,6 +13,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Send
+import androidx.compose.material.icons.automirrored.outlined.List
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.icons.outlined.List
@@ -86,7 +87,7 @@ fun BottomActionDock(
 
                 Icon(
 
-                    imageVector = Icons.Outlined.List,
+                    imageVector = Icons.AutoMirrored.Outlined.List,
 
                     contentDescription = "Carrito",
 

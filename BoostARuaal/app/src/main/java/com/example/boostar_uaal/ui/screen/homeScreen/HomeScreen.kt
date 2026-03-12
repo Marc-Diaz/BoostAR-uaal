@@ -79,7 +79,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
         ItemCarrousel(
             products = productsTrends,
             onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId, SortOrder.TRENDS)) },
-            onLikeClick = { }
+            onLikeClick = {homeScreenViewModel.toggleLike(it) }
         )
         SectionHeader(
             title = "Febrero.",
@@ -163,7 +163,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
         ItemCarrousel(
             products = productsDiscounts,
             onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId, SortOrder.DISCOUNT)) },
-            onLikeClick = { }
+            onLikeClick = { homeScreenViewModel.toggleLike(it) }
         )
 
     }

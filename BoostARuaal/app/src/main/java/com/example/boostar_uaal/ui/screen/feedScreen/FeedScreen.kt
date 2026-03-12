@@ -44,16 +44,8 @@ fun FeedScreen(
         viewModel.initializeFeed(productId)
     }
 
-    LaunchedEffect(productId, products.isNotEmpty()) {
-        if (products.isNotEmpty()) {
-            val pageIndex = products.indexOfFirst { it.id == productId }
-            if (pageIndex != -1) {
-                pagerState.scrollToPage(pageIndex)
-            }
-        }
-    }
-
     LaunchedEffect(pagerState.currentPage) {
+        Log.d("Product pager", "${pagerState.currentPage}")
         if (products.isNotEmpty()) {
             if (pagerState.currentPage >= products.size - 2) {
                 viewModel.loadNextPage()
@@ -62,7 +54,6 @@ fun FeedScreen(
                 viewModel.loadPrevPage()
             }
         }
-
     }
 
 
