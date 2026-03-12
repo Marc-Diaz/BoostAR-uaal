@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.ui.screen.feedScreen.components.FeedItem
 
@@ -26,16 +27,30 @@ fun FeedScreen(
     navigateTo: (Routes) -> Unit,
     back: () -> Unit,
     backTo: (Routes) -> Unit,
-    viewModel: FeedScreenViewModel
+    sortOrder: String
 
 ) {
+    val viewModel = viewModel<FeedScreenViewModel>(
+        key = sortOrder,
+        factory = FeedScreenViewModelFactory(sortOrder)
+    )
     val products by viewModel.products.collectAsState()
     val context = LocalContext.current
 
     val pagerState = rememberPagerState(pageCount = { products.size })
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(productId) {
+        Log.d("Product Launch", "$productId")
         viewModel.initializeFeed(productId)
+    }
+
+    LaunchedEffect(productId, products.isNotEmpty()) {
+        if (products.isNotEmpty()) {
+            val pageIndex = products.indexOfFirst { it.id == productId }
+            if (pageIndex != -1) {
+                pagerState.scrollToPage(pageIndex)
+            }
+        }
     }
 
     LaunchedEffect(pagerState.currentPage) {
@@ -49,14 +64,7 @@ fun FeedScreen(
         }
 
     }
-    LaunchedEffect(products.isNotEmpty()) {
-        if (products.isNotEmpty()) {
-            val pageIndex = products.indexOfFirst { it.id == productId }
-            if (pageIndex != -1) {
-                pagerState.scrollToPage(pageIndex)
-            }
-        }
-    }
+
 
     if (products.isEmpty()) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -69,7 +77,6 @@ fun FeedScreen(
             key = { page -> products[page].id }
         ) { page ->
             val currentProduct = products[page]
-
             FeedItem(
                 product = currentProduct,
                 onPartnerClick = { },

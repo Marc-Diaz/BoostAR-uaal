@@ -6,6 +6,7 @@ import android.util.Log
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.core.entities.ProductDetail
@@ -13,103 +14,91 @@ import com.example.boostar_uaal.core.repository.CartRepository
 import com.example.boostar_uaal.core.repository.LikeRepository
 import com.example.boostar_uaal.core.repository.ProductRepository
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.forEach
 import kotlinx.coroutines.launch
 
-class FeedScreenViewModel : ViewModel() {
-//define el viewModel para el feed screen
+class FeedScreenViewModel(private val sortOrder: String) : ViewModel() {
+
     private val productRepository: ProductRepository = BoostArApplication.productRepository
     private val likeRepository: LikeRepository = BoostArApplication.likeRepository
-
     private val cartRepository: CartRepository = BoostArApplication.cartRepository
 
-    // Esta será la lista que observará tu Feed (Jetpack Compose o XML)
     private val _products = MutableStateFlow<List<ProductDetail>>(emptyList())
     val products: StateFlow<List<ProductDetail>> = _products.asStateFlow()
 
-    private var isNextLoading = false
-    private var isPrevLoading = false
-    private var isInitialized = false // Evita recargar si giramos la pantalla
-
-    // Función para arrancar el feed. Lámala desde tu UI cuando se abra la pantalla.
     fun initializeFeed(initialProductId: Int? = null) {
-        if (isInitialized) return
-        isInitialized = true
+        loadInitialProducts(initialProductId)
+        refreshLikes()
+    }
 
+    fun refreshLikes(){
+        viewModelScope.launch {
+            likeRepository.likeStateFlow.collect { likeMap ->
+                if (likeMap.isEmpty()) return@collect
+                _products.value = _products.value.map { p ->
+                    val liked = likeMap[p.id] ?: return@map p
+                    if (liked == p.isLiked) return@map p
+                    p.copy(isLiked = liked, numLikes = p.numLikes + if (liked) 1 else -1)
+                }
+            }
+        }
+    }
+
+    fun loadInitialProducts(initialProductId: Int? = null){
+        Log.d("BEFORE Products ViewModel", "${_products.value}")
+        Log.d("Product Paramenters", "Sort: $sortOrder, refId: ${_products.value.lastOrNull()?.id}, direction: next")
         viewModelScope.launch {
             if (initialProductId != null) {
                 val initialProduct = productRepository.getProductById(initialProductId)
                 _products.value = listOf(initialProduct)
-                loadNextPage()
-            } else {
-                loadNextPage()
             }
+            loadNextPage()
+            Log.d("AFTER Products ViewModel", "${_products.value}")
         }
     }
 
     fun loadNextPage() {
-        if (isNextLoading) return
         viewModelScope.launch {
-            isNextLoading = true
             try {
                 val lastId = _products.value.lastOrNull()?.id
-                // Llamamos a la función de tu repositorio (asegúrate de haberla actualizado con la v2)
-                val newItems = productRepository.getProductDetailBatch(refId = lastId, limit = 10, direction = "next")
-
+                val newItems = productRepository.getFeedProducts_V2(
+                    sortMode = sortOrder,
+                    refId = lastId,
+                    direction = "next"
+                )
                 _products.value = (_products.value + newItems).distinctBy { it.id }
             } catch (e: Exception) {
                 Log.e("FeedScreenViewModel", "Error cargando siguientes: ${e.message}")
-            } finally {
-                isNextLoading = false
             }
         }
-        Log.d("PRODUCTS", "$products")
     }
 
     fun loadPrevPage() {
-        if (isPrevLoading) return
         viewModelScope.launch {
-            isPrevLoading = true
             try {
                 val firstId = _products.value.firstOrNull()?.id ?: return@launch
-                if (firstId <= 1) return@launch // Asumiendo que 1 es el ID más bajo en tu BD
+                if (firstId <= 1) return@launch
 
-                val newItems = productRepository.getProductDetailBatch(refId = firstId, limit = 10, direction = "prev")
-
+                val newItems = productRepository.getFeedProducts_V2(
+                    sortMode = sortOrder,
+                    refId = firstId,
+                    direction = "prev"
+                )
                 _products.value = (newItems + _products.value).distinctBy { it.id }
             } catch (e: Exception) {
                 Log.e("FeedScreenViewModel", "Error cargando anteriores: ${e.message}")
-            } finally {
-                isPrevLoading = false
             }
         }
     }
 
     fun toggleLike(productId: Int) {
         viewModelScope.launch {
-            val isLiked = likeRepository.toggleLike(productId)
-            val addLike = if (isLiked) 1 else -1
-
-            _products.value = _products.value.map { product ->
-                if (product.id == productId) {
-                    product.copy(
-                        isLiked = isLiked,
-                        numLikes = product.numLikes + addLike)
-                }
-                else{
-                    product
-                }
-            }
-        }
-        _products.value.forEach { p ->
-            Log.d("LIKE", "${p.id} ${p.isLiked} ${p.numLikes}")
+            likeRepository.toggleLike(productId)
         }
         Log.d("LIKE", "----------")
     }
 
     fun onTryArClick(context: Context, currentProduct: ProductDetail) {
-        //Log.d("FeedScreenViewModel", "El usuario quiere probar la cámara AR para: ${currentProduct.id}")
-        BoostArApplication.unityHandler.sendClothingToUnity(context, "$currentProduct", "$currentProduct" )
+        BoostArApplication.unityHandler.sendClothingToUnity(context, "$currentProduct", "$currentProduct")
     }
 
 }

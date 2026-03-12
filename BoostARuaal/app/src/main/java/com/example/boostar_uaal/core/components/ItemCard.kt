@@ -40,7 +40,7 @@ import com.example.core.entities.Product
 fun ItemCard(
     product: Product,
     clickable: () -> Unit,
-    onLikeClick: () -> Unit = {}, // 👈 Le añadimos la acción del corazón (con valor por defecto para no romper otras pantallas)
+    onLikeClick: () -> Unit = {},
     isSelected: Boolean = false
 ) {
     Column(
@@ -111,7 +111,7 @@ fun ItemCard(
                 modifier = Modifier.clickable { onLikeClick() }
             ) {
                 Icon(
-                    imageVector = Icons.Filled.Favorite ,
+                    imageVector = if(product.isLiked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder ,
                     contentDescription = "Like",
                     tint = Color.Black,
                     modifier = Modifier.size(20.dp)

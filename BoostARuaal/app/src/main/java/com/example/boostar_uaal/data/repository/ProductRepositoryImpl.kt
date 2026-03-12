@@ -5,21 +5,15 @@ import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.repository.ProductRepository
 import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.components.OnboardingStep
 import com.example.core.entities.Product
-import io.github.jan.supabase.SupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
-import io.github.jan.supabase.postgrest.postgrest
-import io.github.jan.supabase.postgrest.query.Columns
-import io.github.jan.supabase.postgrest.rpc
-import io.ktor.http.parameters
-import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
 
 
 class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository  {
-    private var isLoading = false
 
+    private val pageSize = 10
     override suspend fun getProducts(): List<Product> {
         val response: List<Product> = postgrest["Producto_View"].select().decodeList<Product>()
 
@@ -47,6 +41,48 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
             }).decodeList<ProductDetail>()
 
         return response
+    }
+    override suspend fun getProducts_V2(
+        sortMode: String,
+        refId: Int?,
+    ): List<Product> {
+        return try {
+            val response = postgrest.rpc(
+                function = "get_products",
+                parameters = buildJsonObject {
+                    put("p_sort_mode", sortMode)
+                    if (refId != null) put("p_ref_id", refId) else put("p_ref_id", JsonNull)
+                    put("p_page_size", pageSize)
+                }
+            ).decodeList<Product>()
+
+            response
+        } catch (e: Exception) {
+            Log.e("ProductRepository", "Error fetching feed products: ${e.message}")
+            emptyList()
+        }
+    }
+    override suspend fun getFeedProducts_V2(
+        sortMode: String,
+        refId: Int?,
+        direction: String,
+    ): List<ProductDetail> {
+        return try {
+            val response = postgrest.rpc(
+                function = "get_feed_products",
+                parameters = buildJsonObject {
+                    put("p_sort_mode", sortMode)
+                    if (refId != null) put("p_ref_id", refId) else put("p_ref_id", JsonNull)
+                    put("p_direction", direction)
+                    put("p_limit", pageSize)
+                }
+            ).decodeList<ProductDetail>()
+
+            response
+        } catch (e: Exception) {
+            Log.e("ProductRepository", "Error fetching feed products: ${e.message}")
+            emptyList()
+        }
     }
 
 

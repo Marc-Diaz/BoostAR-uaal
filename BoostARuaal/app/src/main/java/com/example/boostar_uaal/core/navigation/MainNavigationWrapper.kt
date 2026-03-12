@@ -13,6 +13,7 @@ import com.example.boostar_uaal.core.utils.navigateTo
 import com.example.boostar_uaal.ui.screen.authScreen.AuthScreen
 import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreen
 import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreenViewModel
+import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreenViewModelFactory
 import com.example.boostar_uaal.ui.screen.homeScreen.HomeScreen
 import com.example.boostar_uaal.ui.screen.loginScreen.LogInScreen
 import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.OnboardingChooseScreen
@@ -91,12 +92,14 @@ fun MainNavigationWrapper(authState: AuthState) {
                 )
             }
             entry<Routes.FeedScreen> { backStack ->
+                val sortOrder = backStack.sortOrder
                 FeedScreen(
-                    backStack.productId,
+                    productId = backStack.productId,
+
                     navigateTo = { },
                     back = { },
                     backTo = { },
-                    viewModel = viewModel<FeedScreenViewModel>()
+                    sortOrder = sortOrder
                 )
             }
         }

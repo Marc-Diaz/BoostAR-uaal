@@ -11,6 +11,7 @@ import com.example.boostar_uaal.core.entities.DropData
 import com.example.boostar_uaal.core.entities.PartnerData
 import com.example.boostar_uaal.core.repository.LikeRepository
 import com.example.boostar_uaal.core.repository.PartnerRepository
+import com.example.boostar_uaal.data.models.SortOrder
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabData
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
 import com.example.core.entities.Product
@@ -24,8 +25,14 @@ class HomeScreenViewModel : ViewModel() {
     private val productRepository = BoostArApplication.productRepository
     private val likeRepository: LikeRepository = BoostArApplication.likeRepository
     private val partnerRepository: PartnerRepository = BoostArApplication.partnerRepository
-    private val _products = MutableStateFlow<List<Product>>(emptyList())
-    val products: StateFlow<List<Product>> = _products.asStateFlow()
+
+    private val _productsForYou = MutableStateFlow<List<Product>>(emptyList())
+    val productsForYou: StateFlow<List<Product>> = _productsForYou.asStateFlow()
+    private val _productsTrends = MutableStateFlow<List<Product>>(emptyList())
+    val productsTrends: StateFlow<List<Product>> = _productsTrends.asStateFlow()
+
+    private val _productsDiscounts = MutableStateFlow<List<Product>>(emptyList())
+    val productsDiscounts: StateFlow<List<Product>> = _productsDiscounts.asStateFlow()
     private val _banners = MutableStateFlow<List<HeroBannerData>>(emptyList())
     val banners: StateFlow<List<HeroBannerData>> = _banners.asStateFlow()
     private val _collabs = MutableStateFlow<List<CollabData>>(emptyList())
@@ -35,17 +42,44 @@ class HomeScreenViewModel : ViewModel() {
     private val _drops = MutableStateFlow<List<DropData>>(emptyList())
     val drops: StateFlow<List<DropData>> = _drops.asStateFlow()
 
-    init {
+
+    fun initializeHome(){
         loadProducts()
         loadBanners()
         loadCollabs()
         loadPartners()
         loadDrops()
+        refreshLikes()
     }
-
     fun loadProducts() {
         viewModelScope.launch {
-            _products.value = productRepository.getProducts()
+            loadProductsForYou()
+            loadProductsTrends()
+            loadProductsDiscounts()
+        }
+    }
+
+    private fun loadProductsForYou(){
+        viewModelScope.launch {
+            _productsForYou.value = productRepository.getProducts_V2(
+                sortMode = SortOrder.FORYOU
+            )
+        }
+    }
+
+    private fun loadProductsTrends(){
+        viewModelScope.launch {
+            _productsTrends.value = productRepository.getProducts_V2(
+                sortMode = SortOrder.TRENDS
+            )
+        }
+    }
+
+    private fun loadProductsDiscounts(){
+        viewModelScope.launch {
+            _productsDiscounts.value = productRepository.getProducts_V2(
+                sortMode = SortOrder.DISCOUNT
+            )
         }
     }
 
@@ -80,7 +114,6 @@ class HomeScreenViewModel : ViewModel() {
 
 
     private fun loadCollabs() {
-        // En el futuro esto vendrá base de datos (Supabase)
         _collabs.value = listOf(
             CollabData(
                 id = 1,
@@ -110,18 +143,22 @@ class HomeScreenViewModel : ViewModel() {
     }
     fun toggleLike(productId: Int) {
         viewModelScope.launch {
-            val isLiked = likeRepository.toggleLike(productId)
-            val addLike = if (isLiked) 1 else -1
+            likeRepository.toggleLike(productId)
+        }
+    }
 
-            _products.value = _products.value.map { product ->
-                if (product.id == productId) {
-                    product.copy(
-                        isLiked = isLiked,
-                        numLikes = product.numLikes + addLike)
+    fun refreshLikes(){
+        viewModelScope.launch {
+            likeRepository.likeStateFlow.collect { likeMap ->
+                if (likeMap.isEmpty()) return@collect
+                fun applyLikes(list: List<Product>): List<Product> = list.map { p ->
+                    val liked = likeMap[p.id] ?: return@map p
+                    if (liked == p.isLiked) return@map p
+                    p.copy(isLiked = liked, numLikes = p.numLikes + if (liked) 1L else -1L)
                 }
-                else{
-                    product
-                }
+                _productsForYou.value = applyLikes(_productsForYou.value)
+                _productsTrends.value = applyLikes(_productsTrends.value)
+                _productsDiscounts.value = applyLikes(_productsDiscounts.value)
             }
         }
     }

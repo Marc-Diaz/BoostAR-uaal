@@ -1,10 +1,9 @@
 package com.example.boostar_uaal.ui.screen.homeScreen
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -26,19 +25,26 @@ import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.DropCard
 import com.example.boostar_uaal.core.components.HomeBannerEventsEstatic
 import com.example.boostar_uaal.core.components.PartnerCarousel
+import com.example.boostar_uaal.data.models.SortOrder
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabCarousel
 
 @Composable
 fun HomeScreen(navigateTo: (Routes) -> Unit) {
 
     val homeScreenViewModel = viewModel<HomeScreenViewModel>()
-    val products by homeScreenViewModel.products.collectAsState()
+    val productsForYou by homeScreenViewModel.productsForYou.collectAsState()
+    val productsTrends by homeScreenViewModel.productsTrends.collectAsState()
+    val productsDiscounts by homeScreenViewModel.productsDiscounts.collectAsState()
     val banners by homeScreenViewModel.banners.collectAsState()
     val collabs by homeScreenViewModel.collabs.collectAsState()
     val partners by homeScreenViewModel.partners.collectAsState()
     val drops by homeScreenViewModel.drops.collectAsState()
     val context = LocalContext.current
-    // nueva Carcasa Universal
+
+    LaunchedEffect(Unit) {
+        homeScreenViewModel.initializeHome()
+    }
+
     AdaptiveFeedLayout {
 
         HomeHeader()
@@ -58,8 +64,9 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
 
         ItemCarrousel(
 
-            products = products,
-            onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId)) },
+            products = productsForYou,
+            onItemClick = { productId -> navigateTo(
+                Routes.FeedScreen(productId, SortOrder.FORYOU)) },
             onLikeClick = { homeScreenViewModel.toggleLike(it) }
         )
 
@@ -70,8 +77,8 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
 
 
         ItemCarrousel(
-            products = products,
-            onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId)) },
+            products = productsTrends,
+            onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId, SortOrder.TRENDS)) },
             onLikeClick = { }
         )
         SectionHeader(
@@ -154,8 +161,8 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
             onClick = { navigateTo(Routes.HomeScreen) }
         )
         ItemCarrousel(
-            products = products,
-            onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId)) },
+            products = productsDiscounts,
+            onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId, SortOrder.DISCOUNT)) },
             onLikeClick = { }
         )
 

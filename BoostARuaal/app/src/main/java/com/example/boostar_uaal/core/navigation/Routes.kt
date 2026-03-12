@@ -10,7 +10,7 @@ sealed class Routes: NavKey {
     data object BasketScreen: Routes()
 
     @Serializable
-    data class FeedScreen(val productId: Int): Routes()
+    data class FeedScreen(val productId: Int, val sortOrder: String): Routes()
 
     @Serializable
     data object HomeScreen: Routes()
