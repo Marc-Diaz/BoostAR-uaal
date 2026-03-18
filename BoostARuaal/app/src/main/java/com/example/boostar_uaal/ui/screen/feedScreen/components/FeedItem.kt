@@ -19,7 +19,7 @@ fun FeedItem(
     onShareClick: () -> Unit,
     onCartClick: (Int) -> Unit,
     onDetailsClick: () -> Unit,
-    onTryArClick: (ProductDetail) -> Unit,
+    onTryArClick: () -> Unit,
     onLikeClick: (Int) -> Unit,
     onQuickPayClick: () -> Unit
 ) {
@@ -92,7 +92,7 @@ fun FeedItem(
             BottomActionDock(
                 modifier = Modifier.fillMaxWidth(),
                 onDetailsClick = onDetailsClick, // Botón blanco
-                onTryArClick = { onTryArClick(product) },     // Botón rojo/naranja
+                onTryArClick = { onTryArClick() },     // Botón rojo/naranja
                 onQuickPayClick = onQuickPayClick // Botón amarillo
             )
         }

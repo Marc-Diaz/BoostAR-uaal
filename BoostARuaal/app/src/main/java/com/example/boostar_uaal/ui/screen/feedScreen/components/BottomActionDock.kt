@@ -1,5 +1,6 @@
 package com.example.boostar_uaal.ui.screen.feedScreen.components
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -103,7 +104,7 @@ fun BottomActionDock(
 // --- BOTÓN PERCHA CENTRAL (Centro - Más ancho) ---
 
             Button(
-                onClick = onTryArClick,
+                onClick = { onTryArClick()},
 
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF5247)), // Rojo marca
                 shape = RoundedCornerShape(30.dp), // Bordes redondeados pero no círculo

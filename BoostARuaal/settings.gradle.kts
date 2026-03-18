@@ -24,9 +24,7 @@ dependencyResolutionManagement {
         flatDir {
             dirs("${rootDir}/../unityAr/unityLibrary/libs")
         }
-
-        */
-
+         */
     }
 }
 

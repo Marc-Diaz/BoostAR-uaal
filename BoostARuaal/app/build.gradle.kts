@@ -23,6 +23,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.boostar_uaal"
+        manifestPlaceholders["cameraKitApiToken"] = "eyJhbGciOiJIUzI1NiIsImtpZCI6IkNhbnZhc1MyU0hNQUNQcm9kIiwidHlwIjoiSldUIn0.eyJhdWQiOiJjYW52YXMtY2FudmFzYXBpIiwiaXNzIjoiY2FudmFzLXMyc3Rva2VuIiwibmJmIjoxNzczMzk0MDY5LCJzdWIiOiJmNGQ4NGNjZi0xMDljLTQyYjMtYTViMS00N2Y3YmIwZDhiMDN-U1RBR0lOR34wY2ExNWUyNi05MGRlLTQ1ODYtODMxNy1hZTJiNDQxNjk5NTMifQ.aix07AKePS0PRk5PjlJeRCp1k3sSXu7fP7BB8NAQ_xg"
         minSdk = 26
         targetSdk = 36
         versionCode = 1
@@ -92,6 +93,13 @@ dependencies {
     //Ktor
     implementation(libs.ktor.client.android)
     implementation(libs.coil.network.ktor3)
+
+    implementation(libs.accompanist.permissions)
+    //Snapchat
+    implementation(libs.camerakit)
+    implementation(libs.camerakit.kotlin)
+    implementation(libs.lenses.bundle)
+    implementation(libs.support.camerax)
 
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.core.splashscreen)

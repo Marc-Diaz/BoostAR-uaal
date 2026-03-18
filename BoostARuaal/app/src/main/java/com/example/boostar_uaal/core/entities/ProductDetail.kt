@@ -1,5 +1,6 @@
 package com.example.boostar_uaal.core.entities
 
+import com.example.boostar_uaal.ui.screen.loginScreen.LoginScreenViewModel
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -15,7 +16,8 @@ data class ProductDetail(
     val modelURL: String? = null,
     val coverImage: String,
     val multimedia: List<Multimedia>,
-    val tallas: List<ClothingSize>,
+    val sizes: List<ClothingSize>,
     val colors: List<ProductColor>,
+    val model: String,
 
-)
+    )

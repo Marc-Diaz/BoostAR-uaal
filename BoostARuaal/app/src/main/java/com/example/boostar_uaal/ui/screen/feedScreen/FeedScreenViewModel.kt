@@ -6,7 +6,6 @@ import android.util.Log
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.core.entities.ProductDetail
@@ -21,10 +20,13 @@ class FeedScreenViewModel(private val sortOrder: String) : ViewModel() {
     private val productRepository: ProductRepository = BoostArApplication.productRepository
     private val likeRepository: LikeRepository = BoostArApplication.likeRepository
     private val cartRepository: CartRepository = BoostArApplication.cartRepository
+    private val unityHandler = BoostArApplication.unityHandler
 
     private val _products = MutableStateFlow<List<ProductDetail>>(emptyList())
     val products: StateFlow<List<ProductDetail>> = _products.asStateFlow()
 
+    private var _lastSelectedIndex = MutableStateFlow<Int>(0)
+    val lastSelectedIndex: StateFlow<Int> = _lastSelectedIndex
     fun initializeFeed(initialProductId: Int? = null) {
         loadInitialProducts(initialProductId)
         refreshLikes()
@@ -96,11 +98,24 @@ class FeedScreenViewModel(private val sortOrder: String) : ViewModel() {
         viewModelScope.launch {
             likeRepository.toggleLike(productId)
         }
-        Log.d("LIKE", "----------")
     }
 
     fun onTryArClick(context: Context, currentProduct: ProductDetail) {
-        BoostArApplication.unityHandler.sendClothingToUnity(context, "$currentProduct", "$currentProduct")
+        unityHandler.sendClothingToUnity(context, "$currentProduct", "$currentProduct")
+    }
+
+    fun addProductToCart(currentProduct: ProductDetail, colorIdx: Int? = null, sizeIdx: Int, quantity: Int = 1){
+        viewModelScope.launch {
+            val productId = currentProduct.id
+            val colorId: Int? = if (colorIdx != null) currentProduct.colors[colorIdx].id else null
+            val sizeId = currentProduct.sizes[sizeIdx].id
+            Log.d("Producto Cart IDs", "$productId, $colorId, $sizeId")
+            cartRepository.addProductToCart(productId, colorId, sizeId, quantity)
+        }
+    }
+
+    fun saveCurrentIndex(index: Int){
+        _lastSelectedIndex.value = index
     }
 
 }

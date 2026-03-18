@@ -1,7 +1,9 @@
 [versions]
+accompanistPermissions = "0.37.3"
 agp = "9.0.0"
 bom = "3.3.0"
 browser = "1.9.0"
+cameraKitVersion = "1.47.0"
 coil = "2.7.0"
 coilCompose = "3.3.0"
 coilNetworkKtor3 = "3.3.0"
@@ -25,6 +27,7 @@ runtime = "1.10.2"
 foundation = "1.10.4"
 
 [libraries]
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 androidx-browser = { module = "androidx.browser:browser", version.ref = "browser" }
 androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "credentials" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
@@ -60,6 +63,10 @@ core-splashscreen={group= "androidx.core",name="core-splashscreen",version.ref="
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtime" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "foundation" }
 
+camerakit = { module = "com.snap.camerakit:camerakit", version.ref = "cameraKitVersion" }
+camerakit-kotlin = { module = "com.snap.camerakit:camerakit-kotlin", version.ref = "cameraKitVersion" }
+support-camerax = { module = "com.snap.camerakit:support-camerax", version.ref = "cameraKitVersion" }
+lenses-bundle = { module = "com.snap.camerakit:lenses-bundle", version.ref = "cameraKitVersion" }
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

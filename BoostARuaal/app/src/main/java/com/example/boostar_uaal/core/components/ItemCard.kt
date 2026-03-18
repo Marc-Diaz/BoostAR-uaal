@@ -113,7 +113,7 @@ fun ItemCard(
                 Icon(
                     imageVector = if(product.isLiked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder ,
                     contentDescription = "Like",
-                    tint = Color.Black,
+                    tint = Color.Red,
                     modifier = Modifier.size(20.dp)
                 )
                 InterText(

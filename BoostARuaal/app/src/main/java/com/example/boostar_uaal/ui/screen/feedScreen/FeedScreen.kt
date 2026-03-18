@@ -10,6 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,9 +38,12 @@ fun FeedScreen(
         factory = FeedScreenViewModelFactory(sortOrder)
     )
     val products by viewModel.products.collectAsState()
-    val context = LocalContext.current
+    val lastSelectedIndex by viewModel.lastSelectedIndex.collectAsState()
 
-    val pagerState = rememberPagerState(pageCount = { products.size })
+    val pagerState = rememberPagerState(
+        initialPage = lastSelectedIndex,
+        pageCount = { products.size })
+    Log.d("CurrentPage", "$lastSelectedIndex")
 
     LaunchedEffect(productId) {
         Log.d("Product Launch", "$productId")
@@ -47,6 +53,7 @@ fun FeedScreen(
     LaunchedEffect(pagerState.currentPage) {
         Log.d("Product pager", "${pagerState.currentPage}")
         if (products.isNotEmpty()) {
+            viewModel.saveCurrentIndex(pagerState.currentPage)
             if (pagerState.currentPage >= products.size - 2) {
                 viewModel.loadNextPage()
             }
@@ -72,11 +79,17 @@ fun FeedScreen(
                 product = currentProduct,
                 onPartnerClick = { },
                 onShareClick = { },
-                onCartClick = { },
+                onCartClick = { viewModel.addProductToCart(currentProduct, 0, 0) },
                 onDetailsClick = { },
-                onTryArClick = { viewModel.onTryArClick(context, it) },
+                onTryArClick = {
+                    navigateTo(Routes.ArScreen(
+                    lensId = currentProduct.model,
+                    grouLensId = "4ceedef4-a19f-47c9-a85b-08b97efda6c1")
+                    )
+                     },
+
                 onQuickPayClick = { },
-                onLikeClick = {viewModel.toggleLike(it); Log.d("LIKE id", "$it")}
+                onLikeClick = { viewModel.toggleLike(it); Log.d("LIKE id", "$it") }
             )
         }
     }

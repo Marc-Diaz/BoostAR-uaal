@@ -3,7 +3,6 @@ package com.example.boostar_uaal.core.navigation
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
@@ -12,15 +11,13 @@ import com.example.boostar_uaal.core.utils.back
 import com.example.boostar_uaal.core.utils.navigateTo
 import com.example.boostar_uaal.ui.screen.authScreen.AuthScreen
 import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreen
-import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreenViewModel
-import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreenViewModelFactory
 import com.example.boostar_uaal.ui.screen.homeScreen.HomeScreen
 import com.example.boostar_uaal.ui.screen.loginScreen.LogInScreen
 import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.OnboardingChooseScreen
 import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.OnboardingChooseViewmodel
 import com.example.boostar_uaal.ui.screen.onboardingTextScreen.OnboardingTextScreen
 import com.example.boostar_uaal.ui.screen.singInScreen.SignInScreen
-
+import com.example.boostar_uaal.ui.screen.arScreen.ArScreen
 
 @SuppressLint("ViewModelConstructorInComposable")
 @Composable
@@ -91,15 +88,25 @@ fun MainNavigationWrapper(authState: AuthState) {
                     navigateTo = { backStack.navigateTo(it) }
                 )
             }
-            entry<Routes.FeedScreen> { backStack ->
-                val sortOrder = backStack.sortOrder
+            entry<Routes.FeedScreen> { b ->
+                val sortOrder = b.sortOrder
                 FeedScreen(
-                    productId = backStack.productId,
+                    productId = b.productId,
 
-                    navigateTo = { },
+                    navigateTo = { backStack.navigateTo(it)  },
                     back = { },
                     backTo = { },
                     sortOrder = sortOrder
+                )
+            }
+
+            entry<Routes.ArScreen>{
+                b ->
+                ArScreen(
+                    back = { backStack.back() },
+                    lensId = b.lensId,
+                    lensGroupId = b.grouLensId,
+                    onPermissionDenied = { backStack.back() }
                 )
             }
         }

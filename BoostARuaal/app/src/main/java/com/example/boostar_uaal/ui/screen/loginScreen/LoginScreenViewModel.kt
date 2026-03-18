@@ -20,7 +20,10 @@ class LoginScreenViewModel: ViewModel() {
             is NativeSignInResult.Success -> {
 
                 viewModelScope.launch {
-                    if (!userRepository.hasUserRole()) throw Exception("No tienes rol")
+                    if (!userRepository.hasUserRole()){
+                        authRepository.clearSession()
+                        throw Exception("No tienes rol")
+                    }
                     authRepository.saveSession()
                 }
                 navigateTo(Routes.HomeScreen)
