@@ -19,5 +19,6 @@ data class ProductDetail(
     val sizes: List<ClothingSize>,
     val colors: List<ProductColor>,
     val model: String,
+    val partner: Partner
 
     )

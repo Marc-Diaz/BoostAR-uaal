@@ -12,7 +12,7 @@ data class Product(
     @SerialName("precio_oferta") val discountPrice: Double? = null,
     @SerialName("img_portada") val coverImage: String,
     @SerialName("num_likes") var numLikes: Long,
-    @SerialName("marca") val brand: String,
+    @SerialName("partner") val partner: String,
     @SerialName("url_logo") val brandLogo: String,
     @SerialName("gustado") var isLiked: Boolean
 )
