@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.core.utils
+package com.example.boostar_uaal.core.navigation
 
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey

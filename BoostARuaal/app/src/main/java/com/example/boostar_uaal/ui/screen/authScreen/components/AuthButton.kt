@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
@@ -19,6 +20,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -48,13 +50,15 @@ fun AuthButton(
                         contentScale = ContentScale.FillBounds
                     )
                 }
-                Spacer(modifier = Modifier.width(18.dp))
+
                 InterText(
                     text = text,
+                    modifier = Modifier.fillMaxWidth(),
                     fontSize = 18.sp,
                     color = if (isFilled) secondaryButtonColor
                     else primaryButtonColor,
-                    fontWeight = FontWeight.Black
+                    fontWeight = FontWeight.Black,
+                    textAlign = TextAlign.Center
                 )
             }
         },
@@ -80,7 +84,7 @@ fun AuthButton(
 @Preview
 @Composable
 fun AuthButtonPreview(){
-    val icon = R.drawable.phone_icon
+    val icon = R.drawable.phone_logo
     AuthButton(
         onClick = {  },
         text = "Continuar con Google",

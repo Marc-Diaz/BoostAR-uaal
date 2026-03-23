@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.ui.screen.basketScreen
+package com.example.boostar_uaal.ui.screen.profileScreen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -9,12 +9,12 @@ import com.example.boostar_uaal.core.components.BottomNavBar
 import com.example.boostar_uaal.core.navigation.Routes
 
 @Composable
-fun BasketScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit){
+fun ProfileScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit){
     Scaffold(
         bottomBar = {
             BottomNavBar(
                 naviagetTo = { navigateTo(it) },
-                currentRoute = Routes.BasketScreen
+                currentRoute = Routes.ProfileScreen
             )
         },
         content = { paddingValues ->

@@ -10,7 +10,7 @@ sealed class Routes: NavKey {
     data object BasketScreen: Routes()
 
     @Serializable
-    data class FeedScreen(val productId: Int, val sortOrder: String): Routes()
+    data class FeedScreen(val productId: Int? = null, val sortOrder: String): Routes()
 
     @Serializable
     data object HomeScreen: Routes()
@@ -29,6 +29,11 @@ sealed class Routes: NavKey {
 
     @Serializable
     data object Authenticated: Routes()
+
+    @Serializable
+    data object GameScreen: Routes()
+    @Serializable
+    data object ProfileScreen: Routes()
     @Serializable
     data class ArScreen(val lensId: String, val grouLensId: String): Routes()
 }

@@ -3,9 +3,11 @@ package com.example.boostar_uaal.ui.screen.feedScreen
 import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.VerticalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -18,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.boostar_uaal.core.components.BottomNavBar
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.ui.screen.feedScreen.components.FeedItem
 
@@ -26,7 +29,7 @@ import com.example.boostar_uaal.ui.screen.feedScreen.components.FeedItem
 
 fun FeedScreen(
 
-    productId: Int,
+    productId: Int?,
     navigateTo: (Routes) -> Unit,
     back: () -> Unit,
     backTo: (Routes) -> Unit,
@@ -63,37 +66,47 @@ fun FeedScreen(
         }
     }
 
-
-    if (products.isEmpty()) {
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            CircularProgressIndicator(color = Color.White)
-        }
-    } else {
-        VerticalPager(
-            state = pagerState,
-            modifier = Modifier.fillMaxSize(),
-            key = { page -> products[page].id }
-        ) { page ->
-            val currentProduct = products[page]
-            FeedItem(
-                product = currentProduct,
-                onPartnerClick = { },
-                onShareClick = { },
-                onCartClick = { viewModel.addProductToCart(currentProduct, 0, 0) },
-                onDetailsClick = { },
-                onTryArClick = {
-                    navigateTo(Routes.ArScreen(
-                    lensId = currentProduct.model,
-                    grouLensId = "4ceedef4-a19f-47c9-a85b-08b97efda6c1")
-                    )
-                     },
-
-                onQuickPayClick = { },
-                onLikeClick = { viewModel.toggleLike(it); Log.d("LIKE id", "$it") }
+    Scaffold(
+        bottomBar = {
+            BottomNavBar(
+                naviagetTo = { navigateTo(it) },
+                currentRoute = Routes.FeedScreen(productId, sortOrder)
             )
-        }
-    }
+        },
+        content = { paddingValues ->
+            Box(Modifier.padding(paddingValues)){
+                if (products.isEmpty()) {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator(color = Color.White)
+                    }
+                } else {
+                    VerticalPager(
+                        state = pagerState,
+                        modifier = Modifier.fillMaxSize(),
+                        key = { page -> products[page].id }
+                    ) { page ->
+                        val currentProduct = products[page]
+                        FeedItem(
+                            product = currentProduct,
+                            onPartnerClick = { },
+                            onShareClick = { },
+                            onCartClick = { viewModel.addProductToCart(currentProduct, 0, 0) },
+                            onDetailsClick = { },
+                            onTryArClick = {
+                                navigateTo(Routes.ArScreen(
+                                    lensId = currentProduct.model,
+                                    grouLensId = "4ceedef4-a19f-47c9-a85b-08b97efda6c1")
+                                )
+                            },
 
+                            onQuickPayClick = { },
+                            onLikeClick = { viewModel.toggleLike(it); Log.d("LIKE id", "$it") }
+                        )
+                    }
+                }
+            }
+        }
+    )
 }
 
 

@@ -14,7 +14,7 @@ import com.example.boostar_uaal.ui.screen.homeScreen.HomeScreenViewModel
 
 @Composable
 fun AuthScreen(
-    navigateTo: (Routes) -> Unit,
+    navigateTo: (Routes, Boolean) -> Unit,
     back: () -> Unit,
     backTo: (Routes) -> Unit
 ) {
@@ -27,19 +27,19 @@ fun AuthScreen(
     ) {
         // Y aquí rellenamos el "hueco" con nuestros botones específicos
         AuthButton(
-            onClick = { navigateTo(Routes.LogInScreen) },
+            onClick = { navigateTo(Routes.LogInScreen, false) },
             text = "Iniciar sesión",
             isFilled = true
         )
 
         AuthButton(
-            onClick = { navigateTo(Routes.SignInScreen) },
+            onClick = { navigateTo(Routes.SignInScreen, false) },
             text = "Registrarse",
             isFilled = true
         )
 
         AuthButton(
-            onClick = { navigateTo(Routes.HomeScreen) },
+            onClick = { navigateTo(Routes.HomeScreen, true) },
             text = "Entrar como invitado",
             isFilled = false
         )

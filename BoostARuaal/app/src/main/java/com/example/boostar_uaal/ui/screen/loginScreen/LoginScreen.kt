@@ -54,7 +54,7 @@ fun LogInScreen(
     ) {
 
         GoogleAuthButton(
-            composeAuth = composeAuth, // conexion supabase
+            composeAuth = composeAuth,
             onResult = { result ->
                 viewModel.handleGoogleSignInResult(result, navigateTo)
             }
@@ -62,7 +62,7 @@ fun LogInScreen(
         AuthButton(
             onClick = { navigateTo(Routes.SignInScreen) },
             text = "Continuar con teléfono.",
-            icon = R.drawable.phone_icon,
+            icon = R.drawable.phone_logo,
             isFilled = true
         )
 
