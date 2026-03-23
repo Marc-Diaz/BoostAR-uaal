@@ -49,7 +49,7 @@ fun LogInScreen(
     AuthLayout(
         imageRes = R.drawable.carrusel_auth_2,
         title = "BoostAR",
-        subtitle = "Log in the future.",
+        subtitle = "Inicia sesión en el futuro.",
         onBackClick = { back() }
     ) {
 
@@ -61,14 +61,14 @@ fun LogInScreen(
         )
         AuthButton(
             onClick = { navigateTo(Routes.SignInScreen) },
-            text = "Continue with phone",
+            text = "Continuar con teléfono.",
             icon = R.drawable.phone_icon,
             isFilled = true
         )
 
         AuthButton(
             onClick = { navigateTo(Routes.HomeScreen) },
-            text = "Continue with apple",
+            text = "Continuar con apple",
             isFilled = false
         )
     }

@@ -31,6 +31,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.ItemCard
+import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.components.OnboardingChooseItem
 
 
 @Composable
@@ -60,14 +61,13 @@ fun OnboardingChooseScreen(
             // 1. TOP BAR: Botón "Skip >"
             Box(modifier = Modifier.fillMaxWidth()) {
                 Text(
-                    text = "Skip >",
+                    text = "Omitir >",
                     color = Color.Gray,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier
                         .align(Alignment.CenterEnd)
                         .clickable {
-                            // Acción de Skip: Avanzar sin validar o ir al home
                             viewModel.nextStep { navigateTo(Routes.HomeScreen) }
                         }
                 )
@@ -75,11 +75,10 @@ fun OnboardingChooseScreen(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // 2. TÍTULOS CON ESTILO
             Text(
                 text = buildAnnotatedString {
                     val cleanTitle =
-                        currentStep.title.replace("you like.", "").replace("you like", "")
+                        currentStep.title.replace("te gusten.", "")
                     append(cleanTitle)
 
                     withStyle(
@@ -88,7 +87,7 @@ fun OnboardingChooseScreen(
                             fontWeight = FontWeight.Bold
                         )
                     ) {
-                        append(" you like.")
+                        append(" te gusten.")
                     }
                 },
                 fontSize = 22.sp,
@@ -98,7 +97,7 @@ fun OnboardingChooseScreen(
 
             // Subtítulo
             Text(
-                text = "Max 2 options",
+                text = "Max 2 opciones",
                 fontSize = 12.sp,
                 color = Color.Gray,
                 modifier = Modifier.padding(top = 8.dp)
@@ -112,13 +111,13 @@ fun OnboardingChooseScreen(
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 modifier = Modifier
-                    .weight(1f) // IMPORTANTE: Esto hace que el grid empuje el botón hacia abajo
+                    .weight(1f)
                     .fillMaxWidth()
             ) {
                 items(currentStep.options) { product ->
                     val isSelected = state.selectedIds[currentStep.id]?.contains(product.id) == true
 
-                    ItemCard(
+                    OnboardingChooseItem(
                         product = product,
                         isSelected = isSelected,
                         clickable = { viewModel.toggleOption(product.id) }
@@ -131,13 +130,10 @@ fun OnboardingChooseScreen(
             // 4. BOTÓN CONTINUAR (Footer)
             Button(
                 onClick = {
-                    viewModel.nextStep {
-                        // Callback onFinished: Navegar al Home
-                        navigateTo(Routes.HomeScreen)
-                    }
+                    viewModel.nextStep { navigateTo(Routes.HomeScreen) }
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF007BFF)), // Azul marca
-                shape = RoundedCornerShape(50), // Bordes muy redondos
+                shape = RoundedCornerShape(50),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp)

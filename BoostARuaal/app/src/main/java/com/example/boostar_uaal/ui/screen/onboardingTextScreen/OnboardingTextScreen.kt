@@ -39,15 +39,15 @@ fun OnboardingTextScreen(navigateToChoose: () -> Unit, viewModel: OnboardingText
         when (uiState) {
             is OnboardingState.Step1 -> {
                 TypewriterText(
-                    baseText = "Now, tell me",
-                    highlightText = "your style.",
+                    baseText = "Ahora, dime",
+                    highlightText = "tu estilo.",
                     fontSize = 24.sp
                 )
             }
             is OnboardingState.Step2 -> {
                 TypewriterText(
                     baseText = "",
-                    highlightText = "¡Let's go!",
+                    highlightText = "¡Vamos!",
                     fontSize = 32.sp
                 )
             }

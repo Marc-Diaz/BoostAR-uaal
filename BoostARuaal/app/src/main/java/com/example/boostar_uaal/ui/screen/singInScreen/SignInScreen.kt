@@ -51,7 +51,7 @@ fun SignInScreen(
     AuthLayout(
         imageRes = R.drawable.carrusel_auth_2, // Tu imagen del chico con gafas
         title = "Boostar",
-        subtitle = "Sign in in the future.",
+        subtitle = "Regístrate en el futuro.",
         onBackClick = { back() }
     ) {
         GoogleAuthButton(
@@ -64,7 +64,7 @@ fun SignInScreen(
 
         AuthButton(
             onClick = { navigateTo(Routes.SignInScreen) },
-            text = "Continue with phone",
+            text = "Continuar con teléfono",
             isFilled = true,
         )
 

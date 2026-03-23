@@ -28,19 +28,19 @@ fun AuthScreen(
         // Y aquí rellenamos el "hueco" con nuestros botones específicos
         AuthButton(
             onClick = { navigateTo(Routes.LogInScreen) },
-            text = "Log in",
+            text = "Iniciar sesión",
             isFilled = true
         )
 
         AuthButton(
             onClick = { navigateTo(Routes.SignInScreen) },
-            text = "Sign up",
+            text = "Registrarse",
             isFilled = true
         )
 
         AuthButton(
             onClick = { navigateTo(Routes.HomeScreen) },
-            text = "Enter as guest",
+            text = "Entrar como invitado",
             isFilled = false
         )
     }

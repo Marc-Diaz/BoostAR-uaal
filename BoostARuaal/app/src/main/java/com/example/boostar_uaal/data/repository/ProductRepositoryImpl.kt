@@ -86,17 +86,17 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
         return listOf(
             OnboardingStep(
                 id = "tops",
-                title = "Choose the Tops you like.",
+                title = "Escoge las opciones que te gusten.",
                 options = steps.subList(0,4)
             ),
             OnboardingStep(
                 id = "bottoms",
-                title = "Choose the Bottoms you like.",
+                title = "Escoge las opciones que te gusten.",
                 options = steps.subList(4,8)
             ),
             OnboardingStep(
                 id = "outerwear",
-                title = "Choose the Outerwear you like.",
+                title = "Escoge las opciones que te gusten.",
                 options = steps.subList(8,12)
             )
         )

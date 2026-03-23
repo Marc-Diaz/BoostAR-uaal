@@ -29,6 +29,6 @@ fun CompanyAccountSelector(
             colors = RadioButtonDefaults.colors(selectedColor = Color(0xFF007AFF))
         )
         Spacer(modifier = Modifier.width(4.dp))
-        Text("Company account", fontSize = 16.sp, color = Color.Black)
+        Text("Cuenta empresa", fontSize = 16.sp, color = Color.Black)
     }
 }
