@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.boostar_uaal.core.components.AdaptiveFeedLayout
 import com.example.boostar_uaal.core.components.BottomNavBar
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.ui.screen.feedScreen.components.FeedItem

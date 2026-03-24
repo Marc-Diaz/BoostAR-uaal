@@ -14,13 +14,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.boostar_uaal.core.theme.primaryButtonColor
 
 @Composable
 fun AuthLayout(
@@ -30,6 +33,7 @@ fun AuthLayout(
     onBackClick: (() -> Unit)? = null,
     content: @Composable () -> Unit // Contenido de los botones personalizados
 ) {
+    val context = LocalContext.current
     BoxWithConstraints(modifier = Modifier
         .fillMaxSize()
         .background(Color.Black)) {
@@ -40,12 +44,7 @@ fun AuthLayout(
                 Box(modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()) {
-                    Image(
-                        painter = painterResource(id = imageRes),
-                        contentDescription = "Background",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxSize()
-                    )
+                    MediaPlayer(context, R.raw.video_auth)
 
                     if (onBackClick != null) {
                         IconButton(
@@ -83,6 +82,7 @@ fun AuthLayout(
 
                 Surface(modifier = Modifier
                     .weight(1f)
+                    .shadow(elevation = 25.dp, spotColor = primaryButtonColor, ambientColor = primaryButtonColor)
                     .fillMaxHeight(), color = Color.White) {
                     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
                         Column(
@@ -99,16 +99,7 @@ fun AuthLayout(
             }
         } else {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
-                val context = LocalContext.current
                 MediaPlayer(context, R.raw.video_auth)
-                /*
-                Image(
-                    painter = painterResource(id = imageRes),
-                    contentDescription = "Background",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize()
-                )
-                */
                 if (onBackClick != null) {
                     IconButton(
                         onClick = onBackClick,
@@ -146,6 +137,7 @@ fun AuthLayout(
                     Surface(
                         modifier = Modifier
                             .fillMaxWidth()
+                            .shadow(elevation = 25.dp, spotColor = primaryButtonColor, ambientColor = primaryButtonColor)
                             .wrapContentHeight(),
                         color = Color.White,
                         shape = RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp)
