@@ -18,14 +18,12 @@ fun AuthScreen(
     back: () -> Unit,
     backTo: (Routes) -> Unit
 ) {
-    // Llamamos a nuestra "carcasa" y le pasamos solo los datos visuales
     AuthLayout(
         imageRes = R.drawable.carrusel_auth_2,
         title = "Boostar",
         subtitle = "Try it first.",
-        onBackClick = null // Como es la primera pantalla, no ponemos botón de atrás
+        onBackClick = null
     ) {
-        // Y aquí rellenamos el "hueco" con nuestros botones específicos
         AuthButton(
             onClick = { navigateTo(Routes.LogInScreen, false) },
             text = "Iniciar sesión",

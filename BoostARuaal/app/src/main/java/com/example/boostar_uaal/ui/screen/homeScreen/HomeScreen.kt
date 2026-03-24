@@ -31,6 +31,7 @@ import com.example.boostar_uaal.core.components.PartnerCarousel
 import com.example.boostar_uaal.data.models.SortOrder
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabCarousel
 
+
 @Composable
 fun HomeScreen(navigateTo: (Routes) -> Unit) {
 
@@ -48,6 +49,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
         homeScreenViewModel.initializeHome()
     }
     Scaffold(
+        containerColor = Color.Transparent,
         bottomBar = {
             BottomNavBar(
                 naviagetTo = { navigateTo(it) },
@@ -55,9 +57,8 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
             )
     },
         content = { paddingValues ->
-            AdaptiveFeedLayout(modifier = Modifier.padding(paddingValues)) {
-
-                HomeHeader()
+            AdaptiveFeedLayout() {
+                HomeHeader(Modifier.padding(top = paddingValues.calculateTopPadding()))
 
                 HomeNav(
                     onItemClick = { route -> navigateTo(route) }

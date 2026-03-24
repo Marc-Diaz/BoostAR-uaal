@@ -21,9 +21,9 @@ import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.InterText
 
 @Composable
-fun HomeHeader() {
+fun HomeHeader(modifier: Modifier = Modifier) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 16.dp),
              verticalAlignment = Alignment.CenterVertically

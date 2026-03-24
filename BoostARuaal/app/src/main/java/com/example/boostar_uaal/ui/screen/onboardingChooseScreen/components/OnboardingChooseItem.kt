@@ -1,8 +1,6 @@
 package com.example.boostar_uaal.ui.screen.onboardingChooseScreen.components
 
-import android.graphics.drawable.shapes.Shape
 import androidx.compose.foundation.border
-import androidx.compose.ui.graphics.Brush
 import com.example.boostar_uaal.core.components.ItemImage
 import com.example.boostar_uaal.core.theme.primaryButtonColor
 import androidx.compose.foundation.clickable

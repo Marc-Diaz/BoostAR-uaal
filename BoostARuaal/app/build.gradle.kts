@@ -65,11 +65,11 @@ android {
 }
 
 dependencies {
-    /*
-    //Unity
-    implementation(project(":unityLibrary"))
-    implementation(fileTree(mapOf("dir" to "${rootDir}/unityAr/unityLibrary/libs", "include" to listOf("*.jar"))))
-    */
+    //Media
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.exoplayer.dash)
+    implementation(libs.androidx.media3.ui)
+    implementation(libs.androidx.media3.ui.compose)
     //Nav3
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)

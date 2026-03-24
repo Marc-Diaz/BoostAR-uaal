@@ -18,7 +18,6 @@ import com.example.boostar_uaal.core.utils.AuthState
 import com.example.boostar_uaal.ui.screen.authScreen.AuthScreenViewModel
 
 class MainActivity : ComponentActivity() {
-    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,10 +31,7 @@ class MainActivity : ComponentActivity() {
             }
             if (authState != AuthState.Loading){
                 BoostARuaalTheme {
-                    Scaffold(modifier = Modifier.fillMaxSize()) {
-                        MainNavigationWrapper(authState)
-
-                    }
+                    MainNavigationWrapper(authState)
                 }
             }
         }

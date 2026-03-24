@@ -56,7 +56,6 @@ fun MainNavigationWrapper(authState: AuthState) {
             }
 
             entry<Routes.SignInScreen> {
-
                 SignInScreen(
                     navigateTo = { backStack.navigateTo(it, inclusive = true) },
                     back = { backStack.back() },

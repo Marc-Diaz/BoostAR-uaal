@@ -40,22 +40,19 @@ import com.example.core.entities.Product
 fun ItemCard(
     product: Product,
     clickable: () -> Unit,
-    onLikeClick: () -> Unit = {},
-    isSelected: Boolean = false
+    onLikeClick: () -> Unit = {}
 ) {
     Column(
         modifier = Modifier
-            .width(160.dp) // Fijamos el ancho para que no se deforme el carrusel
+            .width(160.dp)
             .clickable { clickable() }
     ) {
-
-        // --- 1. LA IMAGEN Y EL LOGO DE LA MARCA ---
         Box(
             modifier = Modifier.size(height = 220.dp, width = 160.dp)
         ) {
             Card(
                 modifier = Modifier.fillMaxSize(),
-                shape = RoundedCornerShape(16.dp), // Bordes redondeados como en tu diseño
+                shape = RoundedCornerShape(16.dp),
                 elevation = CardDefaults.cardElevation(4.dp)
             ) {
                 ItemImage(
@@ -63,8 +60,6 @@ fun ItemCard(
                     contentDescription = product.name
                 )
             }
-
-            // 👇 El logo de PB flotando en la esquina inferior derecha
             Surface(
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
@@ -74,8 +69,6 @@ fun ItemCard(
                 color = Color.White,
                 shadowElevation = 2.dp
             ) {
-                // Aquí usamos tu logo estático por ahora.
-                // En el futuro puedes poner: product.brandLogoRes
                 Image(
                     painter = painterResource(id = R.drawable.boostar_logo),
                     contentDescription = "Marca",
@@ -88,24 +81,25 @@ fun ItemCard(
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween, // Manda los textos a la izq y el corazón a la detra
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Top
         ) {
-            // Textos (Nombre y Precio)
             Column(modifier = Modifier.weight(1f)) {
                 InterText(
                     text = product.name,
                     fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.height(24.dp).padding(end = 4.dp),
+
                 )
                 InterText(
                     text = "${product.price}€",
-                    color = secondaryTextColor
+                    color = secondaryTextColor,
+                    fontSize = 12.sp
                 )
             }
 
             Spacer(modifier = Modifier.width(4.dp))
 
-            // Botón de Corazón y Contador
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.clickable { onLikeClick() }
@@ -117,7 +111,7 @@ fun ItemCard(
                     modifier = Modifier.size(20.dp)
                 )
                 InterText(
-                    text = product.numLikes.toString(), // Ej: "4,5k"
+                    text = product.numLikes.toString(),
                     fontSize = 11.sp,
                     color = Color.Black
                 )

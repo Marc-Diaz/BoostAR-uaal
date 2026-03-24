@@ -14,26 +14,24 @@ import androidx.compose.ui.unit.dp
 fun AdaptiveFeedLayout(
     modifier: Modifier = Modifier,
     backgroundColor: Color = Color.White,
-    content: @Composable ColumnScope.() -> Unit // El espacio para el contenido
+    content: @Composable ColumnScope.() -> Unit
 ) {
     val scrollState = rememberScrollState()
 
-    // El universo que ocupa toda la pantalla (móvil, tablet o monitor de 50 pulgadas)
     Box(
         modifier = modifier
             .fillMaxSize()
-            .statusBarsPadding()
             .background(backgroundColor),
-        contentAlignment = Alignment.TopCenter // Centra el contenido horizontalmente
+        contentAlignment = Alignment.TopCenter
     ) {
-        // La columna que restringe el ancho para que no se deforme en pantallas gigantes
+
         Column(
             modifier = Modifier
                 .fillMaxHeight()
-                .widthIn(max = 840.dp) //El secreto de la adaptabilidad
+                .widthIn(max = 840.dp)
                 .verticalScroll(scrollState)
-                .padding(bottom = 100.dp), // Espacio para la futura BottomBar
-            verticalArrangement = Arrangement.spacedBy(24.dp), // Separación uniforme entre secciones
+                .padding(bottom = 100.dp),
+            verticalArrangement = Arrangement.spacedBy(24.dp),
             content = content
         )
     }
