@@ -3,6 +3,7 @@ package com.example.boostar_uaal.ui.screen.homeScreen.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
@@ -26,9 +27,9 @@ fun ItemCarrousel(
     onLikeClick: (Int) -> Unit
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-        // LISTA DE PRODUCTOS
         LazyRow(
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.padding(horizontal = 16.dp)
         ) {
             items(products) { product ->
                 ItemCard(

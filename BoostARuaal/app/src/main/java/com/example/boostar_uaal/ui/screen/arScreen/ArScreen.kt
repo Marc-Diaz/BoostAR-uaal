@@ -19,12 +19,10 @@ import com.snap.camerakit.support.camerax.CameraXImageProcessorSource
 import android.Manifest
 import android.util.Log
 import androidx.compose.material3.IconButton
-import android.widget.Button
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.ui.graphics.Color
 import com.example.boostar_uaal.R

@@ -59,7 +59,9 @@ fun ItemCard(
             ) {
                 ItemImage(
                     url = product.coverImage,
-                    contentDescription = product.name
+                    contentDescription = product.name,
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Crop
                 )
             }
             Surface(
@@ -110,9 +112,9 @@ fun ItemCard(
                 modifier = Modifier.clickable { onLikeClick() }
             ) {
                 Icon(
-                    imageVector = if(product.isLiked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder ,
+                    imageVector = Icons.Filled.Favorite,
                     contentDescription = "Like",
-                    tint = Color.Red,
+                    tint = if(product.isLiked)  Color.Red else Color.Black,
                     modifier = Modifier.size(20.dp)
                 )
                 InterText(

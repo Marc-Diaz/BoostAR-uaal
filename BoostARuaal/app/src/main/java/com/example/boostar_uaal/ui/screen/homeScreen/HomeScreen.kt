@@ -107,7 +107,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                 )
 
                 SectionHeader(
-                    title = "Colaboraciones >",
+                    title = "Licencias >",
                     textColor = Color.Black,
                     fontSize = 27.48.sp
                 )
