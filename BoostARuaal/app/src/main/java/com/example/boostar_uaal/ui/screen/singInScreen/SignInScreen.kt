@@ -1,6 +1,7 @@
 package com.example.boostar_uaal.ui.screen.singInScreen
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -47,7 +49,14 @@ fun SignInScreen(
     val context = LocalContext.current
     val viewModel = viewModel<SingUpScreenViewModel>()
     val isCompanyAccount by viewModel.isCompanyAccount.collectAsState()
+    val errorMessage by viewModel.errorMessage.collectAsState()
 
+    LaunchedEffect(errorMessage) {
+        errorMessage?.let {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+            viewModel.clearError()
+        }
+    }
     AuthLayout(
         imageRes = R.drawable.carrusel_auth_2, // Tu imagen del chico con gafas
         title = "Boostar",

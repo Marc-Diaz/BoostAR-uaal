@@ -8,6 +8,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
@@ -21,7 +22,8 @@ fun InterText(
     fontSize: TextUnit = 16.sp,
     fontWeight: FontWeight = FontWeight.Medium,
     textAlign: TextAlign = TextAlign.Start,
-    color: Color = primaryTextColor
+    color: Color = primaryTextColor,
+    textDecoration: TextDecoration = TextDecoration.None
 ){
     Text(
         text = text,
@@ -31,6 +33,7 @@ fun InterText(
         fontWeight = fontWeight,
         textAlign = textAlign,
         color = color,
-        overflow = TextOverflow.Ellipsis
+        overflow = TextOverflow.Ellipsis,
+        textDecoration = textDecoration
     )
 }

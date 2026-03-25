@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.core.navigation.Routes
-import com.example.boostar_uaal.core.repository.AuthRepository
 import io.github.jan.supabase.compose.auth.composable.NativeSignInResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,6 +18,9 @@ class SingUpScreenViewModel(): ViewModel() {
     private val _isCompanyAccount = MutableStateFlow(false)
     val isCompanyAccount: StateFlow<Boolean> = _isCompanyAccount.asStateFlow()
 
+    private var _errorMessage: MutableStateFlow<String?> = MutableStateFlow(null)
+    val errorMessage: StateFlow<String?> = _errorMessage.asStateFlow()
+
     fun toggleCompanyAccount() {
         _isCompanyAccount.value = !_isCompanyAccount.value
     }
@@ -30,11 +32,13 @@ class SingUpScreenViewModel(): ViewModel() {
                     Log.d("AuthRole", "${userRepository.hasUserRole()}")
                     if (userRepository.hasUserRole()){
                         authRepository.clearSession()
-                        throw Exception("Ya tiener rol")
+                        _errorMessage.value = "Ya tienes un usuario creado.."
                     }
-                    userRepository.setUserRole(isCompanyAccount.value)
-                    authRepository.saveSession()
-                    navigateTo(Routes.Authenticated)
+                    else {
+                        userRepository.setUserRole(isCompanyAccount.value)
+                        authRepository.saveSession()
+                        navigateTo(Routes.Authenticated)
+                    }
                 }
 
             }
@@ -43,5 +47,8 @@ class SingUpScreenViewModel(): ViewModel() {
             }
             else -> { }
         }
+    }
+    fun clearError(){
+        _errorMessage.value = null
     }
 }

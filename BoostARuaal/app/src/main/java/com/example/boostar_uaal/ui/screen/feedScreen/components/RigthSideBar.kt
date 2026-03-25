@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.boostar_uaal.core.theme.primaryButtonColor
 
 //Botones de la derecha de la pantalla
 @Composable
@@ -30,17 +31,14 @@ fun RightSideBar(
 ) {
     Column(
         modifier = modifier.padding(
-            end = 16.dp,
-            bottom = 100.dp
-        ), // Espacio para no chocar con el dock
+            end = 16.dp
+        ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
-
-        // Like
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Surface(
-                modifier = Modifier.size(65.dp),
+                modifier = Modifier.size(57.dp),
                 shape = CircleShape,
                 color = Color.White,
                 shadowElevation = 6.dp
@@ -65,17 +63,13 @@ fun RightSideBar(
             }
 
         }
-
-        // Shopping Cart
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
             Surface(
-                modifier = Modifier.size(65.dp),
+                modifier = Modifier.size(57.dp),
                 shape = CircleShape,
-                color = Color.Blue,
+                color = primaryButtonColor,
                 shadowElevation = 6.dp
             ) {
-
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -84,7 +78,7 @@ fun RightSideBar(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.ShoppingCart,
-                        contentDescription = "carrito",
+                        contentDescription = "Cart",
                         tint = Color.White,
                         modifier = Modifier
                             .size(36.dp)

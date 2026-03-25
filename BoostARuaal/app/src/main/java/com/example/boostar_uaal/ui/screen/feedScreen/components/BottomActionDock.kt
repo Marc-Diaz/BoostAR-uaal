@@ -31,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.material.icons.outlined.Star
 import androidx.compose.ui.draw.shadow
+import com.example.boostar_uaal.core.theme.primaryButtonColor
 
 @Composable
 
@@ -44,74 +45,43 @@ fun BottomActionDock(
 
     Surface(
         modifier = modifier
-            .padding(horizontal = 16.dp, vertical = 24.dp) // 1. Margen a los lados de la pantalla
-            .fillMaxWidth() //
-            .height(80.dp), // Un poco más alto para que respire
-        shape = RoundedCornerShape(40.dp), // Borde muy redondo (cápsula)
-
-        color = Color.Transparent,
-
-        shadowElevation = 26.dp
+            .padding(horizontal = 16.dp, vertical = 10.dp)
+            .fillMaxWidth()
+            .height(80.dp),
+        color = Color.Transparent
 
     ) {
-
         Row(
-
             modifier = Modifier
-
                 .fillMaxSize()
-
-                .padding(horizontal = 20.dp), // 3. Espacio interno para que los botones no toquen el borde blanco
-
+                .padding(horizontal = 10.dp),
             verticalAlignment = Alignment.CenterVertically,
-
-            horizontalArrangement = Arrangement.SpaceBetween // 4. CLAVE: Esto separa los iconos (Izquierda - Centro - Derecha)
+            horizontalArrangement = Arrangement.SpaceBetween
 
         ) {
 
-// --- BOTÓN CARRITO (Izquierda) ---
-
             IconButton(
-
                 onClick = onDetailsClick,
-
                 modifier = Modifier
-
-                    .size(52.dp)
-
-// .border(1.dp, Color.White, CircleShape)
-
+                    .size(57.dp)
                     .background(Color.White, CircleShape)
-
-
             ) {
-
                 Icon(
-
                     imageVector = Icons.AutoMirrored.Outlined.List,
-
                     contentDescription = "Carrito",
-
-                    tint = Color.Blue, // Azul como en la foto
-
+                    tint = primaryButtonColor,
                     modifier = Modifier.size(28.dp)
-
                 )
-
             }
 
-
-// --- BOTÓN PERCHA CENTRAL (Centro - Más ancho) ---
-
             Button(
-                onClick = { onTryArClick()},
-
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF5247)), // Rojo marca
-                shape = RoundedCornerShape(30.dp), // Bordes redondeados pero no círculo
+                onClick = { onTryArClick() },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF5247)),
+                shape = RoundedCornerShape(45.dp),
                 modifier = Modifier
-                    .height(56.dp)
-                    .width(140.dp) // 5. Ancho fijo grande para que destaque
-                    .padding(horizontal = 8.dp) // Un pequeño margen extra por seguridad
+                    .height(65.dp)
+                    .width(148.dp)
+                    .padding(horizontal = 8.dp)
 
             ) {
 
@@ -119,41 +89,27 @@ fun BottomActionDock(
                     imageVector = Icons.Default.PlayArrow,
                     contentDescription = "Detalles",
                     tint = Color.White,
-                    modifier = Modifier.size(32.dp)
+                    modifier = Modifier.size(57.dp)
 
                 )
 
             }
 
-
-// --- BOTÓN PAGO RÁPIDO (Derecha) ---
-
             IconButton(
-
                 onClick = onQuickPayClick,
-
                 modifier = Modifier
-
-                    .size(52.dp)
-
+                    .size(57.dp)
                     .background(Color(0xFFFFD600), CircleShape)
 
             ) {
-
                 Icon(
-
                     imageVector = Icons.AutoMirrored.Filled.Send,
-
                     contentDescription = "Pago Rápido",
-
                     tint = Color.Black,
-
                     modifier = Modifier.size(28.dp)
 
                 )
-
             }
-
         }
 
     }

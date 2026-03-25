@@ -13,7 +13,6 @@ data class ProductDetail(
     val style: Style,
     var numLikes: Int,
     var isLiked: Boolean,
-    val modelURL: String? = null,
     val coverImage: String,
     val multimedia: List<Multimedia>,
     val sizes: List<ClothingSize>,

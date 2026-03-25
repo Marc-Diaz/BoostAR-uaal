@@ -59,11 +59,9 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
         content = { paddingValues ->
             AdaptiveFeedLayout() {
                 HomeHeader(Modifier.padding(top = paddingValues.calculateTopPadding()))
-
                 HomeNav(
                     onItemClick = { route -> navigateTo(route) }
                 )
-
                 HomeHero(
                     banners = banners,
                     onTryArClick = { homeScreenViewModel.onTryArClick(context) }
@@ -94,7 +92,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                 )
                 SectionHeader(
                     title = "Febrero.",
-                    textColor = Color(0xFF0080FF), // pide el color azul Boost
+                    textColor = Color(0xFF0080FF),
                     fontSize = 27.48.sp
                 )
 

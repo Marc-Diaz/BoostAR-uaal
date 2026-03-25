@@ -31,14 +31,12 @@ fun PartnerCard(
         color = Color(0xFFD9D9D9),
         shadowElevation = 6.dp // Sombra suave
     ) {
-        // La imagen centrada dentro del círculo
         ItemImage(
             url =partner.logoUrl,
             contentDescription = partner.name,
             modifier = Modifier
-                .fillMaxSize()
-                .padding(20.dp),
-            contentScale = ContentScale.Fit
+                .fillMaxSize(),
+            contentScale = ContentScale.Crop
         )
     }
 }

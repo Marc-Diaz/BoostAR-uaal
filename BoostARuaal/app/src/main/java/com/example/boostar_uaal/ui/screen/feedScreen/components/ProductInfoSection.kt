@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.theme.discountColor
 
 
@@ -29,48 +31,52 @@ fun ProductInfoSection(
 ) {
     Column(
         modifier = modifier
-            .padding(start = 16.dp, bottom = 110.dp) // Bottom padding alto para dejar espacio al Dock
-            .fillMaxWidth(0.75f) // Ocupa el 75% del ancho
+            .fillMaxWidth(0.75f)
     ) {
-        // Tag "Oferta"
-        Surface(
-            color = Color.White,
-            shape = RoundedCornerShape(40),
-            modifier = Modifier.padding(bottom = 6.dp)
-        ) {
-            Text(
-                text = "Oferta",
-                color = discountColor,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
-            )
+        discountPrice?.let {
+            Surface(
+                color = Color.White,
+                shape = RoundedCornerShape(40),
+                modifier = Modifier.padding(bottom = 6.dp)
+            ) {
+                Text(
+                    text = "Oferta",
+                    color = discountColor,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                )
+            }
+
         }
 
-        // Nombre
-        Text(
+        InterText(
+            modifier = Modifier.height(24.dp),
             text = name,
             color = Color.White,
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold
+            fontSize = 14.sp,
+            fontWeight = FontWeight.Bold,
         )
 
         // Precio
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                text = "$discountPrice€",
-                color = discountColor,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(
+            discountPrice?.let {
+                InterText(
+                    text = "$discountPrice€",
+                    color = discountColor,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+            }
+            InterText(
                 text = "$price€",
                 color = Color.White.copy(alpha = 0.8f),
                 fontSize = 14.sp,
-                textDecoration = TextDecoration.LineThrough
+                textDecoration = if (discountPrice != null) TextDecoration.LineThrough else TextDecoration.None
             )
         }
+
 
     }
 }

@@ -13,6 +13,6 @@ data class Product(
     @SerialName("img_portada") val coverImage: String,
     @SerialName("num_likes") var numLikes: Long,
     @SerialName("partner") val partner: String,
-    @SerialName("url_logo") val brandLogo: String,
+    @SerialName("url_logo") val partnerLogo: String,
     @SerialName("gustado") var isLiked: Boolean
 )

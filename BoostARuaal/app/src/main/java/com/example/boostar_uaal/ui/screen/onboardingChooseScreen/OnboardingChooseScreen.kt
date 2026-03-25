@@ -1,5 +1,6 @@
 package com.example.boostar_uaal.ui.screen.onboardingChooseScreen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -54,11 +55,10 @@ fun OnboardingChooseScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .background(Color.White)
                 .padding(horizontal = 24.dp, vertical = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
-            // 1. TOP BAR: Botón "Skip >"
             Box(modifier = Modifier.fillMaxWidth()) {
                 Text(
                     text = "Omitir >",

@@ -29,7 +29,7 @@ fun BottomNavBar(naviagetTo: (Routes) -> Unit, currentRoute: Routes){
         NavItem.Cesta,
         NavItem.Perfil
     )
-    BottomAppBar(modifier = Modifier.background(color = Color.White)) {
+    BottomAppBar(modifier = Modifier.background(color = Color.White).height(80.dp)) {
         items.forEach { navItem ->
             val isSelected = navItem.route == currentRoute
             val navIcon = if (isSelected) navItem.selectedIcon else navItem.icon

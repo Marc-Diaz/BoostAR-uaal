@@ -28,10 +28,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
 import com.example.boostar_uaal.core.theme.secondaryTextColor
 
 import com.example.core.entities.Product
@@ -69,10 +71,12 @@ fun ItemCard(
                 color = Color.White,
                 shadowElevation = 2.dp
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.boostar_logo),
-                    contentDescription = "Marca",
-                    modifier = Modifier.padding(4.dp)
+                ItemImage(
+                    url = product.partnerLogo,
+                    contentDescription = product.partner,
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    contentScale = ContentScale.Crop
                 )
             }
         }
@@ -87,6 +91,7 @@ fun ItemCard(
             Column(modifier = Modifier.weight(1f)) {
                 InterText(
                     text = product.name,
+                    fontSize = 11.sp,
                     fontWeight = FontWeight.SemiBold,
                     modifier = Modifier.height(24.dp).padding(end = 4.dp),
 
