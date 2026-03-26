@@ -32,12 +32,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:scheme="boostar"
-                    android:host="login-callback" />
+                <data android:scheme="boostar" />
+                <data  android:host="feed"/>
             </intent-filter>
         </activity>
         <meta-data android:name="com.snap.camerakit.api.token" android:value="${cameraKitApiToken}" />
+        <meta-data android:name="com.example.boostar_uaal.DEFAULT_GROUP_ID" android:value="@string/group_lens_id" />
     </application>
 
 </manifest>

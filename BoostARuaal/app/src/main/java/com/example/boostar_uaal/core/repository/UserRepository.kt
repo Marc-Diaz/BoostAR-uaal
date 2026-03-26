@@ -10,5 +10,6 @@ interface UserRepository {
     suspend fun hasUserRole(): Boolean
 
     suspend fun isCompanyUser(): Boolean
+
     suspend fun updateOnboardingPreferences(preferences: Map<String, List<Int>>)
 }

@@ -13,6 +13,7 @@ import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.components.AuthLayout
 import com.example.boostar_uaal.ui.screen.authScreen.components.AuthButton
 import com.example.boostar_uaal.core.navigation.Routes
+import com.example.boostar_uaal.ui.screen.authScreen.AuthViewModel
 import com.example.boostar_uaal.ui.screen.authScreen.components.GoogleAuthButton
 @Composable
 fun LogInScreen(
@@ -21,7 +22,7 @@ fun LogInScreen(
     backTo: (Routes) -> Unit
 ) {
     val context = LocalContext.current
-    val viewModel = viewModel<LoginScreenViewModel>()
+    val viewModel = viewModel<AuthViewModel>()
     val errorMessage by viewModel.errorMessage.collectAsState()
 
     LaunchedEffect(errorMessage) {
@@ -40,7 +41,7 @@ fun LogInScreen(
         GoogleAuthButton(
             composeAuth = composeAuth,
             onResult = { result ->
-                viewModel.handleGoogleSignInResult(result, navigateTo)
+                viewModel.handleGoogleLogIn(result, navigateTo)
             }
         )
         AuthButton(

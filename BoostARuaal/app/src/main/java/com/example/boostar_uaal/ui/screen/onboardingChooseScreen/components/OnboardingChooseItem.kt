@@ -11,10 +11,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.theme.secondaryTextColor
-
 import com.example.core.entities.Product
 
 @Composable
@@ -40,7 +39,9 @@ fun OnboardingChooseItem(
             ) {
                 ItemImage(
                     url = product.coverImage,
-                    contentDescription = product.name
+                    contentDescription = product.name,
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Crop
                 )
             }
     }

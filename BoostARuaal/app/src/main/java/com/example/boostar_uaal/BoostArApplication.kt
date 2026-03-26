@@ -7,7 +7,6 @@ import com.example.boostar_uaal.core.repository.PartnerRepository
 import com.example.boostar_uaal.core.repository.LikeRepository
 import com.example.boostar_uaal.core.repository.ProductRepository
 import com.example.boostar_uaal.core.repository.UserRepository
-import com.example.boostar_uaal.core.utils.UnityActivityHandler
 import com.example.boostar_uaal.data.datasource.SupabaseClientProvider
 import com.example.boostar_uaal.data.repository.AuthRepositoryImpl
 import com.example.boostar_uaal.data.repository.CartRepositoryImpl
@@ -34,7 +33,6 @@ class BoostArApplication: Application() {
         lateinit var userRepository: UserRepository
         lateinit var cartRepository: CartRepository
         lateinit var composeAuth: ComposeAuth
-        lateinit var unityHandler: UnityActivityHandler
     }
 
     override fun onCreate() {
@@ -50,8 +48,6 @@ class BoostArApplication: Application() {
         partnerRepository = PartnersRepositoryImpl(supabaseClient.postgrest)
         userRepository = UserRepositoryImpl(supabaseClient.auth, supabaseClient.postgrest)
         cartRepository = CartRepositoryImpl(supabaseClient.postgrest)
-
         composeAuth = supabaseClient.composeAuth
-        unityHandler = UnityActivityHandler()
     }
 }

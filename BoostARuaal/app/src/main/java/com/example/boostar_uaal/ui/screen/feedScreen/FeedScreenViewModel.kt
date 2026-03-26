@@ -2,7 +2,10 @@ package com.example.boostar_uaal.ui.screen.feedScreen
 
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
+import androidx.compose.runtime.State
+import androidx.core.content.ContextCompat.startActivity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import androidx.lifecycle.ViewModel
@@ -12,6 +15,7 @@ import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.repository.CartRepository
 import com.example.boostar_uaal.core.repository.LikeRepository
 import com.example.boostar_uaal.core.repository.ProductRepository
+import com.example.boostar_uaal.core.repository.UserRepository
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
@@ -20,13 +24,20 @@ class FeedScreenViewModel(private val sortOrder: String) : ViewModel() {
     private val productRepository: ProductRepository = BoostArApplication.productRepository
     private val likeRepository: LikeRepository = BoostArApplication.likeRepository
     private val cartRepository: CartRepository = BoostArApplication.cartRepository
-    private val unityHandler = BoostArApplication.unityHandler
+    private val userRepository: UserRepository = BoostArApplication.userRepository
 
     private val _products = MutableStateFlow<List<ProductDetail>>(emptyList())
     val products: StateFlow<List<ProductDetail>> = _products.asStateFlow()
 
     private var _lastSelectedIndex = MutableStateFlow<Int>(0)
     val lastSelectedIndex: StateFlow<Int> = _lastSelectedIndex
+
+    private var _showDialog: MutableStateFlow<Boolean> = MutableStateFlow<Boolean>(false)
+    val showDialog: StateFlow<Boolean> = _showDialog.asStateFlow()
+
+    private var _isUserAuthenticated: MutableStateFlow<Boolean> = MutableStateFlow<Boolean>(false)
+    val isUserAuthenticated: StateFlow<Boolean> = _isUserAuthenticated.asStateFlow()
+
     fun initializeFeed(initialProductId: Int? = null) {
         loadInitialProducts(initialProductId)
         refreshLikes()
@@ -100,10 +111,6 @@ class FeedScreenViewModel(private val sortOrder: String) : ViewModel() {
         }
     }
 
-    fun onTryArClick(context: Context, currentProduct: ProductDetail) {
-        unityHandler.sendClothingToUnity(context, "$currentProduct", "$currentProduct")
-    }
-
     fun addProductToCart(currentProduct: ProductDetail, colorIdx: Int? = null, sizeIdx: Int, quantity: Int = 1){
         viewModelScope.launch {
             val productId = currentProduct.id
@@ -118,4 +125,20 @@ class FeedScreenViewModel(private val sortOrder: String) : ViewModel() {
         _lastSelectedIndex.value = index
     }
 
+    fun openDialog(){
+        _showDialog.value = true
+    }
+    fun closeDialog(){
+        _showDialog.value = false
+    }
+
+    fun shareProduct(context: Context){
+        val currentProduct = _products.value.get(_lastSelectedIndex.value)
+        val sendIntent = Intent(Intent.ACTION_SEND).apply {
+            putExtra(Intent.EXTRA_TEXT, currentProduct.name)
+            type = "text/plain"
+        }
+        val shareIntent = Intent.createChooser(sendIntent, null)
+       context.startActivity(shareIntent)
+    }
 }

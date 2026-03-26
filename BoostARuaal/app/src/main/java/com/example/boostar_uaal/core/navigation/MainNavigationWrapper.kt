@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
+import com.example.boostar_uaal.LocalAuthState
 import com.example.boostar_uaal.core.components.BottomNavBar
 import com.example.boostar_uaal.core.utils.AuthState
 import com.example.boostar_uaal.ui.screen.authScreen.AuthScreen
@@ -27,7 +28,8 @@ import com.example.boostar_uaal.ui.screen.profileScreen.ProfileScreen
 
 @SuppressLint("ViewModelConstructorInComposable")
 @Composable
-fun MainNavigationWrapper(authState: AuthState) {
+fun MainNavigationWrapper() {
+    val authState = LocalAuthState.current
     val startRoute: Routes = when (authState) {
         AuthState.Authenticated -> Routes.HomeScreen
         AuthState.Unauthenticated -> Routes.AuthScreen
@@ -105,7 +107,6 @@ fun MainNavigationWrapper(authState: AuthState) {
                 ArScreen(
                     back = { backStack.back() },
                     lensId = b.lensId,
-                    lensGroupId = b.grouLensId,
                     onPermissionDenied = { backStack.back() }
                 )
             }

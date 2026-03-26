@@ -26,6 +26,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.ui.graphics.Color
 import com.example.boostar_uaal.R
+import com.example.boostar_uaal.core.utils.CameraKitConfig
 import com.snap.camerakit.lenses.LensesComponent
 import com.snap.camerakit.lenses.whenHasFirst
 
@@ -35,13 +36,12 @@ import com.snap.camerakit.lenses.whenHasFirst
 fun ArScreen(
     back: () -> Unit,
     lensId: String,
-    lensGroupId: String,
     onPermissionDenied: () -> Unit = {}
 ) {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
     val cameraPermissionState = rememberPermissionState(Manifest.permission.CAMERA)
-
+    val lensGroupId = CameraKitConfig.getDefaultGroupId(context)
     val imageProcessorSource = remember {
         CameraXImageProcessorSource(context = context, lifecycleOwner = lifecycleOwner)
     }

@@ -7,7 +7,6 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -15,11 +14,9 @@ import com.example.boostar_uaal.core.components.BackgorundImage
 import com.example.boostar_uaal.core.entities.Brand
 import com.example.boostar_uaal.core.entities.Multimedia
 import com.example.boostar_uaal.core.entities.Partner
-import com.example.boostar_uaal.core.entities.PartnerData
 import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.entities.Style
 import com.example.boostar_uaal.core.entities.TypeMultimedia
-import com.example.core.entities.Product
 
 @Composable
 fun FeedItem(
@@ -45,7 +42,7 @@ fun FeedItem(
             )
         }
 
-        BottomPartnerSearch (
+        TopPartnerSearch (
             modifier = Modifier
                 .statusBarsPadding(),
             partner = product.partner,

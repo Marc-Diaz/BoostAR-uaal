@@ -34,18 +34,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import com.example.boostar_uaal.BoostArApplication
+import com.example.boostar_uaal.LocalAuthState
 import com.example.boostar_uaal.core.theme.secondaryTextColor
+import com.example.boostar_uaal.core.utils.AuthState
 
 import com.example.core.entities.Product
 
 @Composable
 fun ItemCard(
+    modifier: Modifier = Modifier,
     product: Product,
     clickable: () -> Unit,
     onLikeClick: () -> Unit = {}
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .width(160.dp)
             .clickable { clickable() }
     ) {
@@ -109,7 +113,7 @@ fun ItemCard(
 
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.clickable { onLikeClick() }
+                modifier = Modifier.clickable(enabled = LocalAuthState.current is AuthState.Authenticated , onClick = { onLikeClick() })
             ) {
                 Icon(
                     imageVector = Icons.Filled.Favorite,

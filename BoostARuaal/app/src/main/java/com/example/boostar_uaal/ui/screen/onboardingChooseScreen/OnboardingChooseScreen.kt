@@ -120,7 +120,8 @@ fun OnboardingChooseScreen(
                     OnboardingChooseItem(
                         product = product,
                         isSelected = isSelected,
-                        clickable = { viewModel.toggleOption(product.id) }
+                        clickable = { viewModel.toggleOption(product.id) },
+
                     )
                 }
             }

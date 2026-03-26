@@ -9,17 +9,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.example.boostar_uaal.BoostArApplication
+import com.example.boostar_uaal.LocalAuthState
+import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.theme.primaryButtonColor
+import com.example.boostar_uaal.core.utils.AuthState
 
 //Botones de la derecha de la pantalla
 @Composable
@@ -47,11 +49,11 @@ fun RightSideBar(
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .clickable { onLikeClick() },
+                        .clickable(enabled = LocalAuthState.current is AuthState.Authenticated, onClick = { onLikeClick() }),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Favorite,
+                        painter = painterResource(R.drawable.heart_icon),
                         contentDescription = "Like",
                         tint = if(isLiked) Color.Red else Color.Gray,
                         modifier = Modifier
@@ -77,9 +79,9 @@ fun RightSideBar(
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
-                        imageVector = Icons.Outlined.ShoppingCart,
+                        painter = painterResource(R.drawable.cart_icon),
                         contentDescription = "Cart",
-                        tint = Color.White,
+                        tint = Color.Unspecified,
                         modifier = Modifier
                             .size(36.dp)
                             .background(Color.Transparent, CircleShape)

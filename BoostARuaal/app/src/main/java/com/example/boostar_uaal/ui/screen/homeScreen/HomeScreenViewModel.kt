@@ -11,6 +11,7 @@ import com.example.boostar_uaal.core.entities.DropData
 import com.example.boostar_uaal.core.entities.PartnerData
 import com.example.boostar_uaal.core.repository.LikeRepository
 import com.example.boostar_uaal.core.repository.PartnerRepository
+import com.example.boostar_uaal.core.repository.UserRepository
 import com.example.boostar_uaal.data.models.SortOrder
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabData
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
@@ -25,7 +26,7 @@ class HomeScreenViewModel : ViewModel() {
     private val productRepository = BoostArApplication.productRepository
     private val likeRepository: LikeRepository = BoostArApplication.likeRepository
     private val partnerRepository: PartnerRepository = BoostArApplication.partnerRepository
-
+    private val userRepository: UserRepository = BoostArApplication.userRepository
     private val _productsForYou = MutableStateFlow<List<Product>>(emptyList())
     val productsForYou: StateFlow<List<Product>> = _productsForYou.asStateFlow()
     private val _productsTrends = MutableStateFlow<List<Product>>(emptyList())
@@ -42,6 +43,8 @@ class HomeScreenViewModel : ViewModel() {
     private val _drops = MutableStateFlow<List<DropData>>(emptyList())
     val drops: StateFlow<List<DropData>> = _drops.asStateFlow()
 
+    private var _isUserAuthenticated: MutableStateFlow<Boolean> = MutableStateFlow<Boolean>(false)
+    val isUserAuthenticated: StateFlow<Boolean> = _isUserAuthenticated.asStateFlow()
 
     fun initializeHome(){
         loadProducts()
@@ -108,8 +111,6 @@ class HomeScreenViewModel : ViewModel() {
 
     fun onTryArClick(context: Context) {
         Log.d("HomeScreenViewModel", "El usuario quiere probar la cámara AR")
-        BoostArApplication.unityHandler.sendClothingToUnity(context, "hola", "url")
-
     }
 
 
@@ -199,7 +200,6 @@ class HomeScreenViewModel : ViewModel() {
             ),
         )
     }
-
 }
 
 

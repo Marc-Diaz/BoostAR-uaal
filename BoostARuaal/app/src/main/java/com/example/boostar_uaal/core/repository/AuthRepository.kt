@@ -11,5 +11,6 @@ interface AuthRepository {
     suspend fun clearSession()
     suspend fun loadSession(): UserSession?
     suspend fun isAccessTokenValid(): Boolean
+
     suspend fun refreshSession(): Boolean
 }

@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Share
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
@@ -24,13 +22,10 @@ import coil3.compose.rememberAsyncImagePainter
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.components.ItemImage
 import com.example.boostar_uaal.core.entities.Partner
-import com.example.boostar_uaal.core.navigation.Routes
 
 
 @Composable
-fun BottomPartnerSearch(modifier: Modifier = Modifier, partner: Partner, onShareClick: () -> Unit, onPartnerClick: () -> Unit) {
-
-    val asyncImagePainter = rememberAsyncImagePainter(partner.logoUrl)
+fun TopPartnerSearch(modifier: Modifier = Modifier, partner: Partner, onShareClick: () -> Unit, onPartnerClick: () -> Unit) {
     Row(modifier = modifier
         .fillMaxWidth()
         .padding(top = 25.dp, start = 16.dp, end = 16.dp),
@@ -57,15 +52,13 @@ fun BottomPartnerSearch(modifier: Modifier = Modifier, partner: Partner, onShare
             modifier = Modifier
                 .size(32.dp)
                 .background(Color.White, CircleShape)
-
-
         ) {
 
             Icon(
-                imageVector = Icons.Outlined.Share,
+                painter = painterResource(R.drawable.share_icon),
                 contentDescription = "compartir",
                 tint = Color.Black,
-                modifier = Modifier.size(28.dp)
+                modifier = Modifier.size(25.dp)
             )
 
         }

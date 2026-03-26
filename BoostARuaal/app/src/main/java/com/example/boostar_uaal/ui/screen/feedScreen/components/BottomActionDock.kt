@@ -1,6 +1,5 @@
 package com.example.boostar_uaal.ui.screen.feedScreen.components
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -14,11 +13,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Send
-import androidx.compose.material.icons.automirrored.outlined.List
 import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.material.icons.filled.Send
-import androidx.compose.material.icons.outlined.List
-import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -29,10 +24,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.material.icons.outlined.Star
-import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.res.painterResource
 import com.example.boostar_uaal.core.theme.primaryButtonColor
-
+import com.example.boostar_uaal.R
 @Composable
 
 fun BottomActionDock(
@@ -67,8 +61,8 @@ fun BottomActionDock(
                     .background(Color.White, CircleShape)
             ) {
                 Icon(
-                    imageVector = Icons.AutoMirrored.Outlined.List,
-                    contentDescription = "Carrito",
+                    painter = painterResource(R.drawable.list_icon),
+                    contentDescription = "Details",
                     tint = primaryButtonColor,
                     modifier = Modifier.size(28.dp)
                 )
@@ -86,10 +80,10 @@ fun BottomActionDock(
             ) {
 
                 Icon(
-                    imageVector = Icons.Default.PlayArrow,
-                    contentDescription = "Detalles",
+                    painter = painterResource(R.drawable.hanger_icon),
+                    contentDescription = "AR",
                     tint = Color.White,
-                    modifier = Modifier.size(57.dp)
+                    modifier = Modifier.size(100.dp)
 
                 )
 

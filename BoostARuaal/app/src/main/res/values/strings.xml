@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">BoostAR-uaal</string>
+    <string name="app_name">Boostar</string>
     <string name="camera_permission_not_granted">Camera permission not granted by the user</string>
     <string name="camera_kit_not_supported">Camera Kit not supported on this device</string>
+    <string name="group_lens_id">4ceedef4-a19f-47c9-a85b-08b97efda6c1</string>
 </resources>

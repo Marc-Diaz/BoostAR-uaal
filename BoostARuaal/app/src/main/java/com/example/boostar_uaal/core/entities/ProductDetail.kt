@@ -1,6 +1,5 @@
 package com.example.boostar_uaal.core.entities
 
-import com.example.boostar_uaal.ui.screen.loginScreen.LoginScreenViewModel
 import kotlinx.serialization.Serializable
 
 @Serializable
