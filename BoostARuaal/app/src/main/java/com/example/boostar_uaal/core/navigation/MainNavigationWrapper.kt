@@ -78,7 +78,7 @@ fun MainNavigationWrapper() {
             }
             entry<Routes.OnboardingChooseScreen> {
                 OnboardingChooseScreen(
-                    navigateTo = { backStack.navigateTo(it) },
+                    navigateTo = { backStack.navigateTo(it, inclusive = true) },
                     back = { backStack.back() },
                     backTo = { },
                     viewModel = OnboardingChooseViewmodel()

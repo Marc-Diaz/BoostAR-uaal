@@ -1,13 +1,18 @@
 package com.example.boostar_uaal.ui.screen.gameScreen
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
+import android.annotation.SuppressLint
+
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
+import com.example.boostar_uaal.core.components.AdaptiveFeedLayout
 import com.example.boostar_uaal.core.components.BottomNavBar
 import com.example.boostar_uaal.core.navigation.Routes
+import com.example.boostar_uaal.ui.screen.gameScreen.components.DailyGoalsSection
+import com.example.boostar_uaal.ui.screen.gameScreen.components.ForYouSection
+import com.example.boostar_uaal.ui.screen.gameScreen.components.GameHeader
+import com.example.boostar_uaal.ui.screen.gameScreen.components.KnowleadgeSection
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun GameScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit){
     Scaffold(
@@ -17,8 +22,13 @@ fun GameScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) 
                 currentRoute = Routes.GameScreen
             )
         },
-        content = { paddingValues ->
-            Box(Modifier.padding(paddingValues))
+        content = {
+            AdaptiveFeedLayout{
+                GameHeader()
+                DailyGoalsSection()
+                ForYouSection()
+                KnowleadgeSection()
+            }
 
         }
     )

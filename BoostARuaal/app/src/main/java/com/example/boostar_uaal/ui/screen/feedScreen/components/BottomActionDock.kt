@@ -97,7 +97,7 @@ fun BottomActionDock(
 
             ) {
                 Icon(
-                    imageVector = Icons.AutoMirrored.Filled.Send,
+                    painter = painterResource(R.drawable.buy_icon),
                     contentDescription = "Pago Rápido",
                     tint = Color.Black,
                     modifier = Modifier.size(28.dp)

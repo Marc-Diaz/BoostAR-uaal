@@ -86,7 +86,7 @@ fun FeedScreen(
                             product = currentProduct,
                             onPartnerClick = { },
                             onShareClick = { feedViewModel.shareProduct(context) },
-                            onCartClick = { feedViewModel.addProductToCart(currentProduct, 0, 0) },
+                            onCartClick = {  },
                             onDetailsClick = { feedViewModel.openDialog() },
                             onTryArClick = {
                                 navigateTo(Routes.ArScreen(

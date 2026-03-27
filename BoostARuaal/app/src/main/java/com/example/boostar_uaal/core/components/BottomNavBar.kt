@@ -4,11 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -29,7 +31,10 @@ fun BottomNavBar(naviagetTo: (Routes) -> Unit, currentRoute: Routes){
         NavItem.Cesta,
         NavItem.Perfil
     )
-    BottomAppBar(modifier = Modifier.background(color = Color.White).height(80.dp)) {
+    BottomAppBar(
+        modifier = Modifier
+            .height(80.dp),
+        containerColor = Color.White) {
         items.forEach { navItem ->
             val isSelected = navItem.route == currentRoute
             val navIcon = if (isSelected) navItem.selectedIcon else navItem.icon

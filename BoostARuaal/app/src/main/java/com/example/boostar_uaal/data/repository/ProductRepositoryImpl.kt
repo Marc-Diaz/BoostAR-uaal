@@ -81,7 +81,7 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
             function = "get_onboarding_steps"
         ).decodeList<Product>()
 
-        var steps = response + response + response + response
+        var steps = response
         steps = steps.shuffled()
         return listOf(
             OnboardingStep(

@@ -70,12 +70,14 @@ dependencies {
     implementation(libs.androidx.media3.exoplayer.dash)
     implementation(libs.androidx.media3.ui)
     implementation(libs.androidx.media3.ui.compose)
+
     //Nav3
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.kotlinx.serialization.core)
 
     //Coil
+    implementation("com.github.skydoves:landscapist-coil3:2.4.2")
     implementation(libs.coil)
     implementation(libs.coil.compose)
 
