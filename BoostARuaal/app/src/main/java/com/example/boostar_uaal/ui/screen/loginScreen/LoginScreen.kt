@@ -32,7 +32,6 @@ fun LogInScreen(
         }
     }
     AuthLayout(
-        imageRes = R.drawable.carrusel_auth_2,
         title = "BoostAR",
         subtitle = "Inicia sesión en el futuro.",
         onBackClick = { back() }

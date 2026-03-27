@@ -8,9 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.components.BackgorundImage
+import com.example.boostar_uaal.core.components.BackgroundVideo
+import com.example.boostar_uaal.core.components.MediaPlayer
 import com.example.boostar_uaal.core.entities.Brand
 import com.example.boostar_uaal.core.entities.Multimedia
 import com.example.boostar_uaal.core.entities.Partner
@@ -29,6 +32,7 @@ fun FeedItem(
     onLikeClick: (Int) -> Unit,
     onQuickPayClick: () -> Unit
 ) {
+    val context = LocalContext.current
     val pagerState = rememberPagerState(pageCount = { product.multimedia.size })
     Box(
         modifier = Modifier
@@ -36,10 +40,20 @@ fun FeedItem(
             .background(Color.Black)
     ) {
         HorizontalPager(state = pagerState) { page ->
-            BackgorundImage(
-                url = product.multimedia[page].multimediaURL,
-                contentDescription = product.name
-            )
+            val multimedia =product.multimedia[page]
+            when(multimedia.type){
+                TypeMultimedia.IMAGE -> BackgorundImage(
+                    url = multimedia.multimediaURL,
+                    contentDescription = product.name
+                )
+
+                TypeMultimedia.VIDEO -> BackgroundVideo(
+                    context = context,
+                    videoURL = multimedia.multimediaURL
+                )
+                else -> {}
+            }
+
         }
 
         TopPartnerSearch (

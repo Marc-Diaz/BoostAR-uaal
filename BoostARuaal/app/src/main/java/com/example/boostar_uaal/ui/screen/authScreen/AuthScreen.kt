@@ -19,7 +19,6 @@ fun AuthScreen(
     backTo: (Routes) -> Unit
 ) {
     AuthLayout(
-        imageRes = R.drawable.carrusel_auth_2,
         title = "Boostar",
         subtitle = "Try it first.",
         onBackClick = null

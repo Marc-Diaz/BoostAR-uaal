@@ -21,13 +21,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.theme.primaryButtonColor
 
 @Composable
 fun AuthLayout(
-    imageRes: Int,
     title: String,
     subtitle: String,
     onBackClick: (() -> Unit)? = null,
@@ -44,7 +44,7 @@ fun AuthLayout(
                 Box(modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()) {
-                    MediaPlayer(context, R.raw.video_auth)
+                    //MediaPlayer(context, R.raw.video_auth)
 
                     if (onBackClick != null) {
                         IconButton(
@@ -99,7 +99,7 @@ fun AuthLayout(
             }
         } else {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
-                MediaPlayer(context, R.raw.video_auth)
+                //MediaPlayer(context, R.raw.video_auth)
                 if (onBackClick != null) {
                     IconButton(
                         onClick = onBackClick,
@@ -137,7 +137,7 @@ fun AuthLayout(
                     Surface(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .shadow(elevation = 25.dp, spotColor = primaryButtonColor, ambientColor = primaryButtonColor)
+                            .shadow(elevation = 50.dp, spotColor = primaryButtonColor, ambientColor = primaryButtonColor)
                             .wrapContentHeight(),
                         color = Color.White,
                         shape = RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp)
@@ -157,4 +157,14 @@ fun AuthLayout(
             }
         }
     }
+}
+@Preview
+@Composable
+fun LayoutPRreview(){
+    AuthLayout(
+        title = "Boostar",
+        subtitle = "Try it first.",
+        onBackClick = null,
+        content = { }
+    )
 }

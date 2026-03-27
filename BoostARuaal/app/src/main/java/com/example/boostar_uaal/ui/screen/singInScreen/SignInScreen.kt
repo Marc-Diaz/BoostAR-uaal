@@ -33,7 +33,6 @@ fun SignInScreen(
         }
     }
     AuthLayout(
-        imageRes = R.drawable.carrusel_auth_2, // Tu imagen del chico con gafas
         title = "Boostar",
         subtitle = "Regístrate en el futuro.",
         onBackClick = { back() }
