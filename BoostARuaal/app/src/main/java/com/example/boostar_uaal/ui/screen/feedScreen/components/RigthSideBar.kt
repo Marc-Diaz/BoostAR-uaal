@@ -17,10 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.LocalAuthState
 import com.example.boostar_uaal.R
-import com.example.boostar_uaal.core.theme.primaryButtonColor
+import com.example.boostar_uaal.core.theme.primaryColor
 import com.example.boostar_uaal.core.utils.AuthState
 
 //Botones de la derecha de la pantalla
@@ -69,7 +68,7 @@ fun RightSideBar(
             Surface(
                 modifier = Modifier.size(57.dp),
                 shape = CircleShape,
-                color = primaryButtonColor,
+                color = primaryColor,
                 shadowElevation = 6.dp
             ) {
                 Box(

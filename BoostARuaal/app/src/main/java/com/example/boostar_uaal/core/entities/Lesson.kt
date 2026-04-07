@@ -1,12 +1,15 @@
 package com.example.boostar_uaal.core.entities
 
-data class DaylyGoal(
+
+data class Lesson(
     val id: Int,
     val title: String,
     val category: String,
     val xp: Int,
     val points: Int,
-    val isCompleted: Boolean,
-    val totalProgress: Int,
-    var currentProgress: Int
+    val icon: Int, // R.drawable...
+    val state: LessonState
 )
+enum class LessonState {
+    AVAILABLE, COMPLETED, LOCKED
+}

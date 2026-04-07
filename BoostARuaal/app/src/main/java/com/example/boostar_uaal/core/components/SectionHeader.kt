@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.R
-import com.example.boostar_uaal.core.theme.primaryButtonColor
+import com.example.boostar_uaal.core.theme.primaryColor
 import com.example.boostar_uaal.core.theme.primaryTextColor
 
 
@@ -48,7 +48,7 @@ fun SectionHeader(
             Icon(
                 painter = painterResource(id = R.drawable.baseline_arrow_forward_ios_24),
                 contentDescription = "Ver más",
-                tint = primaryButtonColor,
+                tint = primaryColor,
                 modifier = Modifier.size(22.dp)
             )
         }

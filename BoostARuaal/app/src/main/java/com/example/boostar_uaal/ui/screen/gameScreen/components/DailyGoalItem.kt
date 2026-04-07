@@ -22,10 +22,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.components.InterText
-import com.example.boostar_uaal.core.entities.DaylyGoal
+import com.example.boostar_uaal.core.entities.DailyGoal
 
 @Composable
-fun DaylyGoalItem(dailyGoal: DaylyGoal) {
+fun DailyGoalItem(dailyGoal: DailyGoal) {
     // Definición de colores según el diseño
     val greenColor = Color(0xFF00E63D)
     val grayText = Color(0xFF9E9E9E)
@@ -51,11 +51,11 @@ fun DaylyGoalItem(dailyGoal: DaylyGoal) {
 
             Column(modifier = Modifier.weight(1f)) {
                 InterText(
+                    modifier = Modifier.height(18.dp),
                     text = dailyGoal.title,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Medium,
                     color = Color.Black,
-                    // Si está completado, tachamos el texto
                     textDecoration = if (dailyGoal.isCompleted) TextDecoration.LineThrough else TextDecoration.None
                 )
                 InterText(
@@ -130,7 +130,7 @@ fun RewardLabel(icon: Int, text: String, color: Color) {
 @Preview
 @Composable
 fun PreviewDailyGoalItem(){
-    val dailyGoal = DaylyGoal(
+    val dailyGoal = DailyGoal(
         id = 0,
         title = "hola",
         category = "Tierra",
@@ -140,5 +140,5 @@ fun PreviewDailyGoalItem(){
         totalProgress = 3,
         currentProgress = 3
     )
-    DaylyGoalItem(dailyGoal)
+    DailyGoalItem(dailyGoal)
 }

@@ -44,7 +44,6 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
     val collabs by homeScreenViewModel.collabs.collectAsState()
     val partners by homeScreenViewModel.partners.collectAsState()
     val drops by homeScreenViewModel.drops.collectAsState()
-    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         homeScreenViewModel.initializeHome()
