@@ -2,7 +2,7 @@ package com.example.boostar_uaal.ui.screen.onboardingChooseScreen.components
 
 import androidx.compose.foundation.border
 import com.example.boostar_uaal.core.components.ItemImage
-import com.example.boostar_uaal.core.theme.primaryButtonColor
+import com.example.boostar_uaal.core.theme.primaryColor
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.example.boostar_uaal.core.theme.secondaryTextColor
 import com.example.core.entities.Product
 
 @Composable
@@ -33,7 +32,7 @@ fun OnboardingChooseItem(
                     .fillMaxSize()
                     .border(
                         width = 3.dp,
-                        color = if (isSelected) primaryButtonColor else Color.Transparent,
+                        color = if (isSelected) primaryColor else Color.Transparent,
                         shape = RoundedCornerShape(16.dp)
                     ),
                 shape = RoundedCornerShape(16.dp)

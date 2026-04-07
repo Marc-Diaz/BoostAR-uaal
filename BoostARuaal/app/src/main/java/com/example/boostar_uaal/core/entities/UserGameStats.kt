@@ -1,10 +1,9 @@
 package com.example.boostar_uaal.core.entities
 
-data class UserGameInformation(
+data class UserGameStats(
     var level: Int,
     var currentXp: Int,
-    var maxXp: Int,
+    var totalXp: Int,
     var points: Int,
-    var title: String,
-    var dayStreak: String,
+    var title: String
 )

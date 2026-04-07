@@ -22,7 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.painterResource
-import com.example.boostar_uaal.core.theme.primaryButtonColor
+import com.example.boostar_uaal.core.theme.primaryColor
 import com.example.boostar_uaal.R
 @Composable
 fun BottomActionDock(
@@ -56,7 +56,7 @@ fun BottomActionDock(
                 Icon(
                     painter = painterResource(R.drawable.list_icon),
                     contentDescription = "Details",
-                    tint = primaryButtonColor,
+                    tint = primaryColor,
                     modifier = Modifier.size(28.dp)
                 )
             }

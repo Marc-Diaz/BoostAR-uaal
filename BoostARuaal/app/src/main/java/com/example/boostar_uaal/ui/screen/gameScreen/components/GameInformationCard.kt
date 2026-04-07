@@ -5,7 +5,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CardDefaults
@@ -21,10 +20,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.components.InterText
-import com.example.boostar_uaal.core.theme.primaryButtonColor
+import com.example.boostar_uaal.core.entities.UserGameStats
+import com.example.boostar_uaal.core.theme.primaryColor
 
 @Composable
-fun GameUserInformationCard(){
+fun GameUserInformationCard(userStats: UserGameStats){
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -42,11 +42,11 @@ fun GameUserInformationCard(){
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Surface(
-                    color = primaryButtonColor,
+                    color = primaryColor,
                     shape = RoundedCornerShape(50.dp)
                 ) {
                     InterText(
-                        text = "Nivel 8",
+                        text = "Nivel ${userStats.level}",
                         color = Color.White,
                         modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
                         fontWeight = FontWeight.Bold,
@@ -64,14 +64,14 @@ fun GameUserInformationCard(){
                     ) {
                         Icon(
                             modifier = Modifier.size(20.dp),
-                            tint = primaryButtonColor,
+                            tint = primaryColor,
                             painter = painterResource(R.drawable.boostar_logo),
                             contentDescription = "Boostar points"
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         InterText(
-                            text = "1,240 pts",
-                            color = primaryButtonColor,
+                            text = "${userStats.points} pts",
+                            color = primaryColor,
                             fontWeight = FontWeight.Bold,
                             fontSize = 14.sp
                         )
@@ -83,13 +83,13 @@ fun GameUserInformationCard(){
 
 
             Surface(
-                color = Color.Transparent,
+                color = primaryColor.copy(alpha = 0.1f),
                 shape = RoundedCornerShape(12.dp),
-                border = BorderStroke(1.dp, primaryButtonColor.copy(alpha = 0.5f))
+                border = BorderStroke(1.dp, primaryColor.copy(alpha = 0.5f))
             ) {
                 InterText(
-                    text = "PRINCIPIANTE",
-                    color = primaryButtonColor,
+                    text = userStats.title,
+                    color = primaryColor,
                     modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
                     fontWeight = FontWeight.Black,
                     fontSize = 12.sp
@@ -105,14 +105,14 @@ fun GameUserInformationCard(){
                 verticalAlignment = Alignment.Bottom
             ) {
                 InterText(
-                    text = "3,400 / 5,000 XP",
+                    text = "${userStats.currentXp} / ${userStats.totalXp} XP",
                     color = Color.Gray,
                     fontWeight = FontWeight.Bold,
                     fontSize = 14.sp
                 )
                 InterText(
-                    text = "Nivel 9",
-                    color = primaryButtonColor,
+                    text = "Nivel ${userStats.level}",
+                    color = primaryColor,
                     fontWeight = FontWeight.Bold,
                     fontSize = 14.sp
                 )
@@ -121,14 +121,15 @@ fun GameUserInformationCard(){
             Spacer(modifier = Modifier.height(8.dp))
 
             LinearProgressIndicator(
-                progress = { 3400f / 5000f },
+                progress = { userStats.currentXp.toFloat() / userStats.totalXp.toFloat() },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(10.dp),
                 color = Color.Green,
                 trackColor = Color.LightGray,
                 strokeCap = StrokeCap.Round,
-                gapSize = (-15).dp
+                gapSize = (-15).dp,
+                drawStopIndicator = { }
             )
         }
     }
@@ -137,5 +138,12 @@ fun GameUserInformationCard(){
 @Preview
 @Composable
 fun PreviewGameUserInformationCard(){
-    GameUserInformationCard()
+    val userStats = UserGameStats(
+        level = 8,
+        currentXp = 3400,
+        totalXp = 5000,
+        points = 1240,
+        title = "PRINCIPIANTE"
+    )
+    GameUserInformationCard(userStats)
 }

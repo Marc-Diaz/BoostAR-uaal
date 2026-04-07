@@ -1,33 +1,41 @@
 package com.example.boostar_uaal.ui.screen.gameScreen.components
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.boostar_uaal.core.entities.DaylyGoal
-import com.example.boostar_uaal.core.entities.DaylyProgress
+import androidx.compose.ui.unit.dp
+import com.example.boostar_uaal.core.entities.DailyGoal
+import com.example.boostar_uaal.core.entities.DailyProgress
 
 @Composable
-fun DaylyGoalsSection(daylyProgress: DaylyProgress){
+fun DailyGoalsSection(dailyProgress: DailyProgress){
     Column() {
-        DaylyGoalsHeader()
-        DaylyProgressCard()
-        LazyColumn() {
-            items(daylyProgress.dailyGoals){ dailyGoal ->
-                DaylyGoalItem(dailyGoal)
+        DailyGoalsHeader(dailyProgress.dayStreak)
+        DailyProgressCard(
+            completedGoals = dailyProgress.completedGoals,
+            totalGoals = dailyProgress.totalGoals,
+        )
+        LazyColumn {
+            items(dailyProgress.dailyGoals){ dailyGoal ->
+                DailyGoalItem(dailyGoal)
             }
         }
+        BonusDaylyGoalCard(Modifier.padding(horizontal = 8.dp, vertical = 16.dp))
     }
 }
 @Preview(showBackground = true)
 @Composable
-fun PreviewDaylyGoalsSection(){
-    val daylyProgress = DaylyProgress(
+fun PreviewDailyGoalsSection(){
+    val dailyProgress = DailyProgress(
+        dayStreak = 12,
         completedGoals = 1,
         totalGoals = 4,
         dailyGoals = listOf(
-            DaylyGoal(
+            DailyGoal(
                 id = 0,
                 title = "Prueba 1 prenda en AR",
                 category = "Exploración",
@@ -37,9 +45,9 @@ fun PreviewDaylyGoalsSection(){
                 totalProgress = 1,
                 currentProgress = 1
             ),
-            DaylyGoal(
+            DailyGoal(
                 id = 1,
-                title = "Crea un outfit con 3 colores",
+                title = "Crea un outfit con 3 colores complementarios",
                 category = "Exploración",
                 xp = 50,
                 points = 25,
@@ -50,5 +58,5 @@ fun PreviewDaylyGoalsSection(){
             )
         )
     )
-    DaylyGoalsSection(daylyProgress)
+    DailyGoalsSection(dailyProgress)
 }
