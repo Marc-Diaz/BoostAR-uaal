@@ -21,7 +21,8 @@ fun AdaptiveFeedLayout(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(backgroundColor),
+            .background(backgroundColor)
+            .statusBarsPadding(),
         contentAlignment = Alignment.TopCenter
     ) {
 

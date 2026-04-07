@@ -13,6 +13,7 @@ import androidx.navigation3.ui.NavDisplay
 import com.example.boostar_uaal.LocalAuthState
 import com.example.boostar_uaal.core.components.BottomNavBar
 import com.example.boostar_uaal.core.utils.AuthState
+import com.example.boostar_uaal.ui.screen.ParaTiScreen.ParatiScreen
 import com.example.boostar_uaal.ui.screen.authScreen.AuthScreen
 import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreen
 import com.example.boostar_uaal.ui.screen.homeScreen.HomeScreen
@@ -98,6 +99,12 @@ fun MainNavigationWrapper() {
                     backTo = { },
                     sortOrder = b.sortOrder,
                     filters = b.filters
+                )
+            }
+
+            entry<Routes.ParatiScreen> {
+                ParatiScreen(
+                    navigateTo = { backStack.navigateTo(it) }
                 )
             }
 

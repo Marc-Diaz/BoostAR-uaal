@@ -47,8 +47,8 @@ fun PartnerCarousel(
     onItemClick: (String) -> Unit
 ) {
     LazyRow(
-        contentPadding = PaddingValues(horizontal = 24.dp), // Margen a los lados de la pantalla
-        horizontalArrangement = Arrangement.spacedBy(16.dp) // Espacio entre círculo y círculo
+        contentPadding = PaddingValues(horizontal = 24.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(partners) { partner ->
             PartnerCard(

@@ -42,7 +42,7 @@ fun HomeHeader(modifier: Modifier = Modifier) {
             color = Color(0xFFF2F2F2),
             modifier = Modifier.size(48.dp)
         ) {
-            IconButton(onClick = { /* Acción de búsqueda */ }) {
+            IconButton(onClick = {}) {
                 Icon(
                     imageVector = Icons.Default.Search,
                     contentDescription = "Buscar",

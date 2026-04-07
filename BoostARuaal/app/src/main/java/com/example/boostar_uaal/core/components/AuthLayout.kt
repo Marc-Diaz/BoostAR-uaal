@@ -32,7 +32,7 @@ fun AuthLayout(
     title: String,
     subtitle: String,
     onBackClick: (() -> Unit)? = null,
-    content: @Composable () -> Unit // Contenido de los botones personalizados
+    content: @Composable () -> Unit
 ) {
     val context = LocalContext.current
     BoxWithConstraints(modifier = Modifier

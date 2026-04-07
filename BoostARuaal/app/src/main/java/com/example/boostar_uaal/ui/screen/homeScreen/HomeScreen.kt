@@ -69,7 +69,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                 )
                 SectionHeader(
                     title = "Para ti >",
-                    onClick = { navigateTo(Routes.HomeScreen) }
+                    onClick = { navigateTo(Routes.ParatiScreen) }
                 )
 
                 ItemCarrousel(
