@@ -70,8 +70,6 @@ class AuthViewModel: ViewModel() {
             }
             is NativeSignInResult.NetworkError -> {
             }
-            else -> {
-            }
         }
     }
 

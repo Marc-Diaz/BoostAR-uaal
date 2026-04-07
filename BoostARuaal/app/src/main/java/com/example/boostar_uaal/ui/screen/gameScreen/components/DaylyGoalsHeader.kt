@@ -22,7 +22,7 @@ val AppIconBackgroundBlue = Color(0xFFE9F5FF)
 val AppIconBorderBlue = Color(0xFFB9D8FB)
 
 @Composable
-fun DailyGoalsHeader() {
+fun DaylyGoalsHeader() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -96,6 +96,6 @@ fun DailyGoalsHeader() {
 }
 @Preview
 @Composable
-fun PreviewDailyGoalsHeader(){
-    DailyGoalsHeader()
+fun PreviewDaylyGoalsHeader(){
+    DaylyGoalsHeader()
 }

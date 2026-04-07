@@ -79,7 +79,7 @@ fun RightSideBar(
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
-                        painter = painterResource(R.drawable.cart_icon),
+                        painter = painterResource(R.drawable.basket_icon),
                         contentDescription = "Cart",
                         tint = Color.Unspecified,
                         modifier = Modifier

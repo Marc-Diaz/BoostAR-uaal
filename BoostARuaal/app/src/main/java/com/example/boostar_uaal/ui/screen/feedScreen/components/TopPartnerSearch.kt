@@ -18,7 +18,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import coil3.compose.rememberAsyncImagePainter
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.components.ItemImage
 import com.example.boostar_uaal.core.entities.Partner

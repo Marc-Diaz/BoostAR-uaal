@@ -21,7 +21,7 @@ val ProgressBlue = Color(0xFF007BFF)
 val ProgressTrackGray = Color(0xFFEEEEEE)
 
 @Composable
-fun DailyProgressCard() {
+fun DaylyProgressCard() {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -80,5 +80,5 @@ fun DailyProgressCard() {
 @Preview
 @Composable
 fun PreviewDailyProgressCard(){
-    DailyProgressCard()
+    DaylyProgressCard()
 }

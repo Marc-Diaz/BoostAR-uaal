@@ -8,6 +8,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.InterText
+import com.example.boostar_uaal.core.theme.secondaryTextColor
 
 @Composable
 fun ForYouSection(){
@@ -17,7 +18,7 @@ fun ForYouSection(){
             style = TextStyle(
                 fontSize = 14.9.sp,
                 fontWeight = FontWeight(700),
-                color = Color(0xFFB6B3B3),
+                color = secondaryTextColor,
             )
         )
         ChallengeBanner()
