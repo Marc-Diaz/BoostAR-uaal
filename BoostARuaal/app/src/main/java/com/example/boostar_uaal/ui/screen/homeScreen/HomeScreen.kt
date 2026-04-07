@@ -28,6 +28,7 @@ import com.example.boostar_uaal.core.components.BottomNavBar
 import com.example.boostar_uaal.core.components.DropCard
 import com.example.boostar_uaal.core.components.HomeBannerEventsEstatic
 import com.example.boostar_uaal.core.components.PartnerCarousel
+import com.example.boostar_uaal.data.models.ProductFilter
 import com.example.boostar_uaal.data.models.SortOrder
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabCarousel
 
@@ -64,7 +65,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                 )
                 HomeHero(
                     banners = banners,
-                    onTryArClick = { homeScreenViewModel.onTryArClick(context) }
+                    onTryArClick = {  }
                 )
                 SectionHeader(
                     title = "Para ti >",
@@ -72,7 +73,6 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                 )
 
                 ItemCarrousel(
-
                     products = productsForYou,
                     onItemClick = { productId -> navigateTo(
                         Routes.FeedScreen(productId, SortOrder.FORYOU)) },
@@ -171,7 +171,8 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                 )
                 ItemCarrousel(
                     products = productsDiscounts,
-                    onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId, SortOrder.DISCOUNT)) },
+                    onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId, SortOrder.DISCOUNT, listOf(
+                        ProductFilter.DISCOUNT))) },
                     onLikeClick = { homeScreenViewModel.toggleLike(it) }
                 )
 

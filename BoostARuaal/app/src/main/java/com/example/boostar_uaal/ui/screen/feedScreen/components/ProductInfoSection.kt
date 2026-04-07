@@ -14,8 +14,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RadialGradient
+import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
@@ -39,7 +44,12 @@ fun ProductInfoSection(
             Surface(
                 color = Color.White,
                 shape = RoundedCornerShape(40),
-                modifier = Modifier.padding(bottom = 6.dp)
+                modifier = Modifier
+                    .padding(bottom = 6.dp)
+                    .shadow(
+                        shape = RoundedCornerShape(40),
+                        elevation = 2.dp
+                    )
             ) {
                 Text(
                     text = "Oferta",
@@ -51,7 +61,6 @@ fun ProductInfoSection(
             }
 
         }
-
         InterText(
             modifier = Modifier
                 .height(24.dp),
@@ -59,6 +68,13 @@ fun ProductInfoSection(
             color = Color.White,
             fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
+            style = TextStyle(
+                shadow = Shadow(
+                    color = Color.Black,
+                    offset = Offset(4f, 4f),
+                    blurRadius = 16f
+                )
+            )
         )
 
         // Precio
@@ -69,6 +85,13 @@ fun ProductInfoSection(
                     color = discountColor,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
+                    style = TextStyle(
+                        shadow = Shadow(
+                            color = Color.Black,
+                            offset = Offset(4f, 4f),
+                            blurRadius = 16f
+                        )
+                    )
                 )
                 Spacer(modifier = Modifier.width(8.dp))
             }
@@ -76,7 +99,14 @@ fun ProductInfoSection(
                 text = "$price€",
                 color = Color.White.copy(alpha = 0.8f),
                 fontSize = 14.sp,
-                textDecoration = if (discountPrice != null) TextDecoration.LineThrough else TextDecoration.None
+                style = TextStyle(
+                    textDecoration = if (discountPrice != null) TextDecoration.LineThrough else TextDecoration.None,
+                    shadow = Shadow(
+                        color = Color.Black,
+                        offset = Offset(4f, 4f),
+                        blurRadius = 16f
+                    )
+                )
             )
         }
 

@@ -38,6 +38,7 @@ import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.LocalAuthState
 import com.example.boostar_uaal.core.theme.secondaryTextColor
 import com.example.boostar_uaal.core.utils.AuthState
+import com.example.boostar_uaal.core.utils.formatLikes
 
 import com.example.core.entities.Product
 
@@ -122,7 +123,7 @@ fun ItemCard(
                     modifier = Modifier.size(20.dp)
                 )
                 InterText(
-                    text = product.numLikes.toString(),
+                    text = product.numLikes.formatLikes(),
                     fontSize = 11.sp,
                     color = Color.Black
                 )

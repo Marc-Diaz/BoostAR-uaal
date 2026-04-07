@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.theme.secondaryTextColor
@@ -32,7 +33,7 @@ fun OnboardingChooseItem(
                     .fillMaxSize()
                     .border(
                         width = 3.dp,
-                        color = if (isSelected) primaryButtonColor else secondaryTextColor,
+                        color = if (isSelected) primaryButtonColor else Color.Transparent,
                         shape = RoundedCornerShape(16.dp)
                     ),
                 shape = RoundedCornerShape(16.dp)

@@ -3,8 +3,10 @@ package com.example.boostar_uaal.data.repository
 import android.util.Log
 import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.repository.ProductRepository
+import com.example.boostar_uaal.data.models.ProductFilter
 import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.components.OnboardingStep
 import com.example.core.entities.Product
+import com.snap.camerakit.internal.pu
 import io.github.jan.supabase.postgrest.Postgrest
 import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.buildJsonObject
@@ -34,7 +36,8 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
     }
     override suspend fun getProducts(
         sortMode: String,
-        refId: Int?,
+        filters: List<String>,
+        refId: Int?
     ): List<Product> {
         return try {
             val response = postgrest.rpc(
@@ -42,6 +45,7 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
                 parameters = buildJsonObject {
                     put("p_sort_mode", sortMode)
                     if (refId != null) put("p_ref_id", refId) else put("p_ref_id", JsonNull)
+                    put("p_only_discounts", filters.contains(ProductFilter.DISCOUNT))
                     put("p_page_size", carrouselPageSize)
                 }
             ).decodeList<Product>()
@@ -54,6 +58,7 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
     }
     override suspend fun getFeedProducts(
         sortMode: String,
+        filters: List<String>,
         refId: Int?,
         direction: String,
     ): List<ProductDetail> {
@@ -62,9 +67,10 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
                 function = "get_feed_products",
                 parameters = buildJsonObject {
                     put("p_sort_mode", sortMode)
+                    put("p_only_discounts", filters.contains(ProductFilter.DISCOUNT))
                     if (refId != null) put("p_ref_id", refId) else put("p_ref_id", JsonNull)
                     put("p_direction", direction)
-                    put("p_limit", feedPageSize)
+                    put("p_page_size", feedPageSize)
                 }
             ).decodeList<ProductDetail>()
 
@@ -82,7 +88,7 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
         ).decodeList<Product>()
 
         var steps = response
-        steps = steps.shuffled()
+        steps = steps + steps
         return listOf(
             OnboardingStep(
                 id = "tops",

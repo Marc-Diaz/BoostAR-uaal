@@ -30,12 +30,13 @@ fun FeedScreen(
     navigateTo: (Routes) -> Unit,
     back: () -> Unit,
     backTo: (Routes) -> Unit,
-    sortOrder: String
+    sortOrder: String,
+    filters: List<String>
 
 ) {
     val feedViewModel = viewModel<FeedScreenViewModel>(
         key = sortOrder,
-        factory = FeedScreenViewModelFactory(sortOrder)
+        factory = FeedScreenViewModelFactory(sortOrder, filters)
     )
     val products by feedViewModel.products.collectAsState()
     val lastSelectedIndex by feedViewModel.lastSelectedIndex.collectAsState()

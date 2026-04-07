@@ -19,13 +19,10 @@ import com.example.boostar_uaal.core.repository.UserRepository
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class FeedScreenViewModel(private val sortOrder: String) : ViewModel() {
-
+class FeedScreenViewModel(private val sortOrder: String, private val productFilters: List<String>) : ViewModel() {
     private val productRepository: ProductRepository = BoostArApplication.productRepository
     private val likeRepository: LikeRepository = BoostArApplication.likeRepository
     private val cartRepository: CartRepository = BoostArApplication.cartRepository
-    private val userRepository: UserRepository = BoostArApplication.userRepository
-
     private val _products = MutableStateFlow<List<ProductDetail>>(emptyList())
     val products: StateFlow<List<ProductDetail>> = _products.asStateFlow()
 
@@ -34,9 +31,6 @@ class FeedScreenViewModel(private val sortOrder: String) : ViewModel() {
 
     private var _showDialog: MutableStateFlow<Boolean> = MutableStateFlow<Boolean>(false)
     val showDialog: StateFlow<Boolean> = _showDialog.asStateFlow()
-
-    private var _isUserAuthenticated: MutableStateFlow<Boolean> = MutableStateFlow<Boolean>(false)
-    val isUserAuthenticated: StateFlow<Boolean> = _isUserAuthenticated.asStateFlow()
 
     fun initializeFeed(initialProductId: Int? = null) {
         loadInitialProducts(initialProductId)
@@ -71,29 +65,28 @@ class FeedScreenViewModel(private val sortOrder: String) : ViewModel() {
     }
 
     fun loadNextPage() {
-        Log.d("Productos ViewModel swipe next", "LLEGA")
         viewModelScope.launch {
             try {
                 val lastId = _products.value.lastOrNull()?.id
                 val newItems = productRepository.getFeedProducts(
                     sortMode = sortOrder,
+                    filters = productFilters,
                     refId = lastId,
                     direction = "next"
                 )
                 _products.value = (_products.value + newItems).distinctBy { it.id }
             } catch (e: Exception) {
-                Log.e("FeedScreenViewModel", "Error cargando siguientes: ${e.message}")
             }
         }
     }
 
     fun loadPrevPage() {
-
         viewModelScope.launch {
             try {
                 val firstId = _products.value.firstOrNull()?.id ?: return@launch
                 val newItems = productRepository.getFeedProducts(
                     sortMode = sortOrder,
+                    filters = productFilters,
                     refId = firstId,
                     direction = "prev"
                 )

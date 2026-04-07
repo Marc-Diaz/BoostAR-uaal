@@ -21,10 +21,14 @@ import android.util.Log
 import androidx.compose.material3.IconButton
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.ui.graphics.Color
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.utils.CameraKitConfig
 import com.snap.camerakit.lenses.LensesComponent
@@ -38,6 +42,7 @@ fun ArScreen(
     lensId: String,
     onPermissionDenied: () -> Unit = {}
 ) {
+    val arScreenViewModel = viewModel<ArScreenViewModel>()
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
     val cameraPermissionState = rememberPermissionState(Manifest.permission.CAMERA)
@@ -46,23 +51,16 @@ fun ArScreen(
         CameraXImageProcessorSource(context = context, lifecycleOwner = lifecycleOwner)
     }
     val cameraKitSession = remember { mutableStateOf<Session?>(null) }
+    val facingFront by arScreenViewModel.facingFront.collectAsState()
 
     DisposableEffect(Unit) {
         onDispose { cameraKitSession.value?.close() }
     }
 
-    Box(){
-        IconButton(
-            onClick = { back },
-            content = { Icon(
-                Icons.AutoMirrored.Filled.ArrowBack,
-                contentDescription = "Arrow Back",
-                tint = Color.Gray
-            ) }
-        )
+    Scaffold(){ paddingValues ->
         when {
             cameraPermissionState.status.isGranted -> {
-                imageProcessorSource.startPreview(true)
+                imageProcessorSource.startPreview(facingFront)
                 AndroidView(
                     factory = { ctx ->
                         LayoutInflater.from(ctx).inflate(R.layout.camera_layout, null).apply {
@@ -78,9 +76,6 @@ fun ArScreen(
                                         groupId = lensGroupId.trim(),
                                     )
                                 ) { result ->
-                                    Log.d("LENSES GroupId", lensGroupId)
-                                    Log.d("LENSES LensId", lensId)
-                                    Log.d("LENSES result", "$result")
                                     result.whenHasFirst { requestedLens ->
                                         lenses.processor.apply(requestedLens)
                                     }
@@ -90,6 +85,16 @@ fun ArScreen(
                     },
                     modifier = Modifier.fillMaxSize()
                 )
+                Box(modifier = Modifier.padding(paddingValues)){
+                    IconButton(
+                        onClick = { arScreenViewModel.toggleCamera() },
+                        content = { Icon(
+                            Icons.Default.Refresh,
+                            contentDescription = "Arrow Back",
+                            tint = Color.Gray
+                        ) }
+                    )
+                }
             }
             cameraPermissionState.status.shouldShowRationale -> onPermissionDenied()
             else -> LaunchedEffect(Unit) { cameraPermissionState.launchPermissionRequest() }

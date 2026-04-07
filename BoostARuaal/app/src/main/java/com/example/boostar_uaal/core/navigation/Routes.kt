@@ -1,6 +1,7 @@
 package com.example.boostar_uaal.core.navigation
 
 import androidx.navigation3.runtime.NavKey
+import com.example.boostar_uaal.data.models.SortOrder
 import kotlinx.serialization.Serializable
 sealed class Routes: NavKey {
     @Serializable
@@ -10,7 +11,7 @@ sealed class Routes: NavKey {
     data object BasketScreen: Routes()
 
     @Serializable
-    data class FeedScreen(val productId: Int? = null, val sortOrder: String): Routes()
+    data class FeedScreen(val productId: Int? = null, val sortOrder: String = SortOrder.FORYOU, val filters: List<String> = emptyList()): Routes()
 
     @Serializable
     data object HomeScreen: Routes()

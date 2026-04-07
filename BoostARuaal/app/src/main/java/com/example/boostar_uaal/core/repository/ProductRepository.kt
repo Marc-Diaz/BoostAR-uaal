@@ -15,12 +15,14 @@ interface ProductRepository {
 
     suspend fun getFeedProducts(
         sortMode: String,
+        filters: List<String> = emptyList(),
         refId: Int? = null,
         direction: String,
     ): List<ProductDetail>
 
     suspend fun getProducts(
         sortMode: String,
-        refId: Int? = null,
+        filters: List<String> = emptyList(),
+        refId: Int? = null
     ): List<Product>
 }

@@ -91,14 +91,13 @@ fun MainNavigationWrapper() {
                 )
             }
             entry<Routes.FeedScreen> { b ->
-                val sortOrder = b.sortOrder
                 FeedScreen(
                     productId = b.productId,
-
                     navigateTo = { backStack.navigateTo(it)  },
                     back = { },
                     backTo = { },
-                    sortOrder = sortOrder
+                    sortOrder = b.sortOrder,
+                    filters = b.filters
                 )
             }
 

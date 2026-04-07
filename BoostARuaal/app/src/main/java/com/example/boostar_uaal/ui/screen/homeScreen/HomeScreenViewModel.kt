@@ -12,6 +12,7 @@ import com.example.boostar_uaal.core.entities.PartnerData
 import com.example.boostar_uaal.core.repository.LikeRepository
 import com.example.boostar_uaal.core.repository.PartnerRepository
 import com.example.boostar_uaal.core.repository.UserRepository
+import com.example.boostar_uaal.data.models.ProductFilter
 import com.example.boostar_uaal.data.models.SortOrder
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabData
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
@@ -26,7 +27,6 @@ class HomeScreenViewModel : ViewModel() {
     private val productRepository = BoostArApplication.productRepository
     private val likeRepository: LikeRepository = BoostArApplication.likeRepository
     private val partnerRepository: PartnerRepository = BoostArApplication.partnerRepository
-    private val userRepository: UserRepository = BoostArApplication.userRepository
     private val _productsForYou = MutableStateFlow<List<Product>>(emptyList())
     val productsForYou: StateFlow<List<Product>> = _productsForYou.asStateFlow()
     private val _productsTrends = MutableStateFlow<List<Product>>(emptyList())
@@ -42,9 +42,6 @@ class HomeScreenViewModel : ViewModel() {
     val partners: StateFlow<List<PartnerData>> = _partners.asStateFlow()
     private val _drops = MutableStateFlow<List<DropData>>(emptyList())
     val drops: StateFlow<List<DropData>> = _drops.asStateFlow()
-
-    private var _isUserAuthenticated: MutableStateFlow<Boolean> = MutableStateFlow<Boolean>(false)
-    val isUserAuthenticated: StateFlow<Boolean> = _isUserAuthenticated.asStateFlow()
 
     fun initializeHome(){
         loadProducts()
@@ -81,7 +78,8 @@ class HomeScreenViewModel : ViewModel() {
     private fun loadProductsDiscounts(){
         viewModelScope.launch {
             _productsDiscounts.value = productRepository.getProducts(
-                sortMode = SortOrder.DISCOUNT
+                sortMode = SortOrder.DISCOUNT,
+                filters = listOf(ProductFilter.DISCOUNT)
             )
         }
     }
@@ -108,12 +106,6 @@ class HomeScreenViewModel : ViewModel() {
             )
         )
     }
-
-    fun onTryArClick(context: Context) {
-        Log.d("HomeScreenViewModel", "El usuario quiere probar la cámara AR")
-    }
-
-
     private fun loadCollabs() {
         _collabs.value = listOf(
             CollabData(
@@ -175,22 +167,17 @@ class HomeScreenViewModel : ViewModel() {
     }
 
     fun reserveDrop(dropId: Int) {
-        // Aquí iría la lógica para añadir a la cesta o reservar
         Log.d("ViewModel", "Reservando el drop con ID: $dropId")
     }
 
     private fun loadDrops() {
-        // Calculamos el tiempo actual en milisegundos
         val now = System.currentTimeMillis()
-
-        // Acaba dentro de 2 días, 14 horas, 32 min y 25 seg
-        val futureTime1 =
-            now + (2L * 24 * 60 * 60 * 1000) + (14L * 60 * 60 * 1000) + (32L * 60 * 1000) + (25L * 1000)
+        val futureTime1 = now + (2L * 24 * 60 * 60 * 1000) + (14L * 60 * 60 * 1000) + (32L * 60 * 1000) + (25L * 1000)
 
         _drops.value = listOf(
             DropData(
                 id = 1,
-                imageRes = R.drawable.colab_2, // Tu imagen real
+                imageRes = R.drawable.colab_2,
                 status = "• PRONTO DISPONIBLE",
                 statusColor = Color(0xFFC7843B),
                 title = "Regular jeans",

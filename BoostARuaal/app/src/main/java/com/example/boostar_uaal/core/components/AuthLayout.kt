@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.theme.primaryButtonColor
+import com.example.boostar_uaal.core.utils.glow
 
 @Composable
 fun AuthLayout(
@@ -44,7 +45,7 @@ fun AuthLayout(
                 Box(modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()) {
-                    //MediaPlayer(context, R.raw.video_auth)
+                    MediaPlayer(context, R.raw.video_auth)
 
                     if (onBackClick != null) {
                         IconButton(
@@ -82,7 +83,10 @@ fun AuthLayout(
 
                 Surface(modifier = Modifier
                     .weight(1f)
-                    .shadow(elevation = 25.dp, spotColor = primaryButtonColor, ambientColor = primaryButtonColor)
+                    .glow(
+                        color = primaryButtonColor,
+                        blurRadius = 30.dp
+                    )
                     .fillMaxHeight(), color = Color.White) {
                     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
                         Column(
@@ -99,7 +103,7 @@ fun AuthLayout(
             }
         } else {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
-                //MediaPlayer(context, R.raw.video_auth)
+                MediaPlayer(context, R.raw.video_auth)
                 if (onBackClick != null) {
                     IconButton(
                         onClick = onBackClick,
@@ -137,7 +141,10 @@ fun AuthLayout(
                     Surface(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .shadow(elevation = 50.dp, spotColor = primaryButtonColor, ambientColor = primaryButtonColor)
+                            .glow(
+                                color = primaryButtonColor,
+                                blurRadius = 30.dp
+                            )
                             .wrapContentHeight(),
                         color = Color.White,
                         shape = RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp)
@@ -160,7 +167,7 @@ fun AuthLayout(
 }
 @Preview
 @Composable
-fun LayoutPRreview(){
+fun LayoutPreview(){
     AuthLayout(
         title = "Boostar",
         subtitle = "Try it first.",
