@@ -113,6 +113,7 @@ fun MainNavigationWrapper() {
                 ArScreen(
                     back = { backStack.back() },
                     lensId = b.lensId,
+                    product = b.product,
                     onPermissionDenied = { backStack.back() }
                 )
             }

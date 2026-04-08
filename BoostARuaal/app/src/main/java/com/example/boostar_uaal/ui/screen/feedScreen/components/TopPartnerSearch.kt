@@ -34,8 +34,9 @@ fun TopPartnerSearch(modifier: Modifier = Modifier, partner: Partner, onShareCli
         IconButton(
             onClick = { onPartnerClick()},
             modifier = Modifier
-                .size(32.dp)
+                .size(40.dp)
                 .background(Color.White,CircleShape)
+                .padding(0.dp)
         ) {
             ItemImage(
                 url =partner.logoUrl,

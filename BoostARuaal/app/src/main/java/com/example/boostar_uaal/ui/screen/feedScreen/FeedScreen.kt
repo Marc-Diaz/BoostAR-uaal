@@ -21,11 +21,9 @@ import com.example.boostar_uaal.core.navigation.NavItem
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.ui.screen.feedScreen.components.FeedItem
 import com.example.boostar_uaal.ui.screen.feedScreen.components.ProductDetailsDialog
-import com.snap.camerakit.internal.fe
 
 @Composable
 fun FeedScreen(
-
     productId: Int?,
     navigateTo: (Routes) -> Unit,
     back: () -> Unit,
@@ -92,7 +90,8 @@ fun FeedScreen(
                             onTryArClick = {
                                 navigateTo(Routes.ArScreen(
                                     lensId = currentProduct.model,
-                                    grouLensId = "4ceedef4-a19f-47c9-a85b-08b97efda6c1")
+                                    product = currentProduct
+                                )
                                 )
                             },
                             onQuickPayClick = { },

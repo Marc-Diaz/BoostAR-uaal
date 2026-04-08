@@ -1,8 +1,6 @@
 package com.example.boostar_uaal.ui.screen.arScreen
 
 import android.view.LayoutInflater
-
-
 import android.view.ViewStub
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -17,28 +15,25 @@ import com.snap.camerakit.Session
 import com.snap.camerakit.invoke
 import com.snap.camerakit.support.camerax.CameraXImageProcessorSource
 import android.Manifest
-import android.util.Log
-import androidx.compose.material3.IconButton
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.boostar_uaal.R
+import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.utils.CameraKitConfig
+import com.example.boostar_uaal.ui.screen.arScreen.components.CameraControlsOverlay
+import com.example.boostar_uaal.ui.screen.arScreen.components.ProductInformationTopBar
+import com.example.boostar_uaal.ui.screen.feedScreen.components.ProductDetailsDialog
 import com.snap.camerakit.lenses.LensesComponent
 import com.snap.camerakit.lenses.whenHasFirst
 
-// CameraKitScreen.kt
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun ArScreen(
     back: () -> Unit,
+    product: ProductDetail,
     lensId: String,
     onPermissionDenied: () -> Unit = {}
 ) {
@@ -52,12 +47,13 @@ fun ArScreen(
     }
     val cameraKitSession = remember { mutableStateOf<Session?>(null) }
     val facingFront by arScreenViewModel.facingFront.collectAsState()
+    val showDialog by arScreenViewModel.showDialog.collectAsState()
 
     DisposableEffect(Unit) {
         onDispose { cameraKitSession.value?.close() }
     }
 
-    Scaffold(){ paddingValues ->
+    Scaffold { paddingValues ->
         when {
             cameraPermissionState.status.isGranted -> {
                 imageProcessorSource.startPreview(facingFront)
@@ -85,14 +81,24 @@ fun ArScreen(
                     },
                     modifier = Modifier.fillMaxSize()
                 )
-                Box(modifier = Modifier.padding(paddingValues)){
-                    IconButton(
-                        onClick = { arScreenViewModel.toggleCamera() },
-                        content = { Icon(
-                            Icons.Default.Refresh,
-                            contentDescription = "Arrow Back",
-                            tint = Color.Gray
-                        ) }
+                Column(modifier = Modifier.padding(paddingValues).fillMaxSize()){
+                    ProductInformationTopBar(
+                        partner = product.partner,
+                        productName = product.name,
+                        productLikes = product.numLikes
+                    )
+                    CameraControlsOverlay(
+                        onFlipCamera = { arScreenViewModel.flipCamera()},
+                        onDetailClick = { arScreenViewModel.openDialog() }
+                    )
+
+                }
+                if (showDialog){
+                    ProductDetailsDialog(
+                        product = product,
+                        onDismiss = {
+                            arScreenViewModel.closeDialog()
+                        }
                     )
                 }
             }

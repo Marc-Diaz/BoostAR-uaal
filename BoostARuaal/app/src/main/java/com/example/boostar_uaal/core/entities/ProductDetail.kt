@@ -10,7 +10,7 @@ data class ProductDetail(
     val discountPrice: Double? = null,
     val brand: Brand,
     val style: Style,
-    var numLikes: Int,
+    var numLikes: Long,
     var isLiked: Boolean,
     val coverImage: String,
     val multimedia: List<Multimedia>,

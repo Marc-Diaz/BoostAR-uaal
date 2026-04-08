@@ -1,9 +1,12 @@
 package com.example.boostar_uaal.core.navigation
 
 import androidx.navigation3.runtime.NavKey
+import com.example.boostar_uaal.core.entities.Partner
+import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.data.models.SortOrder
+import com.example.core.entities.Product
 import kotlinx.serialization.Serializable
-sealed class Routes: NavKey {
+sealed class    Routes: NavKey {
     @Serializable
     data object AuthScreen: Routes()
 
@@ -36,7 +39,7 @@ sealed class Routes: NavKey {
     @Serializable
     data object ProfileScreen: Routes()
     @Serializable
-    data class ArScreen(val lensId: String, val grouLensId: String): Routes()
+    data class ArScreen(val lensId: String, val product: ProductDetail): Routes()
 
     @Serializable
     data object ParatiScreen: Routes()
