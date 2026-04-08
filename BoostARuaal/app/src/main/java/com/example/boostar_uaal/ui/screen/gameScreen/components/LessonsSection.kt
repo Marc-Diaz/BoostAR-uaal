@@ -3,7 +3,6 @@ package com.example.boostar_uaal.ui.screen.gameScreen.components
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,28 +15,25 @@ import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.entities.Lesson
 import com.example.boostar_uaal.core.entities.LessonState
-import com.example.boostar_uaal.core.theme.secondaryTextColor
+import com.example.boostar_uaal.core.theme.secondaryColor
 
 @Composable
-fun LessonSection(lessons: List<Lesson>){
-    Column {
+fun LessonSection(modifier: Modifier = Modifier, lessons: List<Lesson>){
+    Column(modifier) {
         InterText(
-            modifier = Modifier.padding(start = 48.dp),
-            text = "ÁREAS DE CONOCIMIENTO",
-            style = TextStyle(
-                fontSize = 14.9.sp,
-                fontWeight = FontWeight(700),
-                color = secondaryTextColor,
-            )
+            modifier = Modifier.padding(start = 20.dp),
+            text = "LECCIONES DISPONIBLES",
+            color = secondaryColor,
+            fontSize = 14.9.sp,
+            fontWeight = FontWeight(700)
         )
-        LazyColumn() {
-            items(lessons){ area ->
-                LessonCard(area)
-            }
+
+        lessons.forEach{  lesson ->
+            LessonCard(lesson)
         }
     }
 }
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun PreviewLessonSection(){
     val lessons = listOf(
@@ -78,5 +74,5 @@ fun PreviewLessonSection(){
             state = LessonState.LOCKED
         )
     )
-    LessonSection(lessons)
+    LessonSection(lessons = lessons)
 }

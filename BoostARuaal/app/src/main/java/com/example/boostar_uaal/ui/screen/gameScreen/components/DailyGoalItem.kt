@@ -51,7 +51,7 @@ fun DailyGoalItem(dailyGoal: DailyGoal) {
 
             Column(modifier = Modifier.weight(1f)) {
                 InterText(
-                    modifier = Modifier.height(18.dp),
+                    modifier = Modifier.height(22.dp),
                     text = dailyGoal.title,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Medium,

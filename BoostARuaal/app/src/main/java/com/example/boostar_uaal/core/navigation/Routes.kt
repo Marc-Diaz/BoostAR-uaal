@@ -47,6 +47,7 @@ sealed class Routes: NavKey {
     @Serializable
     data object TendenciasScreen: Routes()
 
-
+    @Serializable
+    data class ChallengeScreen(val challengeId: Int): Routes()
 
 }

@@ -1,16 +1,11 @@
 package com.example.boostar_uaal.ui.screen.feedScreen.components
-import android.widget.Button
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,8 +19,7 @@ import com.example.boostar_uaal.core.entities.Partner
 import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.entities.Style
 import com.example.boostar_uaal.core.entities.TypeMultimedia
-import com.example.boostar_uaal.core.theme.brandPrimaryColor
-import com.example.boostar_uaal.core.theme.secondaryButtonColor
+import com.example.boostar_uaal.core.theme.tertiaryColor
 
 @Composable
 fun ProductDetailsDialog(
@@ -82,7 +76,7 @@ fun ProductDetailsDialog(
                         .fillMaxWidth()
                         .height(80.dp)
                         .padding(10.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = brandPrimaryColor),
+                    colors = ButtonDefaults.buttonColors(containerColor = tertiaryColor),
                     shape = RoundedCornerShape(33.dp)
                 ) {
                     InterText("Volver", color = Color.White, fontWeight = FontWeight.Bold)

@@ -23,6 +23,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.boostar_uaal.core.components.InterText
 
 @Composable
 fun BonusDaylyGoalCard(modifier: Modifier = Modifier) {
@@ -50,7 +51,7 @@ fun BonusDaylyGoalCard(modifier: Modifier = Modifier) {
             .padding(horizontal = 16.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(
+        InterText(
             text = "🎯",
             fontSize = 24.sp
         )

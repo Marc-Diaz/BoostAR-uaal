@@ -33,7 +33,6 @@ class GameScreenViewModel: ViewModel() {
         _daylyGoals.value = DailyProgress(
             dayStreak = 12,
             completedGoals = 1,
-            totalGoals = 4,
             dailyGoals = listOf(
                 DailyGoal(
                     id = 0,
@@ -88,21 +87,21 @@ class GameScreenViewModel: ViewModel() {
                 title = "Fits",
                 percentage = 25,
                 color = Color(0xFF0080FF),
-                image = R.drawable.boostar_logo
+                image = R.drawable.shirt
             ),
             KnowledgeArea(
                 id = 2,
                 title = "Color",
                 percentage = 68,
                 color = Color(0xFFFF00DD),
-                image = R.drawable.heart_icon
+                image = R.drawable.colors
             ),
             KnowledgeArea(
                 id = 3,
                 title = "Estilo",
                 percentage = 43,
                 color = Color(0xFFFFD900),
-                image = R.drawable.basket_icon
+                image = R.drawable.wand
             )
         )
     }

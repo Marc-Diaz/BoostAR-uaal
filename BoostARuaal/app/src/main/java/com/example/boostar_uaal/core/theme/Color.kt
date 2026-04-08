@@ -12,6 +12,6 @@ val primaryColor= Color(red = 0, green = 128, blue = 255)
 val secondaryButtonColor = Color(red = 255, green = 255, blue = 255)
 val discountColor = Color(red = 255, green = 23, blue = 68)
 val primaryTextColor = Color.Black
-val secondaryTextColor = Color.LightGray
-val brandPrimaryColor = Color(red = 255, green = 82, blue = 71)
+val secondaryColor = Color(0xFF6C757D)
+val tertiaryColor = Color(red = 255, green = 82, blue = 71)
 val brandSecondaryColor = Color(red = 255, green = 241, blue = 0)

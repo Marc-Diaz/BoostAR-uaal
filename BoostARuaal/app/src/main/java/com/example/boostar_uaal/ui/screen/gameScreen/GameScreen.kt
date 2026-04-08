@@ -1,6 +1,8 @@
 package com.example.boostar_uaal.ui.screen.gameScreen
 
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -9,6 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.boostar_uaal.core.components.AdaptiveFeedLayout
 import com.example.boostar_uaal.core.components.BottomNavBar
@@ -52,11 +55,11 @@ fun GameScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) 
                     GameUserInformationCard(userStats)
                 }
                 dailyProgress?.let { daylyProgress ->
-                    DailyGoalsSection(daylyProgress)
+                    DailyGoalsSection(dailyProgress = daylyProgress)
                 }
-                ForYouSection(challenge)
+                ForYouSection(challenge = challenge, onChallengeStart = { navigateTo(Routes.ChallengeScreen(it))})
                 KnowledgeSection(knowledgeArea)
-                LessonSection(lessons)
+                LessonSection(lessons = lessons)
 
             }
         }

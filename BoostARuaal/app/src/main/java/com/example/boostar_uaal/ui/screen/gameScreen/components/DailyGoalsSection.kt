@@ -12,17 +12,15 @@ import com.example.boostar_uaal.core.entities.DailyGoal
 import com.example.boostar_uaal.core.entities.DailyProgress
 
 @Composable
-fun DailyGoalsSection(dailyProgress: DailyProgress){
-    Column() {
-        DailyGoalsHeader(dailyProgress.dayStreak)
+fun DailyGoalsSection(modifier: Modifier = Modifier, dailyProgress: DailyProgress){
+    Column(modifier) {
+        DailyGoalsHeader(day = dailyProgress.day, dayStreak = dailyProgress.dayStreak)
         DailyProgressCard(
             completedGoals = dailyProgress.completedGoals,
             totalGoals = dailyProgress.totalGoals,
         )
-        LazyColumn {
-            items(dailyProgress.dailyGoals){ dailyGoal ->
-                DailyGoalItem(dailyGoal)
-            }
+        dailyProgress.dailyGoals.forEach { dailyGoal ->
+            DailyGoalItem(dailyGoal)
         }
         BonusDaylyGoalCard(Modifier.padding(horizontal = 8.dp, vertical = 16.dp))
     }
@@ -33,7 +31,6 @@ fun PreviewDailyGoalsSection(){
     val dailyProgress = DailyProgress(
         dayStreak = 12,
         completedGoals = 1,
-        totalGoals = 4,
         dailyGoals = listOf(
             DailyGoal(
                 id = 0,
@@ -58,5 +55,5 @@ fun PreviewDailyGoalsSection(){
             )
         )
     )
-    DailyGoalsSection(dailyProgress)
+    DailyGoalsSection(dailyProgress = dailyProgress)
 }

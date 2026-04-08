@@ -14,14 +14,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.InterText
+import com.example.boostar_uaal.core.theme.primaryColor
+import com.example.boostar_uaal.core.theme.secondaryColor
 
-val AppBlue = Color(0xFF007BFF)
-val AppTextGray = Color(0xFF6C757D)
-val AppIconBackgroundBlue = Color(0xFFE9F5FF)
-val AppIconBorderBlue = Color(0xFFB9D8FB)
+
+
 
 @Composable
-fun DailyGoalsHeader(dayStreak: Int) {
+fun DailyGoalsHeader(day: String, dayStreak: Int) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -29,8 +29,8 @@ fun DailyGoalsHeader(dayStreak: Int) {
         horizontalAlignment = Alignment.Start
     ) {
         InterText(
-            text = "HOY - MARTES",
-            color = AppTextGray,
+            text = "HOY - $day",
+            color = secondaryColor,
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 8.dp)
@@ -44,16 +44,16 @@ fun DailyGoalsHeader(dayStreak: Int) {
             Column {
                 InterText(
                     text = "Objetivos diarios",
-                    color = AppBlue,
-                    fontSize = 26.sp,
+                    color = primaryColor,
+                    fontSize = 24.sp,
                     fontWeight = FontWeight.ExtraBold,
                     letterSpacing = (-0.5).sp
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 InterText(
                     text = "Se renuevan cada 24 horas",
-                    color = AppTextGray,
-                    fontSize = 14.sp,
+                    color = secondaryColor,
+                    fontSize = 12.sp,
                     fontWeight = FontWeight.Normal
                 )
             }
@@ -61,9 +61,9 @@ fun DailyGoalsHeader(dayStreak: Int) {
             Card(
                 shape = RoundedCornerShape(16.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = AppIconBackgroundBlue
+                    containerColor = Color(0xFFE9F5FF)
                 ),
-                border = BorderStroke(1.dp, AppIconBorderBlue),
+                border = BorderStroke(1.dp, Color(0xFFB9D8FB)),
                 modifier = Modifier
                     .padding(start = 16.dp)
                     .widthIn(min = 100.dp)
@@ -76,14 +76,14 @@ fun DailyGoalsHeader(dayStreak: Int) {
                     Spacer(modifier = Modifier.width(8.dp))
                     InterText(
                         text = "$dayStreak",
-                        color = AppBlue,
+                        color = primaryColor,
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.width(4.dp))
                     InterText(
                         text = "Días",
-                        color = AppBlue,
+                        color = primaryColor,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
                     )
@@ -95,5 +95,5 @@ fun DailyGoalsHeader(dayStreak: Int) {
 @Preview(showBackground = true)
 @Composable
 fun PreviewDailyGoalsHeader(){
-    DailyGoalsHeader(12)
+    DailyGoalsHeader("Lunes",12)
 }

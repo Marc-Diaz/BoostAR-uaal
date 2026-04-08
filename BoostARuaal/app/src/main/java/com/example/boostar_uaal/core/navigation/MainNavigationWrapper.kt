@@ -1,17 +1,12 @@
 package com.example.boostar_uaal.core.navigation
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import com.example.boostar_uaal.LocalAuthState
-import com.example.boostar_uaal.core.components.BottomNavBar
 import com.example.boostar_uaal.core.utils.AuthState
 import com.example.boostar_uaal.ui.screen.ParaTiScreen.ParatiScreen
 import com.example.boostar_uaal.ui.screen.authScreen.AuthScreen
@@ -24,6 +19,7 @@ import com.example.boostar_uaal.ui.screen.onboardingTextScreen.OnboardingTextScr
 import com.example.boostar_uaal.ui.screen.singInScreen.SignInScreen
 import com.example.boostar_uaal.ui.screen.arScreen.ArScreen
 import com.example.boostar_uaal.ui.screen.basketScreen.BasketScreen
+import com.example.boostar_uaal.ui.screen.challengeScreen.ChallengeScreen
 import com.example.boostar_uaal.ui.screen.gameScreen.GameScreen
 import com.example.boostar_uaal.ui.screen.profileScreen.ProfileScreen
 
@@ -137,6 +133,15 @@ fun MainNavigationWrapper() {
                     navigateTo = { backStack.navigateTo(it)  },
                     back = { },
                     backTo = { }
+                )
+            }
+
+            entry<Routes.ChallengeScreen>{ b ->
+                ChallengeScreen(
+                    challengeId = b.challengeId,
+                    navigateTo = {},
+                    back = { backStack.back() },
+                    backTo = {}
                 )
             }
         }

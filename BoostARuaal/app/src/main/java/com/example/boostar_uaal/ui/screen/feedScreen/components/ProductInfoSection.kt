@@ -1,6 +1,5 @@
 package com.example.boostar_uaal.ui.screen.feedScreen.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.theme.discountColor
+import com.example.boostar_uaal.core.theme.secondaryColor
 
 
 @Composable
@@ -51,7 +50,7 @@ fun ProductInfoSection(
                         elevation = 2.dp
                     )
             ) {
-                Text(
+                InterText(
                     text = "Oferta",
                     color = discountColor,
                     fontSize = 12.sp,
@@ -70,7 +69,7 @@ fun ProductInfoSection(
             fontWeight = FontWeight.Bold,
             style = TextStyle(
                 shadow = Shadow(
-                    color = Color.Black,
+                    color = secondaryColor,
                     offset = Offset(4f, 4f),
                     blurRadius = 16f
                 )
@@ -84,25 +83,18 @@ fun ProductInfoSection(
                     text = "$discountPrice€",
                     color = discountColor,
                     fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                    style = TextStyle(
-                        shadow = Shadow(
-                            color = Color.Black,
-                            offset = Offset(4f, 4f),
-                            blurRadius = 16f
-                        )
-                    )
+                    fontWeight = FontWeight.Bold
                 )
                 Spacer(modifier = Modifier.width(8.dp))
             }
             InterText(
                 text = "$price€",
-                color = Color.White.copy(alpha = 0.8f),
+                color = Color.White,
                 fontSize = 14.sp,
                 style = TextStyle(
                     textDecoration = if (discountPrice != null) TextDecoration.LineThrough else TextDecoration.None,
                     shadow = Shadow(
-                        color = Color.Black,
+                        color = secondaryColor,
                         offset = Offset(4f, 4f),
                         blurRadius = 16f
                     )

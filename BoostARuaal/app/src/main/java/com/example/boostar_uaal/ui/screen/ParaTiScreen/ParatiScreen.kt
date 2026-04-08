@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.R
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.boostar_uaal.core.components.AdaptiveFeedLayout
 import com.example.boostar_uaal.core.components.BackButtonHeader
@@ -18,10 +17,8 @@ import com.example.boostar_uaal.core.components.BottomNavBar
 import com.example.boostar_uaal.core.components.PartnerCarousel
 import com.example.boostar_uaal.core.components.SectionHeader
 import com.example.boostar_uaal.core.navigation.Routes
-import com.example.boostar_uaal.core.theme.secondaryTextColor
 import com.example.boostar_uaal.data.models.SortOrder
 import com.example.boostar_uaal.ui.screen.ParaTiScreen.components.CleanItemCarrousel
-import com.example.boostar_uaal.ui.screen.ParaTiScreen.components.OnstyleChoosen
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeHero
 import com.example.boostar_uaal.ui.screen.homeScreen.components.ItemCarrousel
 

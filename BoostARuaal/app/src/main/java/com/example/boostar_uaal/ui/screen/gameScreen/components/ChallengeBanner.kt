@@ -27,7 +27,7 @@ import com.example.boostar_uaal.core.theme.primaryColor
 
 
 @Composable
-fun ChallengeBanner(challenge: Challenge?) {
+fun ChallengeBanner(challenge: Challenge?, onChallengeStart: (Int) -> Unit) {
     val gradientColors = listOf(
         Color(0xFF8E44AD),
         Color(0xFFE91E63),
@@ -102,9 +102,9 @@ fun ChallengeBanner(challenge: Challenge?) {
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                StatItem(R.drawable.boostar_logo, Color.White, "~${challenge?.time} min")
+                StatItem(R.drawable.clock_icon, Color.White, "~${challenge?.time} min")
                 Spacer(Modifier.width(16.dp))
-                StatItem(R.drawable.boostar_logo, Color.White, "+${challenge?.xp} XP")
+                StatItem(R.drawable.game_icon, Color.White, "+${challenge?.xp} XP")
                 Spacer(Modifier.width(16.dp))
                 StatItem(R.drawable.boostar_logo, primaryColor, "+${challenge?.points} pts")
             }
@@ -113,7 +113,7 @@ fun ChallengeBanner(challenge: Challenge?) {
 
             // Botón "Empezar" con sombra
             Button(
-                onClick = { },
+                onClick = { if (challenge?.id != null) onChallengeStart(challenge.id) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(58.dp)
@@ -160,6 +160,6 @@ fun PreviewChallengeCard() {
         isActive = false
     )
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        ChallengeBanner(challenge)
+        ChallengeBanner(challenge,  onChallengeStart = {})
     }
 }

@@ -1,6 +1,8 @@
 package com.example.boostar_uaal.ui.screen.gameScreen.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -15,21 +17,19 @@ import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.entities.KnowledgeArea
-import com.example.boostar_uaal.core.theme.secondaryTextColor
+import com.example.boostar_uaal.core.theme.secondaryColor
 
 @Composable
 fun KnowledgeSection(knowledgeAreas: List<KnowledgeArea>){
     Column() {
         InterText(
-            modifier = Modifier.padding(start = 48.dp),
+            modifier = Modifier.padding(start = 20.dp),
             text = "ÁREAS DE CONOCIMIENTO",
-            style = TextStyle(
-                fontSize = 14.9.sp,
-                fontWeight = FontWeight(700),
-                color = secondaryTextColor,
-            )
+            color = secondaryColor,
+            fontSize = 14.9.sp,
+            fontWeight = FontWeight(700)
         )
-        LazyRow() {
+        LazyRow(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
             items(knowledgeAreas){ area ->
                 KnowledgeCard(area)
 

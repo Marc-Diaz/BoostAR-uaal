@@ -35,14 +35,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.R
+import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.entities.Lesson
 import com.example.boostar_uaal.core.entities.LessonState
 
 @Composable
 fun LessonCard(lesson: Lesson) {
     val backgroundColor = when (lesson.state) {
-        LessonState.COMPLETED -> Color(0xFFE8F9ED) // Verde clarito
+        LessonState.COMPLETED -> Color(0xFFE8F9ED)
         else -> Color.White
     }
 
@@ -56,7 +58,7 @@ fun LessonCard(lesson: Lesson) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp),
+            .padding(vertical = 8.dp, horizontal = 16.dp),
         shape = RoundedCornerShape(20.dp),
         border = BorderStroke(1.dp, borderColor),
         colors = CardDefaults.cardColors(containerColor = backgroundColor),
@@ -88,11 +90,11 @@ fun LessonCard(lesson: Lesson) {
 
             // Información Central
             Column(modifier = Modifier.weight(1f)) {
-                Text(
+                InterText(
                     text = lesson.title,
                     style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
                 )
-                Text(
+                InterText(
                     text = lesson.category,
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.Gray
@@ -100,14 +102,12 @@ fun LessonCard(lesson: Lesson) {
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Badges de XP y Pts
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     BadgeInfo(text = "+${lesson.xp} XP", color = Color(0xFF22C55E), icon = R.drawable.game_icon)
                     BadgeInfo(text = "+${lesson.points} pts", color = Color(0xFF3B82F6), icon = R.drawable.boostar_logo)
                 }
             }
 
-            // Icono de Estado (Derecha)
             Box(modifier = Modifier.size(24.dp)) {
                 when (lesson.state) {
                     LessonState.AVAILABLE -> Icon(Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null, tint = Color(0xFF3B82F6))
@@ -132,7 +132,7 @@ fun BadgeInfo(text: String, color: Color, icon: Int) {
         ) {
             Icon(painter = painterResource(icon), contentDescription = null, modifier = Modifier.size(14.dp), tint = color)
             Spacer(modifier = Modifier.width(4.dp))
-            Text(text = text, color = color, style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold))
+            InterText(text = text, color = color, fontSize = 12.sp, fontWeight = FontWeight(700))
         }
     }
 }
