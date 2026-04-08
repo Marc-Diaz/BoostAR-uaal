@@ -39,14 +39,29 @@ import kotlinx.coroutines.delay
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.*
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.util.fastCbrt
+import com.example.boostar_uaal.core.navigation.Routes
+import com.example.boostar_uaal.ui.screen.ParaTiScreen.ParatiScreen
+import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
 
 @Composable
 fun HomeHero(
     banners: List<HeroBannerData>,
-    onTryArClick: () -> Unit
+    onTryArClick: () -> Unit,
+    isLiked: Boolean = false,
+    showlikeBotton: Boolean = false,
+    onLikeClick: () -> Unit = {}
 ) {
     // Si la lista está vacía por algún motivo, no pintamos nada para evitar errores
+    //quita esto es logica que a marc no le gusta , gracias por la sugerencia
+
     if (banners.isEmpty()) return
 
     val configuration = LocalConfiguration.current
@@ -56,7 +71,7 @@ fun HomeHero(
     // 1. EL ESTADO: ¿Qué número de banner estamos viendo?
     var currentIndex by remember { mutableStateOf(0) }
 
-    // 2. EL TEMPORIZADOR AUTO-CAMBIO
+    // 2 EL TEMPORIZADOR AUTO-CAMBIO
     // Cada vez que 'currentIndex' cambia, este reloj vuelve a empezar a contar 4 segundos
     LaunchedEffect(currentIndex) {
         delay(4000) // Espera 4 segundos
@@ -68,7 +83,7 @@ fun HomeHero(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // L BANNER FIJO CON TOQUE
+        // BANNER FIJO CON TOQUE
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -159,7 +174,29 @@ fun HomeHero(
                             )
                         }
                     }
+
+                    if (showlikeBotton) {
+                        IconButton(
+                            onClick = onLikeClick,
+                            modifier = Modifier
+                                .align(Alignment.TopEnd) // Lo pega arriba a la derecha
+                                .padding(16.dp) // Margen para que no toque los bordes
+                                .background(
+                                    Color.White.copy(alpha = 0.8f),
+                                    CircleShape
+                                ) // Fondo blanco semitransparente
+                        ) {
+                            Icon(
+                                imageVector = if (isLiked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
+                                contentDescription = "Me gusta",
+                                tint = if (isLiked) Color.Red else Color.Gray,
+                                modifier = Modifier.size(24.dp)
+                            )
+                        }
+                    }
+
                 }
+
             }
         }
 
@@ -184,4 +221,6 @@ fun HomeHero(
             }
         }
     }
+
+
 }

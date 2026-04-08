@@ -16,12 +16,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.InterText
 
-// Colores basados en tu imagen
 val ProgressBlue = Color(0xFF007BFF)
 val ProgressTrackGray = Color(0xFFEEEEEE)
 
 @Composable
-fun DailyProgressCard() {
+fun DailyProgressCard(completedGoals: Int, totalGoals: Int) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -41,21 +40,19 @@ fun DailyProgressCard() {
             )
 
             InterText(
-                text = "1/4 completados",
+                text = "$completedGoals/$totalGoals completados",
                 color = ProgressBlue,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(top = 4.dp)
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
-
             Box(
                 modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.CenterEnd
             ) {
                 InterText(
-                    text = "25%",
+                    text = "${((completedGoals.toFloat() / totalGoals.toFloat()) * 100).toInt()}%",
                     color = ProgressBlue,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
@@ -63,16 +60,16 @@ fun DailyProgressCard() {
             }
 
             Spacer(modifier = Modifier.height(8.dp))
-
-            // Barra de progreso
             LinearProgressIndicator(
-                progress = { 0.25f },
+                progress = { completedGoals.toFloat() / totalGoals.toFloat()},
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(10.dp),
                 color = ProgressBlue,
                 trackColor = ProgressTrackGray,
                 strokeCap = StrokeCap.Round,
+                gapSize = (-15).dp,
+                drawStopIndicator = { }
             )
         }
     }
@@ -80,5 +77,9 @@ fun DailyProgressCard() {
 @Preview
 @Composable
 fun PreviewDailyProgressCard(){
-    DailyProgressCard()
+    
+    DailyProgressCard(
+        completedGoals = 1,
+        totalGoals = 2
+    )
 }

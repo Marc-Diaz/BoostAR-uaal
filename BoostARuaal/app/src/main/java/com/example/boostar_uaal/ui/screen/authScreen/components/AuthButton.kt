@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.components.InterText
-import com.example.boostar_uaal.core.theme.primaryButtonColor
+import com.example.boostar_uaal.core.theme.primaryColor
 import com.example.boostar_uaal.core.theme.secondaryButtonColor
 
 @Composable
@@ -53,27 +53,27 @@ fun AuthButton(
                     modifier = Modifier.fillMaxWidth(),
                     fontSize = 18.sp,
                     color = if (isFilled) secondaryButtonColor
-                    else primaryButtonColor,
+                    else primaryColor,
                     fontWeight = FontWeight.Black,
                     textAlign = TextAlign.Center
                 )
             }
         },
         colors = if (isFilled) ButtonColors(
-            containerColor = primaryButtonColor,
+            containerColor = primaryColor,
             contentColor = secondaryButtonColor,
-            disabledContainerColor = primaryButtonColor,
+            disabledContainerColor = primaryColor,
             disabledContentColor = secondaryButtonColor
         ) else ButtonColors(
             containerColor = secondaryButtonColor,
-            contentColor = primaryButtonColor,
+            contentColor = primaryColor,
             disabledContainerColor = Color.Blue,
             disabledContentColor = Color.Black
         ),
         shape = CircleShape,
         border = BorderStroke(
             width = 2.dp,
-            brush = SolidColor(primaryButtonColor)
+            brush = SolidColor(primaryColor)
         )
     )
 }

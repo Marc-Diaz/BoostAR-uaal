@@ -15,14 +15,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.InterText
 
-// Define los colores específicos de tu diseño
 val AppBlue = Color(0xFF007BFF)
 val AppTextGray = Color(0xFF6C757D)
 val AppIconBackgroundBlue = Color(0xFFE9F5FF)
 val AppIconBorderBlue = Color(0xFFB9D8FB)
 
 @Composable
-fun DailyGoalsHeader() {
+fun DailyGoalsHeader(dayStreak: Int) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -42,14 +41,13 @@ fun DailyGoalsHeader() {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            // Columna para los textos de objetivos
             Column {
                 InterText(
                     text = "Objetivos diarios",
                     color = AppBlue,
                     fontSize = 26.sp,
-                    fontWeight = FontWeight.ExtraBold, // Muy grueso como en la imagen
-                    letterSpacing = (-0.5).sp // Ajusta ligeramente el espaciado entre letras
+                    fontWeight = FontWeight.ExtraBold,
+                    letterSpacing = (-0.5).sp
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 InterText(
@@ -61,23 +59,23 @@ fun DailyGoalsHeader() {
             }
 
             Card(
-                shape = RoundedCornerShape(16.dp), // Bordes redondeados
+                shape = RoundedCornerShape(16.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = AppIconBackgroundBlue // Color de fondo claro
+                    containerColor = AppIconBackgroundBlue
                 ),
-                border = BorderStroke(1.dp, AppIconBorderBlue), // Borde azul claro
+                border = BorderStroke(1.dp, AppIconBorderBlue),
                 modifier = Modifier
-                    .padding(start = 16.dp) // Espacio a la izquierda para no pegarse al texto
-                    .widthIn(min = 100.dp) // Ancho mínimo aproximado
+                    .padding(start = 16.dp)
+                    .widthIn(min = 100.dp)
             ) {
                 Row(
-                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp), // Espaciado interno
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     InterText(text = "🔥", fontSize = 24.sp)
                     Spacer(modifier = Modifier.width(8.dp))
                     InterText(
-                        text = "12",
+                        text = "$dayStreak",
                         color = AppBlue,
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold
@@ -94,8 +92,8 @@ fun DailyGoalsHeader() {
         }
     }
 }
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun PreviewDailyGoalsHeader(){
-    DailyGoalsHeader()
+    DailyGoalsHeader(12)
 }

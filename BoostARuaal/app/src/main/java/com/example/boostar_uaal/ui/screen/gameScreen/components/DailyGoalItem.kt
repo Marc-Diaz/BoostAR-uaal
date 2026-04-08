@@ -14,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -23,16 +22,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.components.InterText
+import com.example.boostar_uaal.core.entities.DailyGoal
 
 @Composable
-fun DailyGoalItem(
-    title: String,
-    category: String,
-    xp: Int,
-    pts: Int,
-    progressText: String,
-    isCompleted: Boolean
-) {
+fun DailyGoalItem(dailyGoal: DailyGoal) {
     // Definición de colores según el diseño
     val greenColor = Color(0xFF00E63D)
     val grayText = Color(0xFF9E9E9E)
@@ -52,21 +45,21 @@ fun DailyGoalItem(
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            StatusIndicator(isCompleted, greenColor)
+            StatusIndicator(dailyGoal.isCompleted, greenColor)
 
             Spacer(modifier = Modifier.width(16.dp))
 
             Column(modifier = Modifier.weight(1f)) {
                 InterText(
-                    text = title,
+                    modifier = Modifier.height(18.dp),
+                    text = dailyGoal.title,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Medium,
                     color = Color.Black,
-                    // Si está completado, tachamos el texto
-                    textDecoration = if (isCompleted) TextDecoration.LineThrough else TextDecoration.None
+                    textDecoration = if (dailyGoal.isCompleted) TextDecoration.LineThrough else TextDecoration.None
                 )
                 InterText(
-                    text = category,
+                    text = dailyGoal.category,
                     color = grayText,
                     fontSize = 14.sp
                 )
@@ -75,17 +68,17 @@ fun DailyGoalItem(
 
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    RewardLabel(icon = R.drawable.boostar_logo, text = "+$xp XP", color = greenColor) // Sustituir por icono de rayo
+                    RewardLabel(icon = R.drawable.boostar_logo, text = "+${dailyGoal.xp} XP", color = greenColor) // Sustituir por icono de rayo
                     Spacer(modifier = Modifier.width(12.dp))
-                    RewardLabel(icon = R.drawable.boostar_logo, text = "+$pts pts", color = blueColor) // Sustituir por icono de mundo
+                    RewardLabel(icon = R.drawable.boostar_logo, text = "+${dailyGoal.points} pts", color = blueColor) // Sustituir por icono de mundo
                 }
             }
 
             InterText(
-                text = progressText,
+                text = "${dailyGoal.currentProgress}/${dailyGoal.totalProgress}",
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp,
-                color = if (isCompleted) greenColor else Color.Gray
+                color = if (dailyGoal.isCompleted) greenColor else Color.Gray
             )
         }
     }
@@ -137,12 +130,15 @@ fun RewardLabel(icon: Int, text: String, color: Color) {
 @Preview
 @Composable
 fun PreviewDailyGoalItem(){
-    DailyGoalItem(
-        title = "Hola",
+    val dailyGoal = DailyGoal(
+        id = 0,
+        title = "hola",
         category = "Tierra",
-        xp = 100,
-        pts = 50,
-        progressText = "1/1",
-        isCompleted = false
+        xp = 50,
+        points = 50,
+        isCompleted = true,
+        totalProgress = 3,
+        currentProgress = 3
     )
+    DailyGoalItem(dailyGoal)
 }

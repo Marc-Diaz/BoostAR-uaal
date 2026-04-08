@@ -16,12 +16,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.InterText
 
 @Composable
-fun GameHeader(modifier: Modifier){
+fun GameHeader(modifier: Modifier = Modifier){
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -30,7 +31,7 @@ fun GameHeader(modifier: Modifier){
 
     ) {
         InterText(
-            text = "Home",
+            text = "Retos",
             fontSize = 38.54.sp,
             fontWeight = FontWeight.ExtraBold
         )

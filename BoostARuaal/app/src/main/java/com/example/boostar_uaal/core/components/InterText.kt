@@ -29,7 +29,8 @@ fun InterText(
     textDecoration: TextDecoration = TextDecoration.None,
     letterSpacing: TextUnit = TextUnit.Unspecified,
     lineHeight: TextUnit = TextUnit.Unspecified,
-    style: TextStyle = LocalTextStyle.current
+    style: TextStyle = LocalTextStyle.current,
+    overflow: TextOverflow = TextOverflow.Ellipsis
 ){
     Text(
         text = text,
@@ -40,7 +41,7 @@ fun InterText(
         fontWeight = fontWeight,
         textAlign = textAlign,
         color = color,
-        overflow = TextOverflow.Ellipsis,
+        overflow = overflow,
         textDecoration = textDecoration,
         letterSpacing = letterSpacing,
         lineHeight = lineHeight,
