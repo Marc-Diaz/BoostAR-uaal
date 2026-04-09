@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3395393b-4c45-4f9d-83d4-b9e5d5e20b76" name="Changes" comment="Inicio">
-      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/core/entities/ProductDetail.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/core/entities/ProductDetail.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/core/repository/CartRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/core/repository/CartRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/core/utils/UnityActivityHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/core/utils/UnityActivityHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/repository/CartRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/data/repository/CartRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/feedScreen/FeedScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/feedScreen/FeedScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/feedScreen/FeedScreenViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/app/src/main/java/com/example/boostar_uaal/ui/screen/feedScreen/FeedScreenViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoostARuaal/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/gradle/libs.versions.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoostARuaal/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/BoostARuaal/settings.gradle.kts" afterDir="false" />
-    </list>
+    <list default="true" id="3395393b-4c45-4f9d-83d4-b9e5d5e20b76" name="Changes" comment="Inicio" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,7 +68,7 @@
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ihub/StudioProjects/BoostAR-uaal"
+    "last_opened_file_path": "/home/marc.diaz.7e8/StudioProjects/BoostAR-uaal/BoostARuaal"
   }
 }]]></component>
   <component name="TaskManager">

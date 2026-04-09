@@ -23,9 +23,7 @@ fun Modifier.glow(
         val paint = Paint().apply {
             val frameworkPaint = asFrameworkPaint()
             frameworkPaint.color = color.toArgb()
-            if (blurRadius != 0.dp) {
-                // BlurMaskFilter difumina el dibujo simulando un resplandor luminoso
-                frameworkPaint.maskFilter = android.graphics.BlurMaskFilter(
+            if (blurRadius != 0.dp) { frameworkPaint.maskFilter = android.graphics.BlurMaskFilter(
                     blurRadius.toPx(),
                     android.graphics.BlurMaskFilter.Blur.NORMAL
                 )
@@ -55,7 +53,6 @@ fun Modifier.glow(
                 )
             }
         } else {
-            // Un rectángulo simple sin redondear (usado para el modo Landscape)
             canvas.drawRect(
                 left = 0f,
                 top = 0f,
