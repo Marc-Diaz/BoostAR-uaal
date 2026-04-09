@@ -127,6 +127,6 @@ fun PreviewOverlayProductInfo(){
     ProductInformationTopBar(
         partner = Partner("", "", ""),
         productName = "Nike",
-        productLikes = 1116
+        productLikes = 111600
     )
 }

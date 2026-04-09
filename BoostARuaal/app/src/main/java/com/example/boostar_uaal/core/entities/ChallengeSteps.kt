@@ -5,5 +5,5 @@ data class ChallengeStep(
     val multimedia: Int,
     val title: String? = null,
     val text: String,
-    val sleepTimeInSeconds: Int
+    val sleepTimeInMilliseconds: Int
 )

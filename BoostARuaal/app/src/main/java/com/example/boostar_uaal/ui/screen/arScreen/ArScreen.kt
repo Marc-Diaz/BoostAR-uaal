@@ -15,6 +15,7 @@ import com.snap.camerakit.Session
 import com.snap.camerakit.invoke
 import com.snap.camerakit.support.camerax.CameraXImageProcessorSource
 import android.Manifest
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -81,7 +82,10 @@ fun ArScreen(
                     },
                     modifier = Modifier.fillMaxSize()
                 )
-                Column(modifier = Modifier.padding(paddingValues).fillMaxSize()){
+                Column(
+                    modifier = Modifier.padding(paddingValues).fillMaxSize(),
+                    verticalArrangement = Arrangement.SpaceBetween
+                ){
                     ProductInformationTopBar(
                         partner = product.partner,
                         productName = product.name,

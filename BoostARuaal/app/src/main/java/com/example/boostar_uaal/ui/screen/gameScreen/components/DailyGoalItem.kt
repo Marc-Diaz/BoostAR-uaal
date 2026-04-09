@@ -138,7 +138,7 @@ fun PreviewDailyGoalItem(){
         points = 50,
         isCompleted = true,
         totalProgress = 3,
-        currentProgress = 3
+        currentProgress = 2
     )
     DailyGoalItem(dailyGoal)
 }

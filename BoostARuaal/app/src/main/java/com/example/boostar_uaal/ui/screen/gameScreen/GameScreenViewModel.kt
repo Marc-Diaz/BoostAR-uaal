@@ -51,8 +51,8 @@ class GameScreenViewModel: ViewModel() {
                     xp = 50,
                     points = 25,
                     isCompleted = false,
-                    totalProgress = 0,
-                    currentProgress = 3
+                    totalProgress = 3,
+                    currentProgress = 0
                 )
             )
         )
