@@ -77,9 +77,9 @@ dependencies {
     implementation(libs.kotlinx.serialization.core)
 
     //Coil
-    implementation("com.github.skydoves:landscapist-coil3:2.4.2")
     implementation(libs.coil)
     implementation(libs.coil.compose)
+    implementation(libs.coil.gif)
 
     //Supabase
     implementation(platform(libs.bom))

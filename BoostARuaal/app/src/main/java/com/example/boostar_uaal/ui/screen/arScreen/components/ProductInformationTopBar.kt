@@ -90,11 +90,12 @@ fun ProductInformationTopBar(partner: Partner, productName: String, productLikes
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             InterText(
-                text = "Zapatos Deportivos",
+                text = productName,
                 color = Color.White,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
-                style = textShadowStyle
+                style = textShadowStyle,
+                maxLines = 1
             )
 
             Row(

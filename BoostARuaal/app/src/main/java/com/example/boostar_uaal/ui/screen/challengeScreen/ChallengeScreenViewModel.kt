@@ -70,7 +70,7 @@ class ChallengeScreenViewModel: ViewModel() {
                     multimedia = R.drawable.complementary,
                     title = "<b><span style=\"color:#007AFF\">COMPLEMENTARIOS</span></b>",
                     text = "Colores <b><span style=\"color:#007AFF\">opuestos</span></b> que juntos crean <b><span style=\"color:#007AFF\">contraste</span></b> y hacen que el <b><span style=\"color:#007AFF\">outfit destaque</span></b>",
-                    sleepTimeInMilliseconds = 3000
+                    sleepTimeInMilliseconds = 1000
                 )
             ))
         _challenge.value = challenge

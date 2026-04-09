@@ -6,6 +6,7 @@ browser = "1.9.0"
 cameraKitVersion = "1.47.0"
 coil = "2.7.0"
 coilCompose = "3.3.0"
+coilGif = "3.4.0"
 coilNetworkKtor3 = "3.3.0"
 composeAuth = "3.3.0"
 coreKtx = "1.17.0"
@@ -42,6 +43,7 @@ auth-kt = { module = "io.github.jan-tennert.supabase:auth-kt" }
 bom = { module = "io.github.jan-tennert.supabase:bom", version.ref = "bom" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
+coil-gif = { module = "io.coil-kt.coil3:coil-gif", version.ref = "coilGif" }
 coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coilNetworkKtor3" }
 compose-auth = { module = "io.github.jan-tennert.supabase:compose-auth", version.ref = "composeAuth" }
 googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid" }
