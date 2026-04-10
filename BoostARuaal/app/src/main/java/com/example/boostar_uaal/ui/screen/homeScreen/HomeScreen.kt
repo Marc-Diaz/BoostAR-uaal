@@ -57,14 +57,16 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
             )
     },
         content = { paddingValues ->
-            AdaptiveFeedLayout() {
+            AdaptiveFeedLayout {
                 HomeHeader(Modifier.padding(top = paddingValues.calculateTopPadding()))
                 HomeNav(
                     onItemClick = { route -> navigateTo(route) }
                 )
                 HomeHero(
                     banners = banners,
-                    onTryArClick = {  }
+                    onTryArClick = { navigateTo(Routes.ArScreen(
+                        lensId = "9e454816-6690-46a9-98ab-571f7f35ca8b"
+                    )) }
                 )
                 SectionHeader(
                     title = "Para ti >",

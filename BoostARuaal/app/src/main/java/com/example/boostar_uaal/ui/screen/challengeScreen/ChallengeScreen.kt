@@ -1,8 +1,10 @@
 package com.example.boostar_uaal.ui.screen.challengeScreen
 
-import android.util.Log
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.EaseIn
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -37,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.boostar_uaal.core.components.InterText
+import com.example.boostar_uaal.core.components.PaginationPoints
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.core.theme.primaryColor
 
@@ -45,6 +48,8 @@ fun ChallengeScreen(challengeId: Int, navigateTo: (Routes) -> Unit, back: () -> 
     val challengeScreenViewModel = viewModel<ChallengeScreenViewModel>()
     val currentStep by challengeScreenViewModel.currentChallengeStep.collectAsState()
     val challengePosition by challengeScreenViewModel.challengeStepState.collectAsState()
+    val maxSteps by challengeScreenViewModel.maxSteps.collectAsState()
+    val currentStepId by challengeScreenViewModel.currentStepId.collectAsState()
     val isButtonVisible by challengeScreenViewModel.isButtonVisible.collectAsState()
     LaunchedEffect(Unit) {
         challengeScreenViewModel.loadChallenge(challengeId)
@@ -57,15 +62,15 @@ fun ChallengeScreen(challengeId: Int, navigateTo: (Routes) -> Unit, back: () -> 
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .padding(horizontal = 16.dp), // Padding general para los lados
+                    .padding(horizontal = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(56.dp),
-                    contentAlignment = Alignment.CenterStart
+                        .weight(0.1f),
+                    contentAlignment =  if (challengePosition == ChallengeStepPositoin.START) Alignment.CenterStart else Alignment.Center
                 ) {
                     if (challengePosition == ChallengeStepPositoin.START) {
                         IconButton(
@@ -80,30 +85,38 @@ fun ChallengeScreen(challengeId: Int, navigateTo: (Routes) -> Unit, back: () -> 
                             )
                         }
                     }
+                    else{
+                            PaginationPoints(
+                                size = maxSteps - 1,
+                                currentIndex = currentStepId - 1
+                            )
+                    }
                 }
 
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(350.dp),
+                        .weight(0.67f),
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
                         painter = painterResource(currentStep.multimedia),
                         contentDescription = "Imagen del reto",
-                        modifier = Modifier.fillMaxWidth(0.8f),
-                        contentScale = ContentScale.FillWidth
+                        modifier = Modifier.fillMaxSize(0.8f),
+                        contentScale = ContentScale.Fit
                     )
                 }
 
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(300.dp)
-                        .padding(top = 30.dp),
+                        .weight(0.58f),
                     contentAlignment = Alignment.TopCenter
                 ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Column(
+                        modifier = Modifier.padding(top = 30.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
                             InterText(
                                 text = AnnotatedString.fromHtml(currentStep.title?: ""),
                                 textAlign = TextAlign.Center,
@@ -129,13 +142,15 @@ fun ChallengeScreen(challengeId: Int, navigateTo: (Routes) -> Unit, back: () -> 
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(80.dp),
+                        .weight(0.15f),
                     contentAlignment = Alignment.Center
                 ) {
-                    Log.d("Visibilidad 1", "$isButtonVisible")
-                    if (isButtonVisible){
-
-
+                    androidx.compose.animation.AnimatedVisibility(
+                        visible = isButtonVisible,
+                        enter = fadeIn(animationSpec = tween(durationMillis = 400, easing = EaseIn)),
+                        exit = ExitTransition.None
+                    )
+                    {
                         Button(
                             onClick = {
                                 if (challengePosition == ChallengeStepPositoin.END) back()
@@ -161,6 +176,7 @@ fun ChallengeScreen(challengeId: Int, navigateTo: (Routes) -> Unit, back: () -> 
                         )
 
                     }
+
                 }
             }
         }

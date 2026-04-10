@@ -34,7 +34,7 @@ import com.snap.camerakit.lenses.whenHasFirst
 @Composable
 fun ArScreen(
     back: () -> Unit,
-    product: ProductDetail,
+    product: ProductDetail?,
     lensId: String,
     onPermissionDenied: () -> Unit = {}
 ) {
@@ -86,18 +86,20 @@ fun ArScreen(
                     modifier = Modifier.padding(paddingValues).fillMaxSize(),
                     verticalArrangement = Arrangement.SpaceBetween
                 ){
-                    ProductInformationTopBar(
-                        partner = product.partner,
-                        productName = product.name,
-                        productLikes = product.numLikes
-                    )
-                    CameraControlsOverlay(
-                        onFlipCamera = { arScreenViewModel.flipCamera()},
-                        onDetailClick = { arScreenViewModel.openDialog() }
-                    )
+                    if (product != null){
+                        ProductInformationTopBar(
+                            partner = product.partner,
+                            productName = product.name,
+                            productLikes = product.numLikes,
+                        )
+                        CameraControlsOverlay(
+                            onFlipCamera = { arScreenViewModel.flipCamera()},
+                            onDetailClick = { arScreenViewModel.openDialog() }
+                        )
+                    }
 
                 }
-                if (showDialog){
+                if (showDialog && product != null){
                     ProductDetailsDialog(
                         product = product,
                         onDismiss = {

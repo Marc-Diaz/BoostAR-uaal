@@ -4,25 +4,19 @@ package com.example.boostar_uaal.ui.screen.feedScreen
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import androidx.compose.runtime.State
-import androidx.core.content.ContextCompat.startActivity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.core.entities.ProductDetail
-import com.example.boostar_uaal.core.repository.CartRepository
-import com.example.boostar_uaal.core.repository.LikeRepository
-import com.example.boostar_uaal.core.repository.ProductRepository
-import com.example.boostar_uaal.core.repository.UserRepository
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.example.boostar_uaal.BoostArApplication.Companion.productRepository
+import com.example.boostar_uaal.BoostArApplication.Companion.likeRepository
+import com.example.boostar_uaal.BoostArApplication.Companion.cartRepository
+
 
 class FeedScreenViewModel(private val sortOrder: String, private val productFilters: List<String>) : ViewModel() {
-    private val productRepository: ProductRepository = BoostArApplication.productRepository
-    private val likeRepository: LikeRepository = BoostArApplication.likeRepository
-    private val cartRepository: CartRepository = BoostArApplication.cartRepository
     private val _products = MutableStateFlow<List<ProductDetail>>(emptyList())
     val products: StateFlow<List<ProductDetail>> = _products.asStateFlow()
 

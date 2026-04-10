@@ -20,6 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.components.ItemImage
+import com.example.boostar_uaal.core.components.PaginationPoints
 import com.example.boostar_uaal.core.entities.Partner
 
 
@@ -46,7 +47,6 @@ fun TopPartnerSearch(modifier: Modifier = Modifier, partner: Partner, onShareCli
                 contentScale = ContentScale.Fit
             )
         }
-
         IconButton(
             onClick ={ onShareClick() },
             modifier = Modifier

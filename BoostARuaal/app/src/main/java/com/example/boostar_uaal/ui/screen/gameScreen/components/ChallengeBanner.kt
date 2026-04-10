@@ -111,7 +111,6 @@ fun ChallengeBanner(challenge: Challenge?, onChallengeStart: (Int) -> Unit) {
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // Botón "Empezar" con sombra
             Button(
                 onClick = { if (challenge?.id != null) onChallengeStart(challenge.id) },
                 modifier = Modifier

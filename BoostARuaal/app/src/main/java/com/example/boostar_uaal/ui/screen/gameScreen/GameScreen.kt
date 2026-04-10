@@ -34,11 +34,7 @@ fun GameScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) 
     val lessons by gameScreenViewModel.lessons.collectAsState()
 
     LaunchedEffect(Unit) {
-        gameScreenViewModel.loadUserStats()
-        gameScreenViewModel.loadDaylyGoals()
-        gameScreenViewModel.loadChallenge()
-        gameScreenViewModel.loadKnowledgeAreas()
-        gameScreenViewModel.loadLessons()
+        gameScreenViewModel.initializeGameScreen()
     }
 
     Scaffold(

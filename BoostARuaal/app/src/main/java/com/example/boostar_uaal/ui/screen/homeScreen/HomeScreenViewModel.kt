@@ -1,17 +1,12 @@
 package com.example.boostar_uaal.ui.screen.homeScreen
 
-import android.content.Context
 import android.util.Log
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.entities.DropData
 import com.example.boostar_uaal.core.entities.PartnerData
-import com.example.boostar_uaal.core.repository.LikeRepository
-import com.example.boostar_uaal.core.repository.PartnerRepository
-import com.example.boostar_uaal.core.repository.UserRepository
 import com.example.boostar_uaal.data.models.ProductFilter
 import com.example.boostar_uaal.data.models.SortOrder
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabData
@@ -21,12 +16,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.example.boostar_uaal.BoostArApplication.Companion.productRepository
+import com.example.boostar_uaal.BoostArApplication.Companion.likeRepository
+import com.example.boostar_uaal.BoostArApplication.Companion.partnerRepository
 
 class HomeScreenViewModel : ViewModel() {
 
-    private val productRepository = BoostArApplication.productRepository
-    private val likeRepository: LikeRepository = BoostArApplication.likeRepository
-    private val partnerRepository: PartnerRepository = BoostArApplication.partnerRepository
     private val _productsForYou = MutableStateFlow<List<Product>>(emptyList())
     val productsForYou: StateFlow<List<Product>> = _productsForYou.asStateFlow()
     private val _productsTrends = MutableStateFlow<List<Product>>(emptyList())

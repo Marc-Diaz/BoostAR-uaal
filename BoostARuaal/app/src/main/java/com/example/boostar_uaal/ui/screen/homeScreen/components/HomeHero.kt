@@ -8,7 +8,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -45,11 +44,7 @@ import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.*
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.util.fastCbrt
-import com.example.boostar_uaal.core.navigation.Routes
-import com.example.boostar_uaal.ui.screen.ParaTiScreen.ParatiScreen
-import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
+import com.example.boostar_uaal.core.components.PaginationPoints
 
 @Composable
 fun HomeHero(
@@ -59,8 +54,6 @@ fun HomeHero(
     showlikeBotton: Boolean = false,
     onLikeClick: () -> Unit = {}
 ) {
-    // Si la lista está vacía por algún motivo, no pintamos nada para evitar errores
-    //quita esto es logica que a marc no le gusta , gracias por la sugerencia
 
     if (banners.isEmpty()) return
 
@@ -68,11 +61,8 @@ fun HomeHero(
     val isLandscape =
         configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
 
-    // 1. EL ESTADO: ¿Qué número de banner estamos viendo?
     var currentIndex by remember { mutableStateOf(0) }
 
-    // 2 EL TEMPORIZADOR AUTO-CAMBIO
-    // Cada vez que 'currentIndex' cambia, este reloj vuelve a empezar a contar 4 segundos
     LaunchedEffect(currentIndex) {
         delay(4000) // Espera 4 segundos
         currentIndex =
@@ -83,20 +73,17 @@ fun HomeHero(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // BANNER FIJO CON TOQUE
         Card(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
                 .aspectRatio(if (isLandscape) 16f / 9f else 4f / 5f)
-                // Si tocas la tarjeta, cambia al siguiente banner al instante
                 .clickable {
                     currentIndex = (currentIndex + 1) % banners.size
                 },
             shape = RoundedCornerShape(24.dp),
             elevation = CardDefaults.cardElevation(4.dp)
         ) {
-            //Crossfade
             Crossfade(
                 targetState = banners[currentIndex],
                 animationSpec = tween(durationMillis = 800),
@@ -155,9 +142,6 @@ fun HomeHero(
                         )
                         Spacer(modifier = Modifier.height(24.dp))
 
-                        // OJO: Como este botón está DENTRO de la tarjeta clickeable,
-                        // si el usuario toca el botón, hace la acción de AR.
-                        // Si toca fuera del botón, cambia el banner.
                         Button(
                             onClick = onTryArClick,
                             modifier = Modifier
@@ -202,24 +186,10 @@ fun HomeHero(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // LOS PUNTITOS INDICADORES
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(6.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            repeat(banners.size) { iteration ->
-                // Comparamos con el currentIndex para saber cuál pintar de gris oscuro
-                val color =
-                    if (currentIndex == iteration) Color.LightGray else Color.LightGray.copy(alpha = 0.4f)
-                val size = if (currentIndex == iteration) 8.dp else 6.dp
-
-                Box(
-                    modifier = Modifier
-                        .size(size)
-                        .background(color, CircleShape)
-                )
-            }
-        }
+        PaginationPoints(
+            size = banners.size,
+            currentIndex = currentIndex
+        )
     }
 
 

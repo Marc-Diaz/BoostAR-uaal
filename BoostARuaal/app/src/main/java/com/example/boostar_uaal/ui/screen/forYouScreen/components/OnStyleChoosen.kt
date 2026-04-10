@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.ui.screen.ParaTiScreen.components
+package com.example.boostar_uaal.ui.screen.forYouScreen.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border

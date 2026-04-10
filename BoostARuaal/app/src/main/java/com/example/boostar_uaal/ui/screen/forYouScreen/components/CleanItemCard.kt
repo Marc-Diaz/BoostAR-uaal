@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.ui.screen.ParaTiScreen.components
+package com.example.boostar_uaal.ui.screen.forYouScreen.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import coil3.compose.AsyncImage
 import com.example.boostar_uaal.core.components.ItemImage
 import com.example.core.entities.Product
 

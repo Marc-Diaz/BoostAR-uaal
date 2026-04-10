@@ -23,13 +23,12 @@ import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.entities.DailyGoal
+import com.example.boostar_uaal.core.theme.grayTextColor
+import com.example.boostar_uaal.core.theme.primaryColor
 
 @Composable
 fun DailyGoalItem(dailyGoal: DailyGoal) {
-    // Definición de colores según el diseño
     val greenColor = Color(0xFF00E63D)
-    val grayText = Color(0xFF9E9E9E)
-    val blueColor = Color(0xFF007AFF)
 
     Card(
         modifier = Modifier
@@ -60,7 +59,7 @@ fun DailyGoalItem(dailyGoal: DailyGoal) {
                 )
                 InterText(
                     text = dailyGoal.category,
-                    color = grayText,
+                    color = grayTextColor,
                     fontSize = 14.sp
                 )
 
@@ -70,7 +69,7 @@ fun DailyGoalItem(dailyGoal: DailyGoal) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     RewardLabel(icon = R.drawable.boostar_logo, text = "+${dailyGoal.xp} XP", color = greenColor) // Sustituir por icono de rayo
                     Spacer(modifier = Modifier.width(12.dp))
-                    RewardLabel(icon = R.drawable.boostar_logo, text = "+${dailyGoal.points} pts", color = blueColor) // Sustituir por icono de mundo
+                    RewardLabel(icon = R.drawable.boostar_logo, text = "+${dailyGoal.points} pts", color = primaryColor) // Sustituir por icono de mundo
                 }
             }
 

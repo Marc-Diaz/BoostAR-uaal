@@ -39,7 +39,7 @@ sealed class    Routes: NavKey {
     @Serializable
     data object ProfileScreen: Routes()
     @Serializable
-    data class ArScreen(val lensId: String, val product: ProductDetail): Routes()
+    data class ArScreen(val lensId: String, val product: ProductDetail? = null): Routes()
 
     @Serializable
     data object ParatiScreen: Routes()

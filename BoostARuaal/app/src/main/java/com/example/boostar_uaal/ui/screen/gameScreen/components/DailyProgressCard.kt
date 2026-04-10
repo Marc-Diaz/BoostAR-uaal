@@ -15,9 +15,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.InterText
+import com.example.boostar_uaal.core.theme.primaryColor
+import com.example.boostar_uaal.core.theme.progressTrackGray
 
-val ProgressBlue = Color(0xFF007BFF)
-val ProgressTrackGray = Color(0xFFEEEEEE)
 
 @Composable
 fun DailyProgressCard(completedGoals: Int, totalGoals: Int) {
@@ -41,7 +41,7 @@ fun DailyProgressCard(completedGoals: Int, totalGoals: Int) {
 
             InterText(
                 text = "$completedGoals/$totalGoals completados",
-                color = ProgressBlue,
+                color = primaryColor,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(top = 4.dp)
@@ -53,7 +53,7 @@ fun DailyProgressCard(completedGoals: Int, totalGoals: Int) {
             ) {
                 InterText(
                     text = "${((completedGoals.toFloat() / totalGoals.toFloat()) * 100).toInt()}%",
-                    color = ProgressBlue,
+                    color = primaryColor,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -65,8 +65,8 @@ fun DailyProgressCard(completedGoals: Int, totalGoals: Int) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(10.dp),
-                color = ProgressBlue,
-                trackColor = ProgressTrackGray,
+                color = primaryColor,
+                trackColor = progressTrackGray,
                 strokeCap = StrokeCap.Round,
                 gapSize = (-15).dp,
                 drawStopIndicator = { }

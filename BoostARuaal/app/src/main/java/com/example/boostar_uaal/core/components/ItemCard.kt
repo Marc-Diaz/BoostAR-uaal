@@ -2,6 +2,7 @@ package com.example.boostar_uaal.core.components
 
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -108,7 +109,14 @@ fun ItemCard(
 
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.clickable(enabled = LocalAuthState.current is AuthState.Authenticated , onClick = { onLikeClick() })
+                modifier = Modifier
+                    .clickable(
+                        interactionSource = null,
+                        indication = null,
+                        enabled = LocalAuthState.current is AuthState.Authenticated,
+                        onClick = { onLikeClick() },
+
+                    )
             ) {
                 Icon(
                     imageVector = Icons.Filled.Favorite,

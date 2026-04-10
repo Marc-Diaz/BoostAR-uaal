@@ -12,10 +12,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-
+import com.example.boostar_uaal.BoostArApplication.Companion.authRepository
+import com.example.boostar_uaal.BoostArApplication.Companion.userRepository
 class AuthViewModel: ViewModel() {
-    val authRepository = BoostArApplication.authRepository
-    private val userRepository = BoostArApplication.userRepository
     private val _session = MutableStateFlow<UserSession?>(null)
     private val _authState = MutableStateFlow<AuthState>(AuthState.Loading)
     val authState = _authState.asStateFlow()

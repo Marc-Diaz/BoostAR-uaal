@@ -29,6 +29,14 @@ class GameScreenViewModel: ViewModel() {
 
     private var _lessons : MutableStateFlow<List<Lesson>> = MutableStateFlow(emptyList())
     val lessons = _lessons
+
+    fun initializeGameScreen(){
+        loadUserStats()
+        loadDaylyGoals()
+        loadChallenge()
+        loadKnowledgeAreas()
+        loadLessons()
+    }
     fun loadDaylyGoals(){
         _daylyGoals.value = DailyProgress(
             dayStreak = 12,

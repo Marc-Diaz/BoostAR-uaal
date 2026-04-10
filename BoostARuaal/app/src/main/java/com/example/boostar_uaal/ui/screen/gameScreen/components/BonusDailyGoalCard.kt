@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,13 +23,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.InterText
+import com.example.boostar_uaal.core.theme.primaryColor
+import com.example.boostar_uaal.core.theme.primaryTextColor
 
 @Composable
-fun BonusDaylyGoalCard(modifier: Modifier = Modifier) {
-
-    val blueBorderColor = Color(0xFF1E88E5)
-    val lightBlueBackground = Color(0xFFE3F2FD)
-    val textColorDark = Color(0xFF1C1C1E)
+fun BonusDailyGoalCard(modifier: Modifier = Modifier) {
 
     Row(
         modifier = modifier
@@ -42,10 +39,10 @@ fun BonusDaylyGoalCard(modifier: Modifier = Modifier) {
                 spotColor = Color.LightGray
             )
             .clip(RoundedCornerShape(12.dp))
-            .background(lightBlueBackground)
+            .background(Color(0xFFE3F2FD))
             .border(
                 width = 1.dp,
-                color = blueBorderColor,
+                color = primaryColor,
                 shape = RoundedCornerShape(12.dp)
             )
             .padding(horizontal = 16.dp, vertical = 12.dp),
@@ -58,21 +55,21 @@ fun BonusDaylyGoalCard(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.width(12.dp))
 
-        Text(
+        InterText(
             text = buildAnnotatedString {
-                withStyle(style = SpanStyle(color = textColorDark)) {
+                withStyle(style = SpanStyle(color = primaryTextColor)) {
                     append("Completa ")
                 }
-                withStyle(style = SpanStyle(color = blueBorderColor, fontWeight = FontWeight.Bold)) {
+                withStyle(style = SpanStyle(color = primaryColor, fontWeight = FontWeight.Bold)) {
                     append("todos los objetivos")
                 }
-                withStyle(style = SpanStyle(color = textColorDark)) {
+                withStyle(style = SpanStyle(color = primaryTextColor)) {
                     append(" para ganar un ")
                 }
-                withStyle(style = SpanStyle(color = blueBorderColor, fontWeight = FontWeight.Bold)) {
+                withStyle(style = SpanStyle(color = primaryColor, fontWeight = FontWeight.Bold)) {
                     append("bono de +100 XP")
                 }
-                withStyle(style = SpanStyle(color = textColorDark)) {
+                withStyle(style = SpanStyle(color = primaryTextColor)) {
                     append(" extra.")
                 }
             },
@@ -83,6 +80,6 @@ fun BonusDaylyGoalCard(modifier: Modifier = Modifier) {
 }
 @Preview
 @Composable
-fun PreviewBonusDaylyGoalCard(){
-    BonusDaylyGoalCard()
+fun PreviewBonusDailyGoalCard(){
+    BonusDailyGoalCard()
 }

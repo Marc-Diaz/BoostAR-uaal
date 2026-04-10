@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.ui.screen.ParaTiScreen
+package com.example.boostar_uaal.ui.screen.forYouScreen
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -18,22 +18,22 @@ import com.example.boostar_uaal.core.components.PartnerCarousel
 import com.example.boostar_uaal.core.components.SectionHeader
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.data.models.SortOrder
-import com.example.boostar_uaal.ui.screen.ParaTiScreen.components.CleanItemCarrousel
+import com.example.boostar_uaal.ui.screen.forYouScreen.components.CleanItemCarrousel
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeHero
 import com.example.boostar_uaal.ui.screen.homeScreen.components.ItemCarrousel
 
 
 @Composable
-fun ParatiScreen(navigateTo: (Routes) -> Unit) {
+fun ForYouScreen(navigateTo: (Routes) -> Unit) {
 
-    val paratiScreenViewModel = viewModel<ParatiScreenViewModel>()
-    val banners by paratiScreenViewModel.banners.collectAsState()
-    val productsForYou by paratiScreenViewModel.productsForYou.collectAsState()
-    val partners by paratiScreenViewModel.partners.collectAsState()
+    val forYouScreenViewModel = viewModel<ForYouScreenViewModel>()
+    val banners by forYouScreenViewModel.banners.collectAsState()
+    val productsForYou by forYouScreenViewModel.productsForYou.collectAsState()
+    val partners by forYouScreenViewModel.partners.collectAsState()
     val context = LocalContext.current
 
     LaunchedEffect(Unit) {
-        paratiScreenViewModel.initializeParaTi()
+        forYouScreenViewModel.initializeParaTi()
     }
 
     Scaffold(
@@ -46,7 +46,7 @@ fun ParatiScreen(navigateTo: (Routes) -> Unit) {
         },
         content = { paddingValues ->
 
-            AdaptiveFeedLayout() {
+            AdaptiveFeedLayout {
 
                 BackButtonHeader(
                     Modifier.padding(top = paddingValues.calculateTopPadding()),
@@ -56,8 +56,8 @@ fun ParatiScreen(navigateTo: (Routes) -> Unit) {
                 HomeHero(
                     banners = banners,
                     onLikeClick = {},
-                    showlikeBotton = true,
-                    onTryArClick = { paratiScreenViewModel.onTryArClick(context) }
+                    showlikeBotton = false,
+                    onTryArClick = { forYouScreenViewModel.onTryArClick(context) }
                 )
                 SectionHeader(
                     title = "Tus reservas",
@@ -69,9 +69,8 @@ fun ParatiScreen(navigateTo: (Routes) -> Unit) {
                         navigateTo(
                             Routes.FeedScreen(productId, SortOrder.FORYOU)
                         )
-                    },
-
-                    )
+                    }
+                )
                 SectionHeader(
                     title = "Tu estilo ",
                     onClick = { navigateTo(Routes.ParatiScreen) }
@@ -83,7 +82,7 @@ fun ParatiScreen(navigateTo: (Routes) -> Unit) {
                             Routes.FeedScreen(productId, SortOrder.FORYOU)
                         )
                     },
-                    onLikeClick = { paratiScreenViewModel.toggleLike(it) }
+                    onLikeClick = { forYouScreenViewModel.toggleLike(it) }
                 )
                 SectionHeader(
                     title = "Tus Outfits",
@@ -117,7 +116,7 @@ fun ParatiScreen(navigateTo: (Routes) -> Unit) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun ParaTiScreenPreview() {
-    ParatiScreen(
+    ForYouScreen(
         navigateTo = { /* Función vacía de prueba, el preview no navega */ }
     )
 }

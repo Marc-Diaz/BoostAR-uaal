@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.entities.UserGameStats
+import com.example.boostar_uaal.core.theme.grayTextColor
 import com.example.boostar_uaal.core.theme.primaryColor
 
 @Composable
@@ -98,7 +99,6 @@ fun GameUserInformationCard(userStats: UserGameStats){
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Fila de Info de XP y Siguiente Nivel
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -106,7 +106,7 @@ fun GameUserInformationCard(userStats: UserGameStats){
             ) {
                 InterText(
                     text = "${userStats.currentXp} / ${userStats.totalXp} XP",
-                    color = Color.Gray,
+                    color = grayTextColor,
                     fontWeight = FontWeight.Bold,
                     fontSize = 14.sp
                 )

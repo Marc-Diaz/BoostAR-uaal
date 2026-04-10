@@ -10,12 +10,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import com.example.boostar_uaal.BoostArApplication.Companion.productRepository
+import com.example.boostar_uaal.BoostArApplication.Companion.userRepository
+
 
 class OnboardingChooseViewmodel : ViewModel() {
     private val _uiState = MutableStateFlow(OnboardingUiState())
     val uiState: StateFlow<OnboardingUiState> = _uiState.asStateFlow()
-    private val productRepository = BoostArApplication.productRepository
-    private val userRepository = BoostArApplication.userRepository
 
     init {
         loadOnboardingData()

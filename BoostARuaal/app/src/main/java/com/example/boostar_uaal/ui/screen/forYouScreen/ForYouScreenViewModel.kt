@@ -1,10 +1,9 @@
-package com.example.boostar_uaal.ui.screen.ParaTiScreen
+package com.example.boostar_uaal.ui.screen.forYouScreen
 
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.BoostArApplication.Companion.likeRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.partnerRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.productRepository
@@ -18,7 +17,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class ParatiScreenViewModel : ViewModel() {
+class ForYouScreenViewModel : ViewModel() {
 
 
     private val _banners = MutableStateFlow<List<HeroBannerData>>(emptyList())
@@ -35,6 +34,7 @@ class ParatiScreenViewModel : ViewModel() {
         loadBanners()
         loadProductsForYou()
         loadPartners()
+        refreshLikes()
     }
 
     fun loadProducts(){
@@ -86,7 +86,21 @@ class ParatiScreenViewModel : ViewModel() {
         }
     }
 
+    fun refreshLikes(){
+        viewModelScope.launch {
+            likeRepository.likeStateFlow.collect { likeMap ->
+                if (likeMap.isEmpty()) return@collect
+                fun applyLikes(list: List<Product>): List<Product> = list.map { p ->
+                    val liked = likeMap[p.id] ?: return@map p
+                    if (liked == p.isLiked) return@map p
+                    p.copy(isLiked = liked, numLikes = p.numLikes + if (liked) 1L else -1L)
+                }
+                _productsForYou.value = applyLikes(_productsForYou.value)
+                _productsTrends.value = applyLikes(_productsTrends.value)
 
+            }
+        }
+    }
     fun onTryArClick(context: Context) {
         Log.d("HomeScreenViewModel", "El usuario quiere probar la cámara AR")
 

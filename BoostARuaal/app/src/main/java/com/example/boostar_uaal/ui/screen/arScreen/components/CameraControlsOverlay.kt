@@ -23,7 +23,7 @@ import com.example.boostar_uaal.core.theme.primaryColor
 @Composable
 fun CameraControlsOverlay(
     onFlipCamera: () -> Unit,
-    onDetailClick: () -> Unit,
+    onDetailClick: () -> Unit
 ) {
 
     val borderGrey = Color(0xFFA9A9A9)

@@ -14,7 +14,7 @@ import com.example.core.entities.Product
 fun ItemCarrousel(
     products: List<Product>,
     onItemClick: (Int) -> Unit,
-    onLikeClick: (Int) -> Unit
+    onLikeClick: (Int) -> Unit,
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
         LazyRow(

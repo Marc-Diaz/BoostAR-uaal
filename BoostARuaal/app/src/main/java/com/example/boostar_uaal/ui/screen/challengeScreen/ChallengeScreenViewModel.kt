@@ -9,6 +9,7 @@ import com.example.boostar_uaal.R
 
 import com.example.boostar_uaal.core.entities.ChallengeData
 import com.example.boostar_uaal.core.entities.ChallengeStep
+import com.snap.camerakit.internal.cu
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -24,11 +25,16 @@ class ChallengeScreenViewModel: ViewModel() {
     private var _challengeStepState: MutableStateFlow<ChallengeStepPositoin>
     = MutableStateFlow(ChallengeStepPositoin.START)
     val challengeStepState: StateFlow<ChallengeStepPositoin> = _challengeStepState.asStateFlow()
-    private var currentStepId: Int = 0
+
+    private var _maxSteps: MutableStateFlow<Int> = MutableStateFlow<Int>(0)
+    val maxSteps: StateFlow<Int> = _maxSteps.asStateFlow()
+    private var _currentStepId: MutableStateFlow<Int> = MutableStateFlow<Int>(-1)
+    val currentStepId: StateFlow<Int> = _currentStepId.asStateFlow()
 
     private var _isButtonVisible: MutableStateFlow<Boolean> = MutableStateFlow(true)
     val isButtonVisible: StateFlow<Boolean> = _isButtonVisible.asStateFlow()
     fun loadChallenge(id: Int){
+
         val challenge = ChallengeData(
             id = 1,
             steps = listOf(
@@ -74,23 +80,27 @@ class ChallengeScreenViewModel: ViewModel() {
                 )
             ))
         _challenge.value = challenge
-
+        _currentStepId.value = -1
+        _maxSteps.value = challenge.steps.size
     }
     fun loadNextStep(){
         if (_challenge.value == null) return
         nextStepOrEnd()
-        _currentChallengeStep.value = _challenge.value!!.steps[currentStepId]
-
+        _currentChallengeStep.value = _challenge.value!!.steps[_currentStepId.value]
         startButtonVisibilityTimer()
     }
     private fun nextStepOrEnd(){
         if (_challenge.value == null) return
         val lastStep = _challenge.value!!.steps.size - 1
-        if (_currentChallengeStep.value != null){
-            currentStepId++
-            if (currentStepId == lastStep) _challengeStepState.value = ChallengeStepPositoin.END
-            else _challengeStepState.value = ChallengeStepPositoin.MIDDLE
+        _currentStepId.value++
+        when (_currentStepId.value) {
+            0 -> _challengeStepState.value = ChallengeStepPositoin.START
+            lastStep -> _challengeStepState.value = ChallengeStepPositoin.END
+            else -> _challengeStepState.value = ChallengeStepPositoin.MIDDLE
         }
+        Log.d("Challenge step", "$currentStepId")
+        Log.d("Challenge step", "${_challengeStepState.value}")
+
     }
 
     private fun startButtonVisibilityTimer(){
