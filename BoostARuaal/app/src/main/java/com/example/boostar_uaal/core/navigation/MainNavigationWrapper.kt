@@ -1,6 +1,7 @@
 package com.example.boostar_uaal.core.navigation
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation3.runtime.entryProvider
@@ -131,7 +132,10 @@ fun MainNavigationWrapper() {
 
             entry<Routes.ProfileScreen>{
                 ProfileScreen(
-                    navigateTo = { backStack.navigateTo(it)  },
+                    navigateTo = {
+                        backStack.navigateTo(
+                            screen = it,
+                            inclusive = it == Routes.AuthScreen) },
                     back = { },
                     backTo = { }
                 )
@@ -142,7 +146,7 @@ fun MainNavigationWrapper() {
                     challengeId = b.challengeId,
                     navigateTo = {},
                     back = { backStack.back() },
-                    backTo = {}
+                    backTo = { }
                 )
             }
         }

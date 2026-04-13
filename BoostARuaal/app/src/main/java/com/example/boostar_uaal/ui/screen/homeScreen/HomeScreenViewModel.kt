@@ -19,6 +19,7 @@ import kotlinx.coroutines.launch
 import com.example.boostar_uaal.BoostArApplication.Companion.productRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.likeRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.partnerRepository
+import kotlinx.coroutines.Dispatchers
 
 class HomeScreenViewModel : ViewModel() {
 
@@ -47,15 +48,14 @@ class HomeScreenViewModel : ViewModel() {
         refreshLikes()
     }
     fun loadProducts() {
-        viewModelScope.launch {
-            loadProductsForYou()
-            loadProductsTrends()
-            loadProductsDiscounts()
-        }
+        loadProductsForYou()
+        loadProductsTrends()
+        loadProductsDiscounts()
+
     }
 
     private fun loadProductsForYou(){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _productsForYou.value = productRepository.getProducts(
                 sortMode = SortOrder.FORYOU
             )
@@ -63,7 +63,7 @@ class HomeScreenViewModel : ViewModel() {
     }
 
     private fun loadProductsTrends(){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _productsTrends.value = productRepository.getProducts(
                 sortMode = SortOrder.TRENDS
             )
@@ -71,7 +71,7 @@ class HomeScreenViewModel : ViewModel() {
     }
 
     private fun loadProductsDiscounts(){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _productsDiscounts.value = productRepository.getProducts(
                 sortMode = SortOrder.DISCOUNT,
                 filters = listOf(ProductFilter.DISCOUNT)
@@ -125,18 +125,18 @@ class HomeScreenViewModel : ViewModel() {
     }
 
     private fun loadPartners() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _partners.value = partnerRepository.getPartners()
         }
     }
     fun toggleLike(productId: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             likeRepository.toggleLike(productId)
         }
     }
 
     fun refreshLikes(){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Default) {
             likeRepository.likeStateFlow.collect { likeMap ->
                 if (likeMap.isEmpty()) return@collect
                 fun applyLikes(list: List<Product>): List<Product> = list.map { p ->

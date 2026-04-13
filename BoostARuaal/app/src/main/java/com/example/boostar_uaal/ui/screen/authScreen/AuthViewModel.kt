@@ -1,9 +1,7 @@
 package com.example.boostar_uaal.ui.screen.authScreen
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.core.utils.AuthState
 import io.github.jan.supabase.auth.user.UserSession
@@ -14,6 +12,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import com.example.boostar_uaal.BoostArApplication.Companion.authRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.userRepository
+import io.github.jan.supabase.auth.Auth
+
 class AuthViewModel: ViewModel() {
     private val _session = MutableStateFlow<UserSession?>(null)
     private val _authState = MutableStateFlow<AuthState>(AuthState.Loading)
@@ -76,10 +76,8 @@ class AuthViewModel: ViewModel() {
         when(result) {
             is NativeSignInResult.Success -> {
                 viewModelScope.launch {
-                    Log.d("AuthRole", "${userRepository.hasUserRole()}")
                     if (userRepository.hasUserRole()){
                         authRepository.clearSession()
-                        _errorMessage.value = "Ya tienes un usuario creado.."
                     }
                     else {
                         userRepository.setUserRole(isCompanyAccount.value)
@@ -94,6 +92,13 @@ class AuthViewModel: ViewModel() {
                 navigateTo(Routes.AuthScreen)
             }
             else -> { }
+        }
+    }
+    fun signOut(onSuccess: () -> Unit){
+        viewModelScope.launch{
+            authRepository.signOut()
+            _authState.value = AuthState.Unauthenticated
+            onSuccess()
         }
     }
     fun clearError(){

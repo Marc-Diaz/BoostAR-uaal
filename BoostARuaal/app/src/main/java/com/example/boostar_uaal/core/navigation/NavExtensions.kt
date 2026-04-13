@@ -22,5 +22,5 @@ fun NavBackStack<NavKey>.backTo(targetScreen: NavKey) {
     while(isNotEmpty() && last() != targetScreen){
         removeLastOrNull()
     }
-
 }
+

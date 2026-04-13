@@ -1,17 +1,8 @@
 package com.example.boostar_uaal.data.repository
 
 
-import android.util.Log
-import com.example.boostar_uaal.core.entities.User
 import com.example.boostar_uaal.core.repository.AuthRepository
-
 import io.github.jan.supabase.auth.Auth
-import io.github.jan.supabase.auth.user.UserUpdateBuilder
-import kotlinx.serialization.json.booleanOrNull
-import kotlinx.serialization.json.buildJsonObject
-import kotlinx.serialization.json.jsonPrimitive
-import kotlinx.serialization.json.put
-import kotlin.collections.mapOf
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 
@@ -27,6 +18,7 @@ class AuthRepositoryImpl(private val auth: Auth): AuthRepository {
 
     override suspend fun clearSession(){
         auth.sessionManager.deleteSession()
+
     }
 
 
@@ -48,4 +40,7 @@ class AuthRepositoryImpl(private val auth: Auth): AuthRepository {
         }
     }
 
+    override suspend fun signOut() {
+        auth.signOut()
+    }
 }

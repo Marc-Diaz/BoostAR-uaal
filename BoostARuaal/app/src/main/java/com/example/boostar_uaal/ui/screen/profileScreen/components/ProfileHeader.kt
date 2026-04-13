@@ -2,12 +2,10 @@ package com.example.boostar_uaal.ui.screen.profileScreen.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -21,14 +19,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.components.ItemImage
-import com.example.boostar_uaal.core.entities.User
 import com.example.boostar_uaal.core.theme.primaryColor
 
 @Composable
-fun ProfileHeader(name: String, mail: String, picture: String, level: Int ){
+fun ProfileHeader(modifier: Modifier = Modifier, name: String, mail: String, picture: String, level: Int ){
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(16.dp)
     ) {

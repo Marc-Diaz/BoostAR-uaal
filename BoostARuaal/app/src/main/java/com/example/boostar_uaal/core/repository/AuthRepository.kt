@@ -13,4 +13,7 @@ interface AuthRepository {
     suspend fun isAccessTokenValid(): Boolean
 
     suspend fun refreshSession(): Boolean
+
+    suspend fun signOut()
+
 }
