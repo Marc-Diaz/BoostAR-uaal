@@ -56,16 +56,17 @@ fun ProfileHeader(modifier: Modifier = Modifier, name: String, mail: String, pic
             ) {
                 Icon(
                     painter = painterResource(R.drawable.game_icon),
-                    contentDescription = "Racha",
+                    contentDescription = "Nivel",
                     tint = Color.White,
                     modifier = Modifier.size(18.dp)
                 )
                 Spacer(modifier = Modifier.width(4.dp))
                 InterText(
-                    text = "12",
+                    text = "$level",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    maxLines = 1
                 )
             }
         }

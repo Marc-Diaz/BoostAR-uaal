@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.InterText
+import com.example.boostar_uaal.core.components.PaginationPoints
 import com.example.boostar_uaal.core.theme.discountColor
 import com.example.boostar_uaal.core.theme.secondaryColor
 
@@ -100,8 +101,7 @@ fun ProductInfoSection(
                     )
                 )
             )
+
         }
-
-
     }
 }

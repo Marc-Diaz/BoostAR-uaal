@@ -97,8 +97,9 @@ class AuthViewModel: ViewModel() {
     fun signOut(onSuccess: () -> Unit){
         viewModelScope.launch{
             authRepository.signOut()
-            _authState.value = AuthState.Unauthenticated
             onSuccess()
+            _authState.value = AuthState.Unauthenticated
+
         }
     }
     fun clearError(){

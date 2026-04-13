@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -14,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.components.BackgorundImage
 import com.example.boostar_uaal.core.components.BackgroundVideo
 import com.example.boostar_uaal.core.components.MediaPlayer
+import com.example.boostar_uaal.core.components.PaginationPoints
 import com.example.boostar_uaal.core.entities.Brand
 import com.example.boostar_uaal.core.entities.Multimedia
 import com.example.boostar_uaal.core.entities.Partner
@@ -53,7 +56,6 @@ fun FeedItem(
                 )
                 else -> {}
             }
-
         }
 
         TopPartnerSearch (
@@ -85,7 +87,12 @@ fun FeedItem(
                 price = product.price,
                 discountPrice = product.discountPrice
             )
-
+            Box(modifier = Modifier.fillMaxWidth(),contentAlignment = Alignment.BottomCenter){
+                PaginationPoints(
+                    size = product.multimedia.size,
+                    pageState = pagerState
+                )
+            }
             BottomActionDock(
                 modifier = Modifier.fillMaxWidth(),
                 onDetailsClick = onDetailsClick,

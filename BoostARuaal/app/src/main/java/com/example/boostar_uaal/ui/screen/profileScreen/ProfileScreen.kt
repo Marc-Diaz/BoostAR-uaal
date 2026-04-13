@@ -105,7 +105,7 @@ fun ProfileScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Route
                 else{
                     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
                         InterText(
-                            text = "Inicia sessión",
+                            text = "Inicia se   sión",
                             color = grayTextColor,
                             fontWeight = FontWeight.Bold
                         )

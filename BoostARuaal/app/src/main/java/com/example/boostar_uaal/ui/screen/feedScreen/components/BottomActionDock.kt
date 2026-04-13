@@ -2,6 +2,7 @@ package com.example.boostar_uaal.ui.screen.feedScreen.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,6 +25,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.painterResource
 import com.example.boostar_uaal.core.theme.primaryColor
 import com.example.boostar_uaal.R
+import com.example.boostar_uaal.core.components.PaginationPoints
+
 @Composable
 fun BottomActionDock(
     modifier: Modifier = Modifier,
@@ -31,6 +34,7 @@ fun BottomActionDock(
     onTryArClick: () -> Unit,
     onQuickPayClick: () -> Unit
 ) {
+
     Surface(
         modifier = modifier
             .padding(horizontal = 16.dp, vertical = 10.dp)
