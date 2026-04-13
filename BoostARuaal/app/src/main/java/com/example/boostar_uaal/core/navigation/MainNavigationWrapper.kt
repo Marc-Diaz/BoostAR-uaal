@@ -21,6 +21,7 @@ import com.example.boostar_uaal.ui.screen.singInScreen.SignInScreen
 import com.example.boostar_uaal.ui.screen.arScreen.ArScreen
 import com.example.boostar_uaal.ui.screen.basketScreen.BasketScreen
 import com.example.boostar_uaal.ui.screen.challengeScreen.ChallengeScreen
+import com.example.boostar_uaal.ui.screen.eventScreen.EventScreen
 import com.example.boostar_uaal.ui.screen.gameScreen.GameScreen
 import com.example.boostar_uaal.ui.screen.profileScreen.ProfileScreen
 
@@ -147,6 +148,13 @@ fun MainNavigationWrapper() {
                     navigateTo = {},
                     back = { backStack.back() },
                     backTo = { }
+                )
+            }
+            entry<Routes.EventScreen>{
+                EventScreen(
+                    navigateTo = { backStack.navigateTo(it)},
+                    back = {  },
+                    backTo = {  }
                 )
             }
         }

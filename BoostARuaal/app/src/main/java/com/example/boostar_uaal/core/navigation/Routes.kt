@@ -53,4 +53,6 @@ sealed class    Routes: NavKey {
     @Serializable
     data class ChallengeScreen(val challengeId: Int): Routes()
 
+    @Serializable
+    data object EventScreen: Routes()
 }

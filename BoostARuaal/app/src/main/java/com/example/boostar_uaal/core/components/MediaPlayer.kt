@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.media3.common.MediaItem
 import androidx.media3.exoplayer.ExoPlayer
@@ -17,15 +18,14 @@ import androidx.media3.ui.AspectRatioFrameLayout
 
 @OptIn(UnstableApi::class)
 @Composable
-fun MediaPlayer(context: Context, raw: Int, modifier: Modifier = Modifier){
+fun MediaPlayer( raw: Int, modifier: Modifier = Modifier){
+    val context = LocalContext.current
     val uri = "android.resource://${context.packageName}/${raw}".toUri()
     val player = remember {
         ExoPlayer.Builder(context).build().apply {
             setMediaItem(MediaItem.fromUri(uri))
             repeatMode = ExoPlayer.REPEAT_MODE_ONE
-
             prepare()
-
             play()
         }
     }
@@ -33,6 +33,33 @@ fun MediaPlayer(context: Context, raw: Int, modifier: Modifier = Modifier){
         onDispose { player.release() }
     }
     AndroidView(
+        modifier = modifier,
+        factory = {
+            PlayerView(context).apply {
+                this.player = player
+                useController = false
+                resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
+            }
+        }
+    )
+}
+@OptIn(UnstableApi::class)
+@Composable
+fun MediaPlayer( uri: String, modifier: Modifier = Modifier){
+    val context = LocalContext.current
+    val player = remember {
+        ExoPlayer.Builder(context).build().apply {
+            setMediaItem(MediaItem.fromUri(uri))
+            repeatMode = ExoPlayer.REPEAT_MODE_ONE
+            prepare()
+            play()
+        }
+    }
+    DisposableEffect(Unit) {
+        onDispose { player.release() }
+    }
+    AndroidView(
+        modifier = modifier,
         factory = {
             PlayerView(context).apply {
                 this.player = player

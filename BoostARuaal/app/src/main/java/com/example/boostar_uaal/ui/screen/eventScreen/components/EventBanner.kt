@@ -1,7 +1,6 @@
-package com.example.boostar_uaal.core.components
+package com.example.boostar_uaal.ui.screen.eventScreen.components
 
 import android.content.res.Configuration
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,48 +24,54 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
+import com.example.boostar_uaal.core.components.ItemImage
+import com.example.boostar_uaal.core.components.MediaPlayer
+import com.example.boostar_uaal.core.entities.Multimedia
+import com.example.boostar_uaal.core.entities.TypeMultimedia
 
 @Composable
-fun HomeBannerEstatic(
-    banner: HeroBannerData,
-    onButtonClick: () -> Unit
-) {
+fun EventBanner(name: String, description: String, media: Multimedia, isMain: Boolean, onTryArClick: () -> Unit) {
     val configuration = LocalConfiguration.current
-    val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
+    val isLandscape =
+        configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+            .aspectRatio(if (isLandscape) 16f / 9f else 4f / 5f),
+        shape = RoundedCornerShape(24.dp),
+        elevation = CardDefaults.cardElevation(4.dp)
     ) {
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-                .aspectRatio(if (isLandscape) 16f / 9f else 4f / 5f),
-            shape = RoundedCornerShape(24.dp),
-            elevation = CardDefaults.cardElevation(4.dp)
-        ) {
-            Box(modifier = Modifier.fillMaxSize()) {
-                Image(
-                    painter = painterResource(banner.imageRes),
-                    contentDescription = "Static Banner Image",
-                    contentScale = ContentScale.Crop,
-                    alignment = Alignment.TopCenter,
-                    modifier = Modifier.fillMaxSize()
-                )
-
-                // Degradado oscuro para que el texto resalte
+        Box(modifier = Modifier.fillMaxSize()) {
+            when(media.type){
+                TypeMultimedia.VIDEO -> {
+                   MediaPlayer(
+                       uri = media.multimediaURL,
+                       modifier = Modifier.fillMaxSize()
+                   )
+                }
+                TypeMultimedia.IMAGE -> {
+                    ItemImage(
+                        url = media.multimediaURL,
+                        contentDescription = name,
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                }
+                else -> {}
+            }
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(
                             Brush.verticalGradient(
-                                colors = listOf(Color.Transparent, Color.Black.copy(alpha = 0.8f)),
+                                colors = listOf(
+                                    Color.Transparent,
+                                    Color.Black.copy(alpha = 0.8f)
+                                ),
                                 startY = 200f
                             )
                         )
@@ -80,14 +85,14 @@ fun HomeBannerEstatic(
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
-                        text = banner.label, // Ej: "NOVEDADES"
+                        text = if (isMain)"MAIN EVENT" else "",
                         color = Color.White.copy(alpha = 0.8f),
                         fontSize = 12.sp,
                         fontWeight = FontWeight.SemiBold
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = banner.title,
+                        text = name,
                         color = Color.White,
                         fontSize = 28.sp,
                         fontWeight = FontWeight.Bold,
@@ -95,30 +100,30 @@ fun HomeBannerEstatic(
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = banner.subtitle,
+                        text = description,
                         color = Color.White.copy(alpha = 0.9f),
                         fontSize = 14.sp
                     )
                     Spacer(modifier = Modifier.height(24.dp))
 
-                    // Botón Azul ("Ver más")
                     Button(
-                        onClick = onButtonClick,
-                        modifier = Modifier.fillMaxWidth().height(56.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF007AFF)), // Azul enlace
+                        onClick = onTryArClick,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(56.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF6347)),
                         shape = RoundedCornerShape(30.dp)
                     ) {
                         Text(
-                            text = "Ver más",
+                            "¡Probar en AR!",
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.White
                         )
                     }
                 }
-            }
-        }
 
-        Spacer(modifier = Modifier.height(16.dp))
-    }
+            }
+
+        }
 }

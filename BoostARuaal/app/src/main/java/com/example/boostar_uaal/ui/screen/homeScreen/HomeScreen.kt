@@ -15,13 +15,12 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.boostar_uaal.core.components.AdaptiveFeedLayout
 import com.example.boostar_uaal.core.components.SectionHeader
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
-import com.example.boostar_uaal.core.components.HomeBannerEstatic
+import com.example.boostar_uaal.core.components.HomeBannerStatic
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeHeader
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeHero
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeNav
 import com.example.boostar_uaal.R
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.BottomNavBar
@@ -97,7 +96,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                     fontSize = 27.48.sp
                 )
 
-                HomeBannerEstatic(
+                HomeBannerStatic(
                     banner = HeroBannerData(
                         imageRes = R.drawable.home_novedades_mes,
                         label = "NOVEDADES",
@@ -135,7 +134,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
 
                 SectionHeader(
                     title = "Eventos >",
-                    onClick = { navigateTo(Routes.HomeScreen) }
+                    onClick = { navigateTo(Routes.EventScreen) }
                 )
 
                 HomeBannerEventsEstatic(
