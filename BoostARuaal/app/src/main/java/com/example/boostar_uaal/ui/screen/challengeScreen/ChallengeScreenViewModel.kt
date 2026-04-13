@@ -9,7 +9,6 @@ import com.example.boostar_uaal.R
 
 import com.example.boostar_uaal.core.entities.ChallengeData
 import com.example.boostar_uaal.core.entities.ChallengeStep
-import com.snap.camerakit.internal.cu
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -76,7 +75,14 @@ class ChallengeScreenViewModel: ViewModel() {
                     multimedia = R.drawable.complementary,
                     title = "<b><span style=\"color:#007AFF\">COMPLEMENTARIOS</span></b>",
                     text = "Colores <b><span style=\"color:#007AFF\">opuestos</span></b> que juntos crean <b><span style=\"color:#007AFF\">contraste</span></b> y hacen que el <b><span style=\"color:#007AFF\">outfit destaque</span></b>",
-                    sleepTimeInMilliseconds = 1000
+                    sleepTimeInMilliseconds = 3000
+                ),
+                ChallengeStep(
+                    id = 7,
+                    multimedia = R.drawable.complementary,
+                    title = "<b><span style=\"color:#007AFF\">NEUTROS</span></b>",
+                    text = "Colores que se utilizan para <b><span style=\"color:#007AFF\">combinar</span></b> y que <b><span style=\"color:#007AFF\">no destacan</span></b> en general",
+                    sleepTimeInMilliseconds = 3000
                 )
             ))
         _challenge.value = challenge
