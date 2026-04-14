@@ -44,14 +44,7 @@ class HomeScreenViewModel : ViewModel() {
 
     val event: StateFlow<Event?> = _event.asStateFlow()
 
-    fun initializeHome(){
-        loadProducts()
-        loadBanners()
-        loadCollabs()
-        loadPartners()
-        loadEvent()
-        refreshLikes()
-    }
+
     fun loadProducts() {
         loadProductsForYou()
         loadProductsTrends()
@@ -59,7 +52,7 @@ class HomeScreenViewModel : ViewModel() {
 
     }
 
-    private fun loadProductsForYou(){
+    fun loadProductsForYou(){
         viewModelScope.launch(Dispatchers.IO) {
             _productsForYou.value = productRepository.getProducts(
                 sortMode = SortOrder.FORYOU
@@ -67,7 +60,7 @@ class HomeScreenViewModel : ViewModel() {
         }
     }
 
-    private fun loadProductsTrends(){
+    fun loadProductsTrends(){
         viewModelScope.launch(Dispatchers.IO) {
             _productsTrends.value = productRepository.getProducts(
                 sortMode = SortOrder.TRENDS
@@ -75,7 +68,7 @@ class HomeScreenViewModel : ViewModel() {
         }
     }
 
-    private fun loadProductsDiscounts(){
+    fun loadProductsDiscounts(){
         viewModelScope.launch(Dispatchers.IO) {
             _productsDiscounts.value = productRepository.getProducts(
                 sortMode = SortOrder.DISCOUNT,
@@ -84,7 +77,7 @@ class HomeScreenViewModel : ViewModel() {
         }
     }
 
-    private fun loadBanners() {
+    fun loadBanners() {
         _banners.value = listOf(
             HeroBannerData(
                 imageRes = R.drawable.home_hero,
@@ -106,7 +99,7 @@ class HomeScreenViewModel : ViewModel() {
             )
         )
     }
-    private fun loadCollabs() {
+    fun loadCollabs() {
         _collabs.value = listOf(
             CollabData(
                 id = 1,
@@ -129,7 +122,7 @@ class HomeScreenViewModel : ViewModel() {
         )
     }
 
-    private fun loadEvent(){
+    fun loadEvent(){
         val event = Event(
                 id = 1,
                 isMain = true,
@@ -149,7 +142,7 @@ class HomeScreenViewModel : ViewModel() {
             )
         _event.value = event
     }
-    private fun loadPartners() {
+    fun loadPartners() {
         viewModelScope.launch(Dispatchers.IO) {
             _partners.value = partnerRepository.getPartners()
         }

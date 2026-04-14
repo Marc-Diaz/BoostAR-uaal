@@ -8,7 +8,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.R
 
 import com.example.boostar_uaal.core.entities.ChallengeData
+import com.example.boostar_uaal.core.entities.ChallengeQuestion
 import com.example.boostar_uaal.core.entities.ChallengeStep
+import com.example.boostar_uaal.core.entities.QuestionAnswer
+import com.snap.camerakit.support.media.recording.internal.fa
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -29,6 +32,10 @@ class ChallengeScreenViewModel: ViewModel() {
     val maxSteps: StateFlow<Int> = _maxSteps.asStateFlow()
     private var _currentStepId: MutableStateFlow<Int> = MutableStateFlow<Int>(-1)
     val currentStepId: StateFlow<Int> = _currentStepId.asStateFlow()
+
+    private var _currentQuestion: MutableStateFlow<ChallengeQuestion?> = MutableStateFlow(null)
+    val currentQuestion: StateFlow<ChallengeQuestion?> = _currentQuestion.asStateFlow()
+
 
     private var _isButtonVisible: MutableStateFlow<Boolean> = MutableStateFlow(true)
     val isButtonVisible: StateFlow<Boolean> = _isButtonVisible.asStateFlow()
@@ -84,7 +91,82 @@ class ChallengeScreenViewModel: ViewModel() {
                     text = "Colores que se utilizan para <b><span style=\"color:#007AFF\">combinar</span></b> y que <b><span style=\"color:#007AFF\">no destacan</span></b> en general",
                     sleepTimeInMilliseconds = 500
                 )
-            ))
+            ),
+            questions = listOf(
+                ChallengeQuestion(
+                    id = 1,
+                    question = "¿Cuál de estas opciones es una paleta de colores monocromática?",
+                    answers = listOf(
+                        QuestionAnswer(
+                            answerImage = R.drawable.complementary,
+                            isCorrect = false
+                        ),
+                        QuestionAnswer(
+                            answerImage = R.drawable.neutral,
+                            isCorrect = false
+                        ),
+                        QuestionAnswer(
+                            answerImage = R.drawable.monocromatic_line,
+                            isCorrect = true
+                        ),
+                    )
+                ),
+                ChallengeQuestion(
+                    id = 2,
+                    question = "¿Cuál de estas opciones es una paleta de colores complementaria?",
+                    answers = listOf(
+                        QuestionAnswer(
+                            answerImage = R.drawable.complementary_line,
+                            isCorrect = true
+                        ),
+                        QuestionAnswer(
+                            answerImage = R.drawable.neutral_line,
+                            isCorrect = false
+                        ),
+                        QuestionAnswer(
+                            answerImage = R.drawable.monocromatic_line,
+                            isCorrect = false
+                        ),
+                    )
+                ),
+                ChallengeQuestion(
+                    id = 1,
+                    question = "¿Cuál de estas opciones es una paleta de colores neutra?",
+                    answers = listOf(
+                        QuestionAnswer(
+                            answerImage = R.drawable.complementary_line,
+                            isCorrect = true
+                        ),
+                        QuestionAnswer(
+                            answerImage = R.drawable.neutral_line,
+                            isCorrect = false
+                        ),
+                        QuestionAnswer(
+                            answerImage = R.drawable.monocromatic_line,
+                            isCorrect = false
+                        ),
+                    )
+                ),
+                ChallengeQuestion(
+                    id = 3,
+                    question = "¿Cuál de estas opciones es una paleta de colores neutra?",
+                    answers = listOf(
+                        QuestionAnswer(
+                            answerImage = R.drawable.complementary_line,
+                            isCorrect = false
+                        ),
+                        QuestionAnswer(
+                            answerImage = R.drawable.neutral_line,
+                            isCorrect = false
+                        ),
+                        QuestionAnswer(
+                            answerImage = R.drawable.monocromatic_line,
+                            isCorrect = false
+                        ),
+                    )
+                )
+            )
+        )
         _challenge.value = challenge
         _currentStepId.value = -1
         _maxSteps.value = challenge.steps.size

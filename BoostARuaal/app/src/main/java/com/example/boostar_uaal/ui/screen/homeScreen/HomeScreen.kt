@@ -47,7 +47,14 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
 
 
     LaunchedEffect(Unit) {
-        homeScreenViewModel.initializeHome()
+        homeScreenViewModel.loadProductsForYou()
+        homeScreenViewModel.loadProductsTrends()
+        homeScreenViewModel.loadProductsDiscounts()
+        homeScreenViewModel.loadBanners()
+        homeScreenViewModel.loadCollabs()
+        homeScreenViewModel.loadPartners()
+        homeScreenViewModel.loadEvent()
+        homeScreenViewModel.refreshLikes()
     }
     Scaffold(
         containerColor = Color.Transparent,
@@ -56,7 +63,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                 naviagetTo = { navigateTo(it) },
                 currentRoute = Routes.HomeScreen
             )
-    },
+        },
         content = { paddingValues ->
             AdaptiveFeedLayout {
                 HomeHeader(Modifier.padding(top = paddingValues.calculateTopPadding()))

@@ -42,7 +42,6 @@ fun SectionHeader(
             fontWeight = FontWeight.ExtraBold
         )
 
-        // Solo pintamos la flecha si es navegable
         if (isClickable) {
             Spacer(modifier = Modifier.width(8.dp))
             Icon(

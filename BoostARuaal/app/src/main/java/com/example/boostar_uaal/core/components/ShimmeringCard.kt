@@ -1,0 +1,118 @@
+package com.example.boostar_uaal.core.components
+
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.boostar_uaal.LocalAuthState
+import com.example.boostar_uaal.core.theme.secondaryColor
+import com.example.boostar_uaal.core.utils.AuthState
+import com.example.boostar_uaal.core.utils.formatLikes
+import com.example.boostar_uaal.core.utils.shimmerEffect
+
+@Composable
+fun ShimmeringCard(modifier: Modifier = Modifier){
+    Column(
+        modifier = modifier
+            .width(160.dp)
+    ) {
+        Box(
+            modifier = Modifier.size(height = 220.dp, width = 160.dp)
+        ) {
+            Card(
+                modifier = Modifier.fillMaxSize().shimmerEffect(),
+                shape = RoundedCornerShape(16.dp),
+                elevation = CardDefaults.cardElevation(4.dp)
+            ) {}
+            Surface(
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(8.dp)
+                    .size(28.dp),
+                shape = CircleShape,
+                color = Color.White,
+                shadowElevation = 2.dp
+            ) {}
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.Top
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                InterText(
+                    text = "----------------------",
+                    fontSize = 11.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.height(24.dp).padding(end = 4.dp).shimmerEffect(),
+
+                    )
+                InterText(
+                    text = "",
+                    color = secondaryColor,
+                    fontSize = 12.sp
+                )
+            }
+
+            Spacer(modifier = Modifier.width(4.dp))
+
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .clickable(
+                        interactionSource = null,
+                        indication = null,
+                        enabled = LocalAuthState.current is AuthState.Authenticated,
+                        onClick = {  },
+
+                        )
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Favorite,
+                    contentDescription = "Like",
+                    tint = Color.Black,
+                    modifier = Modifier.size(20.dp)
+                )
+                InterText(
+                    text = "---",
+                    fontSize = 11.sp,
+                    color = Color.Black,
+                    modifier = Modifier.shimmerEffect()
+                )
+            }
+        }
+    }
+}
+@Preview
+@Composable
+fun PreviewShimmeringCard(){
+    ShimmeringCard()
+}

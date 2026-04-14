@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.components.ItemCard
+import com.example.boostar_uaal.core.components.ShimmeringCard
 import com.example.core.entities.Product
 @Composable
 fun ItemCarrousel(
@@ -21,13 +22,20 @@ fun ItemCarrousel(
             contentPadding = PaddingValues(horizontal = 12.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            items(products) { product ->
-                ItemCard(
-                    product = product,
-                    clickable = { onItemClick(product.id) },
-                    onLikeClick = { onLikeClick(product.id) }
-                )
+            if (!products.isEmpty())
+                items(products) { product ->
+                    ItemCard(
+                        product = product,
+                        clickable = { onItemClick(product.id) },
+                        onLikeClick = { onLikeClick(product.id) }
+                    )
+                }
+            else{
+                items(10) {
+                    ShimmeringCard()
+                }
             }
+
         }
     }
 }

@@ -51,6 +51,7 @@ fun ChallengeScreen(challengeId: Int, navigateTo: (Routes) -> Unit, back: () -> 
     val maxSteps by challengeScreenViewModel.maxSteps.collectAsState()
     val currentStepId by challengeScreenViewModel.currentStepId.collectAsState()
     val isButtonVisible by challengeScreenViewModel.isButtonVisible.collectAsState()
+
     LaunchedEffect(Unit) {
         challengeScreenViewModel.loadChallenge(challengeId)
         challengeScreenViewModel.loadNextStep()
