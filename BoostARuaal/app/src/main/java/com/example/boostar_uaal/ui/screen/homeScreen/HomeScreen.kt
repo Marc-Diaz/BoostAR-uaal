@@ -155,17 +155,6 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                     )
 
                 }
-
-                SectionHeader(
-                    title = "Próximante >",
-                    textColor = Color.Red,
-                    onClick = { navigateTo(Routes.HomeScreen) }
-                )
-
-
-
-                Spacer(modifier = Modifier.height(32.dp))
-
                 SectionHeader(
                     title = "Ofertas >",
                     textColor = Color.Red,

@@ -21,6 +21,7 @@ import com.example.boostar_uaal.ui.screen.singInScreen.SignInScreen
 import com.example.boostar_uaal.ui.screen.arScreen.ArScreen
 import com.example.boostar_uaal.ui.screen.basketScreen.BasketScreen
 import com.example.boostar_uaal.ui.screen.challengeScreen.ChallengeScreen
+import com.example.boostar_uaal.ui.screen.challengeScreen.ChallengeTriviaScreen
 import com.example.boostar_uaal.ui.screen.eventScreen.EventScreen
 import com.example.boostar_uaal.ui.screen.gameScreen.GameScreen
 import com.example.boostar_uaal.ui.screen.profileScreen.ProfileScreen
@@ -146,11 +147,21 @@ fun MainNavigationWrapper() {
             entry<Routes.ChallengeScreen>{ b ->
                 ChallengeScreen(
                     challengeId = b.challengeId,
-                    navigateTo = {},
-                    back = { backStack.back() },
+                    navigateTo = { backStack.navigateTo(Routes.ChallengeTriviaScreen) },
+                    back = { },
                     backTo = { }
                 )
             }
+
+            entry<Routes.ChallengeTriviaScreen>{
+                ChallengeTriviaScreen(
+
+                    backTo = {
+                        backStack.backTo(it)
+                    }
+                )
+            }
+
             entry<Routes.EventScreen>{
                 EventScreen(
                     navigateTo = { backStack.navigateTo(it)},

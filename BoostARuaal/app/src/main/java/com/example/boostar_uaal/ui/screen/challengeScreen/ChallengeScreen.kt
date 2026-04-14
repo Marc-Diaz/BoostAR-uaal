@@ -1,5 +1,6 @@
 package com.example.boostar_uaal.ui.screen.challengeScreen
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.EaseIn
 import androidx.compose.animation.core.tween
@@ -42,6 +43,7 @@ import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.components.PaginationPoints
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.core.theme.primaryColor
+import com.example.boostar_uaal.ui.screen.challengeScreen.components.GameButton
 
 @Composable
 fun ChallengeScreen(challengeId: Int, navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit) {
@@ -139,46 +141,20 @@ fun ChallengeScreen(challengeId: Int, navigateTo: (Routes) -> Unit, back: () -> 
                         )
                     }
                 }
-
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(0.15f),
-                    contentAlignment = Alignment.Center
-                ) {
-                    androidx.compose.animation.AnimatedVisibility(
-                        visible = isButtonVisible,
-                        enter = fadeIn(animationSpec = tween(durationMillis = 400, easing = EaseIn)),
-                        exit = ExitTransition.None
-                    )
-                    {
-                        Button(
-                            onClick = {
-                                if (challengePosition == ChallengeStepPositoin.END) back()
-                                else challengeScreenViewModel.loadNextStep()
-                            },
-                            modifier = Modifier.size(width = 323.dp, height = 57.dp),
-                            colors = ButtonDefaults.buttonColors(containerColor = primaryColor),
-                            shape = CircleShape,
-                            content = {
-                                InterText(
-                                    text = when (challengePosition) {
-                                        ChallengeStepPositoin.START -> "Empezar"
-                                        ChallengeStepPositoin.MIDDLE -> "Siguiente"
-                                        ChallengeStepPositoin.END -> "Finalizar"
-                                    },
-                                    modifier = Modifier.fillMaxWidth(),
-                                    fontSize = 18.sp,
-                                    color = Color.White,
-                                    fontWeight = FontWeight.Black,
-                                    textAlign = TextAlign.Center
-                                )
-                            }
-                        )
-
+                GameButton(
+                    modifier = Modifier.weight(0.15f),
+                    isButtonVisible = isButtonVisible,
+                    text = when (challengePosition) {
+                        ChallengeStepPositoin.START -> "Empezar"
+                        ChallengeStepPositoin.MIDDLE -> "Siguiente"
+                        ChallengeStepPositoin.END -> "Finalizar"
+                    },
+                    onClick = {
+                        if (challengePosition == ChallengeStepPositoin.END) navigateTo(
+                            Routes.ChallengeTriviaScreen)
+                        else challengeScreenViewModel.loadNextStep()
                     }
-
-                }
+                )
             }
         }
     }
