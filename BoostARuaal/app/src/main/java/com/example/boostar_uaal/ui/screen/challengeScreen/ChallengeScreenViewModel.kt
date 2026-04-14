@@ -57,7 +57,7 @@ class ChallengeScreenViewModel: ViewModel() {
                     id = 1,
                     multimedia = R.drawable.color_wheel,
                     title = "<b>TU <span style=\"color:#007AFF\">PALETA.</span><br>TU <span style=\"color:#007AFF\">IDENTIDAD.</span></b>",
-                    text = "Aprene a leer el color como un estilista y crea outfits que te definen.",
+                    text = "Aprende a leer el color como un estilista y crea outfits que te definen.",
                     sleepTimeInMilliseconds = 0
                 ),
                 ChallengeStep(

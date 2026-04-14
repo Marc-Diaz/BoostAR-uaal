@@ -9,6 +9,7 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import com.example.boostar_uaal.LocalAuthState
 import com.example.boostar_uaal.core.utils.AuthState
+import com.example.boostar_uaal.ui.screen.TrendsScreen.TrendsScreen
 import com.example.boostar_uaal.ui.screen.forYouScreen.ForYouScreen
 import com.example.boostar_uaal.ui.screen.authScreen.AuthScreen
 import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreen
@@ -105,6 +106,12 @@ fun MainNavigationWrapper() {
                 ForYouScreen(
                     navigateTo = { backStack.navigateTo(it) },
                     back = { backStack.back() }
+                )
+            }
+
+            entry<Routes.TendenciasScreen> {
+                TrendsScreen (
+                    navigateTo = { backStack.navigateTo(it) }
                 )
             }
 

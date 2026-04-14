@@ -90,7 +90,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
 
                 SectionHeader(
                     title = "Tendencias >",
-                    onClick = { navigateTo(Routes.HomeScreen) }
+                    onClick = { navigateTo(Routes.TendenciasScreen) }
                 )
 
 
