@@ -24,7 +24,7 @@ fun Event(event: Event, onTryArClick: () -> Unit){
         EventProduct(
             productDescription = event.productDescription,
             productImage = event.productImage,
-            isLeft = true
+            isLeft = event.isProductImageLeft
 
         )
     }
@@ -46,7 +46,8 @@ fun PreviewEvent(){
         ),
         productImage = "",
         productDescription = "Esta camiseta representa un momento icónico donde la música, la cultura y el espectáculo se unen en un escenario global.\nUn símbolo de impacto que trasciende el evento y conecta a millones de personas.",
-        model = ""
+        model = "",
+        isProductImageLeft = true
     )
     Event(event){}
 }

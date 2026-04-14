@@ -49,40 +49,40 @@ class ChallengeScreenViewModel: ViewModel() {
                     multimedia = R.drawable.color_wheel,
                     title = "<b>¿Qué es la <br><span style=\"color:#007AFF\">colorimetría</span>?</b>",
                     text = "Entiende el lenguaje del color y cómo potencia tu estilo.",
-                    sleepTimeInMilliseconds = 3000
+                    sleepTimeInMilliseconds = 1500
                 ),
                 ChallengeStep(
                     id = 3,
                     multimedia = R.drawable.challenge_phone_1,
                     text = "La <b><span style=\"color:#007AFF\">colorimetría</span></b> sirve para <b><span style=\"color:#007AFF\">combinar prendas</span></b> entre sí",
-                    sleepTimeInMilliseconds = 3000
+                    sleepTimeInMilliseconds = 500
                 ),
                 ChallengeStep(
                     id = 4,
                     multimedia = R.drawable.challenge_phone_2,
                     text = "Hay combinaciones <b><span style=\"color:#007AFF\">seguras</span></b> y combinaciones <b><span style=\"color:#007AFF\">arriesgadas</span></b>.",
-                    sleepTimeInMilliseconds = 3000
+                    sleepTimeInMilliseconds = 500
                 ),
                 ChallengeStep(
                     id = 5,
                     multimedia = R.drawable.monocromatic,
                     title = "<b><span style=\"color:#007AFF\">MONOCROMÁTICOS</span></b>",
                     text = "Mismo <b><span style=\"color:#007AFF\">color</span></b>, diferentes <b><span style=\"color:#007AFF\">tonos</span></b>",
-                    sleepTimeInMilliseconds = 3000
+                    sleepTimeInMilliseconds = 500
                 ),
                 ChallengeStep(
                     id = 6,
                     multimedia = R.drawable.complementary,
                     title = "<b><span style=\"color:#007AFF\">COMPLEMENTARIOS</span></b>",
                     text = "Colores <b><span style=\"color:#007AFF\">opuestos</span></b> que juntos crean <b><span style=\"color:#007AFF\">contraste</span></b> y hacen que el <b><span style=\"color:#007AFF\">outfit destaque</span></b>",
-                    sleepTimeInMilliseconds = 3000
+                    sleepTimeInMilliseconds = 500
                 ),
                 ChallengeStep(
                     id = 7,
-                    multimedia = R.drawable.complementary,
+                    multimedia = R.drawable.neutral,
                     title = "<b><span style=\"color:#007AFF\">NEUTROS</span></b>",
                     text = "Colores que se utilizan para <b><span style=\"color:#007AFF\">combinar</span></b> y que <b><span style=\"color:#007AFF\">no destacan</span></b> en general",
-                    sleepTimeInMilliseconds = 3000
+                    sleepTimeInMilliseconds = 500
                 )
             ))
         _challenge.value = challenge

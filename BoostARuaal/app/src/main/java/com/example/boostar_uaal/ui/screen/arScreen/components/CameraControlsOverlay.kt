@@ -18,6 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.R
+import com.example.boostar_uaal.core.components.BlockedIcon
 import com.example.boostar_uaal.core.theme.primaryColor
 
 @Composable
@@ -68,51 +69,63 @@ fun CameraControlsOverlay(
                 )
             }
         }
-
-        IconButton(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .width(130.dp)
-                .height(64.dp)
-                .clip(RoundedCornerShape(50))
-                .background(Color.White)
-                .border(
-                    width = 4.dp,
-                    color = borderGrey,
-                    shape = RoundedCornerShape(50)
-                ),
+        Box(modifier = Modifier.align(Alignment.BottomCenter)) {
+            IconButton(
+                modifier = Modifier
+                    .width(130.dp)
+                    .height(64.dp)
+                    .clip(RoundedCornerShape(50))
+                    .background(Color.White)
+                    .border(
+                        width = 4.dp,
+                        color = borderGrey,
+                        shape = RoundedCornerShape(50)
+                    ),
                 onClick = {}
-        ) {
-            Icon(
-                painter = painterResource(R.drawable.camera_icon),
-                contentDescription = "Tomar Foto",
-                tint = Color.Unspecified,
-                modifier = Modifier.size(32.dp)
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.camera_icon),
+                    contentDescription = "Tomar Foto",
+                    tint = Color.Unspecified,
+                    modifier = Modifier.size(32.dp)
+                )
+
+            }
+            BlockedIcon(modifier = Modifier
+                .size(30.dp)
+                .offset(x = (105).dp, y = (-12).dp)
+            )
+        }
+        Box(modifier = Modifier.align(Alignment.BottomEnd)){
+            IconButton(
+                modifier = Modifier
+
+                    .size(60.dp)
+                    .clip(CircleShape)
+                    .background(Color.White),
+                onClick = {},
+                enabled = false
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Add,
+                    contentDescription = "Añadir",
+                    tint = primaryColor,
+                    modifier = Modifier.size(32.dp)
+                )
+            }
+            BlockedIcon(modifier = Modifier
+                .size(30.dp)
+                .offset(x = (27).dp, y = (-12).dp)
             )
         }
 
-        Box(
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .size(56.dp)
-                .clip(CircleShape)
-                .background(Color.White),
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(
-                imageVector = Icons.Filled.Add,
-                contentDescription = "Añadir",
-                tint = primaryColor,
-                modifier = Modifier.size(32.dp)
-            )
-        }
     }
 }
 @Preview
 @Composable
-fun PrevierCameraControlsOverlay(){
+fun PreviewCameraControlsOverlay(){
     CameraControlsOverlay(
         onFlipCamera = { },
-        onDetailClick = {}
+        onDetailClick = { }
     )
 }

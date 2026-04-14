@@ -19,6 +19,9 @@ import kotlinx.coroutines.launch
 import com.example.boostar_uaal.BoostArApplication.Companion.productRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.likeRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.partnerRepository
+import com.example.boostar_uaal.core.entities.Event
+import com.example.boostar_uaal.core.entities.Multimedia
+import com.example.boostar_uaal.core.entities.TypeMultimedia
 import kotlinx.coroutines.Dispatchers
 
 class HomeScreenViewModel : ViewModel() {
@@ -36,15 +39,17 @@ class HomeScreenViewModel : ViewModel() {
     val collabs: StateFlow<List<CollabData>> = _collabs.asStateFlow()
     private val _partners = MutableStateFlow<List<PartnerData>>(emptyList())
     val partners: StateFlow<List<PartnerData>> = _partners.asStateFlow()
-    private val _drops = MutableStateFlow<List<DropData>>(emptyList())
-    val drops: StateFlow<List<DropData>> = _drops.asStateFlow()
+
+    private val _event: MutableStateFlow<Event?> = MutableStateFlow(null)
+
+    val event: StateFlow<Event?> = _event.asStateFlow()
 
     fun initializeHome(){
         loadProducts()
         loadBanners()
         loadCollabs()
         loadPartners()
-        loadDrops()
+        loadEvent()
         refreshLikes()
     }
     fun loadProducts() {
@@ -124,6 +129,26 @@ class HomeScreenViewModel : ViewModel() {
         )
     }
 
+    private fun loadEvent(){
+        val event = Event(
+                id = 1,
+                isMain = true,
+                title = "Bad Bunny<span style=\"color:#007AFF\">.</span>",
+                bannerName = "¡Bad Bunny!",
+                bannerDescription = "Visualiza los eventos más rompedores del momento",
+                logo = "https://moygfqmmtuwvpeatrvhw.supabase.co/storage/v1/object/sign/imagenes/logo_bad_bunny.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hMWNkOTIxYi1kMGNiLTQyN2ItOTFlMC1lZTI2OGZlOGNmZWIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZW5lcy9sb2dvX2JhZF9idW5ueS5wbmciLCJpYXQiOjE3NzYxNTEwODQsImV4cCI6MTgwNzY4NzA4NH0.cni6XOVznVQSthyNKnB0cNEPuiwZwuKCeJH1Ll7y1JQ",
+                bannerMedia = Multimedia(
+                    id = 11,
+                    multimediaURL = "https://moygfqmmtuwvpeatrvhw.supabase.co/storage/v1/object/sign/videos/banner_evento_bad_bunny.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hMWNkOTIxYi1kMGNiLTQyN2ItOTFlMC1lZTI2OGZlOGNmZWIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlb3MvYmFubmVyX2V2ZW50b19iYWRfYnVubnkubXA0IiwiaWF0IjoxNzc2MTU0NTQ3LCJleHAiOjE4MDc2OTA1NDd9.xW-KfdFq6jglYh390GK00dSeT5fQ5CuolDFbt0-7SjI",
+                    type = TypeMultimedia.VIDEO
+                ),
+                productImage = "https://moygfqmmtuwvpeatrvhw.supabase.co/storage/v1/object/sign/imagenes/producto_evento_bad_bunny.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9hMWNkOTIxYi1kMGNiLTQyN2ItOTFlMC1lZTI2OGZlOGNmZWIiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJpbWFnZW5lcy9wcm9kdWN0b19ldmVudG9fYmFkX2J1bm55LnBuZyIsImlhdCI6MTc3NjE1MjU4OSwiZXhwIjoxODA3Njg4NTg5fQ.DYxLY36vw74BMXiTL1ZmgPzimL0PVIYD8eGimYLOxC0",
+                productDescription = "Esta camiseta representa un momento icónico donde la música, la cultura y el espectáculo se unen en un escenario global.<br><br>Un símbolo de impacto que trasciende el evento y conecta a millones de personas.",
+                model = "",
+                isProductImageLeft = true
+            )
+        _event.value = event
+    }
     private fun loadPartners() {
         viewModelScope.launch(Dispatchers.IO) {
             _partners.value = partnerRepository.getPartners()
@@ -149,38 +174,6 @@ class HomeScreenViewModel : ViewModel() {
                 _productsDiscounts.value = applyLikes(_productsDiscounts.value)
             }
         }
-    }
-    fun toggleDropNotification(dropId: Int) {
-        val currentList = _drops.value
-        _drops.value = currentList.map { drop ->
-            if (drop.id == dropId) {
-                drop.copy(isNotified = !drop.isNotified)
-            } else {
-                drop
-            }
-        }
-    }
-
-    fun reserveDrop(dropId: Int) {
-        Log.d("ViewModel", "Reservando el drop con ID: $dropId")
-    }
-
-    private fun loadDrops() {
-        val now = System.currentTimeMillis()
-        val futureTime1 = now + (2L * 24 * 60 * 60 * 1000) + (14L * 60 * 60 * 1000) + (32L * 60 * 1000) + (25L * 1000)
-
-        _drops.value = listOf(
-            DropData(
-                id = 1,
-                imageRes = R.drawable.colab_2,
-                status = "• PRONTO DISPONIBLE",
-                statusColor = Color(0xFFC7843B),
-                title = "Regular jeans",
-                collection = "STW Collection",
-                targetTimestamp = futureTime1,
-                isNotified = false
-            ),
-        )
     }
 }
 

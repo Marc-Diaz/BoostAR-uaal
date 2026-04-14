@@ -18,8 +18,8 @@ import androidx.media3.ui.AspectRatioFrameLayout
 
 @OptIn(UnstableApi::class)
 @Composable
-fun MediaPlayer( raw: Int, modifier: Modifier = Modifier){
-    val context = LocalContext.current
+fun MediaPlayer(context: Context, raw: Int, modifier: Modifier = Modifier){
+
     val uri = "android.resource://${context.packageName}/${raw}".toUri()
     val player = remember {
         ExoPlayer.Builder(context).build().apply {
@@ -45,8 +45,7 @@ fun MediaPlayer( raw: Int, modifier: Modifier = Modifier){
 }
 @OptIn(UnstableApi::class)
 @Composable
-fun MediaPlayer( uri: String, modifier: Modifier = Modifier){
-    val context = LocalContext.current
+fun MediaPlayer(context: Context, uri: String, modifier: Modifier = Modifier){
     val player = remember {
         ExoPlayer.Builder(context).build().apply {
             setMediaItem(MediaItem.fromUri(uri))

@@ -40,7 +40,7 @@ fun AuthLayout(
                 Box(modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()) {
-                    MediaPlayer(R.raw.video_auth)
+                    MediaPlayer(context, R.raw.video_auth)
 
                     if (onBackClick != null) {
                         IconButton(
@@ -98,7 +98,7 @@ fun AuthLayout(
             }
         } else {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
-                MediaPlayer( R.raw.video_auth)
+                MediaPlayer(context, R.raw.video_auth)
                 if (onBackClick != null) {
                     IconButton(
                         onClick = onBackClick,

@@ -24,7 +24,7 @@ import com.example.boostar_uaal.ui.screen.homeScreen.components.ItemCarrousel
 
 
 @Composable
-fun ForYouScreen(navigateTo: (Routes) -> Unit) {
+fun ForYouScreen(navigateTo: (Routes) -> Unit, back: () -> Unit) {
 
     val forYouScreenViewModel = viewModel<ForYouScreenViewModel>()
     val banners by forYouScreenViewModel.banners.collectAsState()
@@ -51,7 +51,7 @@ fun ForYouScreen(navigateTo: (Routes) -> Unit) {
                 BackButtonHeader(
                     Modifier.padding(top = paddingValues.calculateTopPadding()),
                     title = "Para Ti",
-                    onBackClick = { navigateTo(Routes.HomeScreen) }
+                    onBackClick = { back() }
                 )
                 HomeHero(
                     banners = banners,
@@ -117,6 +117,7 @@ fun ForYouScreen(navigateTo: (Routes) -> Unit) {
 @Composable
 fun ParaTiScreenPreview() {
     ForYouScreen(
-        navigateTo = { /* Función vacía de prueba, el preview no navega */ }
+        navigateTo = { },
+        back = { }
     )
 }

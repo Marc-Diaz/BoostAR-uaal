@@ -102,7 +102,8 @@ fun MainNavigationWrapper() {
 
             entry<Routes.ParatiScreen> {
                 ForYouScreen(
-                    navigateTo = { backStack.navigateTo(it) }
+                    navigateTo = { backStack.navigateTo(it) },
+                    back = { backStack.back() }
                 )
             }
 
@@ -153,7 +154,7 @@ fun MainNavigationWrapper() {
             entry<Routes.EventScreen>{
                 EventScreen(
                     navigateTo = { backStack.navigateTo(it)},
-                    back = {  },
+                    back = { backStack.back() },
                     backTo = {  }
                 )
             }

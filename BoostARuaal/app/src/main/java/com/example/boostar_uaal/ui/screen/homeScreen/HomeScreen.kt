@@ -25,10 +25,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.BottomNavBar
 import com.example.boostar_uaal.core.components.DropCard
-import com.example.boostar_uaal.core.components.HomeBannerEventsEstatic
+import com.example.boostar_uaal.core.components.EventBanner
 import com.example.boostar_uaal.core.components.PartnerCarousel
 import com.example.boostar_uaal.data.models.ProductFilter
 import com.example.boostar_uaal.data.models.SortOrder
+
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabCarousel
 
 
@@ -42,7 +43,8 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
     val banners by homeScreenViewModel.banners.collectAsState()
     val collabs by homeScreenViewModel.collabs.collectAsState()
     val partners by homeScreenViewModel.partners.collectAsState()
-    val drops by homeScreenViewModel.drops.collectAsState()
+    val event by homeScreenViewModel.event.collectAsState()
+
 
     LaunchedEffect(Unit) {
         homeScreenViewModel.initializeHome()
@@ -137,15 +139,15 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                     onClick = { navigateTo(Routes.EventScreen) }
                 )
 
-                HomeBannerEventsEstatic(
-                    banner = HeroBannerData(
-                        imageRes = R.drawable.titi,
-                        label = "",
-                        title = "Bad Bunny",
-                        subtitle = "Gana unas entradas para el nuevo concierto\n" +
-                                "de Bad Bunny en España.",
+                event?.let { event ->
+                    EventBanner(
+                        name = event.bannerName,
+                        description = event.bannerDescription,
+                        media = event.bannerMedia,
+                        isMain = event.isMain
                     )
-                )
+
+                }
 
                 SectionHeader(
                     title = "Próximante >",
@@ -154,13 +156,6 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                 )
 
 
-                drops.forEach { dropData ->
-                    DropCard(
-                        drop = dropData,
-                        onReserveClick = { homeScreenViewModel.reserveDrop(dropData.id) },
-                        onBellClick = { homeScreenViewModel.toggleDropNotification(dropData.id) }
-                    )
-                }
 
                 Spacer(modifier = Modifier.height(32.dp))
 

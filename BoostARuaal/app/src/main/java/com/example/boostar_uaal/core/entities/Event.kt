@@ -11,5 +11,6 @@ data class Event(
     val model: String,
     val productImage: String,
     val productDescription: String,
+    val isProductImageLeft: Boolean
 
 )

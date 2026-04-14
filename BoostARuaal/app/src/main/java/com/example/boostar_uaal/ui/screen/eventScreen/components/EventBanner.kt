@@ -24,6 +24,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -37,6 +38,7 @@ fun EventBanner(name: String, description: String, media: Multimedia, isMain: Bo
     val configuration = LocalConfiguration.current
     val isLandscape =
         configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+    val context = LocalContext.current
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -49,6 +51,7 @@ fun EventBanner(name: String, description: String, media: Multimedia, isMain: Bo
             when(media.type){
                 TypeMultimedia.VIDEO -> {
                    MediaPlayer(
+                       context = context,
                        uri = media.multimediaURL,
                        modifier = Modifier.fillMaxSize()
                    )
