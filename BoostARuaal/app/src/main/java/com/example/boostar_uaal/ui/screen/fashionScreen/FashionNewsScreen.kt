@@ -46,7 +46,7 @@ fun FashionNewsScreen(navigateTo: (Routes) -> Unit) {
         bottomBar = {
             BottomNavBar(
                 naviagetTo = { navigateTo(it) },
-                currentRoute = Routes.TendenciasScreen
+                currentRoute = Routes.TrendsScreen
             )
         },
         content = { paddingValues ->
@@ -66,14 +66,14 @@ fun FashionNewsScreen(navigateTo: (Routes) -> Unit) {
                         title = "El talento que está\ncambiando la moda.",
                         subtitle = "Disponible ya en BoostAR.",
                     ),
-                    onTryArClick = { },
+                    onTryArClick = { navigateTo(Routes.ArScreen(lensId = ""))},
                     onReserveClick = { }
 
                 )
 
                 SectionHeader(
                     title = "Recién llegado >",
-                    onClick = { navigateTo(Routes.TendenciasScreen) }
+                    onClick = { navigateTo(Routes.TrendsScreen) }
                 )
 
                 ProductsGrid(
@@ -94,7 +94,7 @@ fun FashionNewsScreen(navigateTo: (Routes) -> Unit) {
 
                 SectionHeader(
                     title = "Próximos drops >",
-                    onClick = { navigateTo(Routes.TendenciasScreen) }
+                    onClick = { navigateTo(Routes.TrendsScreen) }
                 )
                 DropsSingleColumnGrid(
                     drops = fashionNewsScreenViewModel.dropsHardcodeados,
