@@ -41,7 +41,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
     val partners by homeScreenViewModel.partners.collectAsState()
     val event by homeScreenViewModel.event.collectAsState()
 
-
+//////Por queeeeeeeeeeeee MArccc si ya hay un loadProducts()???
     LaunchedEffect(Unit) {
         homeScreenViewModel.loadProductsForYou()
         homeScreenViewModel.loadProductsTrends()
@@ -96,7 +96,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                     onLikeClick = {homeScreenViewModel.toggleLike(it) }
                 )
                 SectionHeader(
-                    title = "Febrero.",
+                    title = "Abril.",
                     textColor = Color(0xFF0080FF),
                     fontSize = 27.48.sp
                 )
@@ -108,7 +108,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                         title = "El talento que está\ncambiando la moda.",
                         subtitle = "Disponible ya en BoostAR.",
                     ),
-                    onButtonClick = { }
+                    onButtonClick = { navigateTo(Routes.NovedadesScreen) }
                 )
 
                 SectionHeader(

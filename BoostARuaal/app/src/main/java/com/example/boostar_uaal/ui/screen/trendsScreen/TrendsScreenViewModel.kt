@@ -33,7 +33,7 @@ class TrendsScreenViewModel: ViewModel() {
     val collabs: StateFlow<List<CollabData>> = _collabs.asStateFlow()
 
     private val _barGraph: MutableStateFlow<List<LikeStyle>>  = MutableStateFlow(emptyList())
-    fun initializeFashionNews(){
+    fun initializeTrends(){
         loadBanners()
         loadProductsForYou()
         loadPartners()
