@@ -30,7 +30,6 @@ fun ForYouScreen(navigateTo: (Routes) -> Unit, back: () -> Unit) {
     val banners by forYouScreenViewModel.banners.collectAsState()
     val productsForYou by forYouScreenViewModel.productsForYou.collectAsState()
     val partners by forYouScreenViewModel.partners.collectAsState()
-    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         forYouScreenViewModel.initializeParaTi()
@@ -55,13 +54,12 @@ fun ForYouScreen(navigateTo: (Routes) -> Unit, back: () -> Unit) {
                 )
                 HomeHero(
                     banners = banners,
-                    onLikeClick = {},
                     showlikeBotton = false,
                     onTryArClick = { navigateTo(Routes.ArScreen(lensId = "")) }
                 )
                 SectionHeader(
                     title = "Tus reservas",
-                    onClick = { navigateTo(Routes.ForYouScreen) },
+                    onClick = {  },
                     enabled = false
                 )
                 CleanItemCarrousel(
@@ -74,7 +72,7 @@ fun ForYouScreen(navigateTo: (Routes) -> Unit, back: () -> Unit) {
                 )
                 SectionHeader(
                     title = "Tu estilo ",
-                    onClick = { navigateTo(Routes.ForYouScreen) },
+                    onClick = { },
                     enabled = false
                 )
                 ItemCarrousel(
@@ -88,14 +86,14 @@ fun ForYouScreen(navigateTo: (Routes) -> Unit, back: () -> Unit) {
                 )
                 SectionHeader(
                     title = "Tus Outfits",
-                    onClick = { navigateTo(Routes.ForYouScreen) },
+                    onClick = { },
                     enabled = false
 
                 )
 
                 SectionHeader(
                     title = "Tus Partners",
-                    onClick = {navigateTo(Routes.ForYouScreen)}
+                    onClick = { }
                 )
                 PartnerCarousel(
                     partners = partners,

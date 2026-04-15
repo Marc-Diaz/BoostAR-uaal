@@ -168,7 +168,7 @@ fun HomeHero(
                                 .background(
                                     Color.White.copy(alpha = 0.8f),
                                     CircleShape
-                                ) // Fondo blanco semitransparente
+                                )
                         ) {
                             Icon(
                                 imageVector = if (isLiked) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,

@@ -22,15 +22,14 @@ import com.example.boostar_uaal.core.components.BottomNavBar
 import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.components.SectionHeader
 import com.example.boostar_uaal.core.navigation.Routes
-import com.example.boostar_uaal.data.models.SortOrder
 import com.example.boostar_uaal.ui.screen.fashionScreen.components.DropBannerStatic
 import com.example.boostar_uaal.ui.screen.fashionScreen.components.DropsSingleColumnGrid
 import com.example.boostar_uaal.ui.screen.fashionScreen.components.EmergingPartnersSection
+import com.example.boostar_uaal.ui.screen.fashionScreen.components.ProductsGrid
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
-/*
+
 @Composable
 fun FashionNewsScreen(navigateTo: (Routes) -> Unit) {
-
     val fashionNewsScreenViewModel = viewModel<FashionNewsScreenViewmodel>()
     val productsTrends by fashionNewsScreenViewModel.productsTrends.collectAsState()
     val productList by fashionNewsScreenViewModel.productsTrends.collectAsState()
@@ -46,7 +45,7 @@ fun FashionNewsScreen(navigateTo: (Routes) -> Unit) {
         bottomBar = {
             BottomNavBar(
                 naviagetTo = { navigateTo(it) },
-                currentRoute = Routes.TrendsScreen
+                currentRoute = Routes.FashionNewsScreen
             )
         },
         content = { paddingValues ->
@@ -66,14 +65,14 @@ fun FashionNewsScreen(navigateTo: (Routes) -> Unit) {
                         title = "El talento que está\ncambiando la moda.",
                         subtitle = "Disponible ya en BoostAR.",
                     ),
-                    onTryArClick = { navigateTo(Routes.ArScreen(lensId = ""))},
+                    onTryArClick = { },
                     onReserveClick = { }
 
                 )
 
                 SectionHeader(
                     title = "Recién llegado >",
-                    onClick = { navigateTo(Routes.TrendsScreen) }
+                    onClick = { navigateTo(Routes.FashionNewsScreen) }
                 )
 
                 ProductsGrid(
@@ -94,7 +93,7 @@ fun FashionNewsScreen(navigateTo: (Routes) -> Unit) {
 
                 SectionHeader(
                     title = "Próximos drops >",
-                    onClick = { navigateTo(Routes.TrendsScreen) }
+                    onClick = {  }
                 )
                 DropsSingleColumnGrid(
                     drops = fashionNewsScreenViewModel.dropsHardcodeados,
@@ -108,4 +107,3 @@ fun FashionNewsScreen(navigateTo: (Routes) -> Unit) {
     )
 }
 
- */

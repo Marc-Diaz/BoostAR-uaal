@@ -41,7 +41,6 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
     val partners by homeScreenViewModel.partners.collectAsState()
     val event by homeScreenViewModel.event.collectAsState()
 
-//////Por queeeeeeeeeeeee MArccc si ya hay un loadProducts()???
     LaunchedEffect(Unit) {
         homeScreenViewModel.loadProductsForYou()
         homeScreenViewModel.loadProductsTrends()

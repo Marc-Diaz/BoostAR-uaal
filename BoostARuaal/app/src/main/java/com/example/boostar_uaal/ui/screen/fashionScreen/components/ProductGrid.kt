@@ -11,7 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.core.entities.Product
 import androidx.compose.ui.unit.dp
-/*
+import com.example.boostar_uaal.ui.screen.TrendsScreen.components.ProductGridCard
+
 @Composable
 fun ProductsGrid(
     products: List<Product>,
@@ -73,5 +74,3 @@ fun ProductsGrid(
         }
     }
 }
-
- */

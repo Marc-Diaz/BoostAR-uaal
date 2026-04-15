@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import com.example.boostar_uaal.BoostArApplication.Companion.authRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.userRepository
-import io.github.jan.supabase.auth.Auth
 
 class AuthViewModel: ViewModel() {
     private val _session = MutableStateFlow<UserSession?>(null)
@@ -83,7 +82,7 @@ class AuthViewModel: ViewModel() {
                         userRepository.setUserRole(isCompanyAccount.value)
                         authRepository.saveSession()
                         _authState.value = AuthState.Authenticated
-                        navigateTo(Routes.Authenticated)
+                        navigateTo(Routes.OnboardingTextScreen)
                     }
                 }
 

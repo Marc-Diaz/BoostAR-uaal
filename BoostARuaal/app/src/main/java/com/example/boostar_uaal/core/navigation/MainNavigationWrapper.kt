@@ -25,6 +25,7 @@ import com.example.boostar_uaal.ui.screen.challengeScreen.ChallengeScreen
 import com.example.boostar_uaal.ui.screen.challengeScreen.ChallengeTextScreen
 import com.example.boostar_uaal.ui.screen.challengeScreen.ChallengeTriviaScreen
 import com.example.boostar_uaal.ui.screen.eventScreen.EventScreen
+import com.example.boostar_uaal.ui.screen.fashionScreen.FashionNewsScreen
 import com.example.boostar_uaal.ui.screen.gameScreen.GameScreen
 import com.example.boostar_uaal.ui.screen.profileScreen.ProfileScreen
 
@@ -168,7 +169,7 @@ fun MainNavigationWrapper() {
                     }
                 )
             }
-            
+
             entry<Routes.ChallengeTextScreen>{
                 ChallengeTextScreen(
                     navigateTo = { backStack.navigateTo(it) }
@@ -180,12 +181,18 @@ fun MainNavigationWrapper() {
                     backTo = { backStack.navigateTo(it) }
                 )
             }
-            
+
             entry<Routes.EventScreen>{
                 EventScreen(
                     navigateTo = { backStack.navigateTo(it)},
                     back = { backStack.back() },
                     backTo = {  }
+                )
+            }
+
+            entry<Routes.FashionNewsScreen> {
+                FashionNewsScreen(
+                    navigateTo = { backStack.navigateTo(it)}
                 )
             }
         }
