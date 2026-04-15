@@ -41,7 +41,7 @@ fun ForYouScreen(navigateTo: (Routes) -> Unit, back: () -> Unit) {
         bottomBar = {
             BottomNavBar(
                 naviagetTo = { navigateTo(it) },
-                currentRoute = Routes.ParatiScreen
+                currentRoute = Routes.ForYouScreen
             )
         },
         content = { paddingValues ->
@@ -57,11 +57,12 @@ fun ForYouScreen(navigateTo: (Routes) -> Unit, back: () -> Unit) {
                     banners = banners,
                     onLikeClick = {},
                     showlikeBotton = false,
-                    onTryArClick = { forYouScreenViewModel.onTryArClick(context) }
+                    onTryArClick = { navigateTo(Routes.ArScreen(lensId = "")) }
                 )
                 SectionHeader(
                     title = "Tus reservas",
-                    onClick = { navigateTo(Routes.ParatiScreen) }
+                    onClick = { navigateTo(Routes.ForYouScreen) },
+                    enabled = false
                 )
                 CleanItemCarrousel(
                     products = productsForYou,
@@ -73,7 +74,8 @@ fun ForYouScreen(navigateTo: (Routes) -> Unit, back: () -> Unit) {
                 )
                 SectionHeader(
                     title = "Tu estilo ",
-                    onClick = { navigateTo(Routes.ParatiScreen) }
+                    onClick = { navigateTo(Routes.ForYouScreen) },
+                    enabled = false
                 )
                 ItemCarrousel(
                     products = productsForYou,
@@ -86,13 +88,14 @@ fun ForYouScreen(navigateTo: (Routes) -> Unit, back: () -> Unit) {
                 )
                 SectionHeader(
                     title = "Tus Outfits",
-                    onClick = { navigateTo(Routes.ParatiScreen) }
+                    onClick = { navigateTo(Routes.ForYouScreen) },
+                    enabled = false
 
                 )
 
                 SectionHeader(
                     title = "Tus Partners",
-                    onClick = {navigateTo(Routes.ParatiScreen)}
+                    onClick = {navigateTo(Routes.ForYouScreen)}
                 )
                 PartnerCarousel(
                     partners = partners,

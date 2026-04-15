@@ -214,19 +214,25 @@ class ChallengeScreenViewModel: ViewModel() {
          return _currentQuestion.value!!.answers[_selectedAnswerId.value!!].isCorrect
     }
 
+
     private fun startButtonVisibilityTimer(){
         if (_currentChallengeStep.value == null) return
         _isButtonVisible.value = false
-        Log.d("Visibilidad 1", "${_isButtonVisible.value}")
 
-        var counter = _currentChallengeStep.value!!.sleepTimeInMilliseconds
-        val timeStep = 100
+        startTimer(time = _currentChallengeStep.value!!.sleepTimeInMilliseconds,
+            callback = {
+                _isButtonVisible.value = true
+            })
+    }
+
+    fun startTimer(time: Long, timeStep: Int = 100, callback: () -> Unit){
+        var counter = time
         viewModelScope.launch {
             while (counter > 0){
                 counter -= timeStep
                 delay(timeStep.toLong())
             }
-            _isButtonVisible.value = true
+            callback()
         }
     }
 }

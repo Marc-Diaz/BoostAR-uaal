@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.BlendMode.Companion.Color
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.entities.NavHomeItemData
 import com.example.boostar_uaal.core.theme.discountColor
@@ -65,16 +64,13 @@ fun HomeNav(){
 
 }*/
 
-
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 val homeNavItemsList = listOf(
-    NavHomeItemData(name = "Para ti", routes = Routes.HomeScreen),
-    NavHomeItemData(name = "Tendencias", routes = Routes.HomeScreen),
-    NavHomeItemData(name = "Novedades", routes = Routes.HomeScreen),
+    NavHomeItemData(name = "Para ti", routes = Routes.ForYouScreen),
+    NavHomeItemData(name = "Tendencias", routes = Routes.TrendsScreen),
+    NavHomeItemData(name = "Novedades", routes = Routes.FashionNewsScreen),
     NavHomeItemData(name = "Colaboraciones", routes = Routes.HomeScreen),
     NavHomeItemData(name = "Nuevas Marcas", routes = Routes.HomeScreen),
-    NavHomeItemData(name = "Eventos", routes = Routes.HomeScreen),
+    NavHomeItemData(name = "Eventos", routes = Routes.EventScreen),
     NavHomeItemData(name = "Rebajas", routes = Routes.HomeScreen, color = discountColor)
 )
 

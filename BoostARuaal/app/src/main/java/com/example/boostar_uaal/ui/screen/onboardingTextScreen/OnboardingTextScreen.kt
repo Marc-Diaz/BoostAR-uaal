@@ -14,13 +14,9 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun OnboardingTextScreen(navigateToChoose: () -> Unit, viewModel: OnboardingTextViewmodel = viewModel())
-{
-
-
+fun OnboardingTextScreen(navigateToChoose: () -> Unit, viewModel: OnboardingTextViewmodel = viewModel()) {
     val uiState by viewModel.uiState.collectAsState()
 
-    // Escuchamos el evento de navegación final
     LaunchedEffect(Unit) {
         viewModel.navigationEvent.collect { shouldNavigate ->
             if (shouldNavigate) {
@@ -35,7 +31,6 @@ fun OnboardingTextScreen(navigateToChoose: () -> Unit, viewModel: OnboardingText
             .background(Color.White),
         contentAlignment = Alignment.Center
     ) {
-        // Cambiamos el contenido según el estado
         when (uiState) {
             is OnboardingState.Step1 -> {
                 TypewriterText(

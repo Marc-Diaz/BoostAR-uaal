@@ -46,7 +46,7 @@ fun TrendsScreen(navigateTo: (Routes) -> Unit) {
         bottomBar = {
             BottomNavBar(
                 naviagetTo = { navigateTo(it) },
-                currentRoute = Routes.TendenciasScreen
+                currentRoute = Routes.TrendsScreen
             )
         },
         content = { paddingValues ->

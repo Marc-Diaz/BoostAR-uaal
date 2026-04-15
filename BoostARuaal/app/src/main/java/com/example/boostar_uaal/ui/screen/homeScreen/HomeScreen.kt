@@ -1,7 +1,5 @@
 package com.example.boostar_uaal.ui.screen.homeScreen
 
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -66,7 +64,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
             AdaptiveFeedLayout {
                 HomeHeader(Modifier.padding(top = paddingValues.calculateTopPadding()))
                 HomeNav(
-                    onItemClick = { route -> navigateTo(route) }
+                    onItemClick = {  navigateTo(it) }
                 )
                 HomeHero(
                     banners = banners,
@@ -76,7 +74,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                 )
                 SectionHeader(
                     title = "Para ti >",
-                    onClick = { navigateTo(Routes.ParatiScreen) }
+                    onClick = { navigateTo(Routes.ForYouScreen) }
                 )
 
                 ItemCarrousel(
@@ -88,7 +86,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
 
                 SectionHeader(
                     title = "Tendencias >",
-                    onClick = { navigateTo(Routes.TendenciasScreen) }
+                    onClick = { navigateTo(Routes.TrendsScreen) }
                 )
 
 
@@ -121,7 +119,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
 
                 CollabCarousel(
                     collabs = collabs,
-                    onItemClick = { collabId ->
+                    onItemClick = {
                         // Aquí en el futuro navega al detalle de la colaboración
                         // navigateTo(Routes.CollabDetailScreen(collabId))
                     }
@@ -134,9 +132,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
 
                 PartnerCarousel(
                     partners = partners,
-                    onItemClick = { partnerId ->
-                        // Acción al tocar el círculo de un partner
-                    }
+                    onItemClick = {}
                 )
 
                 SectionHeader(
@@ -156,7 +152,9 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                 SectionHeader(
                     title = "Ofertas >",
                     textColor = Color.Red,
-                    onClick = { navigateTo(Routes.HomeScreen) }
+                    arrowColor = Color.Red,
+                    onClick = { navigateTo(Routes.HomeScreen) },
+                    enabled = false
                 )
                 ItemCarrousel(
                     products = productsDiscounts,

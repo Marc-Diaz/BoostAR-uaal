@@ -18,7 +18,8 @@ fun BlockedIcon(modifier: Modifier = Modifier){
     Surface(
         modifier = modifier,
         shape = CircleShape,
-        shadowElevation = 20.dp
+        shadowElevation = 5.dp,
+        color = Color.White
     ) {
         Icon(
             modifier = Modifier.padding(5.dp),
