@@ -21,17 +21,19 @@ import com.example.boostar_uaal.core.theme.primaryTextColor
 fun SectionHeader(
     title: String,
     onClick: () -> Unit = {},
-    textColor: Color = primaryTextColor,fontSize: TextUnit = 24.sp
+    textColor: Color = primaryTextColor,
+    fontSize: TextUnit = 24.sp,
+    arrowColor: Color = primaryColor,
+    enabled: Boolean = true
 
 ) {
-    val isClickable = title.endsWith(">")
     val cleanTitle = title.removeSuffix(">").removeSuffix(".").trim()
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 24.dp)
-            .then(if (isClickable) Modifier.clickable { onClick() } else Modifier),
+            .then(if (enabled) Modifier.clickable { onClick() } else Modifier),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Start
     ) {
@@ -42,14 +44,18 @@ fun SectionHeader(
             fontWeight = FontWeight.ExtraBold
         )
 
-        if (isClickable) {
+
+        Spacer(modifier = Modifier.width(8.dp))
+        Icon(
+            painter = painterResource(id = R.drawable.baseline_arrow_forward_ios_24),
+            contentDescription = "Ver más",
+            tint = arrowColor,
+            modifier = Modifier.size(22.dp)
+        )
+
+        if (!enabled){
             Spacer(modifier = Modifier.width(8.dp))
-            Icon(
-                painter = painterResource(id = R.drawable.baseline_arrow_forward_ios_24),
-                contentDescription = "Ver más",
-                tint = primaryColor,
-                modifier = Modifier.size(22.dp)
-            )
+            BlockedIcon()
         }
     }
 }

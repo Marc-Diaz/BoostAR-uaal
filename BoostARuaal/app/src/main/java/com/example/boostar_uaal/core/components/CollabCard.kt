@@ -17,45 +17,50 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.boostar_uaal.R
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabData
 
 @Composable
 fun CollabCard(
     collab: CollabData,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    enabled: Boolean = false
 ) {
-    // Usamos EXACTAMENTE los valores de Figma
     Box(
         modifier = Modifier
             .shadow(
                 elevation = 6.dp,
                 spotColor = Color(0x40000000),
                 ambientColor = Color(0x40000000),
-                shape = RoundedCornerShape(21.dp) // Añadimos el shape a la sombra para que no sea cuadrada
+                shape = RoundedCornerShape(21.dp)
             )
             .width(157.dp)
             .height(221.dp)
             .background(color = Color(0xFF1E1E1E), shape = RoundedCornerShape(21.dp))
-            .clip(RoundedCornerShape(21.dp)) // Corta lo que sobresalga (como la imagen)
+            .clip(RoundedCornerShape(21.dp))
             .clickable { onClick() },
         contentAlignment = Alignment.Center
     ) {
-        // 1. Imagen de fondo
         Image(
             painter = painterResource(id = collab.backgroundImageRes),
             contentDescription = "Fondo colaboración",
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
         )
-
-        // 2. Filtro oscuro para que el texto resalte
+        if (!enabled){
+            Image(
+                painter = painterResource(R.drawable.blocked_layer),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize()
+            )
+        }
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color.Black.copy(alpha = 0.4f))
         )
 
-        // 3. Los textos y logos centrales
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center

@@ -20,7 +20,9 @@ import com.example.boostar_uaal.ui.screen.onboardingTextScreen.OnboardingTextScr
 import com.example.boostar_uaal.ui.screen.singInScreen.SignInScreen
 import com.example.boostar_uaal.ui.screen.arScreen.ArScreen
 import com.example.boostar_uaal.ui.screen.basketScreen.BasketScreen
+import com.example.boostar_uaal.ui.screen.challengeScreen.ChallengePointScreen
 import com.example.boostar_uaal.ui.screen.challengeScreen.ChallengeScreen
+import com.example.boostar_uaal.ui.screen.challengeScreen.ChallengeTextScreen
 import com.example.boostar_uaal.ui.screen.challengeScreen.ChallengeTriviaScreen
 import com.example.boostar_uaal.ui.screen.eventScreen.EventScreen
 import com.example.boostar_uaal.ui.screen.gameScreen.GameScreen
@@ -101,14 +103,14 @@ fun MainNavigationWrapper() {
                 )
             }
 
-            entry<Routes.ParatiScreen> {
+            entry<Routes.ForYouScreen> {
                 ForYouScreen(
                     navigateTo = { backStack.navigateTo(it) },
                     back = { backStack.back() }
                 )
             }
 
-            entry<Routes.TendenciasScreen> {
+            entry<Routes.TrendsScreen> {
                 TrendsScreen (
                     navigateTo = { backStack.navigateTo(it) }
                 )
@@ -161,13 +163,24 @@ fun MainNavigationWrapper() {
 
             entry<Routes.ChallengeTriviaScreen>{
                 ChallengeTriviaScreen(
-
-                    backTo = {
-                        backStack.backTo(it)
+                    navigateTo = {
+                        backStack.navigateTo(it)
                     }
                 )
             }
+            
+            entry<Routes.ChallengeTextScreen>{
+                ChallengeTextScreen(
+                    navigateTo = { backStack.navigateTo(it) }
+                )
+            }
 
+            entry<Routes.ChallengePointScreen>{
+                ChallengePointScreen(
+                    backTo = { backStack.navigateTo(it) }
+                )
+            }
+            
             entry<Routes.EventScreen>{
                 EventScreen(
                     navigateTo = { backStack.navigateTo(it)},

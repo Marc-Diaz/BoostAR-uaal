@@ -147,7 +147,7 @@ fun ChallengeScreen(challengeId: Int, navigateTo: (Routes) -> Unit, back: () -> 
                     text = when (challengePosition) {
                         ChallengeStepPositoin.START -> "Empezar"
                         ChallengeStepPositoin.MIDDLE -> "Siguiente"
-                        ChallengeStepPositoin.END -> "Finalizar"
+                        ChallengeStepPositoin.END -> "Comenzar Trivia"
                     },
                     onClick = {
                         if (challengePosition == ChallengeStepPositoin.END) navigateTo(

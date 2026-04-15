@@ -1,5 +1,4 @@
 package com.example.boostar_uaal.core.components
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -14,6 +13,8 @@ import androidx.compose.ui.unit.dp
 fun AdaptiveFeedLayout(
     modifier: Modifier = Modifier,
     backgroundColor: Color = Color.White,
+    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(24.dp),
+    horizontalAlignment: Alignment.Horizontal = Alignment.Start,
     content: @Composable ColumnScope.() -> Unit
 ) {
     val scrollState = rememberScrollState()
@@ -21,18 +22,17 @@ fun AdaptiveFeedLayout(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(backgroundColor)
-            .statusBarsPadding(),
+            .background(backgroundColor),
         contentAlignment = Alignment.TopCenter
     ) {
-
         Column(
             modifier = Modifier
                 .fillMaxHeight()
                 .widthIn(max = 840.dp)
                 .verticalScroll(scrollState)
                 .padding(bottom = 100.dp),
-            verticalArrangement = Arrangement.spacedBy(24.dp),
+            verticalArrangement = verticalArrangement,
+            horizontalAlignment = horizontalAlignment,
             content = content
         )
     }
