@@ -20,7 +20,7 @@ import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.components.AdaptiveFeedLayout
 import com.example.boostar_uaal.core.components.BackButtonHeader
 import com.example.boostar_uaal.core.components.BottomNavBar
-import com.example.boostar_uaal.core.components.HomeBannerEstatic
+import com.example.boostar_uaal.core.components.HomeBannerStatic
 import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.data.models.SortOrder
@@ -58,7 +58,7 @@ fun TrendsScreen(navigateTo: (Routes) -> Unit) {
                     title = "Novedades",
                     onBackClick = { navigateTo(Routes.HomeScreen) }
                 )
-                HomeBannerEstatic(
+                HomeBannerStatic(
                     banner = HeroBannerData(
                         imageRes = R.drawable.home_novedades_mes,
                         label = "NOVEDADES",

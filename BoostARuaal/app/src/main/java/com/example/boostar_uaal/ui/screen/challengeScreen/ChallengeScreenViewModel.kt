@@ -37,7 +37,6 @@ class ChallengeScreenViewModel: ViewModel() {
     val currentQuestion: StateFlow<ChallengeQuestion?> = _currentQuestion.asStateFlow()
 
     private var _currentQuestionId: MutableStateFlow<Int> = MutableStateFlow<Int>(-1)
-    val currentQuestionId: StateFlow<Int> = _currentQuestionId.asStateFlow()
 
 
     private var _selectedAnswerId: MutableStateFlow<Int?> = MutableStateFlow<Int?>(null)
@@ -111,11 +110,11 @@ class ChallengeScreenViewModel: ViewModel() {
                             isCorrect = false
                         ),
                         QuestionAnswer(
-                            answerImage = R.drawable.complementary_line,
+                            answerImage = R.drawable.neutral_line,
                             isCorrect = false
                         ),
                         QuestionAnswer(
-                            answerImage = R.drawable.complementary_line,
+                            answerImage = R.drawable.monocromatic_line,
                             isCorrect = true
                         ),
                     )
@@ -129,11 +128,11 @@ class ChallengeScreenViewModel: ViewModel() {
                             isCorrect = true
                         ),
                         QuestionAnswer(
-                            answerImage = R.drawable.complementary_line,
+                            answerImage = R.drawable.neutral_line,
                             isCorrect = false
                         ),
                         QuestionAnswer(
-                            answerImage = R.drawable.complementary_line,
+                            answerImage = R.drawable.monocromatic_line,
                             isCorrect = false
                         ),
                     )
@@ -147,11 +146,11 @@ class ChallengeScreenViewModel: ViewModel() {
                             isCorrect = true
                         ),
                         QuestionAnswer(
-                            answerImage = R.drawable.complementary_line,
+                            answerImage = R.drawable.neutral_line,
                             isCorrect = false
                         ),
                         QuestionAnswer(
-                            answerImage = R.drawable.complementary_line,
+                            answerImage = R.drawable.monocromatic_line,
                             isCorrect = false
                         ),
                     )
