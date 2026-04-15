@@ -38,16 +38,11 @@ class TrendsScreenViewModel: ViewModel() {
         loadProductsForYou()
         loadPartners()
         loadProductsTrends()
-        refreshLikes()
         loadCollabs()
         loadBarGraph()
+        refreshLikes()
     }
 
-    fun loadProducts(){
-        viewModelScope.launch {
-            loadProductsForYou()
-        }
-    }
     private fun loadProductsForYou(){
         viewModelScope.launch {
             _productsForYou.value = productRepository.getProducts(
@@ -109,11 +104,7 @@ class TrendsScreenViewModel: ViewModel() {
             }
         }
     }
-    fun onTryArClick(context: Context) {
-        Log.d("HomeScreenViewModel", "El usuario quiere probar la cámara AR")
 
-
-    }
     private fun loadPartners() {
         viewModelScope.launch {
             _partners.value = partnerRepository.getPartners()

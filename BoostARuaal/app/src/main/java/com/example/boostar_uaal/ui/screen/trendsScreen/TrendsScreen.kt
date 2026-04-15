@@ -81,6 +81,9 @@ fun TrendsScreen(navigateTo: (Routes) -> Unit) {
                     products = trendingProducts,
                     onItemClick = { productId ->
 
+                    },
+                    onLikeClick = {
+                        trendsScreenViewModel.toggleLike(it)
                     }
                 )
 

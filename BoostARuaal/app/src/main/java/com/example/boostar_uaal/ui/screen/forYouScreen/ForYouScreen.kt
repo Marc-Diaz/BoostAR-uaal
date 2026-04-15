@@ -88,13 +88,7 @@ fun ForYouScreen(navigateTo: (Routes) -> Unit, back: () -> Unit) {
                     title = "Tus Outfits",
                     onClick = { navigateTo(Routes.ParatiScreen) }
 
-                )//crea uno nuevo solo outfist
-                /*OnboardingChooseItem(
-                    product = product,
-                    isSelected = isSelected,
-                    clickable = { viewModel.toggleOption(product.id) },
-
-                    )*/
+                )
 
                 SectionHeader(
                     title = "Tus Partners",

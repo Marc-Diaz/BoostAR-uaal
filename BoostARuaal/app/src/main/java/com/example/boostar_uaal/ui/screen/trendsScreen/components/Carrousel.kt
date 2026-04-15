@@ -13,7 +13,8 @@ import com.example.core.entities.Product
 @Composable
 fun RankedItemCarrousel(
     products: List<Product>,
-    onItemClick: (Int) -> Unit
+    onItemClick: (Int) -> Unit,
+    onLikeClick: (Int) -> Unit
 ) {
     LazyRow(
         modifier = Modifier.fillMaxWidth(),
@@ -23,12 +24,10 @@ fun RankedItemCarrousel(
         itemsIndexed(products) { index, product ->
 
             GiantRankedItemCard(
-                imageUrl = product.coverImage,
+                product = product,
                 rank = index + 1,
-                productName = product.name,
-                price = "${product.price}€",
-                likes = "${product.numLikes}",
-                onClick = { onItemClick(product.id) }
+                onClick = { onItemClick(product.id) },
+                onLikeClick = { onLikeClick(product.id) }
             )
 
         }
