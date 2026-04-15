@@ -9,10 +9,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.example.boostar_uaal.ui.screen.TrendsScreen.components.ProductGridCard
 import com.example.core.entities.Product
-
+import androidx.compose.ui.unit.dp
+/*
 @Composable
 fun ProductsGrid(
     products: List<Product>,
@@ -74,3 +73,5 @@ fun ProductsGrid(
         }
     }
 }
+
+ */

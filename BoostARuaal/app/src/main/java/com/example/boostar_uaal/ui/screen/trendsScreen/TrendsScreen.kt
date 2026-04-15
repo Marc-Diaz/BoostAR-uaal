@@ -28,6 +28,7 @@ import com.example.boostar_uaal.ui.screen.trendsScreen.components.RankedItemCarr
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabCarousel
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
 import com.example.boostar_uaal.ui.screen.homeScreen.components.ItemCarrousel
+import com.example.boostar_uaal.ui.screen.trendsScreen.components.BarGraph
 
 
 @Composable
@@ -36,9 +37,10 @@ fun TrendsScreen(navigateTo: (Routes) -> Unit) {
     val trendingProducts by trendsScreenViewModel.productsTrends.collectAsState()
     val productsTrends by trendsScreenViewModel.productsTrends.collectAsState()
     val collabs by trendsScreenViewModel.collabs.collectAsState()
-
+    val barGraph by trendsScreenViewModel.barGraph.collectAsState()
+    
     LaunchedEffect(Unit) {
-        trendsScreenViewModel.initializeFashionNews()
+        trendsScreenViewModel.initializeTrends()
     }
 
     Scaffold(
@@ -51,7 +53,7 @@ fun TrendsScreen(navigateTo: (Routes) -> Unit) {
         },
         content = { paddingValues ->
 
-            AdaptiveFeedLayout() {
+            AdaptiveFeedLayout {
 
                 BackButtonHeader(
                     Modifier.padding(top = paddingValues.calculateTopPadding()),
@@ -79,7 +81,7 @@ fun TrendsScreen(navigateTo: (Routes) -> Unit) {
 
                 RankedItemCarrousel(
                     products = trendingProducts,
-                    onItemClick = { productId ->
+                    onItemClick = {
 
                     },
                     onLikeClick = {
@@ -94,8 +96,10 @@ fun TrendsScreen(navigateTo: (Routes) -> Unit) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 24.dp, vertical = 16.dp),
-
                     )
+                BarGraph(
+                    data = barGraph
+                )
 
                 InterText(
                     AnnotatedString.fromHtml("Ranking Viral<span style=\"color:#007AFF\">.</span>"),

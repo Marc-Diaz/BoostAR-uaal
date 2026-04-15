@@ -108,7 +108,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                         title = "El talento que está\ncambiando la moda.",
                         subtitle = "Disponible ya en BoostAR.",
                     ),
-                    onButtonClick = { navigateTo(Routes.NovedadesScreen) }
+                    onButtonClick = { navigateTo(Routes.HomeScreen) }
                 )
 
                 SectionHeader(

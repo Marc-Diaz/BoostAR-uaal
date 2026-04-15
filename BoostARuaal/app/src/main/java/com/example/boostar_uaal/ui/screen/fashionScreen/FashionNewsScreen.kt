@@ -26,9 +26,8 @@ import com.example.boostar_uaal.data.models.SortOrder
 import com.example.boostar_uaal.ui.screen.fashionScreen.components.DropBannerStatic
 import com.example.boostar_uaal.ui.screen.fashionScreen.components.DropsSingleColumnGrid
 import com.example.boostar_uaal.ui.screen.fashionScreen.components.EmergingPartnersSection
-import com.example.boostar_uaal.ui.screen.fashionScreen.components.ProductsGrid
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
-
+/*
 @Composable
 fun FashionNewsScreen(navigateTo: (Routes) -> Unit) {
 
@@ -108,3 +107,5 @@ fun FashionNewsScreen(navigateTo: (Routes) -> Unit) {
 
     )
 }
+
+ */
