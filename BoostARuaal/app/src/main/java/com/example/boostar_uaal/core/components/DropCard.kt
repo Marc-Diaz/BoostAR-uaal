@@ -41,7 +41,6 @@ fun DropCard(
     ) {
         Row(modifier = Modifier.fillMaxSize()) {
 
-            // --- COLUMNA IZQUIERDA: IMAGEN ---
             Box(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -57,7 +56,6 @@ fun DropCard(
                 )
             }
 
-            // --- COLUMNA DERECHA ---
             Column(
                 modifier = Modifier
                     .weight(1f)
@@ -65,7 +63,7 @@ fun DropCard(
                     .padding(16.dp),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
-                // Fila Superior (Estado + Campana)
+
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -96,16 +94,11 @@ fun DropCard(
                     }
                 }
 
-                // Títulos
                 Column {
                     Text(text = drop.title, fontWeight = FontWeight.ExtraBold, fontSize = 16.sp, color = Color.Black)
                     Text(text = drop.collection, fontSize = 13.sp, color = Color.DarkGray)
                 }
-
-                // 👇 AQUI INSERTAMOS EL NUEVO COMPONENTE DEL RELOJ
                 CountdownTimer(targetTimestamp = drop.targetTimestamp)
-
-                // Botón Reservar
                 OutlinedButton(
                     onClick = onReserveClick,
                     modifier = Modifier.fillMaxWidth().height(36.dp),
@@ -119,27 +112,22 @@ fun DropCard(
     }
 }
 
-// --- 🌟 EL RELOJ EN TIEMPO REAL 🌟 ---
 @Composable
 fun CountdownTimer(targetTimestamp: Long) {
     // Estado local para calcular cuánto tiempo falta
     var timeLeft by remember { mutableLongStateOf(targetTimestamp - System.currentTimeMillis()) }
 
-    // Este bucle se ejecuta de fondo automáticamente
     LaunchedEffect(targetTimestamp) {
         while (timeLeft > 0) {
             delay(1000L) // Espera un segundo exacto
             timeLeft = targetTimestamp - System.currentTimeMillis() // Recalcula el tiempo restante
         }
     }
-
-    // Convertimos los milisegundos a Días, Horas, Minutos y Segundos usando las matemáticas de Java
     val days = maxOf(0L, TimeUnit.MILLISECONDS.toDays(timeLeft))
     val hours = maxOf(0L, TimeUnit.MILLISECONDS.toHours(timeLeft) % 24)
     val minutes = maxOf(0L, TimeUnit.MILLISECONDS.toMinutes(timeLeft) % 60)
     val seconds = maxOf(0L, TimeUnit.MILLISECONDS.toSeconds(timeLeft) % 60)
 
-    // Formateamos para que siempre tengan 2 cifras (ej: "02" en vez de "2")
     val dStr = String.format("%02d", days)
     val hStr = String.format("%02d", hours)
     val mStr = String.format("%02d", minutes)
