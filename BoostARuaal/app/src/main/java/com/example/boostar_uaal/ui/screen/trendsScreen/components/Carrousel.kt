@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.ui.screen.TrendsScreen.components
+package com.example.boostar_uaal.ui.screen.trendsScreen.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues

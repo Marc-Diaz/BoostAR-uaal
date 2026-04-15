@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.ui.screen.TrendsScreen
+package com.example.boostar_uaal.ui.screen.trendsScreen
 
 import android.content.Context
 import android.util.Log
@@ -8,6 +8,7 @@ import com.example.boostar_uaal.BoostArApplication.Companion.likeRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.partnerRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.productRepository
 import com.example.boostar_uaal.R
+import com.example.boostar_uaal.core.entities.LikeStyle
 import com.example.boostar_uaal.core.entities.PartnerData
 import com.example.boostar_uaal.data.models.SortOrder
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabData
@@ -31,7 +32,7 @@ class TrendsScreenViewModel: ViewModel() {
     private val _collabs = MutableStateFlow<List<CollabData>>(emptyList())
     val collabs: StateFlow<List<CollabData>> = _collabs.asStateFlow()
 
-
+    private val _barGraph: MutableStateFlow<List<LikeStyle>>  = MutableStateFlow(emptyList())
     fun initializeFashionNews(){
         loadBanners()
         loadProductsForYou()
@@ -39,6 +40,7 @@ class TrendsScreenViewModel: ViewModel() {
         loadProductsTrends()
         refreshLikes()
         loadCollabs()
+        loadBarGraph()
     }
 
     fun loadProducts(){
@@ -141,5 +143,10 @@ class TrendsScreenViewModel: ViewModel() {
         )
     }
 
+    fun loadBarGraph(){
+        viewModelScope.launch {
+            _barGraph.value = likeRepository.getTotalLikesByStyle()
+        }
+    }
 
 }

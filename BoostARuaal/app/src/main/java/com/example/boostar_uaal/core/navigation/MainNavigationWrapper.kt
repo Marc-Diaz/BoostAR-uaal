@@ -1,7 +1,6 @@
 package com.example.boostar_uaal.core.navigation
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation3.runtime.entryProvider
@@ -9,7 +8,7 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import com.example.boostar_uaal.LocalAuthState
 import com.example.boostar_uaal.core.utils.AuthState
-import com.example.boostar_uaal.ui.screen.TrendsScreen.TrendsScreen
+import com.example.boostar_uaal.ui.screen.trendsScreen.TrendsScreen
 import com.example.boostar_uaal.ui.screen.forYouScreen.ForYouScreen
 import com.example.boostar_uaal.ui.screen.authScreen.AuthScreen
 import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreen

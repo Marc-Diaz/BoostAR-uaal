@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.ui.screen.TrendsScreen
+package com.example.boostar_uaal.ui.screen.trendsScreen
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -24,7 +24,7 @@ import com.example.boostar_uaal.core.components.HomeBannerEstatic
 import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.data.models.SortOrder
-import com.example.boostar_uaal.ui.screen.TrendsScreen.components.RankedItemCarrousel
+import com.example.boostar_uaal.ui.screen.trendsScreen.components.RankedItemCarrousel
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabCarousel
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
 import com.example.boostar_uaal.ui.screen.homeScreen.components.ItemCarrousel

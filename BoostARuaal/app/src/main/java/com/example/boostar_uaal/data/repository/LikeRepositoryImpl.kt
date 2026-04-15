@@ -1,7 +1,7 @@
 package com.example.boostar_uaal.data.repository
 
 import android.util.Log
-import com.example.boostar_uaal.core.entities.ProductDetail
+import com.example.boostar_uaal.core.entities.LikeStyle
 import com.example.boostar_uaal.core.repository.LikeRepository
 import com.example.core.entities.Product
 import io.github.jan.supabase.postgrest.Postgrest
@@ -27,5 +27,10 @@ class LikeRepositoryImpl(private val postgrest: Postgrest): LikeRepository {
         val respones = postgrest["LikeList_View"].select().decodeList<Product>()
         Log.d("LikeList", "$respones")
         return respones
+    }
+
+    override suspend fun getTotalLikesByStyle(): List<LikeStyle> {
+        val response = postgrest.rpc("get_total_likes_by_style").decodeList<LikeStyle>()
+        return response
     }
 }
