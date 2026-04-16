@@ -14,9 +14,10 @@ import kotlinx.coroutines.launch
 import com.example.boostar_uaal.BoostArApplication.Companion.productRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.likeRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.cartRepository
+import com.example.boostar_uaal.data.models.ProductFilters
 
 
-class FeedScreenViewModel(private val sortOrder: String, private val productFilters: List<String>) : ViewModel() {
+class FeedScreenViewModel(private val sortOrder: String, private val productFilters: ProductFilters) : ViewModel() {
     private val _products = MutableStateFlow<List<ProductDetail>>(emptyList())
     val products: StateFlow<List<ProductDetail>> = _products.asStateFlow()
 

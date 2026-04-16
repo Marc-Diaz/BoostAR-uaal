@@ -44,6 +44,7 @@ fun EventTitle(logo: String, title: String){
         )
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewEventeTitle(){

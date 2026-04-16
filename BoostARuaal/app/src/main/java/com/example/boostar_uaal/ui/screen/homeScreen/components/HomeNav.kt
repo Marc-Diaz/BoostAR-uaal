@@ -14,62 +14,12 @@ import com.example.boostar_uaal.core.theme.discountColor
 import com.example.boostar_uaal.core.navigation.Routes
 
 
-/*@Composable
-fun HomeNav(){
-    val navHomeItem = listOf<NavHomeItemData>(
-        NavHomeItemData(
-            name = "Para ti",
-            routes = Routes.HomeScreen
-        ),
-        NavHomeItemData(
-            name = "Tendencias",
-            routes = Routes.HomeScreen
-        ),
-        NavHomeItemData(
-            name = "Novedades",
-            routes = Routes.HomeScreen
-        ),
-        NavHomeItemData(
-            name = "Colaboraciones",
-            routes = Routes.HomeScreen
-        ),
-        NavHomeItemData(
-            name = "Nuevas Marcas",
-            routes = Routes.HomeScreen
-        ),
-        NavHomeItemData(
-            name = "Eventos",
-            routes = Routes.HomeScreen
-        ),
-        NavHomeItemData(
-            name = "Rebajas",
-            color = discountColor,
-            routes = Routes.HomeScreen
-        )
-    )
-
-    LazyRow(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-        contentPadding = PaddingValues(horizontal = 12.dp)
-    ) {
-        items(navHomeItem){
-            NavHomeItem(
-                name = it.name,
-                color = it.color,
-                routes = it.routes
-            )
-        }
-    }
-
-}*/
-
 val homeNavItemsList = listOf(
     NavHomeItemData(name = "Para ti", routes = Routes.ForYouScreen),
     NavHomeItemData(name = "Tendencias", routes = Routes.TrendsScreen),
     NavHomeItemData(name = "Novedades", routes = Routes.FashionNewsScreen),
-    NavHomeItemData(name = "Colaboraciones", routes = Routes.HomeScreen),
-    NavHomeItemData(name = "Nuevas Marcas", routes = Routes.HomeScreen),
+    NavHomeItemData(name = "Colaboraciones", routes = Routes.LicenseScreen),
+    NavHomeItemData(name = "Nuevas Marcas", routes = Routes.NewPartnerScreen),
     NavHomeItemData(name = "Eventos", routes = Routes.EventScreen),
     NavHomeItemData(name = "Rebajas", routes = Routes.HomeScreen, color = discountColor)
 )

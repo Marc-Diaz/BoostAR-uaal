@@ -19,6 +19,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.boostar_uaal.core.components.BottomNavBar
 import com.example.boostar_uaal.core.navigation.NavItem
 import com.example.boostar_uaal.core.navigation.Routes
+import com.example.boostar_uaal.data.models.ProductFilters
 import com.example.boostar_uaal.ui.screen.feedScreen.components.FeedItem
 import com.example.boostar_uaal.ui.screen.feedScreen.components.ProductDetailsDialog
 
@@ -29,7 +30,7 @@ fun FeedScreen(
     back: () -> Unit,
     backTo: (Routes) -> Unit,
     sortOrder: String,
-    filters: List<String>
+    filters: ProductFilters
 
 ) {
     val feedViewModel = viewModel<FeedScreenViewModel>(

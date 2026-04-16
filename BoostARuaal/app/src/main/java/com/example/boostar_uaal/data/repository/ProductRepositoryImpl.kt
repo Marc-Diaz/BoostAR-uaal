@@ -3,10 +3,9 @@ package com.example.boostar_uaal.data.repository
 import android.util.Log
 import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.repository.ProductRepository
-import com.example.boostar_uaal.data.models.ProductFilter
+import com.example.boostar_uaal.data.models.ProductFilters
 import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.components.OnboardingStep
 import com.example.core.entities.Product
-import com.snap.camerakit.internal.pu
 import io.github.jan.supabase.postgrest.Postgrest
 import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.buildJsonObject
@@ -17,12 +16,6 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
 
     private val feedPageSize = 2
     private val carrouselPageSize = 10
-    private val listPageSize = 20
-    override suspend fun getProducts(): List<Product> {
-        val response: List<Product> = postgrest["Producto_View"].select().decodeList<Product>()
-
-        return response
-    }
 
     override suspend fun getProductById(id: Int): ProductDetail {
         val response = postgrest.rpc(
@@ -36,7 +29,7 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
     }
     override suspend fun getProducts(
         sortMode: String,
-        filters: List<String>,
+        filters: ProductFilters,
         refId: Int?
     ): List<Product> {
         return try {
@@ -45,7 +38,8 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
                 parameters = buildJsonObject {
                     put("p_sort_mode", sortMode)
                     if (refId != null) put("p_ref_id", refId) else put("p_ref_id", JsonNull)
-                    put("p_only_discounts", filters.contains(ProductFilter.DISCOUNT))
+                    put("p_only_discounts", filters.discount)
+                    if (filters.partnerId != null) put("p_partner_id", filters.partnerId) else put("p_partner_id", JsonNull)
                     put("p_page_size", carrouselPageSize)
                 }
             ).decodeList<Product>()
@@ -58,7 +52,7 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
     }
     override suspend fun getFeedProducts(
         sortMode: String,
-        filters: List<String>,
+        filters: ProductFilters,
         refId: Int?,
         direction: String,
     ): List<ProductDetail> {
@@ -67,9 +61,10 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
                 function = "get_feed_products",
                 parameters = buildJsonObject {
                     put("p_sort_mode", sortMode)
-                    put("p_only_discounts", filters.contains(ProductFilter.DISCOUNT))
+                    put("p_only_discounts", filters.discount)
                     if (refId != null) put("p_ref_id", refId) else put("p_ref_id", JsonNull)
                     put("p_direction", direction)
+                    if (filters.partnerId != null) put("p_partner_id", filters.partnerId) else put("p_partner_id", JsonNull)
                     put("p_page_size", feedPageSize)
                 }
             ).decodeList<ProductDetail>()

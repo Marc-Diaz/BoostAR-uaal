@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.ui.screen.eventScreen
+package com.example.boostar_uaal.ui.screen.licenseScreen
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,23 +14,23 @@ import com.example.boostar_uaal.core.components.AdaptiveFeedLayout
 import com.example.boostar_uaal.core.components.BackButtonHeader
 import com.example.boostar_uaal.core.components.BottomNavBar
 import com.example.boostar_uaal.core.navigation.Routes
-import com.example.boostar_uaal.ui.screen.eventScreen.components.Event
+import com.example.boostar_uaal.ui.screen.licenseScreen.components.LicenseSection
 
 
 @Composable
-fun EventScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: () -> Unit){
-    val eventScreenViewModel = viewModel<EventScreenViewModel>()
-    val events by eventScreenViewModel.events.collectAsState()
-
+fun LicenseScreen(back: () -> Unit, navigateTo: (Routes) -> Unit){
+    val licenseScreenViewModel = viewModel<LicenseScreenViewModel>()
+    val licenses by licenseScreenViewModel.license.collectAsState()
+    val products by licenseScreenViewModel.products.collectAsState()
     LaunchedEffect(Unit) {
-        eventScreenViewModel.initializeEvents()
+        licenseScreenViewModel.loadLicenses()
+        licenseScreenViewModel.refreshLikes()
     }
-
     Scaffold(
         bottomBar = {
             BottomNavBar(
-                naviagetTo = { back() },
-                currentRoute = Routes.GameScreen
+                naviagetTo = { navigateTo(it) },
+                currentRoute = Routes.NewPartnerScreen
             )
         },
         content = { paddingValues ->
@@ -39,14 +39,17 @@ fun EventScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: () -> Un
                     item {
                         BackButtonHeader(
                             Modifier.padding(top = paddingValues.calculateTopPadding()),
-                            title = "Eventos",
+                            title = "Licencias",
                             onBackClick = { back() }
                         )
                     }
-                    items(events) { event ->
-                        Event(
-                            event = event,
-                            onTryArClick = { navigateTo(Routes.ArScreen(event.model)) }
+                    items(licenses) { license ->
+                        LicenseSection(
+                            license = license,
+                            products = products[license.id] ?: emptyList(),
+                            onItemClick = { navigateTo(Routes.FeedScreen(it))},
+                            onLikeClick = { licenseScreenViewModel.toggleLike(it) },
+                            callback = { licenseScreenViewModel.loadProducts(it) }
                         )
 
                     }

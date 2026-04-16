@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.components.CollabCard
 
 @Composable
-fun CollabCarousel(
+fun LicensesCarousel(
     collabs: List<CollabData>,
     onItemClick: (Int) -> Unit
 ) {

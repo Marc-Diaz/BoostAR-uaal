@@ -1,10 +1,5 @@
 package com.example.boostar_uaal.ui.screen.challengeScreen
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExitTransition
-import androidx.compose.animation.core.EaseIn
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,11 +10,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -42,7 +34,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.components.PaginationPoints
 import com.example.boostar_uaal.core.navigation.Routes
-import com.example.boostar_uaal.core.theme.primaryColor
+
 import com.example.boostar_uaal.ui.screen.challengeScreen.components.GameButton
 
 @Composable

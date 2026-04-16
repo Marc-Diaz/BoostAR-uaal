@@ -3,6 +3,7 @@ package com.example.boostar_uaal
 import android.app.Application
 import com.example.boostar_uaal.core.repository.AuthRepository
 import com.example.boostar_uaal.core.repository.CartRepository
+import com.example.boostar_uaal.core.repository.LicenseRepository
 import com.example.boostar_uaal.core.repository.PartnerRepository
 import com.example.boostar_uaal.core.repository.LikeRepository
 import com.example.boostar_uaal.core.repository.ProductRepository
@@ -10,6 +11,7 @@ import com.example.boostar_uaal.core.repository.UserRepository
 import com.example.boostar_uaal.data.datasource.SupabaseClientProvider
 import com.example.boostar_uaal.data.repository.AuthRepositoryImpl
 import com.example.boostar_uaal.data.repository.CartRepositoryImpl
+import com.example.boostar_uaal.data.repository.LicenseRepositoryImpl
 import com.example.boostar_uaal.data.repository.PartnersRepositoryImpl
 import com.example.boostar_uaal.data.repository.LikeRepositoryImpl
 import com.example.boostar_uaal.data.repository.ProductRepositoryImpl
@@ -32,6 +34,8 @@ class BoostArApplication: Application() {
         lateinit var partnerRepository: PartnerRepository
         lateinit var userRepository: UserRepository
         lateinit var cartRepository: CartRepository
+
+        lateinit var licenseRepository: LicenseRepository
         lateinit var composeAuth: ComposeAuth
     }
 
@@ -45,6 +49,7 @@ class BoostArApplication: Application() {
         authRepository = AuthRepositoryImpl(supabaseClient.auth)
         productRepository = ProductRepositoryImpl(supabaseClient.postgrest)
         likeRepository = LikeRepositoryImpl(supabaseClient.postgrest)
+        licenseRepository = LicenseRepositoryImpl()
         partnerRepository = PartnersRepositoryImpl(supabaseClient.postgrest)
         userRepository = UserRepositoryImpl(supabaseClient.auth, supabaseClient.postgrest)
         cartRepository = CartRepositoryImpl(supabaseClient.postgrest)

@@ -1,12 +1,13 @@
 package com.example.boostar_uaal.core.repository
 
 import com.example.boostar_uaal.core.entities.ProductDetail
+import com.example.boostar_uaal.data.models.ProductFilters
 import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.components.OnboardingStep
 import com.example.core.entities.Product
 
 interface ProductRepository {
 
-    suspend fun getProducts(): List<Product>
+
 
     suspend fun getProductById(id: Int): ProductDetail
 
@@ -15,14 +16,14 @@ interface ProductRepository {
 
     suspend fun getFeedProducts(
         sortMode: String,
-        filters: List<String> = emptyList(),
+        filters: ProductFilters = ProductFilters(),
         refId: Int? = null,
         direction: String,
     ): List<ProductDetail>
 
     suspend fun getProducts(
         sortMode: String,
-        filters: List<String> = emptyList(),
+        filters: ProductFilters = ProductFilters(),
         refId: Int? = null
     ): List<Product>
 }

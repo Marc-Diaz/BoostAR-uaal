@@ -1,13 +1,11 @@
 package com.example.boostar_uaal.ui.screen.homeScreen
 
-import android.util.Log
-import androidx.compose.ui.graphics.Color
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.R
-import com.example.boostar_uaal.core.entities.DropData
 import com.example.boostar_uaal.core.entities.PartnerData
-import com.example.boostar_uaal.data.models.ProductFilter
+import com.example.boostar_uaal.data.models.ProductFilters
 import com.example.boostar_uaal.data.models.SortOrder
 import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabData
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
@@ -72,7 +70,7 @@ class HomeScreenViewModel : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             _productsDiscounts.value = productRepository.getProducts(
                 sortMode = SortOrder.DISCOUNT,
-                filters = listOf(ProductFilter.DISCOUNT)
+                filters = ProductFilters(discount = true)
             )
         }
     }

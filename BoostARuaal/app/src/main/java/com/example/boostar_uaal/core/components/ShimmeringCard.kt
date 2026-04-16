@@ -24,7 +24,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -32,8 +31,6 @@ import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.LocalAuthState
 import com.example.boostar_uaal.core.theme.secondaryColor
 import com.example.boostar_uaal.core.utils.AuthState
-import com.example.boostar_uaal.core.utils.formatLikes
-import com.example.boostar_uaal.core.utils.shimmerEffect
 
 @Composable
 fun ShimmeringCard(modifier: Modifier = Modifier){
@@ -45,7 +42,7 @@ fun ShimmeringCard(modifier: Modifier = Modifier){
             modifier = Modifier.size(height = 220.dp, width = 160.dp)
         ) {
             Card(
-                modifier = Modifier.fillMaxSize().shimmerEffect(),
+                modifier = Modifier.fillMaxSize(),
                 shape = RoundedCornerShape(16.dp),
                 elevation = CardDefaults.cardElevation(4.dp)
             ) {}
@@ -69,12 +66,12 @@ fun ShimmeringCard(modifier: Modifier = Modifier){
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 InterText(
-                    text = "----------------------",
+                    text = "",
                     fontSize = 11.sp,
                     fontWeight = FontWeight.SemiBold,
-                    modifier = Modifier.height(24.dp).padding(end = 4.dp).shimmerEffect(),
+                    modifier = Modifier.height(24.dp).padding(end = 4.dp)
+                )
 
-                    )
                 InterText(
                     text = "",
                     color = secondaryColor,
@@ -102,10 +99,9 @@ fun ShimmeringCard(modifier: Modifier = Modifier){
                     modifier = Modifier.size(20.dp)
                 )
                 InterText(
-                    text = "---",
+                    text = "",
                     fontSize = 11.sp,
-                    color = Color.Black,
-                    modifier = Modifier.shimmerEffect()
+                    color = Color.Black
                 )
             }
         }

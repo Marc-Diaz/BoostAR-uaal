@@ -27,6 +27,8 @@ import com.example.boostar_uaal.ui.screen.challengeScreen.ChallengeTriviaScreen
 import com.example.boostar_uaal.ui.screen.eventScreen.EventScreen
 import com.example.boostar_uaal.ui.screen.fashionScreen.FashionNewsScreen
 import com.example.boostar_uaal.ui.screen.gameScreen.GameScreen
+import com.example.boostar_uaal.ui.screen.licenseScreen.LicenseScreen
+import com.example.boostar_uaal.ui.screen.newPartnerScreens.NewPartnerScreen
 import com.example.boostar_uaal.ui.screen.profileScreen.ProfileScreen
 
 @SuppressLint("ViewModelConstructorInComposable")
@@ -193,6 +195,20 @@ fun MainNavigationWrapper() {
             entry<Routes.FashionNewsScreen> {
                 FashionNewsScreen(
                     navigateTo = { backStack.navigateTo(it)}
+                )
+            }
+
+            entry<Routes.NewPartnerScreen> {
+                NewPartnerScreen(
+                    navigateTo = { backStack.navigateTo(it) },
+                    back = { backStack.back() }
+                )
+            }
+
+            entry<Routes.LicenseScreen> {
+                LicenseScreen(
+                    back = { backStack.back() },
+                    navigateTo = { backStack.navigateTo(it) }
                 )
             }
         }

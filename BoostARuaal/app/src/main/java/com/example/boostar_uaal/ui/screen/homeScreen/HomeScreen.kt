@@ -23,10 +23,10 @@ import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.components.BottomNavBar
 import com.example.boostar_uaal.core.components.EventBanner
 import com.example.boostar_uaal.core.components.PartnerCarousel
-import com.example.boostar_uaal.data.models.ProductFilter
+import com.example.boostar_uaal.data.models.ProductFilters
 import com.example.boostar_uaal.data.models.SortOrder
 
-import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabCarousel
+import com.example.boostar_uaal.ui.screen.homeScreen.components.LicensesCarousel
 
 
 @Composable
@@ -92,7 +92,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                 ItemCarrousel(
                     products = productsTrends,
                     onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId, SortOrder.TRENDS)) },
-                    onLikeClick = {homeScreenViewModel.toggleLike(it) }
+                    onLikeClick = { homeScreenViewModel.toggleLike(it) }
                 )
                 SectionHeader(
                     title = "Abril.",
@@ -107,26 +107,24 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                         title = "El talento que está\ncambiando la moda.",
                         subtitle = "Disponible ya en BoostAR.",
                     ),
-                    onButtonClick = { navigateTo(Routes.HomeScreen) }
+                    onButtonClick = { navigateTo(Routes.FashionNewsScreen) }
                 )
 
                 SectionHeader(
                     title = "Licencias >",
                     textColor = Color.Black,
-                    fontSize = 27.48.sp
+                    fontSize = 27.48.sp,
+                    onClick = { navigateTo(Routes.LicenseScreen)}
                 )
 
-                CollabCarousel(
+                LicensesCarousel(
                     collabs = collabs,
-                    onItemClick = {
-                        // Aquí en el futuro navega al detalle de la colaboración
-                        // navigateTo(Routes.CollabDetailScreen(collabId))
-                    }
+                    onItemClick = {}
                 )
 
                 SectionHeader(
                     title = "Nuevos Partners >",
-                    onClick = { navigateTo(Routes.HomeScreen) }
+                    onClick = { navigateTo(Routes.NewPartnerScreen) }
                 )
 
                 PartnerCarousel(
@@ -157,8 +155,8 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                 )
                 ItemCarrousel(
                     products = productsDiscounts,
-                    onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId, SortOrder.DISCOUNT, listOf(
-                        ProductFilter.DISCOUNT))) },
+                    onItemClick = { productId -> navigateTo(Routes.FeedScreen(productId, SortOrder.DISCOUNT,
+                        ProductFilters(discount = true))) },
                     onLikeClick = { homeScreenViewModel.toggleLike(it) }
                 )
 
