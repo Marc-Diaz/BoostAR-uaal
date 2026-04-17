@@ -32,7 +32,7 @@ fun HomeNav(
     LazyRow(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(12.dp),
-        contentPadding = PaddingValues(horizontal = 16.dp)
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp)
     ) {
         items(items) { item ->
             NavHomeItem(

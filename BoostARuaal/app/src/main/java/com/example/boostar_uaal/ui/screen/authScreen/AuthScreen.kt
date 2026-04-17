@@ -1,16 +1,9 @@
 package com.example.boostar_uaal.ui.screen.authScreen
 
-import android.util.Log
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.ui.screen.authScreen.components.AuthButton
-import com.example.boostar_uaal.core.components.AuthLayout
-import com.example.boostar_uaal.ui.screen.homeScreen.HomeScreenViewModel
+import com.example.boostar_uaal.ui.screen.authScreen.components.AuthLayout
 
 @Composable
 fun AuthScreen(

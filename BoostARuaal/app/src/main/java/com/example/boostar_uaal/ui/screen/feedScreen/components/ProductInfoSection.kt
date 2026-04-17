@@ -77,7 +77,7 @@ fun ProductInfoSection(
             )
         )
 
-        // Precio
+
         Row(verticalAlignment = Alignment.CenterVertically) {
             discountPrice?.let {
                 InterText(

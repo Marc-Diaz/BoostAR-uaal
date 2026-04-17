@@ -19,7 +19,7 @@ import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.OnboardingChoos
 import com.example.boostar_uaal.ui.screen.onboardingTextScreen.OnboardingTextScreen
 import com.example.boostar_uaal.ui.screen.singInScreen.SignInScreen
 import com.example.boostar_uaal.ui.screen.arScreen.ArScreen
-import com.example.boostar_uaal.ui.screen.basketScreen.BasketScreen
+import com.example.boostar_uaal.ui.screen.cartScreen.BasketScreen
 import com.example.boostar_uaal.ui.screen.challengeScreen.ChallengePointScreen
 import com.example.boostar_uaal.ui.screen.challengeScreen.ChallengeScreen
 import com.example.boostar_uaal.ui.screen.challengeScreen.ChallengeTextScreen
@@ -149,9 +149,7 @@ fun MainNavigationWrapper() {
                     navigateTo = {
                         backStack.navigateTo(
                             screen = it,
-                            inclusive = it == Routes.AuthScreen) },
-                    back = { },
-                    backTo = { }
+                            inclusive = it == Routes.AuthScreen) }
                 )
             }
 
@@ -174,7 +172,8 @@ fun MainNavigationWrapper() {
 
             entry<Routes.ChallengeTextScreen>{
                 ChallengeTextScreen(
-                    navigateTo = { backStack.navigateTo(it) }
+                    navigateTo = { backStack.navigateTo(it) },
+                    backTo = { backStack.backTo(it)}
                 )
             }
 

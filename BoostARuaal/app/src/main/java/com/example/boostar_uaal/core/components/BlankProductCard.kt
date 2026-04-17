@@ -33,7 +33,7 @@ import com.example.boostar_uaal.core.theme.secondaryColor
 import com.example.boostar_uaal.core.utils.AuthState
 
 @Composable
-fun ShimmeringCard(modifier: Modifier = Modifier){
+fun BlankProductCard(modifier: Modifier = Modifier){
     Column(
         modifier = modifier
             .width(160.dp)
@@ -109,6 +109,6 @@ fun ShimmeringCard(modifier: Modifier = Modifier){
 }
 @Preview
 @Composable
-fun PreviewShimmeringCard(){
-    ShimmeringCard()
+fun PreviewBlankProductCard(){
+    BlankProductCard()
 }

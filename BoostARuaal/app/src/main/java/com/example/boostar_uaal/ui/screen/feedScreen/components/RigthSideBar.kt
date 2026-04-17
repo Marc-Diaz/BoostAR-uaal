@@ -6,19 +6,23 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.LocalAuthState
 import com.example.boostar_uaal.R
+import com.example.boostar_uaal.core.components.BlockedIcon
 import com.example.boostar_uaal.core.theme.primaryColor
 import com.example.boostar_uaal.core.utils.AuthState
 
@@ -71,11 +75,11 @@ fun RightSideBar(
                 color = primaryColor,
                 shadowElevation = 6.dp
             ) {
-                Box(
+                IconButton(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .clickable { onCartClick() },
-                    contentAlignment = Alignment.Center
+                        .fillMaxSize(),
+                    onClick = { onCartClick() },
+                    enabled = false
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.cart_icon),
@@ -87,7 +91,17 @@ fun RightSideBar(
                     )
                 }
             }
+            BlockedIcon(modifier = Modifier.size(30.dp).offset(x = 20.dp, y = (-60).dp))
         }
 
     }
+}
+@Preview
+@Composable
+fun PreviewRightSideBar(){
+    RightSideBar(
+        isLiked = true,
+        onLikeClick = {},
+        onCartClick = {}
+    )
 }

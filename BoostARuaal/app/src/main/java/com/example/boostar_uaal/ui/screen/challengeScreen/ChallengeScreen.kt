@@ -1,6 +1,7 @@
 package com.example.boostar_uaal.ui.screen.challengeScreen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -55,6 +56,7 @@ fun ChallengeScreen(challengeId: Int, navigateTo: (Routes) -> Unit, back: () -> 
         currentStep?.let { currentStep ->
             Column(
                 modifier = Modifier
+                    .background(Color.White)
                     .fillMaxSize()
                     .padding(paddingValues)
                     .padding(horizontal = 16.dp),

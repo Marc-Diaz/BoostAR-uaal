@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,6 +23,7 @@ import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.data.models.ProductFilters
 import com.example.boostar_uaal.ui.screen.feedScreen.components.FeedItem
 import com.example.boostar_uaal.ui.screen.feedScreen.components.ProductDetailsDialog
+import java.util.UUID
 
 @Composable
 fun FeedScreen(
@@ -33,8 +35,9 @@ fun FeedScreen(
     filters: ProductFilters
 
 ) {
+    val uid = rememberSaveable {  UUID.randomUUID() }
     val feedViewModel = viewModel<FeedScreenViewModel>(
-        key = sortOrder,
+        key = uid.toString(),
         factory = FeedScreenViewModelFactory(sortOrder, filters)
     )
     val products by feedViewModel.products.collectAsState()
@@ -45,8 +48,6 @@ fun FeedScreen(
         pageCount = { products.size })
     val context = LocalContext.current
     LaunchedEffect(productId) {
-        Log.d("Product Launch", "$productId")
-
         feedViewModel.initializeFeed(productId)
     }
 

@@ -2,6 +2,7 @@ package com.example.boostar_uaal.core.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,8 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -32,7 +31,7 @@ import com.example.boostar_uaal.core.entities.Multimedia
 import com.example.boostar_uaal.core.entities.TypeMultimedia
 
 @Composable
-fun EventBanner(name: String, description: String, media: Multimedia, isMain: Boolean) {
+fun EventBanner(name: String, description: String, media: Multimedia, isMain: Boolean, onClick: () -> Unit, enabled: Boolean = true) {
     val configuration = LocalConfiguration.current
     val isLandscape =
         configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
@@ -41,7 +40,12 @@ fun EventBanner(name: String, description: String, media: Multimedia, isMain: Bo
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
-            .aspectRatio(if (isLandscape) 16f / 9f else 4f / 5f),
+            .aspectRatio(if (isLandscape) 16f / 9f else 4f / 5f)
+            .clickable(
+                enabled = enabled,
+                interactionSource = null,
+                indication = null,
+                onClick = { onClick() }),
         shape = RoundedCornerShape(24.dp),
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
@@ -107,8 +111,6 @@ fun EventBanner(name: String, description: String, media: Multimedia, isMain: Bo
                 )
 
             }
-
         }
-
     }
 }

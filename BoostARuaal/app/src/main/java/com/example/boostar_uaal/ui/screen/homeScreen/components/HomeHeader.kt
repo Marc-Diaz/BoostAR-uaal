@@ -1,5 +1,6 @@
 package com.example.boostar_uaal.ui.screen.homeScreen.components
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -39,24 +40,26 @@ fun HomeHeader(modifier: Modifier = Modifier, navEnabled: Boolean = true) {
         )
 
         Spacer(modifier = Modifier.weight(1f))
+        Box(){
+            Surface(
+                shape = CircleShape,
+                color = Color(0xFFF2F2F2),
+                modifier = Modifier.size(48.dp)
+            ) {
+                IconButton(onClick = {}, enabled = navEnabled) {
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = "Buscar",
+                        tint = Color.Gray,
+                        modifier = Modifier.size(28.dp),
+                    )
+                }
 
-        Surface(
-            shape = CircleShape,
-            color = Color(0xFFF2F2F2),
-            modifier = Modifier.size(48.dp)
-        ) {
-            IconButton(onClick = {}, enabled = navEnabled) {
-                Icon(
-                    imageVector = Icons.Default.Search,
-                    contentDescription = "Buscar",
-                    tint = Color.Gray,
-                    modifier = Modifier.size(28.dp),
-                )
             }
             if (!navEnabled)
                 BlockedIcon(modifier = Modifier
                     .size(30.dp)
-                    .offset(x = (-20).dp, y = (-20).dp)
+                    .offset(x = (25).dp, y = (-10).dp)
                 )
         }
 

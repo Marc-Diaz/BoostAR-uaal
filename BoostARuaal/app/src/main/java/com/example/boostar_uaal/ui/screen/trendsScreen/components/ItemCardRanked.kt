@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.TextStyle
-import com.example.boostar_uaal.core.components.ItemCard
+import com.example.boostar_uaal.core.components.ProductCard
 import com.example.boostar_uaal.core.theme.primaryColor
 import com.example.core.entities.Product
 
@@ -41,7 +41,7 @@ fun GiantRankedItemCard(
                 .align(Alignment.CenterStart)
                 .offset(x = 0.dp, y = (-40).dp)
         )
-        ItemCard(
+        ProductCard(
             modifier = Modifier.offset(x = (60.dp)),
             product = product,
             clickable = { onClick() },

@@ -1,7 +1,6 @@
 package com.example.boostar_uaal.core.components
 
 
-// Puede que alos otros composables tengaque hacerles lo mismo
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

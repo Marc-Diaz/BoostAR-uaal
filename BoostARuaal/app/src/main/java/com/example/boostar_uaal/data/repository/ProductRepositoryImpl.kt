@@ -68,10 +68,8 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
                     put("p_page_size", feedPageSize)
                 }
             ).decodeList<ProductDetail>()
-
             response
         } catch (e: Exception) {
-            Log.e("ProductRepository", "Error fetching feed products: ${e.message}")
             emptyList()
         }
     }

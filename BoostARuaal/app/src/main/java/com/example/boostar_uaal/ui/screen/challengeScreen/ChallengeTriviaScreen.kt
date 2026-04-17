@@ -2,6 +2,7 @@ package com.example.boostar_uaal.ui.screen.challengeScreen
 
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -47,7 +48,7 @@ fun ChallengeTriviaScreen(navigateTo: (Routes) -> Unit) {
     }
     Scaffold { paddingValues ->
         Column(
-            modifier = Modifier.fillMaxSize().padding(paddingValues),
+            modifier = Modifier.fillMaxSize().background(Color.White).padding(paddingValues),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.SpaceAround
         ) {

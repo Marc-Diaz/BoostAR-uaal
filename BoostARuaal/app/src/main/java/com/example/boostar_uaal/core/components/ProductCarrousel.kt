@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.ui.screen.homeScreen.components
+package com.example.boostar_uaal.core.components
 
 
 import androidx.compose.foundation.layout.Arrangement
@@ -8,11 +8,9 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
-import com.example.boostar_uaal.core.components.ItemCard
-import com.example.boostar_uaal.core.components.ShimmeringCard
 import com.example.core.entities.Product
 @Composable
-fun ItemCarrousel(
+fun ProductCarrousel(
     products: List<Product>,
     onItemClick: (Int) -> Unit,
     onLikeClick: (Int) -> Unit,
@@ -24,7 +22,7 @@ fun ItemCarrousel(
         ) {
             if (!products.isEmpty())
                 items(products) { product ->
-                    ItemCard(
+                    ProductCard(
                         product = product,
                         clickable = { onItemClick(product.id) },
                         onLikeClick = { onLikeClick(product.id) }
@@ -32,7 +30,7 @@ fun ItemCarrousel(
                 }
             else{
                 items(10) {
-                    ShimmeringCard()
+                    BlankProductCard()
                 }
             }
 

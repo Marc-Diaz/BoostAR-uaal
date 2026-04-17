@@ -1,6 +1,7 @@
 package com.example.boostar_uaal.ui.screen.profileScreen
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -25,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -40,7 +42,7 @@ import com.example.boostar_uaal.ui.screen.profileScreen.components.ProfileHeader
 import com.example.boostar_uaal.ui.screen.profileScreen.components.StatusCard
 
 @Composable
-fun ProfileScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit){
+fun ProfileScreen(navigateTo: (Routes) -> Unit,){
     val profileScreenViewModel = viewModel<ProfileScreenViewModel>()
     val authViewModel = viewModel<AuthViewModel>()
     val user by profileScreenViewModel.user.collectAsState()
@@ -79,7 +81,9 @@ fun ProfileScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Route
                                 navigateTo(Routes.AuthScreen)
                             })
                         },
-                        modifier = Modifier.size(width = 323.dp, height = 57.dp).align(Alignment.CenterHorizontally),
+                        modifier = Modifier
+                            .size(width = 323.dp, height = 57.dp)
+                            .align(Alignment.CenterHorizontally),
                         content = {
                             Row(Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically) {
 
@@ -103,11 +107,21 @@ fun ProfileScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Route
                     )
                 }
                 else{
-                    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+                    Box(Modifier
+                        .fillMaxSize()
+                        .weight(1f), contentAlignment = Alignment.Center){
                         InterText(
-                            text = "Inicia se   sión",
+                            text = "Inicia sesión",
                             color = grayTextColor,
-                            fontWeight = FontWeight.Bold
+                            textDecoration = TextDecoration.Underline,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.clickable(
+                                interactionSource = null,
+                                indication = null,
+                                enabled = LocalAuthState.current is AuthState.Unauthenticated,
+                                onClick = { navigateTo(Routes.AuthScreen) },
+
+                                )
                         )
                     }
                 }

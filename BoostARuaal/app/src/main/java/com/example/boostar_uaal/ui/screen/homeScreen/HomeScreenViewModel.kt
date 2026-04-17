@@ -33,21 +33,28 @@ class HomeScreenViewModel : ViewModel() {
     val productsDiscounts: StateFlow<List<Product>> = _productsDiscounts.asStateFlow()
     private val _banners = MutableStateFlow<List<HeroBannerData>>(emptyList())
     val banners: StateFlow<List<HeroBannerData>> = _banners.asStateFlow()
-    private val _collabs = MutableStateFlow<List<CollabData>>(emptyList())
-    val collabs: StateFlow<List<CollabData>> = _collabs.asStateFlow()
+    private val _licenses = MutableStateFlow<List<CollabData>>(emptyList())
+    val collabs: StateFlow<List<CollabData>> = _licenses.asStateFlow()
     private val _partners = MutableStateFlow<List<PartnerData>>(emptyList())
     val partners: StateFlow<List<PartnerData>> = _partners.asStateFlow()
 
     private val _event: MutableStateFlow<Event?> = MutableStateFlow(null)
-
     val event: StateFlow<Event?> = _event.asStateFlow()
 
+    init {
+        initializeHome()
+    }
 
-    fun loadProducts() {
-        loadProductsForYou()
-        loadProductsTrends()
-        loadProductsDiscounts()
-
+    fun initializeHome(){
+        viewModelScope.launch {
+            launch(Dispatchers.IO) { loadBanners() }
+            launch(Dispatchers.IO) { loadProductsForYou() }
+            launch(Dispatchers.IO) { loadProductsTrends() }
+            launch(Dispatchers.IO) { loadLicenses() }
+            launch(Dispatchers.IO) { loadPartners() }
+            launch(Dispatchers.IO) { loadEvent() }
+            launch(Dispatchers.IO) { loadProductsDiscounts() }
+        }
     }
 
     fun loadProductsForYou(){
@@ -97,8 +104,8 @@ class HomeScreenViewModel : ViewModel() {
             )
         )
     }
-    fun loadCollabs() {
-        _collabs.value = listOf(
+    fun loadLicenses() {
+        _licenses.value = listOf(
             CollabData(
                 id = 1,
                 backgroundImageRes = R.drawable.colab_3,

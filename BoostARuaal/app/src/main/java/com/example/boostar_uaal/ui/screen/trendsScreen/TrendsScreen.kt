@@ -27,7 +27,7 @@ import com.example.boostar_uaal.data.models.SortOrder
 import com.example.boostar_uaal.ui.screen.trendsScreen.components.RankedItemCarrousel
 import com.example.boostar_uaal.ui.screen.homeScreen.components.LicensesCarousel
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
-import com.example.boostar_uaal.ui.screen.homeScreen.components.ItemCarrousel
+import com.example.boostar_uaal.core.components.ProductCarrousel
 import com.example.boostar_uaal.ui.screen.trendsScreen.components.BarGraph
 
 
@@ -110,7 +110,7 @@ fun TrendsScreen(navigateTo: (Routes) -> Unit) {
                         .padding(horizontal = 24.dp, vertical = 16.dp),
 
                     )
-                ItemCarrousel(
+                ProductCarrousel(
                     products = productsTrends,
                     onItemClick = { productId ->
                         navigateTo(

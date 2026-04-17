@@ -21,7 +21,6 @@ import com.example.boostar_uaal.ui.screen.licenseScreen.components.LicenseSectio
 fun LicenseScreen(back: () -> Unit, navigateTo: (Routes) -> Unit){
     val licenseScreenViewModel = viewModel<LicenseScreenViewModel>()
     val licenses by licenseScreenViewModel.license.collectAsState()
-    val products by licenseScreenViewModel.products.collectAsState()
     LaunchedEffect(Unit) {
         licenseScreenViewModel.loadLicenses()
         licenseScreenViewModel.refreshLikes()
@@ -46,7 +45,7 @@ fun LicenseScreen(back: () -> Unit, navigateTo: (Routes) -> Unit){
                     items(licenses) { license ->
                         LicenseSection(
                             license = license,
-                            products = products[license.id] ?: emptyList(),
+                            products =  emptyList(),
                             onItemClick = { navigateTo(Routes.FeedScreen(it))},
                             onLikeClick = { licenseScreenViewModel.toggleLike(it) },
                             callback = { licenseScreenViewModel.loadProducts(it) }

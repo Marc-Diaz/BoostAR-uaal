@@ -2,7 +2,9 @@ package com.example.boostar_uaal.core.components
 
 import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -13,6 +15,7 @@ import androidx.compose.ui.res.painterResource
 import coil3.compose.AsyncImagePainter
 import coil3.compose.rememberAsyncImagePainter
 import com.example.boostar_uaal.R
+import com.example.boostar_uaal.core.utils.shimmer
 
 @Composable
 fun ItemImage(url: String, contentDescription: String, modifier: Modifier = Modifier, contentScale: ContentScale = ContentScale.Fit){
@@ -20,7 +23,13 @@ fun ItemImage(url: String, contentDescription: String, modifier: Modifier = Modi
     val state by painter.state.collectAsState()
     when(state){
         is AsyncImagePainter.State.Empty,
-        is AsyncImagePainter.State.Loading -> CircularProgressIndicator()
+        is AsyncImagePainter.State.Loading -> {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .shimmer()
+            )
+        }
         is AsyncImagePainter.State.Success ->
             Image(
                 painter = painter,

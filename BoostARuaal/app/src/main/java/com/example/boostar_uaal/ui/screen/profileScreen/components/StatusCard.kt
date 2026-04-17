@@ -72,7 +72,6 @@ fun StatusCard(cardData: StatusCardData, modifier: Modifier = Modifier) {
     Box(modifier = Modifier.fillMaxSize()) {
         if (cardData.showNotificationDot) {
             Box(
-
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .offset(x = 5.dp, y = (-5).dp)

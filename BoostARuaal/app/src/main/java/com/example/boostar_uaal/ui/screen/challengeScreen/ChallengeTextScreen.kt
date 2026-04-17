@@ -17,9 +17,10 @@ import com.example.boostar_uaal.core.components.AdaptiveFeedLayout
 import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.core.theme.primaryColor
+import okhttp3.Route
 
 @Composable
-fun ChallengeTextScreen(navigateTo: (Routes) -> Unit){
+fun ChallengeTextScreen(navigateTo: (Routes) -> Unit, backTo: (Routes) -> Unit){
 
     val challengeScreenViewModel = viewModel<ChallengeScreenViewModel>()
     val totalPoints by challengeScreenViewModel.totalCorrectAnswers.collectAsState()
@@ -28,7 +29,8 @@ fun ChallengeTextScreen(navigateTo: (Routes) -> Unit){
         challengeScreenViewModel.startTimer(
             time = 1500,
             callback = {
-                navigateTo(Routes.ChallengePointScreen)
+                if(totalPoints == 0) backTo(Routes.GameScreen)
+                else navigateTo(Routes.ChallengePointScreen)
             }
         )
     }
@@ -49,5 +51,5 @@ fun ChallengeTextScreen(navigateTo: (Routes) -> Unit){
 @Preview
 @Composable
 fun PreviewChallengeTextScreen(){
-    ChallengeTextScreen(navigateTo = {})
+    ChallengeTextScreen(navigateTo = {}, backTo = {})
 }

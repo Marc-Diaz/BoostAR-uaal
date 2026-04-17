@@ -8,7 +8,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.boostar_uaal.core.components.AdaptiveFeedLayout
@@ -20,7 +19,7 @@ import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.data.models.SortOrder
 import com.example.boostar_uaal.ui.screen.forYouScreen.components.CleanItemCarrousel
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeHero
-import com.example.boostar_uaal.ui.screen.homeScreen.components.ItemCarrousel
+import com.example.boostar_uaal.core.components.ProductCarrousel
 
 
 @Composable
@@ -75,7 +74,7 @@ fun ForYouScreen(navigateTo: (Routes) -> Unit, back: () -> Unit) {
                     onClick = { },
                     enabled = false
                 )
-                ItemCarrousel(
+                ProductCarrousel(
                     products = productsForYou,
                     onItemClick = { productId ->
                         navigateTo(
@@ -93,7 +92,8 @@ fun ForYouScreen(navigateTo: (Routes) -> Unit, back: () -> Unit) {
 
                 SectionHeader(
                     title = "Tus Partners",
-                    onClick = { }
+                    onClick = { },
+                    enabled = false
                 )
                 PartnerCarousel(
                     partners = partners,

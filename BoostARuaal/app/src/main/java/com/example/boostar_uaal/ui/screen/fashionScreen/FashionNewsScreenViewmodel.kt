@@ -25,7 +25,6 @@ class FashionNewsScreenViewmodel: ViewModel() {
         loadProductsTrends()
     }
 
-
     fun loadProductsTrends(){
         viewModelScope.launch(Dispatchers.IO) {
             _productsTrends.value = productRepository.getProducts(
@@ -59,13 +58,8 @@ class FashionNewsScreenViewmodel: ViewModel() {
             statusColor = Color.Black,
             title = "Chaqueta de cuero biker.",
             collection = "Colección de otoño exclusiva.",
-            // Ejemplo: 5 horas a partir de ahora
             targetTimestamp = System.currentTimeMillis() + (5 * 60 * 60 * 1000),
             isNotified = true
         )
     )
-
-
-
-
 }

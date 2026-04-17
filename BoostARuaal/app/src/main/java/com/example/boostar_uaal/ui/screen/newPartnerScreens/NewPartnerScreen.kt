@@ -15,6 +15,7 @@ import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.ui.screen.newPartnerScreens.components.PartnerSection
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.LaunchedEffect
+import com.example.boostar_uaal.data.models.ProductFilters
 
 @Composable
 fun NewPartnerScreen(navigateTo: (Routes) -> Unit, back: () -> Unit){
@@ -46,7 +47,12 @@ fun NewPartnerScreen(navigateTo: (Routes) -> Unit, back: () -> Unit){
                         PartnerSection(
                             partner = partner,
                             products = products[partner.id] ?: emptyList(),
-                            onItemClick = { navigateTo(Routes.FeedScreen(it))},
+                            onItemClick = {
+                                navigateTo(Routes.FeedScreen(
+                                    productId = it,
+                                    filters = ProductFilters(partnerId = partner.id)
+                                )
+                                )},
                             onLikeClick = { newPartnerScreenViewModel.toggleLike(it) },
                             callback = { newPartnerScreenViewModel.loadProducts(it) }
                         )
