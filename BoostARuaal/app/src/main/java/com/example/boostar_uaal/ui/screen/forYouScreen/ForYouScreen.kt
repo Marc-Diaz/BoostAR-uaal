@@ -97,7 +97,7 @@ fun ForYouScreen(navigateTo: (Routes) -> Unit, back: () -> Unit) {
                 )
                 PartnerCarousel(
                     partners = partners,
-                    onItemClick = {}
+                    onItemClick = { }
                 )
 
 

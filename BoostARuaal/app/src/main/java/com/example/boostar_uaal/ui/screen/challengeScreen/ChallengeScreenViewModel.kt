@@ -3,7 +3,7 @@ package com.example.boostar_uaal.ui.screen.challengeScreen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.R
-import com.example.boostar_uaal.core.entities.ChallengeData
+import com.example.boostar_uaal.core.entities.ChallengeDetail
 import com.example.boostar_uaal.core.entities.ChallengeQuestion
 import com.example.boostar_uaal.core.entities.ChallengeStep
 import com.example.boostar_uaal.core.entities.QuestionAnswer
@@ -17,7 +17,7 @@ class ChallengeScreenViewModel : ViewModel() {
 
     // ─── State ───────────────────────────────────────────────────────────────
 
-    private val _challenge = MutableStateFlow<ChallengeData?>(null)
+    private val _challenge = MutableStateFlow<ChallengeDetail?>(null)
 
     private val _currentStep = MutableStateFlow<ChallengeStep?>(null)
     val currentStep: StateFlow<ChallengeStep?> = _currentStep.asStateFlow()
@@ -122,7 +122,7 @@ class ChallengeScreenViewModel : ViewModel() {
     }
 
 
-    private fun buildChallengeData() = ChallengeData(
+    private fun buildChallengeData() = ChallengeDetail(
         id = 1,
         steps = listOf(
             ChallengeStep(

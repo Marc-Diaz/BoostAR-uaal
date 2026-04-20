@@ -8,13 +8,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.components.DropCard
-import com.example.boostar_uaal.core.entities.DropData
+import com.example.boostar_uaal.core.entities.Drop
 
 @Composable
 fun DropsSingleColumnGrid(
-    drops: List<DropData>,
-    onReserveClick: (DropData) -> Unit,
-    onBellClick: (DropData) -> Unit
+    drops: List<Drop>,
+    onReserveClick: (Drop) -> Unit,
+    onBellClick: (Drop) -> Unit
 ) {
     Column(
         modifier = Modifier

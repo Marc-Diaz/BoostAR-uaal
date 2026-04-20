@@ -3,7 +3,6 @@ package com.example.boostar_uaal.core.components
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,13 +19,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.boostar_uaal.core.entities.DropData
+import com.example.boostar_uaal.core.entities.Drop
 import kotlinx.coroutines.delay
 import java.util.concurrent.TimeUnit
 
 @Composable
 fun DropCard(
-    drop: DropData,
+    drop: Drop,
     onReserveClick: () -> Unit,
     onBellClick: () -> Unit
 ) {

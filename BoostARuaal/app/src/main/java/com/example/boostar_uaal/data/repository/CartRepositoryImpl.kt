@@ -28,7 +28,7 @@ class CartRepositoryImpl(private val postgrest: Postgrest): CartRepository {
         }
         catch (e: Exception){
             if (e.message?.contains("duplicate key value violates unique constraint \"Detalle_Cesta_pkey\"") ?: false )
-                Log.d("CartRepository", "El producto ya se encuentra en la cesta")
+                Log.d("CartRepository", "El producto ya se encuentra en la cesta") //TODO
         }
     }
 

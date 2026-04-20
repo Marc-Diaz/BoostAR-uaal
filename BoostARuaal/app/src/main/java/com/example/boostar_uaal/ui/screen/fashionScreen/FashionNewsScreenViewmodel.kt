@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.BoostArApplication.Companion.likeRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.productRepository
 import com.example.boostar_uaal.R
-import com.example.boostar_uaal.core.entities.DropData
+import com.example.boostar_uaal.core.entities.Drop
 import com.example.boostar_uaal.data.models.SortOrder
 import com.example.core.entities.Product
 import kotlinx.coroutines.Dispatchers
@@ -40,7 +40,7 @@ class FashionNewsScreenViewmodel: ViewModel() {
     }
 
     val dropsHardcodeados = listOf(
-        DropData(
+        Drop(
             id = 1,
             imageRes = R.drawable.camiseta_stranger,
             status = "DROP DEL MOMENTO",
@@ -51,7 +51,7 @@ class FashionNewsScreenViewmodel: ViewModel() {
             targetTimestamp = System.currentTimeMillis() + (2 * 24 * 60 * 60 * 1000),
             isNotified = false
         ),
-        DropData(
+        Drop(
             id = 2,
             imageRes = R.drawable.tejano_flores_azules,
             status = "PRÓXIMAMENTE",
