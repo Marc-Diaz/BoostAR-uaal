@@ -44,6 +44,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
 
     LaunchedEffect(Unit) {
         homeScreenViewModel.refreshLikes()
+        homeScreenViewModel.initializeHome()
     }
     Scaffold(
         containerColor = Color.Transparent,
