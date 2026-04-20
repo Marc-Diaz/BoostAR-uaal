@@ -27,6 +27,8 @@ class FeedScreenViewModel(private val sortOrder: String, private val productFilt
     private var _showDialog: MutableStateFlow<Boolean> = MutableStateFlow<Boolean>(false)
     val showDialog: StateFlow<Boolean> = _showDialog.asStateFlow()
 
+    private var _currentProduct: MutableStateFlow<ProductDetail?> = MutableStateFlow<ProductDetail?>(null)
+    val currentProduct: StateFlow<ProductDetail?> = _currentProduct.asStateFlow()
     fun initializeFeed(initialProductId: Int? = null) {
         loadInitialProducts(initialProductId)
         refreshLikes()
@@ -128,5 +130,9 @@ class FeedScreenViewModel(private val sortOrder: String, private val productFilt
         }
         val shareIntent = Intent.createChooser(sendIntent, null)
        context.startActivity(shareIntent)
+    }
+
+    fun getCurrentProduct(){
+        _currentProduct.value = _products.value[_lastSelectedIndex.value]
     }
 }

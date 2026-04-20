@@ -2,8 +2,8 @@ package com.example.boostar_uaal.core.entities
 
 import java.time.LocalDate
 
-val DAYS = arrayOf("LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO")
 data class DailyProgress(
+    private val DAYS: List<String> = listOf("LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO"),
     var dayStreak: Int,
     var dailyGoals: List<DailyGoal>,
     var completedGoals: Int,

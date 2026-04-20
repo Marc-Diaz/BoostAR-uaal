@@ -32,12 +32,13 @@ fun FeedScreen(
     back: () -> Unit,
     backTo: (Routes) -> Unit,
     sortOrder: String,
-    filters: ProductFilters
+    filters: ProductFilters,
+    uid: UUID? = null
 
 ) {
-    val uid = rememberSaveable {  UUID.randomUUID() }
+    val resolveduid = rememberSaveable { uid ?: UUID.randomUUID() }
     val feedViewModel = viewModel<FeedScreenViewModel>(
-        key = uid.toString(),
+        key = resolveduid.toString(),
         factory = FeedScreenViewModelFactory(sortOrder, filters)
     )
     val products by feedViewModel.products.collectAsState()
@@ -92,7 +93,7 @@ fun FeedScreen(
                             onTryArClick = {
                                 navigateTo(Routes.ArScreen(
                                     lensId = currentProduct.model,
-                                    product = currentProduct
+                                    feedUuid = resolveduid.toString()
                                 )
                                 )
                             },

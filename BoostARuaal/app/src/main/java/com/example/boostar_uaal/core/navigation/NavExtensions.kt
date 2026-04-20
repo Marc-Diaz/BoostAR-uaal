@@ -17,10 +17,10 @@ fun NavBackStack<NavKey>.back() {
 
 fun NavBackStack<NavKey>.backTo(targetScreen: NavKey) {
     if (isEmpty()) return
-    if(targetScreen !in this) return
-
+    if(!this.contains(targetScreen)) return
     while(isNotEmpty() && last() != targetScreen){
         removeLastOrNull()
     }
+
 }
 

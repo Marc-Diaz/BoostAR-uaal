@@ -6,6 +6,7 @@ import com.example.boostar_uaal.data.models.ProductFilters
 import com.example.boostar_uaal.data.models.SortOrder
 import kotlinx.serialization.Serializable
 import okhttp3.Route
+import java.util.UUID
 
 sealed class Routes: NavKey {
     @Serializable
@@ -17,7 +18,8 @@ sealed class Routes: NavKey {
     @Serializable
     data class FeedScreen(val productId: Int? = null,
                           val sortOrder: String = SortOrder.FORYOU,
-                          val filters: ProductFilters = ProductFilters()): Routes()
+                          val filters: ProductFilters = ProductFilters(),
+                          val uid: String? = null): Routes()
 
     @Serializable
     data object HomeScreen: Routes()
@@ -42,7 +44,7 @@ sealed class Routes: NavKey {
     @Serializable
     data object ProfileScreen: Routes()
     @Serializable
-    data class ArScreen(val lensId: String, val product: ProductDetail? = null): Routes()
+    data class ArScreen(val lensId: String, val feedUuid: String? = null): Routes()
     @Serializable
     data object ForYouScreen: Routes()
 

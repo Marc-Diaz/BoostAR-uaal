@@ -11,17 +11,8 @@ class ArScreenViewModel(): ViewModel() {
     private var _facingFront: MutableStateFlow<Boolean> = MutableStateFlow(true)
     val facingFront = _facingFront.asStateFlow()
 
-    private var _showDialog: MutableStateFlow<Boolean> = MutableStateFlow<Boolean>(false)
-    val showDialog: StateFlow<Boolean> = _showDialog.asStateFlow()
-
     fun flipCamera(){
         _facingFront.value = !_facingFront.value
     }
 
-    fun openDialog(){
-        _showDialog.value = true
-    }
-    fun closeDialog(){
-        _showDialog.value = false
-    }
 }

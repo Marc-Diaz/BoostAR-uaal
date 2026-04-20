@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
@@ -24,7 +26,7 @@ import com.example.boostar_uaal.core.theme.primaryColor
 @Composable
 fun CameraControlsOverlay(
     onFlipCamera: () -> Unit,
-    onDetailClick: () -> Unit
+    onBack: () -> Unit
 ) {
 
     val borderGrey = Color(0xFFA9A9A9)
@@ -59,11 +61,11 @@ fun CameraControlsOverlay(
                     .size(56.dp)
                     .clip(CircleShape)
                     .background(Color.White),
-                onClick = { onDetailClick() }
+                onClick = { onBack() }
             ) {
                 Icon(
-                    painter = painterResource(R.drawable.list_icon),
-                    contentDescription = "Details",
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = "Back",
                     tint = primaryColor,
                     modifier = Modifier.size(28.dp)
                 )
@@ -126,6 +128,6 @@ fun CameraControlsOverlay(
 fun PreviewCameraControlsOverlay(){
     CameraControlsOverlay(
         onFlipCamera = { },
-        onDetailClick = { }
+        onBack = { }
     )
 }

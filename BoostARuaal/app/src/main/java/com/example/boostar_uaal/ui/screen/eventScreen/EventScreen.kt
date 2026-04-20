@@ -30,7 +30,7 @@ fun EventScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: () -> Un
         bottomBar = {
             BottomNavBar(
                 naviagetTo = { back() },
-                currentRoute = Routes.GameScreen
+                currentRoute = Routes.EventScreen
             )
         },
         content = { paddingValues ->

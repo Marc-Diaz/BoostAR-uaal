@@ -30,6 +30,7 @@ import com.example.boostar_uaal.ui.screen.gameScreen.GameScreen
 import com.example.boostar_uaal.ui.screen.licenseScreen.LicenseScreen
 import com.example.boostar_uaal.ui.screen.newPartnerScreens.NewPartnerScreen
 import com.example.boostar_uaal.ui.screen.profileScreen.ProfileScreen
+import java.util.UUID
 
 @SuppressLint("ViewModelConstructorInComposable")
 @Composable
@@ -95,14 +96,17 @@ fun MainNavigationWrapper() {
                     navigateTo = { backStack.navigateTo(it) }
                 )
             }
+
             entry<Routes.FeedScreen> { b ->
+                val uid = b.uid?.let { UUID.fromString(it) }
                 FeedScreen(
                     productId = b.productId,
                     navigateTo = { backStack.navigateTo(it)  },
                     back = { },
                     backTo = { },
                     sortOrder = b.sortOrder,
-                    filters = b.filters
+                    filters = b.filters,
+                    uid = uid
                 )
             }
 
@@ -121,10 +125,13 @@ fun MainNavigationWrapper() {
 
             entry<Routes.ArScreen>{
                     b ->
+                val uid = b.feedUuid?.let { UUID.fromString(it) }
                 ArScreen(
-                    back = { backStack.back() },
+                    backTo = {
+                            backStack.backTo(Routes.FeedScreen(uid = b.feedUuid))
+                             },
                     lensId = b.lensId,
-                    product = b.product,
+                    feedUuid = uid,
                     onPermissionDenied = { backStack.back() }
                 )
             }

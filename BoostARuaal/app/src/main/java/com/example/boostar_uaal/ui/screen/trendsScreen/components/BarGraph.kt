@@ -27,16 +27,12 @@ import com.example.boostar_uaal.core.entities.LikeStyle
 
 @Composable
 fun BarGraph(modifier: Modifier = Modifier, data: List<LikeStyle>){
-    // Colores basados en tu imagen
     val blueColor = Color(0xFF007AFF)
-    val highlightColor = Color(0xFFFF523B) // El naranja/rojo
-    val trackColor = Color(0xFFE5E5EA) // Línea gris inferior
+    val highlightColor = Color(0xFFFF523B)
+    val trackColor = Color(0xFFE5E5EA)
 
-    // Encontrar el valor máximo para calcular la altura relativa de las barras
-    // Usamos coerceAtLeast(1) para evitar dividir por cero si todos los valores son 0
     val maxDataValue = data.maxOfOrNull { it.value }?.coerceAtLeast(1) ?: 1
 
-    // Identificar cuál es el valor más alto real para resaltarlo
     val highestValue = data.maxOfOrNull { it.value } ?: 0
 
     Column(

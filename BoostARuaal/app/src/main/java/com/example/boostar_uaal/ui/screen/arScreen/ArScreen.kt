@@ -15,6 +15,7 @@ import com.snap.camerakit.Session
 import com.snap.camerakit.invoke
 import com.snap.camerakit.support.camerax.CameraXImageProcessorSource
 import android.Manifest
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,19 +27,23 @@ import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.utils.CameraKitConfig
 import com.example.boostar_uaal.ui.screen.arScreen.components.CameraControlsOverlay
 import com.example.boostar_uaal.ui.screen.arScreen.components.ProductInformationTopBar
+import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreenViewModel
 import com.example.boostar_uaal.ui.screen.feedScreen.components.ProductDetailsDialog
 import com.snap.camerakit.lenses.LensesComponent
 import com.snap.camerakit.lenses.whenHasFirst
+import java.util.UUID
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun ArScreen(
-    back: () -> Unit,
-    product: ProductDetail?,
+    backTo: () -> Unit,
+    feedUuid: UUID?,
     lensId: String,
     onPermissionDenied: () -> Unit = {}
 ) {
     val arScreenViewModel = viewModel<ArScreenViewModel>()
+    val feedViewModel = viewModel<FeedScreenViewModel>(key = feedUuid.toString())
+    val product by feedViewModel.currentProduct.collectAsState()
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
     val cameraPermissionState = rememberPermissionState(Manifest.permission.CAMERA)
@@ -48,8 +53,10 @@ fun ArScreen(
     }
     val cameraKitSession = remember { mutableStateOf<Session?>(null) }
     val facingFront by arScreenViewModel.facingFront.collectAsState()
-    val showDialog by arScreenViewModel.showDialog.collectAsState()
 
+    LaunchedEffect(Unit) {
+        feedViewModel.getCurrentProduct()
+    }
     DisposableEffect(Unit) {
         onDispose { cameraKitSession.value?.close() }
     }
@@ -86,26 +93,17 @@ fun ArScreen(
                     modifier = Modifier.padding(paddingValues).fillMaxSize(),
                     verticalArrangement = Arrangement.SpaceBetween
                 ){
-                    if (product != null){
+                   if(product != null){
                         ProductInformationTopBar(
-                            partner = product.partner,
-                            productName = product.name,
-                            productLikes = product.numLikes,
+                            partner = product!!.partner,
+                            productName = product!!.name,
+                            productLikes = product!!.numLikes,
                         )
                         CameraControlsOverlay(
                             onFlipCamera = { arScreenViewModel.flipCamera()},
-                            onDetailClick = { arScreenViewModel.openDialog() }
+                            onBack = { backTo() }
                         )
                     }
-
-                }
-                if (showDialog && product != null){
-                    ProductDetailsDialog(
-                        product = product,
-                        onDismiss = {
-                            arScreenViewModel.closeDialog()
-                        }
-                    )
                 }
             }
             cameraPermissionState.status.shouldShowRationale -> onPermissionDenied()

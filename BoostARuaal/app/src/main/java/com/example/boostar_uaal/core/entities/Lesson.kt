@@ -10,6 +10,3 @@ data class Lesson(
     val icon: Int, // R.drawable...
     val state: LessonState
 )
-enum class LessonState {
-    AVAILABLE, COMPLETED, LOCKED
-}
