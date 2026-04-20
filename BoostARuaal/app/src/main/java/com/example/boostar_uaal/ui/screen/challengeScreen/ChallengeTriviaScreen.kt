@@ -40,9 +40,9 @@ import com.example.boostar_uaal.ui.screen.challengeScreen.components.GameButton
 fun ChallengeTriviaScreen(navigateTo: (Routes) -> Unit) {
     val challengeScreenViewModel: ChallengeScreenViewModel = viewModel<ChallengeScreenViewModel>()
     val currentQuestion by challengeScreenViewModel.currentQuestion.collectAsState()
-    val selectedAnswerId by challengeScreenViewModel.selectedAnswerId.collectAsState()
+    val selectedAnswerId by challengeScreenViewModel.selectedAnswerIndex.collectAsState()
     val isButtonVisible by challengeScreenViewModel.isButtonVisible.collectAsState()
-    val challengeState by challengeScreenViewModel.challengeStepState.collectAsState()
+    val challengeState by challengeScreenViewModel.stepPosition.collectAsState()
     LaunchedEffect(Unit) {
         challengeScreenViewModel.loadNextQuestion()
     }
@@ -121,6 +121,5 @@ fun ChallengeTriviaScreen(navigateTo: (Routes) -> Unit) {
 @Preview
 @Composable
 fun PreviewChallengeTriviaScreen(){
-    val viemodel = viewModel<ChallengeScreenViewModel>()
     ChallengeTriviaScreen({})
 }

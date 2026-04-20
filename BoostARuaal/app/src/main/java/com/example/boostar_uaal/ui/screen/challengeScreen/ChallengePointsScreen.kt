@@ -26,8 +26,8 @@ import com.example.boostar_uaal.ui.screen.challengeScreen.components.PointsLabel
 fun ChallengePointScreen(backTo: (Routes) -> Unit){
    val challengeScreenViewModel = viewModel<ChallengeScreenViewModel>()
     LaunchedEffect(Unit) {
-        challengeScreenViewModel.startTimer(
-            time = 3000,
+        challengeScreenViewModel.scheduleCallback(
+            delayMs = 3000,
             callback = {
                 backTo(Routes.GameScreen)
             }

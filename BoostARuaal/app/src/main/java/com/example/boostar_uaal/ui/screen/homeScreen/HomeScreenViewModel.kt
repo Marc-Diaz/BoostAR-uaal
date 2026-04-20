@@ -41,9 +41,7 @@ class HomeScreenViewModel : ViewModel() {
     private val _event: MutableStateFlow<Event?> = MutableStateFlow(null)
     val event: StateFlow<Event?> = _event.asStateFlow()
 
-    init {
-        initializeHome()
-    }
+
 
     fun initializeHome(){
         viewModelScope.launch {

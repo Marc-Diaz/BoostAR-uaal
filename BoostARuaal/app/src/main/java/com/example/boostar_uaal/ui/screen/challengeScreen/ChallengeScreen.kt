@@ -41,10 +41,10 @@ import com.example.boostar_uaal.ui.screen.challengeScreen.components.GameButton
 @Composable
 fun ChallengeScreen(challengeId: Int, navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) -> Unit) {
     val challengeScreenViewModel = viewModel<ChallengeScreenViewModel>()
-    val currentStep by challengeScreenViewModel.currentChallengeStep.collectAsState()
-    val challengePosition by challengeScreenViewModel.challengeStepState.collectAsState()
+    val currentStep by challengeScreenViewModel.currentStep.collectAsState()
+    val challengePosition by challengeScreenViewModel.stepPosition.collectAsState()
     val maxSteps by challengeScreenViewModel.maxSteps.collectAsState()
-    val currentStepId by challengeScreenViewModel.currentStepId.collectAsState()
+    val currentStepId by challengeScreenViewModel.currentStepIndex.collectAsState()
     val isButtonVisible by challengeScreenViewModel.isButtonVisible.collectAsState()
 
     LaunchedEffect(Unit) {
