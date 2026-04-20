@@ -29,11 +29,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
+import com.example.boostar_uaal.core.theme.primaryColor
+import com.example.boostar_uaal.core.entities.BannerData
 
 @Composable
 fun HomeBannerStatic(
-    banner: HeroBannerData,
+    banner: BannerData,
     onButtonClick: () -> Unit
 ) {
     val configuration = LocalConfiguration.current
@@ -79,7 +80,7 @@ fun HomeBannerStatic(
                     horizontalAlignment = Alignment.Start
                 ) {
                     Text(
-                        text = banner.label, // Ej: "NOVEDADES"
+                        text = banner.label,
                         color = Color.White.copy(alpha = 0.8f),
                         fontSize = 12.sp,
                         fontWeight = FontWeight.SemiBold
@@ -100,11 +101,10 @@ fun HomeBannerStatic(
                     )
                     Spacer(modifier = Modifier.height(24.dp))
 
-                    // Botón Azul ("Ver más")
                     Button(
                         onClick = onButtonClick,
                         modifier = Modifier.fillMaxWidth().height(56.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF007AFF)), // Azul enlace
+                        colors = ButtonDefaults.buttonColors(containerColor = primaryColor),
                         shape = RoundedCornerShape(30.dp)
                     ) {
                         Text(

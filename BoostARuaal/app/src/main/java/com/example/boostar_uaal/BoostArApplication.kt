@@ -34,7 +34,6 @@ class BoostArApplication: Application() {
         lateinit var partnerRepository: PartnerRepository
         lateinit var userRepository: UserRepository
         lateinit var cartRepository: CartRepository
-
         lateinit var licenseRepository: LicenseRepository
         lateinit var composeAuth: ComposeAuth
     }

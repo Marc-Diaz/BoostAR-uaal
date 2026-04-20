@@ -1,7 +1,6 @@
-package com.example.boostar_uaal.ui.screen.homeScreen.components
+package com.example.boostar_uaal.core.entities
 
-
-data class HeroBannerData(
+data class BannerData(
     val imageRes: Int,
     val label: String,
     val title: String,

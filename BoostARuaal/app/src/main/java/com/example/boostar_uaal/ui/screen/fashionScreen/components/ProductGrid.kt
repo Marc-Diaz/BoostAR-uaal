@@ -34,14 +34,16 @@ fun ProductsGrid(
                 Box(modifier = Modifier.weight(1f)) {
                     ProductGridCard(
                         product = top4Products[0],
-                        onClick = { onProductClick(top4Products[0].id) }
+                        onClick = { onProductClick(top4Products[0].id) },
+                        onLikeClick = { }
                     )
                 }
                 if (top4Products.size > 1) {
                     Box(modifier = Modifier.weight(1f)) {
                         ProductGridCard(
                             product = top4Products[1],
-                            onClick = { onProductClick(top4Products[1].id) }
+                            onClick = { onProductClick(top4Products[1].id) },
+                            onLikeClick = { }
                         )
                     }
                 } else {
@@ -57,14 +59,16 @@ fun ProductsGrid(
                 Box(modifier = Modifier.weight(1f)) {
                     ProductGridCard(
                         product = top4Products[2],
-                        onClick = { onProductClick(top4Products[2].id) }
+                        onClick = { onProductClick(top4Products[2].id) },
+                        onLikeClick = { }
                     )
                 }
                 if (top4Products.size > 3) {
                     Box(modifier = Modifier.weight(1f)) {
                         ProductGridCard(
                             product = top4Products[3],
-                            onClick = { onProductClick(top4Products[3].id) }
+                            onClick = { onProductClick(top4Products[3].id) },
+                            onLikeClick = { }
                         )
                     }
                 } else {

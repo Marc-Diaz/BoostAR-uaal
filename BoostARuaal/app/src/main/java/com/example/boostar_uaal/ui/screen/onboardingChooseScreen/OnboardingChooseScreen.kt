@@ -38,7 +38,7 @@ fun OnboardingChooseScreen(
     navigateTo: (Routes) -> Unit,
     back: () -> Unit,
     backTo: (Routes) -> Unit,
-    viewModel: OnboardingChooseViewmodel
+    viewModel: OnboardingChooseViewModel
 ) {
     val state by viewModel.uiState.collectAsState()
 
@@ -93,7 +93,6 @@ fun OnboardingChooseScreen(
                 color = Color.Black
             )
 
-            // Subtítulo
             Text(
                 text = "Max 2 opciones",
                 fontSize = 12.sp,
@@ -103,7 +102,6 @@ fun OnboardingChooseScreen(
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // 3. GRID DE PRODUCTOS (Cuerpo Central)
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -126,7 +124,6 @@ fun OnboardingChooseScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // 4. BOTÓN CONTINUAR (Footer)
             Button(
                 onClick = {
                     viewModel.nextStep { navigateTo(Routes.HomeScreen) }

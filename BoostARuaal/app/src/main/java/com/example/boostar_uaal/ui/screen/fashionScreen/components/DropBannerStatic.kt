@@ -21,11 +21,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import android.content.res.Configuration
-import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
+import com.example.boostar_uaal.core.entities.BannerData
 
 @Composable
 fun DropBannerStatic(
-    banner: HeroBannerData, // Usa tu data class existente
+    banner: BannerData, // Usa tu data class existente
     onTryArClick: () -> Unit, // Acción para el botón naranja
     onReserveClick: () -> Unit // Acción para el botón blanco
 ) {

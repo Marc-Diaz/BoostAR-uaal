@@ -15,7 +15,7 @@ import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreen
 import com.example.boostar_uaal.ui.screen.homeScreen.HomeScreen
 import com.example.boostar_uaal.ui.screen.loginScreen.LogInScreen
 import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.OnboardingChooseScreen
-import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.OnboardingChooseViewmodel
+import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.OnboardingChooseViewModel
 import com.example.boostar_uaal.ui.screen.onboardingTextScreen.OnboardingTextScreen
 import com.example.boostar_uaal.ui.screen.singInScreen.SignInScreen
 import com.example.boostar_uaal.ui.screen.arScreen.ArScreen
@@ -87,7 +87,7 @@ fun MainNavigationWrapper() {
                     navigateTo = { backStack.navigateTo(it, inclusive = true) },
                     back = { backStack.back() },
                     backTo = { },
-                    viewModel = OnboardingChooseViewmodel()
+                    viewModel = OnboardingChooseViewModel()
                 )
             }
 

@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 import com.example.core.entities.Product
 
 @Composable
-fun RankedItemCarrousel(
+fun RankedProductCarrousel(
     products: List<Product>,
     onItemClick: (Int) -> Unit,
     onLikeClick: (Int) -> Unit
@@ -23,7 +23,7 @@ fun RankedItemCarrousel(
     ) {
         itemsIndexed(products) { index, product ->
 
-            GiantRankedItemCard(
+            RankedProductCard(
                 product = product,
                 rank = index + 1,
                 onClick = { onItemClick(product.id) },

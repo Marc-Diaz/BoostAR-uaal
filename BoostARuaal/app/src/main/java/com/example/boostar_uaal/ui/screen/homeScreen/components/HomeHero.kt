@@ -45,10 +45,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.*
 import com.example.boostar_uaal.core.components.PaginationPoints
+import com.example.boostar_uaal.core.entities.BannerData
 
 @Composable
 fun HomeHero(
-    banners: List<HeroBannerData>,
+    banners: List<BannerData>,
     onTryArClick: () -> Unit,
     isLiked: Boolean = false,
     showlikeBotton: Boolean = false,

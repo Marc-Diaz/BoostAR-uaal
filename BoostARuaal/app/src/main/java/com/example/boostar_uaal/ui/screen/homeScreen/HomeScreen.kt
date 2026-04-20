@@ -11,7 +11,7 @@ import com.example.boostar_uaal.core.components.ProductCarrousel
 import com.example.boostar_uaal.core.navigation.Routes
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.boostar_uaal.core.components.SectionHeader
-import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
+import com.example.boostar_uaal.core.entities.BannerData
 import com.example.boostar_uaal.core.components.HomeBannerStatic
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeHeader
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeHero
@@ -99,7 +99,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                 )
 
                 HomeBannerStatic(
-                    banner = HeroBannerData(
+                    banner = BannerData(
                         imageRes = R.drawable.home_novedades_mes,
                         label = "NOVEDADES",
                         title = "El talento que está\ncambiando la moda.",
@@ -117,7 +117,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                 )
 
                 LicensesCarousel(
-                    collabs = collabs,
+                    licenses = collabs,
                     onItemClick = {}
                 )
 

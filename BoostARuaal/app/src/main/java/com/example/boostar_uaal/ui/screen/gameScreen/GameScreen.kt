@@ -46,8 +46,8 @@ fun GameScreen(navigateTo: (Routes) -> Unit, back: () -> Unit, backTo: (Routes) 
                 userStats?.let {  userStats ->
                     GameUserInformationCard(userStats)
                 }
-                dailyProgress?.let { daylyProgress ->
-                    DailyGoalsSection(dailyProgress = daylyProgress)
+                dailyProgress?.let { dailyProgress ->
+                    DailyGoalsSection(dailyProgress = dailyProgress)
                 }
                 ForYouSection(challenge = challenge, onChallengeStart = { navigateTo(Routes.ChallengeScreen(it))})
                 KnowledgeSection(knowledgeArea)

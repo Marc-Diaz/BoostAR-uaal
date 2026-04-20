@@ -1,6 +1,7 @@
 package com.example.core.entities
 
 
+import com.example.boostar_uaal.core.entities.Partner
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -12,7 +13,7 @@ data class Product(
     @SerialName("precio_oferta") val discountPrice: Double? = null,
     @SerialName("img_portada") val coverImage: String,
     @SerialName("num_likes") var numLikes: Long,
-    @SerialName("partner") val partner: String,
+    @SerialName("partner") val partner: Partner,
     @SerialName("url_logo") val partnerLogo: String,
     @SerialName("gustado") var isLiked: Boolean
 )

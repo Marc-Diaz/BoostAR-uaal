@@ -16,7 +16,7 @@ import com.example.boostar_uaal.core.theme.primaryColor
 import com.example.core.entities.Product
 
 @Composable
-fun GiantRankedItemCard(
+fun RankedProductCard(
     product: Product,
     rank: Int,
     onClick: () -> Unit,

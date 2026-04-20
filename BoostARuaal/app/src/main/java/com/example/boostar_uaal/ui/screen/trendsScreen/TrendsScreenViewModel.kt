@@ -1,9 +1,8 @@
 package com.example.boostar_uaal.ui.screen.trendsScreen
 
-import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.boostar_uaal.BoostArApplication.Companion.licenseRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.likeRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.partnerRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.productRepository
@@ -11,8 +10,8 @@ import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.entities.LikeStyle
 import com.example.boostar_uaal.core.entities.PartnerData
 import com.example.boostar_uaal.data.models.SortOrder
-import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabData
-import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
+import com.example.boostar_uaal.core.entities.BannerData
+import com.example.boostar_uaal.core.entities.License
 import com.example.core.entities.Product
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,8 +19,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class TrendsScreenViewModel: ViewModel() {
-    private val _banners = MutableStateFlow<List<HeroBannerData>>(emptyList())
-    val banners: StateFlow<List<HeroBannerData>> = _banners.asStateFlow()
+    private val _banners = MutableStateFlow<List<BannerData>>(emptyList())
+    val banners: StateFlow<List<BannerData>> = _banners.asStateFlow()
 
     private val _productsForYou = MutableStateFlow<List<Product>>(emptyList())
     val productsForYou: StateFlow<List<Product>> = _productsForYou.asStateFlow()
@@ -29,8 +28,8 @@ class TrendsScreenViewModel: ViewModel() {
     val productsTrends: StateFlow<List<Product>> = _productsTrends.asStateFlow()
     private val _partners = MutableStateFlow<List<PartnerData>>(emptyList())
     val partners: StateFlow<List<PartnerData>> = _partners.asStateFlow()
-    private val _collabs = MutableStateFlow<List<CollabData>>(emptyList())
-    val collabs: StateFlow<List<CollabData>> = _collabs.asStateFlow()
+    private val _licenses = MutableStateFlow<List<License>>(emptyList())
+    val licenses: StateFlow<List<License>> = _licenses.asStateFlow()
 
     private val _barGraph: MutableStateFlow<List<LikeStyle>>  = MutableStateFlow(emptyList())
     val barGraph: StateFlow<List<LikeStyle>> = _barGraph.asStateFlow()
@@ -39,7 +38,7 @@ class TrendsScreenViewModel: ViewModel() {
         loadProductsForYou()
         loadPartners()
         loadProductsTrends()
-        loadCollabs()
+        loadLicenses()
         loadBarGraph()
         refreshLikes()
     }
@@ -63,19 +62,19 @@ class TrendsScreenViewModel: ViewModel() {
 
     private fun loadBanners() {
         _banners.value = listOf(
-            HeroBannerData(
+            BannerData(
                 imageRes = R.drawable.home_hero,
                 label = "LOOK DESTACADO",
                 title = "El minimalismo\nurbano vuelve.",
                 subtitle = "Descubre el poder del estilo sencillo."
             ),
-            HeroBannerData(
+            BannerData(
                 imageRes = R.drawable.carrusel_auth_2,
                 label = "NUEVA COLECCIÓN",
                 title = "Colores vibrantes\npara primavera.",
                 subtitle = "Atrévete con lo nuevo de temporada."
             ),
-            HeroBannerData(
+            BannerData(
                 imageRes = R.drawable.home_hero,
                 label = "EXCLUSIVIDAD",
                 title = "Realidad Aumentada\nen tus manos.",
@@ -112,27 +111,11 @@ class TrendsScreenViewModel: ViewModel() {
         }
     }
 
-    private fun loadCollabs() {
-        _collabs.value = listOf(
-            CollabData(
-                id = 1,
-                backgroundImageRes = R.drawable.colab_3,
-                brandTop = "PULL&BEAR",
-                brandBottomRes = R.drawable.logo_stranger
-            ),
-            CollabData(
-                id = 2,
-                backgroundImageRes = R.drawable.colab_2,
-                brandTop = "BALENCIAGA",
-                brandBottomRes = R.drawable.logo_puma
-            ),
-            CollabData(
-                id = 3,
-                backgroundImageRes = R.drawable.colab_1,
-                brandTop = "ADIDAS",
-                brandBottomRes = R.drawable.logo_puma
-            )
-        )
+    private fun loadLicenses() {
+        viewModelScope.launch {
+            _licenses.value = licenseRepository.getLicenses()
+        }
+
     }
 
     fun loadBarGraph(){

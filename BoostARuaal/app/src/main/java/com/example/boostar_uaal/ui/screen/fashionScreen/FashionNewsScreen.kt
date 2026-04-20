@@ -21,7 +21,7 @@ import com.example.boostar_uaal.ui.screen.fashionScreen.components.DropBannerSta
 import com.example.boostar_uaal.ui.screen.fashionScreen.components.DropsSingleColumnGrid
 import com.example.boostar_uaal.ui.screen.fashionScreen.components.EmergingPartnersSection
 import com.example.boostar_uaal.ui.screen.fashionScreen.components.ProductsGrid
-import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
+import com.example.boostar_uaal.core.entities.BannerData
 
 @Composable
 fun FashionNewsScreen(navigateTo: (Routes) -> Unit) {
@@ -53,7 +53,7 @@ fun FashionNewsScreen(navigateTo: (Routes) -> Unit) {
                 )
 
                 DropBannerStatic(
-                    banner = HeroBannerData(
+                    banner = BannerData(
                         imageRes = R.drawable.chica_novedades,
                         label = "NOVEDADES",
                         title = "El talento que está\ncambiando la moda.",

@@ -1,5 +1,6 @@
 package com.example.boostar_uaal.ui.screen.licenseScreen.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.fromHtml
@@ -39,8 +41,8 @@ fun LicenseTitle(license: License, enabled: Boolean = true){
             color = Color.White,
             shadowElevation = 6.dp
         ) {
-            ItemImage(
-                url =license.urlLogo,
+            Image(
+                painter = painterResource(license.resLogo),
                 contentDescription = license.name,
                 modifier = Modifier
                     .fillMaxSize(),

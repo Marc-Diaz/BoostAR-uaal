@@ -6,21 +6,22 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
-import com.example.boostar_uaal.core.components.CollabCard
+import com.example.boostar_uaal.core.components.LicenseCard
+import com.example.boostar_uaal.core.entities.License
 
 @Composable
 fun LicensesCarousel(
-    collabs: List<CollabData>,
+    licenses: List<License>,
     onItemClick: (Int) -> Unit
 ) {
     LazyRow(
         contentPadding = PaddingValues(horizontal = 24.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        items(collabs) { collab ->
-            CollabCard(
-                collab = collab,
-                onClick = { onItemClick(collab.id) }
+        items(licenses) { license ->
+            LicenseCard(
+                license = license,
+                onClick = { onItemClick(license.id) }
             )
         }
     }

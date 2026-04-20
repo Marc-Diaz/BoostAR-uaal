@@ -24,9 +24,9 @@ import com.example.boostar_uaal.core.components.HomeBannerStatic
 import com.example.boostar_uaal.core.components.InterText
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.data.models.SortOrder
-import com.example.boostar_uaal.ui.screen.trendsScreen.components.RankedItemCarrousel
+import com.example.boostar_uaal.ui.screen.trendsScreen.components.RankedProductCarrousel
 import com.example.boostar_uaal.ui.screen.homeScreen.components.LicensesCarousel
-import com.example.boostar_uaal.ui.screen.homeScreen.components.HeroBannerData
+import com.example.boostar_uaal.core.entities.BannerData
 import com.example.boostar_uaal.core.components.ProductCarrousel
 import com.example.boostar_uaal.ui.screen.trendsScreen.components.BarGraph
 
@@ -36,7 +36,7 @@ fun TrendsScreen(navigateTo: (Routes) -> Unit) {
     val trendsScreenViewModel = viewModel<TrendsScreenViewModel>()
     val trendingProducts by trendsScreenViewModel.productsTrends.collectAsState()
     val productsTrends by trendsScreenViewModel.productsTrends.collectAsState()
-    val collabs by trendsScreenViewModel.collabs.collectAsState()
+    val licenses by trendsScreenViewModel.licenses.collectAsState()
     val barGraph by trendsScreenViewModel.barGraph.collectAsState()
     
     LaunchedEffect(Unit) {
@@ -61,7 +61,7 @@ fun TrendsScreen(navigateTo: (Routes) -> Unit) {
                     onBackClick = { navigateTo(Routes.HomeScreen) }
                 )
                 HomeBannerStatic(
-                    banner = HeroBannerData(
+                    banner = BannerData(
                         imageRes = R.drawable.home_novedades_mes,
                         label = "NOVEDADES",
                         title = "El talento que está\ncambiando la moda.",
@@ -79,7 +79,7 @@ fun TrendsScreen(navigateTo: (Routes) -> Unit) {
 
                     )
 
-                RankedItemCarrousel(
+                RankedProductCarrousel(
                     products = trendingProducts,
                     onItemClick = {
 
@@ -132,7 +132,7 @@ fun TrendsScreen(navigateTo: (Routes) -> Unit) {
 
                     )
                 LicensesCarousel(
-                    collabs = collabs,
+                    licenses = licenses,
                     onItemClick = { collabId ->
                     }
                 )

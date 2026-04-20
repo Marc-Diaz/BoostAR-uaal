@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -27,4 +28,9 @@ fun ProductTagBadge(text: String, backgroundColor: Color, modifier: Modifier = M
             letterSpacing = 0.5.sp
         )
     }
+}
+@Preview
+@Composable
+fun PreviewProductBadge(){
+
 }

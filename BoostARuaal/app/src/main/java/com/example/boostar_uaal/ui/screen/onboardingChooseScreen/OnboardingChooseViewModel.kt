@@ -3,7 +3,6 @@ package com.example.boostar_uaal.ui.screen.onboardingChooseScreen
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.boostar_uaal.BoostArApplication
 import com.example.boostar_uaal.ui.screen.onboardingChooseScreen.components.OnboardingUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,7 +13,7 @@ import com.example.boostar_uaal.BoostArApplication.Companion.productRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.userRepository
 
 
-class OnboardingChooseViewmodel : ViewModel() {
+class OnboardingChooseViewModel : ViewModel() {
     private val _uiState = MutableStateFlow(OnboardingUiState())
     val uiState: StateFlow<OnboardingUiState> = _uiState.asStateFlow()
 
@@ -44,12 +43,11 @@ class OnboardingChooseViewmodel : ViewModel() {
         val currentSelected = currentState.selectedIds[currentStepId] ?: emptyList()
 
         val newSelected = if (currentSelected.contains(productId)) {
-            currentSelected - productId // Si ya estaba, lo quitamos
+            currentSelected - productId
         } else {
-            if (currentSelected.size < 2) currentSelected + productId else currentSelected // Si hay menos de 2, lo añadimos
+            if (currentSelected.size < 2) currentSelected + productId else currentSelected
         }
 
-        // Actualizamos el mapa
         val newMap = currentState.selectedIds.toMutableMap()
         newMap[currentStepId] = newSelected
 

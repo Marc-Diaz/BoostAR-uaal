@@ -15,14 +15,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.R
-import com.example.boostar_uaal.ui.screen.homeScreen.components.CollabData
+import com.example.boostar_uaal.core.entities.License
 
 @Composable
-fun CollabCard(
-    collab: CollabData,
+fun LicenseCard(
+    license: License,
     onClick: () -> Unit,
     enabled: Boolean = false
 ) {
@@ -42,7 +43,7 @@ fun CollabCard(
         contentAlignment = Alignment.Center
     ) {
         Image(
-            painter = painterResource(id = collab.backgroundImageRes),
+            painter = painterResource(id = license.backgroundImage),
             contentDescription = "Fondo colaboración",
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
@@ -65,9 +66,9 @@ fun CollabCard(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // Marca de arriba (Texto)
-            Text(
-                text = collab.brandTop,
+
+            InterText(
+                text = license.name,
                 color = Color.White,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
@@ -76,25 +77,38 @@ fun CollabCard(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // La "X" fina del medio
-            Text(
-                text = "✕", // Símbolo de cruz fino
-                color = Color.White.copy(alpha = 0.7f), // Un pelín transparente
+            InterText(
+                text = "✕",
+                color = Color.White.copy(alpha = 0.7f),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Light
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Marca de abajo (Logo imagen)
             Image(
-                painter = painterResource(id = collab.brandBottomRes),
+                painter = painterResource(id = license.resLogo),
                 contentDescription = "Logo marca",
                 modifier = Modifier
-                    .width(100.dp) // Ajusta este tamaño según logos
+                    .width(100.dp)
                     .height(40.dp),
-                contentScale = ContentScale.Fit // Para que no se deforme el logo
+                contentScale = ContentScale.Fit
             )
         }
     }
+}
+@Preview
+@Composable
+fun PreviewLicenseCard(){
+    val license = License(
+        id = 1,
+        name = "PULL&BEAR",
+        resLogo = R.drawable.logo_puma,
+        backgroundImage = R.drawable.colab_3
+    )
+    LicenseCard(
+        license = license,
+        onClick = { },
+        enabled = true
+    )
 }
