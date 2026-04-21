@@ -28,12 +28,11 @@ fun ProductCarrousel(
                         onLikeClick = { onLikeClick(product.id) }
                     )
                 }
-            else{
+            else {
                 items(10) {
                     BlankProductCard()
                 }
             }
-
         }
     }
 }

@@ -18,7 +18,7 @@ import com.example.boostar_uaal.core.components.SectionHeader
 import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.data.models.SortOrder
 import com.example.boostar_uaal.ui.screen.forYouScreen.components.CleanItemCarrousel
-import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeHero
+import com.example.boostar_uaal.core.components.Banner
 import com.example.boostar_uaal.core.components.ProductCarrousel
 
 
@@ -51,7 +51,7 @@ fun ForYouScreen(navigateTo: (Routes) -> Unit, back: () -> Unit) {
                     title = "Para Ti",
                     onBackClick = { back() }
                 )
-                HomeHero(
+                Banner(
                     banners = banners,
                     showlikeBotton = false,
                     onTryArClick = { navigateTo(Routes.ArScreen(lensId = "")) }

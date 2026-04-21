@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.boostar_uaal.core.components.BackgorundImage
+import com.example.boostar_uaal.core.components.BackgroundImage
 import com.example.boostar_uaal.core.components.MediaPlayer
 import com.example.boostar_uaal.core.components.PaginationPoints
 import com.example.boostar_uaal.core.entities.Brand
@@ -42,7 +42,7 @@ fun FeedItem(
         HorizontalPager(state = pagerState) { page ->
             val multimedia =product.multimedia[page]
             when(multimedia.type){
-                TypeMultimedia.IMAGE -> BackgorundImage(
+                TypeMultimedia.IMAGE -> BackgroundImage(
                     url = multimedia.multimediaURL,
                     contentDescription = product.name
                 )

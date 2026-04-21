@@ -14,7 +14,7 @@ import com.example.boostar_uaal.core.components.SectionHeader
 import com.example.boostar_uaal.core.entities.BannerData
 import com.example.boostar_uaal.core.components.HomeBannerStatic
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeHeader
-import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeHero
+import com.example.boostar_uaal.core.components.Banner
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeNav
 import com.example.boostar_uaal.R
 import androidx.compose.ui.graphics.Color
@@ -62,7 +62,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                 HomeNav(
                     onItemClick = {  navigateTo(it) }
                 )
-                HomeHero(
+                Banner(
                     banners = banners,
                     onTryArClick = { navigateTo(Routes.ArScreen(
                         lensId = "9e454816-6690-46a9-98ab-571f7f35ca8b"

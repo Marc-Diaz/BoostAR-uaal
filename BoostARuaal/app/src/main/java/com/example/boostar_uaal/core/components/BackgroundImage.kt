@@ -15,7 +15,7 @@ import coil3.compose.rememberAsyncImagePainter
 import com.example.boostar_uaal.R
 
 @Composable
-fun BackgorundImage(url: String, contentDescription: String){
+fun BackgroundImage(url: String, contentDescription: String){
     Log.d("IMAGEN", url)
     val painter = rememberAsyncImagePainter(model = url)
     val state by painter.state.collectAsState()

@@ -1,8 +1,8 @@
-package com.example.boostar_uaal.ui.screen.homeScreen.components
+package com.example.boostar_uaal.core.components
 
 
-// este es un componetnte reutilizable , tendre que cambiarle el nombre
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -44,11 +44,10 @@ import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.*
-import com.example.boostar_uaal.core.components.PaginationPoints
 import com.example.boostar_uaal.core.entities.BannerData
 
 @Composable
-fun HomeHero(
+fun Banner(
     banners: List<BannerData>,
     onTryArClick: () -> Unit,
     isLiked: Boolean = false,
@@ -60,14 +59,14 @@ fun HomeHero(
 
     val configuration = LocalConfiguration.current
     val isLandscape =
-        configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
+        configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
-    var currentIndex by remember { mutableStateOf(0) }
+    var currentIndex by remember { mutableIntStateOf(0) }
 
     LaunchedEffect(currentIndex) {
-        delay(4000) // Espera 4 segundos
+        delay(4000)
         currentIndex =
-            (currentIndex + 1) % banners.size // Pasa al siguiente (y vuelve al 0 si es el final)
+            (currentIndex + 1) % banners.size 
     }
 
     Column(
