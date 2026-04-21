@@ -65,7 +65,7 @@ fun HomeHeader(modifier: Modifier = Modifier, navEnabled: Boolean = true) {
 
     }
 }
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun PreviewHomeHeader(){
     HomeHeader(navEnabled = false)

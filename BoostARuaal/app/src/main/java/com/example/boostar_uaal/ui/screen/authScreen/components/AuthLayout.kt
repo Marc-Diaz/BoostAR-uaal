@@ -161,13 +161,3 @@ fun AuthLayout(
         }
     }
 }
-@Preview
-@Composable
-fun LayoutPreview(){
-    AuthLayout(
-        title = "Boostar",
-        subtitle = "Try it first.",
-        onBackClick = null,
-        content = { }
-    )
-}

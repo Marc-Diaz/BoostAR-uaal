@@ -69,7 +69,7 @@ fun PartnerTitle(partner: PartnerData, enabled: Boolean = true){
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun PreviewPartnerTitle(){
     val parter = PartnerData(

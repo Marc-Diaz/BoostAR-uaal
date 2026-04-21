@@ -15,8 +15,9 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun EmergingPartnersSection(
-    skeletonCount: Int = 5,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    skeletonCount: Int = 5
+
 ) {
     Column(
         modifier = modifier

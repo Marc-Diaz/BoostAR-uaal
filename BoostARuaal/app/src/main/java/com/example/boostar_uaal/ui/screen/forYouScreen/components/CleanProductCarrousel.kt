@@ -25,7 +25,7 @@ fun CleanItemCarrousel(
             // Recordando tu código anterior, para sacar la imagen de la BBDD usabas algo como esto:
             // val imagen = product.multimedia[0].multimediaURL
 
-            CleanItemCard(
+            CleanProductCard(
                 product= product,
                 onClick = { onItemClick(product.id) }
             )

@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.entities.PartnerData
 
@@ -28,7 +29,7 @@ fun PartnerCard(
             .clickable { onClick() },
         shape = CircleShape,
         color = Color(0xFFD9D9D9),
-        shadowElevation = 6.dp // Sombra suave
+        shadowElevation = 6.dp
     ) {
         ItemImage(
             url =partner.logoUrl,
@@ -40,20 +41,13 @@ fun PartnerCard(
     }
 }
 
+@Preview
 @Composable
-fun PartnerCarousel(
-    partners: List<PartnerData>,
-    onItemClick: (String) -> Unit
-) {
-    LazyRow(
-        contentPadding = PaddingValues(horizontal = 24.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        items(partners) { partner ->
-            PartnerCard(
-                partner = partner,
-                onClick = { onItemClick(partner.id) }
-            )
-        }
-    }
+fun PreviewPartnerCard(){
+    val partner = PartnerData(
+        id = "uid",
+        name = "Nombre",
+        logoUrl = "https://lh3.googleusercontent.com/a/ACg8ocJHT7IO5QH47WjEdV4XTGqSIk_6-oO2pN3HNxGXcUDSF7cZgIQ=s96-c"
+    )
+    PartnerCard(partner = partner, onClick = {})
 }

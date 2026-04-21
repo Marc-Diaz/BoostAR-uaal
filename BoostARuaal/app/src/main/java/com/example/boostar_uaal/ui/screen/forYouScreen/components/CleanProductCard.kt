@@ -8,12 +8,13 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.components.ItemImage
 import com.example.core.entities.Product
 
 @Composable
-fun CleanItemCard(
+fun CleanProductCard(
     product : Product,
     onClick: () -> Unit
 ) {
@@ -32,4 +33,23 @@ fun CleanItemCard(
             modifier = Modifier.fillMaxSize()
         )
     }
+}
+@Preview
+@Composable
+fun PreviewCleanProductCard(){
+    val product = Product(
+        id = 1,
+        name = "Producto",
+        price = 20.00,
+        discountPrice = 10.00,
+        coverImage = "",
+        numLikes = 13213,
+        partner = "P&B",
+        partnerLogo = "",
+        isLiked = false
+    )
+    CleanProductCard(
+        product = product,
+        onClick = { }
+    )
 }
