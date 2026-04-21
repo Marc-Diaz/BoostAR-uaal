@@ -30,9 +30,11 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
     override suspend fun getProducts(
         sortMode: String,
         filters: ProductFilters,
-        refId: Int?
+        refId: Int?,
+        limit: Int?
     ): List<Product> {
         return try {
+            val pageSize = limit ?: carrouselPageSize
             val response = postgrest.rpc(
                 function = "get_products",
                 parameters = buildJsonObject {
@@ -40,7 +42,7 @@ class ProductRepositoryImpl(private val postgrest: Postgrest): ProductRepository
                     if (refId != null) put("p_ref_id", refId) else put("p_ref_id", JsonNull)
                     put("p_only_discounts", filters.discount)
                     if (filters.partnerId != null) put("p_partner_id", filters.partnerId) else put("p_partner_id", JsonNull)
-                    put("p_page_size", carrouselPageSize)
+                    put("p_page_size", pageSize)
                 }
             ).decodeList<Product>()
 

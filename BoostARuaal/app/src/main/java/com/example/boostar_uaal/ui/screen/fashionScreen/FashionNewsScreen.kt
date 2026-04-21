@@ -20,17 +20,19 @@ import com.example.boostar_uaal.core.navigation.Routes
 import com.example.boostar_uaal.ui.screen.fashionScreen.components.DropBannerStatic
 import com.example.boostar_uaal.ui.screen.fashionScreen.components.DropsSingleColumnGrid
 import com.example.boostar_uaal.ui.screen.fashionScreen.components.EmergingPartnersSection
-import com.example.boostar_uaal.ui.screen.fashionScreen.components.ProductsGrid
 import com.example.boostar_uaal.core.entities.BannerData
+import com.example.boostar_uaal.data.models.SortOrder
+import com.example.boostar_uaal.ui.screen.fashionScreen.components.NewestProductGrid
 
 @Composable
 fun FashionNewsScreen(navigateTo: (Routes) -> Unit) {
     val fashionNewsScreenViewModel = viewModel<FashionNewsScreenViewmodel>()
-    val productList by fashionNewsScreenViewModel.productsTrends.collectAsState()
+    val productList by fashionNewsScreenViewModel.productsNewest.collectAsState()
 
 
     LaunchedEffect(Unit) {
         fashionNewsScreenViewModel.initializeFashionNews()
+        fashionNewsScreenViewModel.refreshLikes()
     }
 
     Scaffold(
@@ -61,22 +63,22 @@ fun FashionNewsScreen(navigateTo: (Routes) -> Unit) {
                     ),
                     onTryArClick = { },
                     onReserveClick = { }
-
                 )
 
                 SectionHeader(
-                    title = "Partners emergentes",
+                    title = "Recién llegado",
                     onClick = { navigateTo(Routes.FashionNewsScreen) },
                     enabled = false
                 )
-
-                ProductsGrid(
+                NewestProductGrid(
                     products = productList,
-                    onProductClick = {}
+                    onClick = { navigateTo(Routes.FeedScreen( productId = it, sortOrder = SortOrder.NEWEST)) },
+                    onLikeClick = { fashionNewsScreenViewModel.toggleLike(it) }
                 )
 
+
                 SectionHeader(
-                    title = AnnotatedString.fromHtml("<span style=\"color:#007AFF\">.</span>"),
+                    title = AnnotatedString.fromHtml("Partners emergentes<span style=\"color:#007AFF\">.</span>"),
                     onClick = {  },
                     enabled = false
                 )
@@ -85,7 +87,8 @@ fun FashionNewsScreen(navigateTo: (Routes) -> Unit) {
 
                 SectionHeader(
                     title = "Próximos drops",
-                    onClick = {  }
+                    onClick = {  },
+                    enabled = false
                 )
                 DropsSingleColumnGrid(
                     drops = fashionNewsScreenViewModel.dropsHardcodeados,

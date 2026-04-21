@@ -3,6 +3,9 @@ package com.example.boostar_uaal.core.navigation
 import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
@@ -30,11 +33,12 @@ import com.example.boostar_uaal.ui.screen.gameScreen.GameScreen
 import com.example.boostar_uaal.ui.screen.licenseScreen.LicenseScreen
 import com.example.boostar_uaal.ui.screen.newPartnerScreens.NewPartnerScreen
 import com.example.boostar_uaal.ui.screen.profileScreen.ProfileScreen
-import java.util.UUID
 
 @SuppressLint("ViewModelConstructorInComposable")
 @Composable
 fun MainNavigationWrapper() {
+    val navViewModel = viewModel<NavViewModel>()
+    val feedUid by navViewModel.feedUuid.collectAsState()
     val authState = LocalAuthState.current
     val startRoute: Routes = when (authState) {
         AuthState.Authenticated -> Routes.HomeScreen
@@ -45,7 +49,12 @@ fun MainNavigationWrapper() {
 
     NavDisplay(
         backStack = backStack,
-        onBack = { backStack.back() },
+        onBack = {
+            if (backStack.lastOrNull() is Routes.FeedScreen){
+                navViewModel.clearUuid()
+            }
+            backStack.back()
+                 },
         entryProvider = entryProvider {
             entry<Routes.AuthScreen> {
                 AuthScreen(
@@ -98,7 +107,7 @@ fun MainNavigationWrapper() {
             }
 
             entry<Routes.FeedScreen> { b ->
-                val uid = b.uid?.let { UUID.fromString(it) }
+
                 FeedScreen(
                     productId = b.productId,
                     navigateTo = { backStack.navigateTo(it)  },
@@ -106,7 +115,7 @@ fun MainNavigationWrapper() {
                     backTo = { },
                     sortOrder = b.sortOrder,
                     filters = b.filters,
-                    uid = uid
+                    uid = feedUid
                 )
             }
 
@@ -125,15 +134,15 @@ fun MainNavigationWrapper() {
 
             entry<Routes.ArScreen>{
                     b ->
-                val uid = b.feedUuid?.let { UUID.fromString(it) }
                 ArScreen(
-                    backTo = {
-                            backStack.backTo(Routes.FeedScreen(uid = b.feedUuid))
-                             },
+                    back = { backStack.back() },
                     lensId = b.lensId,
-                    feedUuid = uid,
+                    feedUuid = b.feedUuid,
                     onPermissionDenied = { backStack.back() }
                 )
+                LaunchedEffect(b.feedUuid) {
+                    navViewModel.setUuid(b.feedUuid)
+                }
             }
             entry<Routes.BasketScreen>{
                 BasketScreen(

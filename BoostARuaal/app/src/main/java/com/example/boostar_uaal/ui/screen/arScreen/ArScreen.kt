@@ -36,8 +36,8 @@ import java.util.UUID
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun ArScreen(
-    backTo: () -> Unit,
-    feedUuid: UUID?,
+    back: () -> Unit,
+    feedUuid: String?,
     lensId: String,
     onPermissionDenied: () -> Unit = {}
 ) {
@@ -101,7 +101,7 @@ fun ArScreen(
                         )
                         CameraControlsOverlay(
                             onFlipCamera = { arScreenViewModel.flipCamera()},
-                            onBack = { backTo() }
+                            onBack = { back() }
                         )
                     }
                 }

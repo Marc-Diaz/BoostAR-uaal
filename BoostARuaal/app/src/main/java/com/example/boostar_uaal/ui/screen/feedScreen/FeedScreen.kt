@@ -33,7 +33,7 @@ fun FeedScreen(
     backTo: (Routes) -> Unit,
     sortOrder: String,
     filters: ProductFilters,
-    uid: UUID? = null
+    uid: String? = null
 
 ) {
     val resolveduid = rememberSaveable { uid ?: UUID.randomUUID() }
@@ -115,4 +115,3 @@ fun FeedScreen(
         }
     )
 }
-

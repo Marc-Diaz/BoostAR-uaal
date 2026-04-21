@@ -1,4 +1,4 @@
-package com.example.boostar_uaal.ui.screen.TrendsScreen.components
+package com.example.boostar_uaal.ui.screen.fashionScreen.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -12,15 +12,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.boostar_uaal.core.components.InterText
 
 @Composable
-fun ProductTagBadge(text: String, backgroundColor: Color, modifier: Modifier = Modifier) {
+fun TrendingProductTag(text: String, backgroundColor: Color, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
-            .background(backgroundColor, RoundedCornerShape(12.dp))
-            .padding(horizontal = 10.dp, vertical = 4.dp)
+            .background(backgroundColor, RoundedCornerShape(16.dp))
+            .padding(horizontal = 12.dp, vertical = 2.dp)
     ) {
-        Text(
+        InterText(
             text = text,
             color = Color.White,
             fontSize = 10.sp,
@@ -32,5 +33,9 @@ fun ProductTagBadge(text: String, backgroundColor: Color, modifier: Modifier = M
 @Preview
 @Composable
 fun PreviewProductBadge(){
-
+    TrendingProductTag(
+        text = "HOT",
+        backgroundColor = Color.Black,
+        modifier = Modifier
+    )
 }

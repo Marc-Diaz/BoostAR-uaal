@@ -74,7 +74,7 @@ fun ProductCard(
             ) {
                 ItemImage(
                     url = product.partnerLogo,
-                    contentDescription = product.partner.name,
+                    contentDescription = product.partner,
                     modifier = Modifier
                         .fillMaxSize(),
                     contentScale = ContentScale.Crop

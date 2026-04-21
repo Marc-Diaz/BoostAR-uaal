@@ -2,6 +2,7 @@ package com.example.boostar_uaal.core.navigation
 
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
+import okhttp3.Route
 
 fun NavBackStack<NavKey>.navigateTo(screen: NavKey, inclusive: Boolean = false) {
     if (inclusive)

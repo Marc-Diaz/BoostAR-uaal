@@ -24,6 +24,7 @@ interface ProductRepository {
     suspend fun getProducts(
         sortMode: String,
         filters: ProductFilters = ProductFilters(),
-        refId: Int? = null
+        refId: Int? = null,
+        limit: Int? = null
     ): List<Product>
 }

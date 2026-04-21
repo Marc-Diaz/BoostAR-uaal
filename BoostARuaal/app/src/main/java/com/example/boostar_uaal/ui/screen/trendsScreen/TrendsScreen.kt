@@ -54,7 +54,6 @@ fun TrendsScreen(navigateTo: (Routes) -> Unit) {
         content = { paddingValues ->
 
             AdaptiveFeedLayout {
-
                 BackButtonHeader(
                     Modifier.padding(top = paddingValues.calculateTopPadding()),
                     title = "Novedades",
@@ -81,9 +80,10 @@ fun TrendsScreen(navigateTo: (Routes) -> Unit) {
 
                 RankedProductCarrousel(
                     products = trendingProducts,
-                    onItemClick = {
-
-                    },
+                    onItemClick = { navigateTo(Routes.FeedScreen(
+                        productId = it,
+                        sortOrder = SortOrder.TRENDS,
+                    )) },
                     onLikeClick = {
                         trendsScreenViewModel.toggleLike(it)
                     }
