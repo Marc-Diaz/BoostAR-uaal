@@ -14,9 +14,20 @@ import coil3.compose.AsyncImagePainter
 import coil3.compose.rememberAsyncImagePainter
 import com.example.boostar_uaal.R
 
+
+/**
+ * Muestra una imagen de fondo descargada desde una URL, ocupando la totalidad de el espacio disponible.
+ *
+ * Este componente gestiona automáticamente los diferentes estados de la descarga usando Coil:
+ * - Mientras carga: Muestra un indicador circular de progreso.
+ * - Si tiene éxito: Muestra la imagen recortada para rellenar completamente el espacio (`ContentScale.Crop`).
+ * - Si hay un error: Muestra una imagen por defecto de la aplicación para evitar que el fondo quede en blanco.
+ *
+ * @param url Enlace directo a la imagen que se quiere descargar.
+ * @param contentDescription Texto descriptivo de la imagen para herramientas de accesibilidad (lectores de pantalla).
+ */
 @Composable
 fun BackgroundImage(url: String, contentDescription: String){
-    Log.d("IMAGEN", url)
     val painter = rememberAsyncImagePainter(model = url)
     val state by painter.state.collectAsState()
     when(state){
@@ -37,8 +48,6 @@ fun BackgroundImage(url: String, contentDescription: String){
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop
             )
-            val error = state as AsyncImagePainter.State.Error
-            Log.d("ERROR IMAGEN", "$error")
         }
     }
 }

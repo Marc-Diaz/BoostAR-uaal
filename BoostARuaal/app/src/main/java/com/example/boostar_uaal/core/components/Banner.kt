@@ -46,6 +46,24 @@ import androidx.compose.material3.IconButton
 import androidx.compose.runtime.*
 import com.example.boostar_uaal.core.entities.BannerData
 
+
+/**
+ * Carrusel de imágenes destacadas (banners) con transición automática.
+ *
+ * Este componente presenta una lista rotativa de promociones o novedades. Implementa un cambio
+ * automático de imagen cada 4 segundos utilizando un `LaunchedEffect` ligado al índice actual,
+ * y permite al usuario avanzar manualmente tocando la tarjeta. La transición entre imágenes se
+ * realiza de forma fluida mediante el componente `Crossfade`.
+ *
+ * @param banners Lista de elementos `BannerData` a mostrar. Si la lista está vacía, el componente
+ * aborta su renderizado de forma temprana para evitar errores.
+ * @param onTryArClick Acción que se desencadena al pulsar el botón principal de llamada a la acción.
+ * @param isLiked Indica si el banner actual está marcado como favorito. Controla el color y la
+ * forma del icono del corazón.
+ * @param showlikeBotton Controla la visibilidad del botón de "Me gusta" en la esquina superior derecha.
+ * Útil para reutilizar el componente en contextos donde no se requiera esta funcionalidad.
+ * @param onLikeClick Acción que se ejecuta al interactuar con el botón de "Me gusta".
+ */
 @Composable
 fun Banner(
     banners: List<BannerData>,

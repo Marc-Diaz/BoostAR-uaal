@@ -11,7 +11,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.serialization)
+    id("org.jetbrains.dokka")
 }
+
 
 android {
     namespace = "com.example.boostar_uaal"

@@ -32,8 +32,22 @@ import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.theme.primaryColor
 import com.example.boostar_uaal.core.entities.BannerData
 
+
+/**
+ * Componente visual que renderiza un banner promocional estático.
+ *
+ * A diferencia de los carruseles dinámicos, este componente está diseñado para destacar
+ * un único elemento fijo en la interfaz. Su estructura interna utiliza una superposición de
+ * capas (eje Z) mediante un contenedor `Box` para apilar la imagen de fondo, un filtro de
+ * contraste y el contenido textual.
+ *
+ * @param banner Objeto de datos que provee la información estructural del componente (referencia
+ * a la imagen, etiqueta superior, título principal y descripción secundaria).
+ * @param onButtonClick Función de orden superior que encapsula la lógica de negocio a ejecutar
+ * cuando el usuario presiona el botón principal de la tarjeta.
+ */
 @Composable
-fun HomeBannerStatic(
+fun BannerStatic(
     banner: BannerData,
     onButtonClick: () -> Unit
 ) {

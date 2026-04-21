@@ -12,7 +12,7 @@ import com.example.boostar_uaal.core.navigation.Routes
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.boostar_uaal.core.components.SectionHeader
 import com.example.boostar_uaal.core.entities.BannerData
-import com.example.boostar_uaal.core.components.HomeBannerStatic
+import com.example.boostar_uaal.core.components.BannerStatic
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeHeader
 import com.example.boostar_uaal.core.components.Banner
 import com.example.boostar_uaal.ui.screen.homeScreen.components.HomeNav
@@ -98,7 +98,7 @@ fun HomeScreen(navigateTo: (Routes) -> Unit) {
                     onClick = { navigateTo(Routes.FashionNewsScreen)}
                 )
 
-                HomeBannerStatic(
+                BannerStatic(
                     banner = BannerData(
                         imageRes = R.drawable.home_novedades_mes,
                         label = "NOVEDADES",

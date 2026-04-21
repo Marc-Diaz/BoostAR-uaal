@@ -90,6 +90,14 @@ fun ForYouScreen(navigateTo: (Routes) -> Unit, back: () -> Unit) {
 
                 )
 
+                ProductCarrousel(
+                    products = emptyList(),
+                    onItemClick = {},
+                    onLikeClick = {}
+                )
+
+
+
                 SectionHeader(
                     title = "Tus Partners",
                     onClick = { },

@@ -22,7 +22,29 @@ import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.entities.Drop
 import kotlinx.coroutines.delay
 import java.util.concurrent.TimeUnit
-
+/**
+ * TO-DO / REFACTOR PENDIENTE: Componente programado para una reescritura completa desde cero.
+ *
+ * Este componente (`DropCard`) y sus funciones auxiliares (`CountdownTimer`, etc.) cumplen su
+ * propósito visual inmediato, pero acumulan deuda técnica estructural. El desarrollador que
+ * retome esta tarea deberá rehacerlo aplicando mejores prácticas de arquitectura UI.
+ *
+ * PUNTOS CLAVE PARA LA REESCRITURA:
+ * 1. Desacoplamiento de estado (State Hoisting): La lógica interna de la cuenta atrás (`CountdownTimer`)
+ * no debe calcularse dentro del componente visual. Los cálculos del tiempo (días, horas, etc.)
+ * y la corrutina (`LaunchedEffect`) deben extraerse al `ViewModel`, y la vista solo debe
+ * limitarse a pintar los datos ya formateados.
+ * 2. Adaptabilidad (Responsiveness): El layout abusa de dimensiones fijas y hardcodeadas
+ * (`height(210.dp)`, `width(130.dp)`). Esto es frágil y puede romper la interfaz en teléfonos
+ * con pantallas pequeñas o si el usuario tiene la fuente del sistema agrandada (accesibilidad).
+ * Se deben usar modificadores flexibles como `weight()` o `IntrinsicSize`.
+ * 3. Gestión de imágenes: El componente asume recursos locales (`painterResource(id = drop.imageRes)`).
+ * Debe migrarse para utilizar `AsyncImage` (Coil) y soportar URLs de red de manera dinámica.
+ *
+ * @param drop Estructura de datos con la información del producto.
+ * @param onReserveClick Función a ejecutar al accionar el botón de reserva.
+ * @param onBellClick Función a ejecutar al interactuar con el icono de notificaciones.
+ */
 @Composable
 fun DropCard(
     drop: Drop,

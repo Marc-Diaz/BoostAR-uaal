@@ -7,7 +7,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.components.ProductCard
-import com.example.boostar_uaal.core.theme.tertiaryColor
 import com.example.core.entities.Product
 @Composable
 fun NewestProductCard(

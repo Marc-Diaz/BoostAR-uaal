@@ -15,6 +15,23 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+
+/**
+ * Encabezado estándar que incluye un botón para volver atrás y el título de la pantalla.
+ *
+ * Se utiliza habitualmente en la parte superior de las pantallas secundarias para
+ * permitir al usuario regresar a la vista anterior.
+ *
+ * @param modifier Modificador base para el contenedor del encabezado. Permite ajustar el layout
+ * exterior, como la adición de insets del sistema o dimensiones específicas.
+ * @param title Cadena de texto que representa el título de la pantalla actual.
+ * @param onBackClick Función de orden superior (lambda) que se ejecuta al detectar un evento de
+ * clic sobre el icono de retroceso. Su uso principal es invocar la navegación hacia atrás
+ * (ej. `popBackStack()`).
+ * @param textColor Color aplicado al texto del título (por defecto Color.Black).
+ * @param iconColor Color aplicado al vector del icono de retroceso (por defecto Color.Gray).
+ * @param fontSize Tamaño tipográfico aplicado a la fuente del título (por defecto 24.sp).
+ */
 @Composable
 fun BackButtonHeader(
     modifier: Modifier = Modifier,

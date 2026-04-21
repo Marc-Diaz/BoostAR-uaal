@@ -30,6 +30,20 @@ import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.core.entities.Multimedia
 import com.example.boostar_uaal.core.entities.TypeMultimedia
 
+/**
+ * Componente visual destacado para eventos, con soporte integrado para fondos multimedia (vídeo o imagen).
+ *
+ * Este componente representa una tarjeta promocional que adapta su contenido visual basándose
+ * en el tipo de medio proporcionado. Ajusta dinámicamente su relación de aspecto según la orientación
+ * del dispositivo (4:5 en vertical, 16:9 en apaisado) para garantizar una visualización óptima.
+ *
+ * @param name Título principal del evento.
+ * @param description Texto secundario explicativo sobre el evento.
+ * @param media Estructura de datos que contiene la URL del archivo y su tipo (VIDEO o IMAGE).
+ * @param isMain Si es verdadero, muestra la etiqueta "MAIN EVENT" en la parte superior del contenido.
+ * @param onClick Acción que se desencadena al interactuar con la tarjeta.
+ * @param enabled Habilita o deshabilita la capacidad de interactuar con la tarjeta (por defecto true).
+ */
 @Composable
 fun EventBanner(name: String, description: String, media: Multimedia, isMain: Boolean, onClick: () -> Unit, enabled: Boolean = true) {
     val configuration = LocalConfiguration.current
