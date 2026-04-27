@@ -21,6 +21,21 @@ import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.entities.License
 
+
+/**
+ * Tarjeta visual que representa una licencia.
+ *
+ * Diseñada principalmente para mostrarse en listas horizontales o cuadrículas, esta tarjeta
+ * utiliza una estructura de capas superpuestas (`Box`) para componer su diseño visual,
+ * mezclando imágenes de fondo, filtros de estado y logotipos corporativos.
+ *
+ * @param license Objeto de datos que contiene la información estructural de la colaboración
+ * (nombre, recurso de la imagen de fondo y logotipo de la marca).
+ * @param onClick Acción que se desencadena al interactuar con la tarjeta, independientemente
+ * de si está visualmente habilitada o no.
+ * @param enabled Determina si la tarjeta debe mostrarse activa. Si es false (por defecto),
+ * se superpone una máscara visual de bloqueo.
+ */
 @Composable
 fun LicenseCard(
     license: License,

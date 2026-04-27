@@ -13,7 +13,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-
+/**
+ * Indicador visual de paginación (puntos/dots) basado en un índice numérico explícito.
+ *
+ * Este componente dibuja la clásica fila de puntos que acompaña a los carruseles de imágenes
+ * para indicar al usuario cuántos elementos hay y en cuál se encuentra actualmente.
+ * Proporciona retroalimentación visual dinámica alterando tanto el tamaño como la opacidad
+ * del punto activo frente a los inactivos.
+ *
+ * @param size Cantidad total de elementos (páginas) que tiene el carrusel.
+ * @param currentIndex Índice del elemento que está actualmente visible en pantalla (basado en 0).
+ */
 @Composable
 fun PaginationPoints(size: Int, currentIndex: Int){
     Row(

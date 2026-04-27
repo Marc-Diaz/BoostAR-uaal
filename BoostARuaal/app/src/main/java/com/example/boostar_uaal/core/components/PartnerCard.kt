@@ -18,6 +18,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.boostar_uaal.core.entities.PartnerData
 
+/**
+ * Tarjeta circular diseñada para mostrar el logotipo de un partner o marca colaboradora.
+ *
+ * @param partner Objeto de datos que contiene la información del partner. El componente extrae
+ * de aquí la URL del logotipo (`logoUrl`) y el nombre (`name`) para utilizarlo como texto
+ * descriptivo de cara a la accesibilidad.
+ * @param onClick Acción que se desencadena al interactuar (tocar) el área circular de la tarjeta.
+ */
 @Composable
 fun PartnerCard(
     partner: PartnerData,

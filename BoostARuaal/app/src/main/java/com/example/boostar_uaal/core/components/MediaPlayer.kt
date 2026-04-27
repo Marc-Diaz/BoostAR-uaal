@@ -15,7 +15,20 @@ import com.example.boostar_uaal.R
 import androidx.core.net.toUri
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.AspectRatioFrameLayout
+/**
+ * Componente envoltorio para la carga asíncrona de imágenes desde la red mediante Coil.
+ *
+ * Este componente abstrae la complejidad de descargar y renderizar una imagen remota, gestionando
+ * de forma explícita los tres estados del ciclo de vida de la carga (Cargando, Éxito y Error)
+ * para ofrecer una interfaz robusta y facilitar el mantenimiento del código.
 
+ * @param url Dirección web (HTTP/HTTPS) que apunta al archivo de la imagen.
+ * @param contentDescription Texto descriptivo destinado a los servicios de accesibilidad (TalkBack).
+ * @param modifier Modificador para ajustar las dimensiones, padding o comportamiento externo
+ * (por defecto es un Modifier vacío).
+ * @param contentScale Regla de escalado para determinar cómo se debe ajustar la imagen dentro
+ * de los límites de su contenedor (por defecto `ContentScale.Fit`).
+ */
 @OptIn(UnstableApi::class)
 @Composable
 fun MediaPlayer(context: Context, raw: Int, modifier: Modifier = Modifier){

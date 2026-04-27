@@ -17,6 +17,20 @@ import coil3.compose.rememberAsyncImagePainter
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.utils.shimmer
 
+/**
+ * Componente envoltorio para la carga asíncrona de imágenes desde la red mediante Coil.
+ *
+ * Este componente abstrae la complejidad de descargar y renderizar una imagen remota, gestionando
+ * de forma explícita los tres estados del ciclo de vida de la carga (Cargando, Éxito y Error)
+ * para ofrecer una interfaz robusta y facilitar el mantenimiento del código.
+ *
+ * @param url Dirección web (HTTP/HTTPS) que apunta al archivo de la imagen.
+ * @param contentDescription Texto descriptivo destinado a los servicios de accesibilidad (TalkBack).
+ * @param modifier Modificador para ajustar las dimensiones, padding o comportamiento externo
+ * (por defecto es un Modifier vacío).
+ * @param contentScale Regla de escalado para determinar cómo se debe ajustar la imagen dentro
+ * de los límites de su contenedor (por defecto `ContentScale.Fit`).
+ */
 @Composable
 fun ItemImage(url: String, contentDescription: String, modifier: Modifier = Modifier, contentScale: ContentScale = ContentScale.Fit){
     val painter = rememberAsyncImagePainter(model = url)

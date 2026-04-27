@@ -36,6 +36,20 @@ import com.example.boostar_uaal.core.utils.formatLikes
 
 import com.example.core.entities.Product
 
+
+/**
+ * Tarjeta individual para mostrar un producto del catálogo.
+ *
+ * Este componente renderiza la información fundamental de un artículo, incluyendo
+ * su imagen principal, el logotipo de la marca colaboradora, el precio y un control
+ * interactivo para marcarlo como favorito.
+ *
+ * @param modifier Modificador base aplicado al contenedor superior (`Column`).
+ * @param product Instancia del modelo de datos que contiene las propiedades a renderizar.
+ * @param clickable Callback ejecutado al realizar una pulsación en el área general de la tarjeta.
+ * @param onLikeClick Callback específico ejecutado al interactuar con el indicador de favoritos
+ * (solo se invocará si el usuario actual cumple las condiciones de validación de estado).
+ */
 @Composable
 fun ProductCard(
     modifier: Modifier = Modifier,

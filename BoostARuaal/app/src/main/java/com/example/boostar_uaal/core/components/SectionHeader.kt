@@ -21,7 +21,21 @@ import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.theme.primaryColor
 import com.example.boostar_uaal.core.theme.primaryTextColor
 
-
+/**
+ * Encabezado de sección interactivo utilizado para agrupar y titular bloques de contenido.
+ *
+ * Este componente establece la jerarquía visual de la pantalla. Típicamente se posiciona
+ * justo por encima de carruseles de productos, listas de elementos o cuadrículas.
+ *
+ * @param modifier Modificador base para el contenedor principal de la fila (`Row`).
+ * @param icon URL o ruta opcional de la imagen que precede al título.
+ * @param title Cadena de texto plano que define el nombre de la sección.
+ * @param onClick Acción que se ejecuta al pulsar cualquier área del encabezado.
+ * @param textColor Color aplicado a la tipografía del título.
+ * @param fontSize Tamaño base de la fuente del título (por defecto 24.sp).
+ * @param arrowColor Color del vector de la flecha indicadora.
+ * @param enabled Determina la interactividad del componente y su presentación visual final.
+ */
 @Composable
 fun SectionHeader(
     modifier: Modifier = Modifier,
