@@ -21,15 +21,18 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.boostar_uaal.LocalAuthState
+import com.example.boostar_uaal.core.theme.discountColor
 import com.example.boostar_uaal.core.theme.secondaryColor
 import com.example.boostar_uaal.core.utils.AuthState
 import com.example.boostar_uaal.core.utils.formatLikes
@@ -111,11 +114,22 @@ fun ProductCard(
                     modifier = Modifier.height(24.dp).padding(end = 4.dp),
 
                 )
-                InterText(
-                    text = "${product.price}€",
-                    color = secondaryColor,
-                    fontSize = 12.sp
-                )
+                Row(horizontalArrangement = Arrangement.spacedBy(10.dp)){
+                    product.discountPrice?.let {
+                        InterText(
+                            text = "${product.discountPrice}€",
+                            color = discountColor,
+                            fontSize = 12.sp
+                        )
+                    }
+                    InterText(
+                        text = "${product.price}€",
+                        color = secondaryColor,
+                        fontSize = 12.sp,
+                        textDecoration = if(product.discountPrice != null) TextDecoration.LineThrough else TextDecoration.None
+                    )
+
+                }
             }
 
             Spacer(modifier = Modifier.width(4.dp))

@@ -1,5 +1,6 @@
 package com.example.boostar_uaal.ui.screen.challengeScreen
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.boostar_uaal.R
@@ -57,10 +58,13 @@ class ChallengeScreenViewModel : ViewModel() {
     }
 
     fun loadNextStep() {
+        Log.d("Challenge", "$challenge")
+
         if (challenge == null) return
         advanceStepIndex()
         _currentStep.value = steps[_currentStepIndex.value]
         scheduleButtonVisibility(_currentStep.value!!.sleepTimeInMilliseconds)
+
     }
 
     fun loadNextQuestion() {
