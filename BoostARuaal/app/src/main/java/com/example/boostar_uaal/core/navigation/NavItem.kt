@@ -10,10 +10,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.data.models.SortOrder
 
-sealed class NavItem(val route: Routes, val title: String, val icon: Int, val selectedIcon: Int){
+sealed class NavItem(val route: Routes, val title: String, val icon: Int, val selectedIcon: Int, val enablad: Boolean = true){
     object Inicio : NavItem(Routes.HomeScreen, "Inicio", R.drawable.home_icon, R.drawable.home_icon_active)
     object Retos : NavItem(Routes.GameScreen, "Retos", R.drawable.game_icon, R.drawable.game_icon_active)
     object Feeds : NavItem(Routes.FeedScreen(sortOrder = SortOrder.FORYOU), "Feeds", R.drawable.feed_icon, R.drawable.feed_icon_active)
-    object Cesta : NavItem(Routes.BasketScreen, "Cesta", R.drawable.basket_icon, R.drawable.basket_icon_active)
+    object Cesta : NavItem(Routes.BasketScreen, "Cesta", R.drawable.basket_icon, R.drawable.basket_icon_active, false)
     object Perfil : NavItem(Routes.ProfileScreen, "Perfil", R.drawable.profile_icon, R.drawable.profile_icon_active)
 }

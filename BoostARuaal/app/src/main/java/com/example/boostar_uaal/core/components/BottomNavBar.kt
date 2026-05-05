@@ -2,6 +2,8 @@ package com.example.boostar_uaal.core.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
@@ -29,8 +31,7 @@ fun BottomNavBar(naviagetTo: (Routes) -> Unit, currentRoute: Routes){
         NavItem.Perfil
     )
     BottomAppBar(
-        modifier = Modifier
-            .height(80.dp),
+        modifier = Modifier,
         containerColor = Color.White) {
         items.forEach { navItem ->
             val isSelected = navItem.route == currentRoute
@@ -44,6 +45,11 @@ fun BottomNavBar(naviagetTo: (Routes) -> Unit, currentRoute: Routes){
                         modifier = Modifier.height(32.dp),
                         tint = Color.Unspecified
                     )
+                    if (!navItem.enablad){
+                        BlockedIcon(
+                            modifier = Modifier.size(20.dp).offset(x = 20.dp, y = (-5).dp)
+                        )
+                    }
                 },
                 label = {
                     InterText(
@@ -56,7 +62,8 @@ fun BottomNavBar(naviagetTo: (Routes) -> Unit, currentRoute: Routes){
 
                     )
                 },
-                onClick = { naviagetTo(navItem.route) },
+                enabled = navItem.enablad,
+                onClick = {  naviagetTo(navItem.route) },
                 colors = NavigationBarItemDefaults.colors(
                     indicatorColor = Color.Transparent,
                     selectedIconColor = primaryColor,
