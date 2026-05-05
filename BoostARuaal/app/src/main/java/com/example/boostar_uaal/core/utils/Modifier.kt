@@ -24,7 +24,19 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Path
-
+/**
+ * Modificador personalizado para aplicar uno sombra de color.
+ *
+ * @param color El color principal del resplandor.
+ * @param blurRadius La intensidad del desenfoque. Un valor mayor extiende más la luz. Si
+ * se establece en 0.dp, el filtro se desactiva y dibuja una forma sólida.
+ * @param cornerRadius El radio de las esquinas del componente. Es fundamental que este valor
+ * coincida exactamente con el `clip` o `shape` del componente padre para que la sombra no
+ * sobresalga por los bordes de forma extraña.
+ * @param isTopOnly Si es `true`, aplica el radio de esquina exclusivamente en la parte superior
+ * (TopLeft y TopRight). Este caso de uso está diseñado específicamente para tarjetas emergentes
+ * desde abajo, como los modales o `BottomSheet`.
+ */
 fun Modifier.glow(
     color: Color,
     blurRadius: Dp = 20.dp,
@@ -75,7 +87,21 @@ fun Modifier.glow(
         }
     }
 }
-
+/**
+ * Modificador personalizado que aplica un efecto visual de carga animado (Shimmer effect).
+ *
+ * DETALLES DE IMPLEMENTACIÓN:
+ * - Ciclo de vida de la animación: Utiliza `rememberInfiniteTransition` y `infiniteRepeatable`
+ * para ejecutar un bucle constante que se reinicia (`RepeatMode.Restart`) sin necesidad de
+ * gestionar corrutinas ni estados manualmente.
+ * - Rendimiento gráfico: Emplea `drawBehind` para pintar el gradiente directamente sobre el
+ * lienzo (Canvas) subyacente del componente. Esta es la forma más optimizada de dibujar fondos
+ * dinámicos en Compose.
+ *
+ * @param durationMillis Duración en milisegundos de un ciclo completo de la animación.
+ * Por defecto es 1000ms (1 segundo). Disminuir este valor hará que el barrido de luz sea
+ * más rápido y frenético.
+ */
 @Composable
 fun Modifier.shimmer(
     durationMillis: Int = 1000,

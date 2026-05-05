@@ -8,7 +8,13 @@ import kotlin.time.Instant
 
 
 class AuthRepositoryImpl(private val auth: Auth): AuthRepository {
-
+    /**
+     * Guarda localmente la sesión actual del usuario.
+     *
+     * Si existe una sesión activa, la persiste utilizando el gestor de sesiones.
+     * Si no hay ninguna sesión válida en curso, la función se interrumpe de inmediato
+     * sin realizar ninguna acción.
+     */
     override suspend fun saveSession(){
         val userSession = auth.currentSessionOrNull() ?: return
         auth.sessionManager.saveSession(userSession)
@@ -21,7 +27,14 @@ class AuthRepositoryImpl(private val auth: Auth): AuthRepository {
 
     }
 
-
+    /**
+     * Verifica si el token de acceso de la sesión actual sigue siendo válido.
+     *
+     * Comprueba la existencia de una sesión activa y compara su fecha de caducidad
+     * (`expiresAt`) con la hora exacta actual del sistema.
+     *
+     * @return `true` si hay una sesión activa y su token no ha expirado; `false` en caso contrario.
+     */
     @OptIn(ExperimentalTime::class)
     override suspend fun isAccessTokenValid(): Boolean {
         val session = auth.currentSessionOrNull() ?: return false

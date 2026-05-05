@@ -34,7 +34,26 @@ import com.example.boostar_uaal.ui.screen.gameScreen.GameScreen
 import com.example.boostar_uaal.ui.screen.licenseScreen.LicenseScreen
 import com.example.boostar_uaal.ui.screen.newPartnerScreens.NewPartnerScreen
 import com.example.boostar_uaal.ui.screen.profileScreen.ProfileScreen
+/**
 
+ *
+ *
+ * 1. Puerta de Autenticación (Auth Gate):
+ * El punto de entrada a la app (`startRoute`) no está harcodeado. El componente lee el estado
+ * de la sesión actual de forma reactiva (`LocalAuthState.current`). Si el usuario está validado,
+ * inyecta la pantalla de inicio (`HomeScreen`); si no, lo expulsa a la pasarela de login (`AuthScreen`).
+ *
+ * 2. Comunicación entre pantallas (El caso de ArScreen -> FeedScreen):
+ * Como este sistema de navegación personalizado carece de una API nativa para devolver datos a
+ * la pantalla anterior tras hacer "Atrás" (como el `SavedStateHandle` estándar), se ha implementado
+ * un "puente" usando `NavViewModel`. Cuando se entra a `ArScreen`, se guarda un UUID en este
+ * ViewModel. Cuando se retrocede, `FeedScreen` lee ese estado.
+ * IMPORTANTE: Observa el callback `onBack` del `NavDisplay`. Allí se ejecuta la limpieza manual
+ * (`navViewModel.clearUuid()`) cuando se abandona el `FeedScreen`. Esto previene fugas de estado
+ * (state leaks) donde un UUID antiguo aparezca por error en navegaciones futuras.
+ *
+ *
+ */
 @SuppressLint("ViewModelConstructorInComposable")
 @Composable
 fun MainNavigationWrapper() {

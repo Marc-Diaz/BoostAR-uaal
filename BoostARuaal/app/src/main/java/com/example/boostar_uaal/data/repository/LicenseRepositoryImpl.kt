@@ -3,7 +3,7 @@ package com.example.boostar_uaal.data.repository
 import com.example.boostar_uaal.R
 import com.example.boostar_uaal.core.entities.License
 import com.example.boostar_uaal.core.repository.LicenseRepository
-
+/**TODO*/
 class LicenseRepositoryImpl(): LicenseRepository {
     override suspend fun getLicenses(): List<License> {
         val licenses = listOf(
