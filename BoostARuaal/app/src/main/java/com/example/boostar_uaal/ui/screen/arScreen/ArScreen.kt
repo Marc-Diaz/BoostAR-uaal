@@ -15,7 +15,6 @@ import com.snap.camerakit.Session
 import com.snap.camerakit.invoke
 import com.snap.camerakit.support.camerax.CameraXImageProcessorSource
 import android.Manifest
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,15 +22,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.boostar_uaal.R
-import com.example.boostar_uaal.core.entities.ProductDetail
 import com.example.boostar_uaal.core.utils.CameraKitConfig
+import com.example.boostar_uaal.data.models.ProductFilters
+import com.example.boostar_uaal.data.models.SortOrder
 import com.example.boostar_uaal.ui.screen.arScreen.components.CameraControlsOverlay
 import com.example.boostar_uaal.ui.screen.arScreen.components.ProductInformationTopBar
 import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreenViewModel
-import com.example.boostar_uaal.ui.screen.feedScreen.components.ProductDetailsDialog
+import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreenViewModelFactory
 import com.snap.camerakit.lenses.LensesComponent
 import com.snap.camerakit.lenses.whenHasFirst
-import java.util.UUID
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
@@ -42,7 +41,9 @@ fun ArScreen(
     onPermissionDenied: () -> Unit = {}
 ) {
     val arScreenViewModel = viewModel<ArScreenViewModel>()
-    val feedViewModel = viewModel<FeedScreenViewModel>(key = feedUuid.toString())
+    val feedViewModel = viewModel<FeedScreenViewModel>(
+        key = feedUuid.toString(),
+        factory = FeedScreenViewModelFactory(sortOrder = SortOrder.DEFAULT, productFilters = ProductFilters()))
     val product by feedViewModel.currentProduct.collectAsState()
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current

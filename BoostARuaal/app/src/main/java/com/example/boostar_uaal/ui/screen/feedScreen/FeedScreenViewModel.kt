@@ -133,6 +133,11 @@ class FeedScreenViewModel(private val sortOrder: String, private val productFilt
     }
 
     fun getCurrentProduct(){
-        _currentProduct.value = _products.value[_lastSelectedIndex.value]
+        try {
+            _currentProduct.value = _products.value[_lastSelectedIndex.value]
+        }
+        catch (e: Exception){
+
+        }
     }
 }
