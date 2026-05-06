@@ -23,7 +23,20 @@ import com.example.boostar_uaal.core.components.ItemImage
 import com.example.boostar_uaal.core.components.PaginationPoints
 import com.example.boostar_uaal.core.entities.Partner
 
-
+/**
+ * Componente visual para la barra superior (Top Bar) que muestra la marca asociada
+ * al producto actual y un acceso rápido para compartir el contenido.
+ *
+ * FUNCIONES PRINCIPALES:
+ * - Navegación de Marca: Muestra el logotipo de la marca (`Partner`) incrustado en un botón circular. Al pulsarlo, permite al usuario navegar hacia el perfil o catálogo de dicho partner.
+ * - Acción de Compartir: Incluye un botón circular secundario dedicado a la acción de compartir el elemento actual con otros usuarios o aplicaciones externas.
+ * - Disposición Espacial: Utiliza `Arrangement.SpaceBetween` para anclar el logotipo en el extremo izquierdo y el botón de compartir en el extremo derecho, creando un overlay limpio y equilibrado sobre el contenido visual subyacente.
+ *
+ * @param modifier Modificador base aplicado al contenedor principal (la fila horizontal).
+ * @param partner Objeto de datos que contiene la información de la marca, incluyendo la URL de su logotipo (`logoUrl`) para renderizar la imagen.
+ * @param onShareClick Callback que se ejecuta cuando el usuario pulsa el icono de compartir.
+ * @param onPartnerClick Callback que se dispara al interactuar con el logotipo, utilizado habitualmente para redirigir a la colección de la marca.
+ */
 @Composable
 fun TopPartnerSearch(modifier: Modifier = Modifier, partner: Partner, onShareClick: () -> Unit, onPartnerClick: () -> Unit) {
     Row(modifier = modifier

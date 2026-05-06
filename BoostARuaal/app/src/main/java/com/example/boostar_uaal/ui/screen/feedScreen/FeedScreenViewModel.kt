@@ -15,7 +15,13 @@ import com.example.boostar_uaal.BoostArApplication.Companion.productRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.likeRepository
 import com.example.boostar_uaal.BoostArApplication.Companion.cartRepository
 import com.example.boostar_uaal.data.models.ProductFilters
-
+/**
+ * ViewModel que gestiona la lógica de presentación, la paginación bidireccional
+ * y el estado interactivo de la pantalla de exploración principal (Feed estilo scroll infinito).
+ *
+ * @param sortOrder Criterio de ordenación inicial (ej. "novedades", "para ti").
+ * @param productFilters Filtros activos a aplicar sobre las peticiones del feed.
+ */
 
 class FeedScreenViewModel(private val sortOrder: String, private val productFilters: ProductFilters) : ViewModel() {
     private val _products = MutableStateFlow<List<ProductDetail>>(emptyList())
@@ -29,6 +35,7 @@ class FeedScreenViewModel(private val sortOrder: String, private val productFilt
 
     private var _currentProduct: MutableStateFlow<ProductDetail?> = MutableStateFlow<ProductDetail?>(null)
     val currentProduct: StateFlow<ProductDetail?> = _currentProduct.asStateFlow()
+
     fun initializeFeed(initialProductId: Int? = null) {
         loadInitialProducts(initialProductId)
         refreshLikes()
@@ -47,6 +54,12 @@ class FeedScreenViewModel(private val sortOrder: String, private val productFilt
         }
     }
 
+    /**
+     * Carga el estado inicial del feed. Si se proporciona un [initialProductId],
+     * recupera ese producto primero para mostrarlo inmediatamente, y luego carga
+     * silenciosamente las páginas adyacentes (anterior y siguiente) para permitir
+     * el scroll en ambas direcciones sin interrupciones.
+     */
     fun loadInitialProducts(initialProductId: Int? = null){
         Log.d("BEFORE Products ViewModel", "${_products.value}")
         Log.d("Product Paramenters", "Sort: $sortOrder, refId: ${_products.value.lastOrNull()?.id}, direction: next")
@@ -60,7 +73,11 @@ class FeedScreenViewModel(private val sortOrder: String, private val productFilt
             Log.d("AFTER Products ViewModel", "${_products.value}")
         }
     }
-
+    /**
+     * Paginación hacia adelante (Scroll down).
+     * Utiliza el ID del último elemento de la lista actual como cursor para
+     * solicitar el siguiente bloque de productos a la base de datos y los añade al final.
+     */
     fun loadNextPage() {
         viewModelScope.launch {
             try {
@@ -76,7 +93,11 @@ class FeedScreenViewModel(private val sortOrder: String, private val productFilt
             }
         }
     }
-
+    /**
+     * Paginación hacia atrás (Scroll up).
+     * Utiliza el ID del primer elemento de la lista actual como cursor para
+     * solicitar el bloque anterior de productos y los añade al inicio de la lista.
+     */
     fun loadPrevPage() {
         viewModelScope.launch {
             try {
@@ -110,7 +131,12 @@ class FeedScreenViewModel(private val sortOrder: String, private val productFilt
             cartRepository.addProductToCart(productId, colorId, sizeId, quantity)
         }
     }
-
+    /**
+     * Actualiza el índice del producto que el usuario está visualizando actualmente
+     * en el carrusel o feed vertical.
+     *
+     * @param index Posición actual en la lista.
+     */
     fun saveCurrentIndex(index: Int){
         _lastSelectedIndex.value = index
     }
@@ -121,7 +147,12 @@ class FeedScreenViewModel(private val sortOrder: String, private val productFilt
     fun closeDialog(){
         _showDialog.value = false
     }
-
+    /**
+     * Abre el menú nativo del sistema (Intent) para compartir el nombre del producto
+     * actual que se está visualizando con otras aplicaciones o contactos.
+     *
+     * @param context Contexto de Android necesario para lanzar la actividad.
+     */
     fun shareProduct(context: Context){
         val currentProduct = _products.value.get(_lastSelectedIndex.value)
         val sendIntent = Intent(Intent.ACTION_SEND).apply {

@@ -31,7 +31,20 @@ import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreenViewModel
 import com.example.boostar_uaal.ui.screen.feedScreen.FeedScreenViewModelFactory
 import com.snap.camerakit.lenses.LensesComponent
 import com.snap.camerakit.lenses.whenHasFirst
-
+/**
+ * Pantalla de Realidad Aumentada (AR) integrada con CameraKit (Snapchat).
+ *
+ * FUNCIONES PRINCIPALES:
+ * - Renderizado Nativo: Utiliza `AndroidView` para incrustar la cámara nativa en Jetpack Compose.
+ * - Inyección de Dependencias: Instancia `FeedScreenViewModel` a través de un `Factory` para proveer filtros y ordenación por defecto asociados al `feedUuid`.
+ * - Control de Hardware: Gestiona los permisos de la cámara en tiempo de ejecución y protege el ciclo de vida cerrando la sesión al destruir la vista (`DisposableEffect`).
+ * - Capa Visual: Superpone controles de cámara y metadatos del producto sobre el visor AR.
+ *
+ * @param back Acción de navegación para cerrar la vista AR.
+ * @param feedUuid Clave para recuperar la instancia del ViewModel y el producto correcto.
+ * @param lensId Identificador del filtro AR (lente) que se aplicará en la cámara.
+ * @param onPermissionDenied Acción ejecutada si se rechaza el permiso de la cámara.
+ */
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun ArScreen(

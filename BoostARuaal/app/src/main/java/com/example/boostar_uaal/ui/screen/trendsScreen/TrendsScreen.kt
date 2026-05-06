@@ -56,7 +56,7 @@ fun TrendsScreen(navigateTo: (Routes) -> Unit) {
             AdaptiveFeedLayout {
                 BackButtonHeader(
                     Modifier.padding(top = paddingValues.calculateTopPadding()),
-                    title = "Novedades",
+                    title = "Tendencias",
                     onBackClick = { navigateTo(Routes.HomeScreen) }
                 )
                 BannerStatic(

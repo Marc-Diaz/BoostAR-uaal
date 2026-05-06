@@ -43,6 +43,13 @@ class FashionNewsScreenViewmodel: ViewModel() {
             likeRepository.toggleLike(productId)
         }
     }
+
+    /**
+     * Observador reactivo del estado global de favoritos (`likeStateFlow`).
+     * * Cuando detecta una interacción, mapea la lista actual de productos nuevos (`_productsNewest`),
+     * localiza el producto afectado y reconstruye el objeto actualizando de forma optimista
+     * tanto el estado booleano (`isLiked`) como el contador total (`numLikes` +1 o -1).
+     */
     fun refreshLikes(){
         viewModelScope.launch {
             likeRepository.likeStateFlow.collect { likeMap ->

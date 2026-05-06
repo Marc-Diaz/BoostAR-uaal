@@ -25,6 +25,24 @@ import com.example.boostar_uaal.core.entities.BannerData
 import com.example.boostar_uaal.core.theme.primaryColor
 import com.example.boostar_uaal.core.theme.tertiaryColor
 
+
+/**
+ * Componente visual que renderiza un banner promocional estático para lanzamientos especiales (Drops).
+ *
+ * FUNCIONES PRINCIPALES:
+ * - Diseño Adaptativo: Lee la orientación del dispositivo (`LocalConfiguration`) en tiempo
+ * real para ajustar la relación de aspecto (Aspect Ratio) de la tarjeta: utiliza 16:9 para
+ * modo apaisado (Landscape) y 3:4.2 para modo vertical (Portrait).
+ * - Mejora de Legibilidad: Inyecta un gradiente oscuro superpuesto (Overlay) sobre la
+ * parte inferior de la imagen para asegurar el contraste y la legibilidad de la tipografía
+ * blanca, independientemente de la fotografía de fondo.
+ * - Llamadas a la Acción (CTAs): Utiliza un contenedor en fila (`Row`) con pesos equitativos
+ * (`weight(1f)`) para disponer los botones de "Probar AR" y "Reservar" de forma simétrica.
+ *
+ * @param banner Estructura de datos (`BannerData`) que contiene los recursos visuales (textos e imagen).
+ * @param onTryArClick Acción que se dispara al pulsar el botón de Realidad Aumentada.
+ * @param onReserveClick Acción que se dispara al pulsar el botón de reserva del producto.
+ */
 @Composable
 fun DropBannerStatic(
     banner: BannerData,

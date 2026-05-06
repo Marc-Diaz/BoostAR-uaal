@@ -29,6 +29,24 @@ import com.example.boostar_uaal.core.theme.discountColor
 import com.example.boostar_uaal.core.theme.secondaryColor
 
 
+/**
+ * Componente visual que muestra la información clave de un producto, como su nombre y precio,
+ * adaptándose dinámicamente si existe una oferta activa.
+ *
+ * FUNCIONES PRINCIPALES:
+ * - Gestión de Descuentos: Si se proporciona un precio rebajado (`discountPrice`), el componente
+ * renderiza automáticamente una etiqueta indicadora de "Oferta", resalta el nuevo precio con un color
+ * específico (`discountColor`) y aplica un tachado (`LineThrough`) al precio original.
+ *
+ * - Alta Legibilidad: Aplica sombras (`Shadow`) de forma estratégica al texto blanco principal. Esto garantiza
+ * que la información sea siempre legible, protegiendo el contraste incluso si este componente se superpone
+ * sobre imágenes o videos de fondo con tonos claros.
+ *
+ * @param modifier Modificador base para ajustar el diseño, proporciones y comportamiento del contenedor principal.
+ * @param name Título o nombre descriptivo del producto a renderizar.
+ * @param price Precio original o base del producto (valor numérico).
+ * @param discountPrice Precio promocional. Si es `null`, el componente asume que no hay oferta activa y muestra exclusivamente el precio normal.
+ */
 @Composable
 fun ProductInfoSection(
     modifier: Modifier = Modifier,

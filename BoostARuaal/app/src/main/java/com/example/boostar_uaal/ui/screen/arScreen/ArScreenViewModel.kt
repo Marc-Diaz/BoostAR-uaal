@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
+
 class ArScreenViewModel(): ViewModel() {
     private var _facingFront: MutableStateFlow<Boolean> = MutableStateFlow(true)
     val facingFront = _facingFront.asStateFlow()

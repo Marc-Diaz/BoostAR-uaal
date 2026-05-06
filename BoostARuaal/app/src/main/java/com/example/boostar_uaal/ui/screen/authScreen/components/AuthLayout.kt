@@ -23,6 +23,22 @@ import com.example.boostar_uaal.core.components.MediaPlayer
 import com.example.boostar_uaal.core.theme.primaryColor
 import com.example.boostar_uaal.core.utils.glow
 
+/**
+ * Plantilla base (Layout) para las pantallas.
+ *
+ * FUNCIONES PRINCIPALES:
+ * - Diseño Responsivo: Utiliza `BoxWithConstraints` para adaptar la interfaz según la
+ * orientación del dispositivo. En apaisado (landscape) divide la pantalla en dos mitades;
+ * en vertical (portrait) muestra el contenido en un panel emergente desde la zona inferior.
+ * - Fondo Multimedia: Renderiza un vídeo nativo (`MediaPlayer`) como fondo decorativo.
+ * - Slot API: Aplica el patrón de ranuras permitiendo que el componente padre inyecte
+ * su propia lógica de interfaz (inputs, botones) a través del parámetro `content`.
+ *
+ * @param title Título principal destacado que se muestra sobre el vídeo.
+ * @param subtitle Texto secundario de apoyo debajo del título.
+ * @param onBackClick Callback opcional para accionar la navegación hacia atrás. Si es `null`, el botón de la flecha se oculta.
+ * @param content Función composable que encapsula el formulario específico a renderizar (Login, Registro, etc.).
+ */
 @Composable
 fun AuthLayout(
     title: String,

@@ -13,6 +13,16 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+/**
+ * Renderiza el estado de carga inicial (skeleton screen) para el carrusel de marcas emergentes.
+ *
+ * Muestra una fila horizontal deslizable de marcadores de posición circulares, proporcionando
+ * retroalimentación visual al usuario mientras se obtienen los datos reales del servidor.
+ *
+ * @param modifier Modificador base para el contenedor principal de la sección.
+ * @param skeletonCount Cantidad de círculos de carga estáticos o animados a generar temporalmente en la lista.
+ */
+
 @Composable
 fun EmergingPartnersSection(
     modifier: Modifier = Modifier,
